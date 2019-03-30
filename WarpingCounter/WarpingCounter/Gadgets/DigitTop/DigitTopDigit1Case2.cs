@@ -8,11 +8,16 @@
     using Common.Builders;
     using Common.Models;
 
+    /// <summary>
+    /// Gadget 
+    /// </summary>
+    /// <seealso cref="IHaveFirst" />
+    /// <seealso cref="IHaveLast" />
     public class DigitTopDigit1Case2 : IHaveFirst, IHaveLast
     {
         public readonly List<Tile> Tiles;
 
-        public Tile Last { get; }
+        public Tile Last  { get; }
         public Tile First { get; }
 
         private const int Index = 1;
@@ -22,13 +27,13 @@
         {
             this.bitsPerDigit = bitsPerDigit;
             Tiles             = InitializeTiles();
-            Tiles.PrependNamesWith($"{nameof(DigitTopDigit1Case2)} carry={carry} {Index}");
+            Tiles.PrependNamesWith($"{nameof(DigitTopDigit1Case2)} {carry} {Index}");
 
-            First = Tiles.First();
-            Last  = Tiles.Last();
-
+            First       = Tiles.First();
             First.South = GlueFactory.DigitTopDigit1Case2(carry);
-            Last.South  = GlueFactory.ReturnD1ReadD2Case2(carry);
+
+            Last        = Tiles.Last();
+            Last.South  = GlueFactory.ReturnDigit1ReadDigit2Case2(carry);
         }
 
 

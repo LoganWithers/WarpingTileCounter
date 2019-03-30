@@ -43,6 +43,26 @@
         /// </returns>
         private static bool IsZero(double value) => value < double.Epsilon;
 
+
+        private void Summarize()
+        {
+            Console.WriteLine("Decimal:");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"    Start: {initialValueBase10}");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    Halt:  {haltingValueBase10}");
+            Console.ResetColor();
+            var length = initialValueBaseM.Max(s => s.Length);
+            var zeroes = string.Concat(Enumerable.Repeat('0', length)); 
+            Console.WriteLine($"B{BaseM}:");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"    Start: {zeroes} {string.Join(" ", initialValueBaseM.Select(digit => digit.PadLeft(length, '0')))}");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"    Halt:  {string.Join(" ", haltingValueBaseM.Select(digit => digit.PadLeft(length, '0')))}");
+            Console.ResetColor();
+            Console.WriteLine();
+        }
+
         public ConstructionDetails(string initialValueBase10, int baseM)
         {
             this.initialValueBase10 = BigInteger.Parse(initialValueBase10);
@@ -53,11 +73,10 @@
             haltingValueBase10      = BigInteger.Pow(BaseM, Convert.ToInt32(power));
 
             BitsPerCounterDigit     = Convert.ToString(BaseM - 1, 2).Length;
-
-
+         
             var leadingZeroes = BaseM.ToString().Length;
 
-            var digits    = (double)initialValueBaseM.Count;
+            var digits    = (double) initialValueBaseM.Count;
             var remainder = digits % DigitsPerRegion;
 
             var remainderDigits = (int) remainder;
@@ -91,6 +110,8 @@
                 AddWithLeadingZeroes($"{value}00");
                 AddWithLeadingZeroes($"{value}11");
             }
+
+            Summarize();
         }
 
 

@@ -35,7 +35,7 @@
             Last  = Tiles.Last();
 
 
-            Last.North = GlueFactory.WriteDigit(bits, index, carry);
+            Last.North = GlueFactory.DigitWriter(bits, carry, index);
 
             foreach (var t in Tiles)
             {
@@ -49,14 +49,14 @@
             switch (digitsInMSR)
             {
                 case 3:
-                    return CreateForThreeDigits();
+                    return CreateDigitCase3();
 
                 case 2:
                 {
                     // Not in the MSR
                     if (bits.EndsWith("00"))
                     {
-                        return CreateForThreeDigits();
+                        return CreateDigitCase3();
                     }
 
                     // Digit 1 in the MSR
@@ -75,8 +75,8 @@
                 }
 
                 case 1:
-                    return bits.EndsWith("11") ? CreateMSDCase1() // Digit 1 in the MSR
-                                               : CreateForThreeDigits();                     // Not in the MSR
+                    return bits.EndsWith("11") ? CreateDigit1Case1() // Digit 1 in the MSR
+                                               : CreateDigitCase3();                     // Not in the MSR
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(digitsInMSR));
@@ -120,7 +120,7 @@
         }
 
 
-        private List<Tile> CreateMSDCase1()
+        private List<Tile> CreateDigit1Case1()
         {
             var builder = new GadgetBuilder().Start();
 
@@ -134,13 +134,15 @@
             builder.North(16)
                    .West()
                    .North();
+
             builder.Tiles().First().Down = GlueFactory.PostWarp(bits, index, carry);
+
             return builder.Tiles()
                           .ToList();
         }
 
 
-        private List<Tile> CreateForThreeDigits()
+        private List<Tile> CreateDigitCase3()
         {
             var builder = new GadgetBuilder();
 
@@ -185,8 +187,7 @@
                     return tiles;
                 }
 
-                default:
-
+                default: 
                 {
                     builder.StartWith(new Tile())
                            .East()
@@ -206,7 +207,7 @@
 
                     tiles.First().Down = GlueFactory.PostWarp(bits, index, carry);
 
-                        return tiles;
+                    return tiles;
                 }
             }
         }

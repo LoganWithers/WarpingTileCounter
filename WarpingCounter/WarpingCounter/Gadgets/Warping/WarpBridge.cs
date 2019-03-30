@@ -25,8 +25,8 @@
         public WarpBridge(string bits, int index, bool carry, int digitsInMSR)
         {
             this.bits        = bits;
-            this.index = index;
-            this.carry = carry;
+            this.index       = index;
+            this.carry       = carry;
             this.digitsInMSR = digitsInMSR;
 
             Tiles = Init();
@@ -74,7 +74,7 @@
                 }
 
                 case 1:
-                    return bits.EndsWith("11") ? CreateDigit1Case1()        // Digit 1 in the MSR
+                    return bits.EndsWith("11") ? CreateDigit1Case1()     // Digit 1 in the MSR
                                                : CreateForThreeDigits(); // Not in the MSR
 
                 default:

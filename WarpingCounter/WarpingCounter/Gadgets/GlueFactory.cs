@@ -4,11 +4,11 @@
     using Common.Models;
 
     /// <summary>
-    /// Handles the binding of tiles between gadgets. 
+    /// Handles the external binding of tiles between gadgets. 
     /// </summary>
     public static class GlueFactory
     {
-
+    
         #region Warp units
         
         public static Glue PreFirstWarp(string bits, bool carry, int index) => new Glue($"bits={bits} carry={carry} Pre_First_Warp_D{index}");
@@ -26,41 +26,41 @@
 
         #region Digit Tops
         
-        public static Glue DigitTopStart(bool carry, int index) => new Glue($"DigitTopStart carry={carry} index={index}");
+        public static Glue DigitTopDefault(bool carry, int index) => new Glue($"DigitTopStart {carry} {index}");
 
-        public static Glue MsdTopCase3(bool carry) => new Glue($"LastDigitTopStart carry={carry} index=3");
-
-        public static Glue MsdTopCase2(bool carry) => new Glue($"MSDTopCase2 {carry} index=2");
-
-        public static Glue DigitTopDigit1Case2(bool carry) => new Glue($"Digit1Case2 {carry} index=1");
+        public static Glue DigitTopDigit3Case3(bool carry)        => new Glue($"DigitTopDigit3 {carry} 3");
+                                                                  
+        public static Glue DigitTopDigit2Case2(bool carry)        => new Glue($"DigitTopDigit2Case2 {carry} 2");
+                                                                  
+        public static Glue DigitTopDigit1Case2(bool carry)        => new Glue($"DigitTopDigit1Case2 {carry} 1");
 
         #endregion
 
 
         #region Return and read
 
-        public static Glue ReturnD1ReadD2(bool carry)      => new Glue($"Return_D1_Read_D2 carry={carry}");
+        public static Glue ReturnDigit1ReadDigit2(bool carry)      => new Glue($"ReturnDigit1ReadDigit2 {carry}");
+        
+        public static Glue ReturnDigit1ReadDigit2Case2(bool carry) => new Glue($"ReturnDigit1ReadDigit2Case_2 {carry}");
 
-        public static Glue ReturnD1ReadD2Case2(bool carry) => new Glue($"Return_D1_Read_D2_Case_2 carry={carry}");
+        public static Glue ReturnDigit2ReadDigit3(bool carry)      => new Glue($"ReturnDigit2ReadDigit3 {carry}");
 
-        public static Glue ReturnD2ReadD3(bool carry)      => new Glue($"Return_D2_Read_D3 carry={carry}");
+        public static Glue ReturnDigit3ReadDigit1(bool carry)      => new Glue($"ReturnDigit3ReadDigit1 {carry}");
 
-        public static Glue ReturnD3ReadD1(bool carry)      => new Glue($"Return_D3_Read_D1 carry={carry}");
+        public static Glue ReturnDigit3ReadNextRow(bool carry)     => new Glue($"ReturnDigit3ReadNextRow {carry}");
 
-        public static Glue ReturnD3CrossReadD1(bool carry) => new Glue($"Return_D3_Cross_Read_D1 carry={carry}");
+        public static Glue ReturnDigit2ReadNextRow(bool carry)     => new Glue($"ReturnDigit2ReadNextRow {carry}");
 
-        public static Glue ReturnD2CrossReadD1(bool carry) => new Glue($"Return_D2_Cross_Read_D1 carry={carry}");
-
-        public static Glue ReturnD1ReadD1(bool carry)      => new Glue($"Return_D1_Read_D1 carry={carry}");
+        public static Glue ReturnDigit1ReadNextRow(bool carry)     => new Glue($"ReturnDigit1ReadNextRow {carry}");
 
         #endregion
 
 
         #region Read and write
 
-        public static Glue WriteDigit(string bits, int digit, bool carry) => new Glue($"Write_Digit_D{digit} bits={bits} carry={carry}");
+        public static Glue DigitWriter(string bits, bool carry, int index) => new Glue($"DigitWriter bits={bits} {carry} {index}");
 
-        public static Glue DigitReader(string bits, bool carry, int index) => new Glue($"DigitReader bits={bits} carry={carry} index={index}");
+        public static Glue DigitReader(string bits, bool carry, int index) => new Glue($"DigitReader bits={bits} {carry} {index}");
 
         #endregion
         

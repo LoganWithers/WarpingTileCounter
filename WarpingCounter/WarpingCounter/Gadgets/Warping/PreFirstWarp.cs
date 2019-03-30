@@ -11,9 +11,11 @@
 
     public class PreFirstWarp : IHaveFirst, IHaveLast
     {
-
         public readonly List<Tile> Tiles;
 
+        public Tile First { get; }
+        public Tile Last  { get; }
+        
         private readonly int digitsInMSR;
 
         private readonly string bits;
@@ -21,54 +23,56 @@
         public PreFirstWarp(string bits, int index, bool carry, int digitsInMSR)
         {
             this.digitsInMSR = digitsInMSR;
-            this.bits = bits;
+            this.bits        = bits;
 
-            Tiles = InitTiles();
+            Tiles = InitializeTiles();
 
             if (Tiles.Any())
             {
-                First      = Tiles.First();
-                Last       = Tiles.Last();
+                Tiles.PrependNamesWith($"{nameof(PreFirstWarp)} bits={bits} {index} {carry}");
+
+                First       = Tiles.First();
                 First.South = GlueFactory.PreFirstWarp(bits, carry, index);
-                Last.North = GlueFactory.FirstWarp(bits, index, carry);
-                Tiles.PrependNamesWith($"{nameof(PreFirstWarp)} bits={bits} index={index} carry={carry}");
+
+                Last        = Tiles.Last();
+                Last.North  = GlueFactory.FirstWarp(bits, index, carry);
             }
         }
 
 
-        private List<Tile> InitTiles()
+        private List<Tile> InitializeTiles()
         {
             switch (digitsInMSR)
             {
                 case 3:
-                    return CreateForThreeDigits();
+                    return CreateForDigitsCase3();
 
                 case 2:
                 {
                     // Not in the MSR
                     if (bits.EndsWith("00"))
                     {
-                        return CreateForThreeDigits();
+                        return CreateForDigitsCase3();
                     }
                     
                     // Digit 1 in the MSR
                     if (bits.EndsWith("01"))
                     {
-                        return CreateNonMSDCase2();
+                        return CreateDigit1Case2();
                     }
 
                     // Digit 2 (MSD) in the MSR
                     if (bits.EndsWith("11"))
                     {
-                        return CreateMSDCase2();
+                        return CreateDigit2Case2();
                     }
 
                     throw new ArgumentOutOfRangeException(bits);
                 }
 
                 case 1:
-                    return bits.EndsWith("11") ? CreateMSDCase1()    // Digit 1 in the MSR
-                                               : CreateForThreeDigits(); // Not in the MSR
+                    return bits.EndsWith("11") ? CreateDigit1Case1()     // Digit 1 in the MSR
+                                               : CreateForDigitsCase3(); // Not in the MSR
             
                 default:
                     throw new ArgumentOutOfRangeException(nameof(digitsInMSR));
@@ -76,7 +80,7 @@
             }
         }
 
-        private List<Tile> CreateForThreeDigits()
+        private List<Tile> CreateForDigitsCase3()
         {
             var builder = new GadgetBuilder();
 
@@ -120,7 +124,7 @@
         }
 
 
-        private List<Tile> CreateMSDCase1()
+        private static List<Tile> CreateDigit1Case1()
         {
             var builder = new GadgetBuilder().Start();
 
@@ -132,7 +136,7 @@
         }
 
 
-        private List<Tile> CreateNonMSDCase2()
+        private static List<Tile> CreateDigit1Case2()
         {
             var builder = new GadgetBuilder().Start();
             builder.North(9)
@@ -146,20 +150,15 @@
         }
 
 
-        private List<Tile> CreateMSDCase2()
+        private static List<Tile> CreateDigit2Case2()
         {
-            var tile = new Tile(Guid.NewGuid()
-                                    .ToString());
+            var tile = new Tile(Guid.NewGuid().ToString());
 
-            // No tiles are used in this case
+            // Only one tile is used.
             return new List<Tile> { tile };
 
         }
-
-
-        public Tile First { get; }
-        public Tile Last { get; }
-
+        
     }
 
 }

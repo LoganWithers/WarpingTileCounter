@@ -36,7 +36,7 @@
             Tiles.PrependNamesWith($"ReturnDigit1ReadNextRow {carry}");
 
             First = Tiles.First();
-            First.South = GlueFactory.ReturnD1ReadD1(carry);
+            First.South = GlueFactory.ReturnDigit1ReadNextRow(carry);
 
             Last = Tiles.Last();
             Last.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);

@@ -8,41 +8,45 @@
     using Common.Builders;
     using Common.Models;
 
+    using ReturnAndRead.NextRow;
+
     /// <summary>
-    /// A gadget that is used after writing the third digit (MSD) in a region, thus it
-    /// will alter the succeeding return and read gadget accordingly. 
-    ///
+    /// A gadget that is used only in case 3. After writing the third digit (MSD) in MSR,
+    /// this gadget is placed will alter the succeeding return and read gadget accordingly. 
+    /// <br/>
     /// The first tile connects to a digit that ends with "11" and is
     /// in a region with two other digits.
-    /// 
-    /// The last tile of this gadget connects to <see cref=""/>
+    /// <br/>
+    /// The last tile of this gadget connects to <see cref="ReturnDigit3ReadNextRow"/>
     /// </summary>
     /// <seealso cref="IHaveLast" />
     /// <seealso cref="IHaveFirst" />
-    public class MsdDigitTop : IHaveLast, IHaveFirst
+    public class DigitTopDigit3Case3 : IHaveLast, IHaveFirst
     {
-
+        
         public readonly List<Tile> Tiles;
 
         public Tile Last  { get; }
         public Tile First { get; }
 
+        private const int Index = 3;
+
         private readonly bool carry;
+
         private readonly int bitsPerDigit;
-
-
-        public MsdDigitTop(bool carry, int bitsPerDigit)
+        
+        public DigitTopDigit3Case3(bool carry, int bitsPerDigit)
         {
             this.carry        = carry;
             this.bitsPerDigit = bitsPerDigit;
             Tiles             = InitializeTiles();
-            Tiles.PrependNamesWith($"{nameof(MsdDigitTop)} carry={carry} index={3}");
+            Tiles.PrependNamesWith($"{nameof(DigitTopDigit3Case3)} {carry} {Index}");
 
             First       = Tiles.First();
-            First.South = GlueFactory.MsdTopCase3(carry);
+            First.South = GlueFactory.DigitTopDigit3Case3(carry);
 
             Last        = Tiles.Last();
-            Last.South  = GlueFactory.ReturnD3CrossReadD1(carry);
+            Last.South  = GlueFactory.ReturnDigit3ReadNextRow(carry);
         }
 
 

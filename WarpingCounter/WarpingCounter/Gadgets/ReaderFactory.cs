@@ -15,24 +15,28 @@
         private const int Digits = 3;
 
         private readonly int baseOfEncodedDigits;
+
+        private readonly int digitsInMSR;
+
         private readonly int bitsRequiredForBaseM;
         private readonly int actualBitsPerEncodedDigit;
 
         private readonly List<string> possibilities;
 
-        public ReaderFactory(int actualBitsPerEncodedDigit, int bitsRequiredForBaseM, int baseOfEncodedDigits)
+        public ReaderFactory(int actualBitsPerEncodedDigit, int bitsRequiredForBaseM, int baseOfEncodedDigits, int digitsInMSR)
         {
             this.actualBitsPerEncodedDigit = actualBitsPerEncodedDigit;
-            this.bitsRequiredForBaseM = bitsRequiredForBaseM;
-            this.baseOfEncodedDigits = baseOfEncodedDigits;
-   
-            UniqueDigits = new HashSet<string>();
+            this.bitsRequiredForBaseM      = bitsRequiredForBaseM;
+            this.baseOfEncodedDigits       = baseOfEncodedDigits;
+            this.digitsInMSR               = digitsInMSR;
+
+            UniqueDigits  = new HashSet<string>();
             possibilities = new List<string>();
-            Readers = CreateCounterRead();
+            Readers       = CreateCounterReaders();
         }
 
 
-        private List<BinaryReader> CreateCounterRead()
+        private List<BinaryReader> CreateCounterReaders()
         {
             var results = new List<BinaryReader>();
 
@@ -41,8 +45,9 @@
                 var value = Convert.ToString(i, 2).PadLeft(bitsRequiredForBaseM, '0');
                 possibilities.Add(value);
                 possibilities.Add($"{value}00");
-                possibilities.Add($"{value}01");
                 possibilities.Add($"{value}11");
+                possibilities.Add($"{value}01");
+                
             }
 
             foreach (var possibility in possibilities)

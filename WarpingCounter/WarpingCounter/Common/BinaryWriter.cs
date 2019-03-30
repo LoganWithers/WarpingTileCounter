@@ -13,11 +13,12 @@
 
     using Models;
 
-    public class BinaryWriter
+    public class BinaryWriter : IHaveFirst, IHaveLast
     {
         public readonly List<Tile> Tiles;
+
         public Tile First { get; }
-        public Tile Last { get; }
+        public Tile Last  { get; }
 
 
         private readonly string originalBits;
@@ -26,31 +27,32 @@
         {
             this.originalBits = originalBits;
             Tiles = InitTiles();
-            Tiles.PrependNamesWith($"bits={originalBits} carry={carry} index={index}");
-            First = Tiles.First();
-            Last  = Tiles.Last();
+            Tiles.PrependNamesWith($"WRITE bits={originalBits} {carry} {index}");
+            First       = Tiles.First();
+            First.South = GlueFactory.DigitWriter(originalBits, carry, index);
 
-            First.South = GlueFactory.WriteDigit(originalBits, index, carry);
+            Last        = Tiles.Last();
             Last.North  = DetermineGadgetToAttachTo(digitsInMSR, originalBits, carry, index);
         }
 
 
         private Glue DetermineGadgetToAttachTo(int digitsInMSR, string bits, bool carry, int index)
         {
+
             if (digitsInMSR == 1 && bits.EndsWith("11"))
             {
-                return GlueFactory.ReturnD1ReadD1(carry);
+                return GlueFactory.ReturnDigit1ReadNextRow(carry);
             }
 
             if (digitsInMSR == 3 && bits.EndsWith("11"))
             {
                 Debug.Assert(digitsInMSR == 3, "digitsInMSR == 3");
-                return GlueFactory.MsdTopCase3(carry);
+                return GlueFactory.DigitTopDigit3Case3(carry);
             }
 
             if (digitsInMSR == 2 && bits.EndsWith("11"))
             {
-                return GlueFactory.MsdTopCase2(carry);
+                return GlueFactory.DigitTopDigit2Case2(carry);
             }
 
             if (digitsInMSR == 2 && bits.EndsWith("01"))
@@ -58,7 +60,7 @@
                 return GlueFactory.DigitTopDigit1Case2(carry);
             }
 
-            return GlueFactory.DigitTopStart(carry, index);
+            return GlueFactory.DigitTopDefault(carry, index);
         }
 
         private List<Tile> InitTiles()

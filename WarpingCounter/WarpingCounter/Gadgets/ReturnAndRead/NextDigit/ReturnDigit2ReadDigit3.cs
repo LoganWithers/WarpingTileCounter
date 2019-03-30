@@ -30,7 +30,7 @@
 
 
             First = Tiles.First();
-            First.North = GlueFactory.ReturnD2ReadD3(carry);
+            First.North = GlueFactory.ReturnDigit2ReadDigit3(carry);
 
             Last  = Tiles.Last();
             Last.North  = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);

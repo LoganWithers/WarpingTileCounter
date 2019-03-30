@@ -43,7 +43,7 @@
             Tiles.PrependNamesWith($"{nameof(ReturnDigit1ReadDigit2)} carry={carry}");
 
             First       = Tiles.First();
-            First.North = GlueFactory.ReturnD1ReadD2(carry);
+            First.North = GlueFactory.ReturnDigit1ReadDigit2(carry);
 
             Last       = Tiles.Last();
             Last.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);

@@ -10,8 +10,8 @@
     using Common.Models;
 
     /// <summary>
-    ///
-    /// The first tile of this gadget is connected to the the north-most tile of a digit that is not the most significant digit in a region.
+    /// 
+    /// The first tile of this gadget is connected to the last tile of a digit when it ends with "00".
     ///
     /// The last tile is connected to a return and read gadget.
     /// </summary>
@@ -21,14 +21,21 @@
     {
         public readonly List<Tile> Tiles;
         
-        public Tile Last { get; }
+        public Tile Last  { get; }
         public Tile First { get; }
 
-
+        /// <summary>
+        /// The current carry signal of the counter
+        /// </summary>
         private readonly bool carry;
 
         private readonly int bitsPerDigit;
 
+        /// <summary>
+        /// The index of the digit that attached to the first tile of this gadget.
+        /// <br/>
+        /// Used in order to determine the correct output glue.
+        /// </summary>
         private readonly int index;
 
 
@@ -37,28 +44,28 @@
             this.carry        = carry;
             this.bitsPerDigit = bitsPerDigit;
             this.index        = index;
-            Tiles             = InitializeTiles();
-            Tiles.PrependNamesWith($"{nameof(DigitTopDefault)} carry={carry} index={index}");
 
-            First = Tiles.First();
-            First.South = GlueFactory.DigitTopStart(carry, index);
+            Tiles       = InitializeTiles();
+            Tiles.PrependNamesWith($"DigitTop {this.carry} {this.index}");
 
-            Last  = Tiles.Last();
-            Last.South  = BindToReturnGadgets();
+            First       = Tiles.First();
+            First.South = GlueFactory.DigitTopDefault(carry, index);
+
+            Last        = Tiles.Last();
+            Last.South  = GetNextDigitToRead();
         }
 
-
-        // Need to add check for MSD 
-        private Glue BindToReturnGadgets()
+        
+        private Glue GetNextDigitToRead()
         {
             switch (index)
             {
                 case 1:
-                    return GlueFactory.ReturnD1ReadD2(carry);
+                    return GlueFactory.ReturnDigit1ReadDigit2(carry);
                 case 2:
-                    return GlueFactory.ReturnD2ReadD3(carry);
+                    return GlueFactory.ReturnDigit2ReadDigit3(carry);
                 case 3:
-                    return GlueFactory.ReturnD3ReadD1(carry);
+                    return GlueFactory.ReturnDigit3ReadDigit1(carry);
                 default:
                     throw new ArgumentOutOfRangeException($"Invalid digit index: {index}");
             }

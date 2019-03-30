@@ -18,7 +18,7 @@
     {
         public readonly List<Tile> Tiles;
         public Tile First { get; }
-        public Tile Last { get; }
+        public Tile Last  { get; }
 
 
         private const int NextDigitRead = 1; 
@@ -38,7 +38,7 @@
             Tiles.PrependNamesWith($"{nameof(ReturnDigit3ReadNextRow)} carry={carry}");
 
             First       = Tiles.First();
-            First.North = GlueFactory.ReturnD3CrossReadD1(carry);
+            First.North = GlueFactory.ReturnDigit3ReadNextRow(carry);
 
             Last        = Tiles.Last();
             Last.North  = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);

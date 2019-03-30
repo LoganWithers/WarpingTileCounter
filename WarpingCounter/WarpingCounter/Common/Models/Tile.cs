@@ -154,48 +154,97 @@
         }
 
 
+        //public override string ToString()
+        //{
+        //    var sb = new StringBuilder()
+        //            .Append($"TILENAME {Name}")
+        //            .AppendLine()
+        //            .Append($"NORTHBIND {North.Bind}")
+        //            .AppendLine()
+        //            .Append($"EASTBIND {East.Bind}")
+        //            .AppendLine()
+        //            .Append($"SOUTHBIND {South.Bind}")
+        //            .AppendLine()
+        //            .Append($"WESTBIND {West.Bind}")
+        //            .AppendLine()
+        //            .Append($"UPBIND {Up.Bind}")
+        //            .AppendLine()
+        //            .Append($"DOWNBIND {Down.Bind}")
+        //            .AppendLine()
+        //            .Append($"NORTHLABEL {North.Label}")
+        //            .AppendLine()
+        //            .Append($"EASTLABEL {East.Label}")
+        //            .AppendLine()
+        //            .Append($"SOUTHLABEL {South.Label}")
+        //            .AppendLine()
+        //            .Append($"WESTLABEL {West.Label}")
+        //            .AppendLine()
+        //            .Append($"UPLABEL {Up.Label}")
+        //            .AppendLine()
+        //            .Append($"DOWNLABEL {Down.Label}")
+        //            .AppendLine();
 
+
+
+        //    if (!string.IsNullOrEmpty(Color))
+        //    {
+        //        sb.Append($"TILECOLOR {Color}")
+        //          .AppendLine();
+        //    }
+
+        //    return sb.Append("CREATE")
+        //             .AppendLine()
+        //             .ToString();
+        //}
 
         public override string ToString()
         {
             var sb = new StringBuilder()
-                    .Append($"TILENAME {Name}")
-                    .AppendLine()
-                    .Append($"NORTHBIND {North.Bind}")
-                    .AppendLine()
-                    .Append($"EASTBIND {East.Bind}")
-                    .AppendLine()
-                    .Append($"SOUTHBIND {South.Bind}")
-                    .AppendLine()
-                    .Append($"WESTBIND {West.Bind}")
-                    .AppendLine()
-                    .Append($"UPBIND {Up.Bind}")
-                    .AppendLine()
-                    .Append($"DOWNBIND {Down.Bind}")
-                    .AppendLine()
-                    .Append($"NORTHLABEL {North.Label}")
-                    .AppendLine()
-                    .Append($"EASTLABEL {East.Label}")
-                    .AppendLine()
-                    .Append($"SOUTHLABEL {South.Label}")
-                    .AppendLine()
-                    .Append($"WESTLABEL {West.Label}")
-                    .AppendLine()
-                    .Append($"UPLABEL {Up.Label}")
-                    .AppendLine()
-                    .Append($"DOWNLABEL {Down.Label}")
-                    .AppendLine();
+                    .AppendLine($"TILENAME {Name}");
 
+            if (North.Bind > 0)
+            {
+                sb.AppendLine($"NORTHBIND {North.Bind}")
+                  .AppendLine($"NORTHLABEL {North.Label}");
+            }
+
+            if (East.Bind > 0)
+            {
+                sb.AppendLine($"EASTBIND {East.Bind}")
+                  .AppendLine($"EASTLABEL {East.Label}");
+            }
+
+            if (South.Bind > 0)
+            {
+                sb.AppendLine($"SOUTHBIND {South.Bind}")
+                  .AppendLine($"SOUTHLABEL {South.Label}");
+            }
+
+            if (West.Bind > 0)
+            {
+                sb.AppendLine($"WESTBIND {West.Bind}")
+                  .AppendLine($"WESTLABEL {West.Label}");
+            }
+
+            if (Up.Bind > 0)
+            {
+                sb.AppendLine($"UPBIND {Up.Bind}")
+                  .AppendLine($"UPLABEL {Up.Label}");
+            }
+
+            if (Down.Bind > 0)
+            {
+                sb.AppendLine($"DOWNBIND {Down.Bind}")
+                  .AppendLine($"DOWNLABEL {Down.Label}");
+            }
 
 
             if (!string.IsNullOrEmpty(Color))
             {
-                sb.Append($"TILECOLOR {Color}")
-                  .AppendLine();
+                sb.AppendLine($"TILECOLOR {Color}");
             }
 
-            return sb.Append("CREATE")
-                     .AppendLine()
+            return sb.AppendLine("CREATE")
                      .ToString();
         }
 

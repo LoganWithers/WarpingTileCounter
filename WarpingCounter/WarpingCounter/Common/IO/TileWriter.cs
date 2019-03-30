@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+    using System.Text;
 
     using Models;
 
@@ -32,14 +33,21 @@
         {
             var path = $"{GetPath()}{options.SimpleTileSetName}.tdp";
             File.WriteAllText(path, options.ToString());
-            Console.WriteLine($".tdp file can be found at {path}");
+            Console.WriteLine($"File can be found at {options.SimpleTileSetName}.tdp");
         }
 
         private void WriteDefinitions()
         {
             var path = $"{GetPath()}{options.SimpleTileSetName}.tds";
-            File.WriteAllText(path, string.Join("\n", tiles.Select(t => t.ToString())));
-            Console.WriteLine($".tds file can be found at {path}\n\n");
+            var sb = new StringBuilder();
+
+            foreach (var tile in tiles)
+            {
+                sb.AppendLine(tile.ToString());
+            }
+
+
+            File.WriteAllText(path, sb.ToString());
         }
 
         private const string ProjectFolder = "\\WarpingCounter\\WarpingCounter\\";

@@ -45,17 +45,17 @@
 
                     if (BigInteger.TryParse(input ?? "", out _))
                     {
-                        var initialValueManager = new SeedCreator( baseM, input);
+                        var seedCreator = new SeedCreator( baseM, input);
 
-                        if (initialValueManager.constructionDetails.DigitRegions < 2)
+                        if (seedCreator.Construction.DigitRegions < 2)
                         {
                             Error("Starting value must be result in >= 2 digit regions");
                             continue;
                         }
 
-                        var tiles = initialValueManager.Tiles;
-                        AddCounterTiles(tiles, initialValueManager.constructionDetails);
-                        Write($"ThinRectangle_b{baseM}_from_{input}", tiles);
+                        var tiles = seedCreator.Tiles;
+                        AddCounterTiles(tiles, seedCreator.Construction);
+                        Write($"WarpingCounter_b{baseM}_from_{input}", tiles);
 
                         continue;
                     }
@@ -111,10 +111,11 @@
 
         private static void AddCounterTiles(List<Tile> tiles, ConstructionDetails construction)
         {
-            var counter = new ReaderFactory(construction.ActualBitsPerDigit, construction.BitsPerCounterDigit, construction.BaseM);
+            var inMSR = construction.DigitsInMSR;
+            var counter = new ReaderFactory(construction.ActualBitsPerDigit, construction.BitsPerCounterDigit, construction.BaseM, construction.DigitsInMSR);
             tiles.AddRange(counter.Readers.SelectMany(reader => reader.Tiles));
-            tiles.AddRange(CreateReturnAndRead(construction.ActualBitsPerDigit, construction.DigitRegions));
-            tiles.AddRange(CreateDigitTops(construction.ActualBitsPerDigit));
+            tiles.AddRange(CreateReturnAndRead(construction.ActualBitsPerDigit, construction.DigitRegions, inMSR));
+            tiles.AddRange(CreateDigitTops(construction.ActualBitsPerDigit, inMSR));
      
 
             Console.WriteLine($"Bits Per Counter Digit: {construction.BitsPerCounterDigit}");
@@ -131,49 +132,75 @@
         }
 
 
-        private static IEnumerable<Tile> CreateDigitTops(int bitsPerDigit)
+        private static IEnumerable<Tile> CreateDigitTops(int bitsPerDigit, int digitsInMSR)
         {
             var results = new List<Tile>();
 
             for (var i = 1; i <= Digits; i++)
             {
-                results.AddRange(new DigitTopDefault(true, i, bitsPerDigit).Tiles);
+                results.AddRange(new DigitTopDefault(true,  i, bitsPerDigit).Tiles);
                 results.AddRange(new DigitTopDefault(false, i, bitsPerDigit).Tiles);
             }
 
-            results.AddRange(new MsdDigitTop(true, bitsPerDigit).Tiles);
-            results.AddRange(new MsdDigitTop(false, bitsPerDigit).Tiles);
-            results.AddRange(new MsdDigitTopCase2(false, bitsPerDigit).Tiles);
-            results.AddRange(new MsdDigitTopCase2(true, bitsPerDigit).Tiles);
-            results.AddRange(new DigitTopDigit1Case2(true, bitsPerDigit).Tiles);
-            results.AddRange(new DigitTopDigit1Case2(false, bitsPerDigit).Tiles);
+            foreach (var carry in new[] {true, false})
+            {
+                switch (digitsInMSR)
+                {
+                    case 1:
+                        break;
+
+                    case 2:
+
+                        results.AddRange(new DigitTopDigit2Case2(carry,  bitsPerDigit).Tiles);
+                        results.AddRange(new DigitTopDigit1Case2(carry,  bitsPerDigit).Tiles);
+                        break;
+
+                    case 3:
+                        results.AddRange(new DigitTopDigit3Case3(carry,  bitsPerDigit).Tiles);
+                        break;
+                }
+            }
+
 
             return results;
         }
 
 
-        private static IEnumerable<Tile> CreateReturnAndRead(int bitsPerDigit, int regions)
+        private static IEnumerable<Tile> CreateReturnAndRead(int bitsPerDigit, int regions, int digitsInMSR)
         {
             var results = new List<Tile>();
 
             foreach (var carry in new[] { true, false })
             {
-                var returnD1ReadD2      = new ReturnDigit1ReadDigit2(carry, bitsPerDigit);
-                var returnD2ReadD3      = new ReturnDigit2ReadDigit3(carry, bitsPerDigit);
-                var returnD3ReadD1      = new ReturnDigit3ReadDigit1(carry, bitsPerDigit);
-                var returnD1ReadD2Case2 = new ReturnDigit1ReadDigit2Case2(carry, bitsPerDigit);
+                var returnD1ReadD2 = new ReturnDigit1ReadDigit2(carry, bitsPerDigit);
+                var returnD2ReadD3 = new ReturnDigit2ReadDigit3(carry, bitsPerDigit);
+                var returnD3ReadD1 = new ReturnDigit3ReadDigit1(carry, bitsPerDigit);
 
-                var returnD1ReadD1      = new ReturnDigit1ReadNextRow(carry, bitsPerDigit, regions);
-                var returnD2CrossReadD1 = new ReturnDigit2ReadNextRow(carry, bitsPerDigit, regions);
-                var returnD3CrossReadD1 = new ReturnDigit3ReadNextRow(carry, bitsPerDigit, regions);
-
-                results.AddRange(returnD2CrossReadD1.Tiles);
-                results.AddRange(returnD1ReadD2Case2.Tiles);
-                results.AddRange(returnD3CrossReadD1.Tiles);
                 results.AddRange(returnD3ReadD1.Tiles);
                 results.AddRange(returnD1ReadD2.Tiles);
                 results.AddRange(returnD2ReadD3.Tiles);
-                results.AddRange(returnD1ReadD1.Tiles);
+
+                switch (digitsInMSR)
+                {
+                    case 1:
+                        var returnDigit1ReadNextRow      = new ReturnDigit1ReadNextRow(carry, bitsPerDigit, regions);
+                        results.AddRange(returnDigit1ReadNextRow.Tiles);
+
+                        break;
+                    case 2:
+                        var returnDigit2ReadNextRow     = new ReturnDigit2ReadNextRow(carry, bitsPerDigit, regions);
+                        var returnDigit1ReadDigit2Case2 = new ReturnDigit1ReadDigit2Case2(carry, bitsPerDigit);
+                        results.AddRange(returnDigit1ReadDigit2Case2.Tiles);
+                        results.AddRange(returnDigit2ReadNextRow.Tiles);
+                        break;
+                    case 3:
+                        var returnDigit3ReadNextRow = new ReturnDigit3ReadNextRow(carry, bitsPerDigit, regions);
+                        results.AddRange(returnDigit3ReadNextRow.Tiles);
+                        results.AddRange(new DigitTopDigit3Case3(carry, bitsPerDigit).Tiles);
+
+                        break;
+                }
+
             }
 
             return results;
@@ -185,7 +212,7 @@
 
             for (var i = 1; i <= Digits; i++)
             {
-                results.AddRange(new BinaryWriter(bits, true, i, digitsInMSR).Tiles);
+                results.AddRange(new BinaryWriter(bits, true,  i, digitsInMSR).Tiles);
                 results.AddRange(new BinaryWriter(bits, false, i, digitsInMSR).Tiles);
             }
 

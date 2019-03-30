@@ -27,9 +27,9 @@
         private readonly bool leastSignificantRegion;
 
         public ThreeDigitRegion(int bitsPerDigit,
-                                       (string digit3, string digit2, string digit1) encodings,
-                                       int regionIndex,
-                                       bool leastSignificantRegion)
+                                (string digit3, string digit2, string digit1) encodings,
+                                int regionIndex,
+                                bool leastSignificantRegion)
         {
             this.bitsPerDigit           = bitsPerDigit;
             this.regionIndex            = regionIndex;

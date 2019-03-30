@@ -23,18 +23,18 @@
         {
             this.bitsPerDigit = bitsPerDigit;
 
-            Tiles = InitTiles();
-            Tiles.PrependNamesWith($"{nameof(ReturnDigit1ReadDigit2Case2)} carry={carry}");
+            Tiles = InitializeTiles();
+            Tiles.PrependNamesWith($"{nameof(ReturnDigit1ReadDigit2Case2)} {carry}");
 
             First       = Tiles.First();
-            First.North = GlueFactory.ReturnD1ReadD2Case2(carry);
+            First.North = GlueFactory.ReturnDigit1ReadDigit2Case2(carry);
 
             Last        = Tiles.Last();
             Last.North  = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
         }
 
 
-        private List<Tile> InitTiles()
+        private List<Tile> InitializeTiles()
         {
             var builder = new GadgetBuilder().Start();
 
