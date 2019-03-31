@@ -130,6 +130,7 @@
 
             builder.North(17);
             builder.West();
+            builder.North(12);
 
             return builder.Tiles()
                           .ToList();
