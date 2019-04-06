@@ -12,20 +12,24 @@
 
     public class BinaryReader
     {
-        private static Glue GetInputGlue(string bits, bool carry, int index) => GlueFactory.DigitReader(bits, carry, index);
-        
-        private readonly string inputBits;
-        private readonly (string guessOne, string guessZero) guesses;
 
-        public readonly List<Tile> Tiles;
+        private readonly bool carry;
+
+        private readonly int counterBase;
+
+        private readonly (string guessOne, string guessZero) guesses;
 
 
         private readonly int index;
-        private readonly int counterBase;
-        private readonly bool carry;
 
-        private GuessOne guessOne;
-        private GuessZero guessZero;
+        private readonly string inputBits;
+
+        public readonly List<Tile> Tiles;
+
+        private readonly GuessOne guessOne;
+
+        private readonly GuessZero guessZero;
+
 
         public BinaryReader(string inputBits, bool carry, int index, int length, int counterBase)
         {
@@ -39,9 +43,9 @@
 
             guessOne.Bind(guessZero);
 
-            guesses     = (guessOne.Result, guessZero.Result);
-            
-            var input       = GetInputGlue(this.inputBits, this.carry, this.index);
+            guesses = (guessOne.Result, guessZero.Result);
+
+            var input = GetInputGlue(this.inputBits, this.carry, this.index);
 
             var (one, zero) = GetOutputGlues(length);
 
@@ -61,6 +65,9 @@
         }
 
 
+        private static Glue GetInputGlue(string bits, bool carry, int index) => GlueFactory.DigitReader(bits, carry, index);
+
+
         private (Glue one, Glue zero) GetOutputGlues(int maxLength)
         {
             var valueProducedIsLessThanMax = inputBits.Length + 1 < maxLength;
@@ -71,31 +78,29 @@
                         GetInputGlue(guesses.guessZero, carry, index));
             }
 
-            var one = CalculateOutputBits(guesses.guessOne,   carry, counterBase);
+            var one  = CalculateOutputBits(guesses.guessOne,  carry, counterBase);
             var zero = CalculateOutputBits(guesses.guessZero, carry, counterBase);
-
 
             return (GlueFactory.PreFirstWarp(one.bits,  one.carryOut,  index),
                     GlueFactory.PreFirstWarp(zero.bits, zero.carryOut, index));
-
         }
+
 
         [Pure]
         private static (string bits, bool carryOut) CalculateOutputBits(string inputBits, bool carry, int baseM)
         {
             const int binary = 2;
+
             if (!carry)
             {
                 return (inputBits, false);
             }
-
 
             // Right most bits, do not impact the value that used by the counter. 
             var tail = inputBits.GetLast(2);
 
             // All bits but the tail.
             var bits = inputBits.Substring(0, inputBits.Length - 2);
-
 
             // Convert the first n - 2 bits to an integer. 
             var value = Convert.ToInt32(bits, binary);
@@ -104,7 +109,9 @@
 
             if (CanAddOne(value))
             {
-                var incremented = Convert.ToString(value + 1, binary).PadLeft(bits.Length, '0');
+                var incremented = Convert.ToString(value + 1, binary)
+                                         .PadLeft(bits.Length, '0');
+
                 // carry signal goes to false since we incremented, 
                 // the new value is the increments bits, with the original digit/region indicators 
                 // re-added to the end
@@ -115,25 +122,23 @@
             // result in some value that is not less than base M. Propagate the 
             // carry signal
             var carryOut = string.Concat(Enumerable.Repeat("0", bits.Length));
-            
+
             return ($"{carryOut}{tail}", true);
         }
 
 
         private class GuessOne : IHaveFirst, IHaveLast
         {
-            private static string Name(string input, bool carry, int index) => $"GuessOne={input} {carry} {index} id: {Guid.NewGuid()}";
-            
-            public Tile First    { get; }
-            public Tile Last     { get; }
-            public string Result { get; }
-            
-            public readonly List<Tile> Tiles;
 
             private readonly Tile first;
-            private readonly Tile second;
-            private readonly Tile third;
+
             private readonly Tile fourth;
+
+            private readonly Tile second;
+
+            private readonly Tile third;
+
+            public readonly List<Tile> Tiles;
 
 
             public GuessOne(string inputBits, bool carry, int index)
@@ -148,15 +153,26 @@
                 Result = $"1{inputBits}";
 
                 AttachInternalGlues();
-                Tiles = new List<Tile> { first, second, third, fourth };
+                Tiles = new List<Tile> {first, second, third, fourth};
             }
+
+
+            public string Result { get; }
+
+
+            public Tile First { get; }
+
+
+            public Tile Last { get; }
+
+
+            private static string Name(string input, bool carry, int index) => $"GuessOne={input} {carry} {index} id: {Guid.NewGuid()}";
+
 
             public void Bind(IHaveFirst zero)
             {
                 First.AttachAbove(zero.First);
             }
-
-            
 
 
             private void AttachInternalGlues()
@@ -165,23 +181,23 @@
                 second.AttachNorth(third);
                 third.AttachNorth(fourth);
             }
+
         }
 
         private class GuessZero : IHaveFirst, IHaveLast
         {
-            private static string Name(string input, bool carry, int index) => $"GuessZero={input} {carry} {index} id: {Guid.NewGuid()}";
-            
-            public Tile First    { get; }
-            public Tile Last     { get; }
-            public string Result { get; }
 
-            public readonly List<Tile> Tiles;
+            private readonly Tile fifth;
 
             private readonly Tile first;
-            private readonly Tile second;
-            private readonly Tile third;
+
             private readonly Tile fourth;
-            private readonly Tile fifth;
+
+            private readonly Tile second;
+
+            private readonly Tile third;
+
+            public readonly List<Tile> Tiles;
 
 
             public GuessZero(string inputBits, bool carry, int index)
@@ -197,8 +213,21 @@
                 Result = $"0{inputBits}";
                 AttachInternalGlues();
 
-                Tiles = new List<Tile> { first, second, third, fourth, fifth };
+                Tiles = new List<Tile> {first, second, third, fourth, fifth};
             }
+
+
+            public string Result { get; }
+
+
+            public Tile First { get; }
+
+
+            public Tile Last { get; }
+
+
+            private static string Name(string input, bool carry, int index) => $"GuessZero={input} {carry} {index} id: {Guid.NewGuid()}";
+
 
             private void AttachInternalGlues()
             {
@@ -207,6 +236,9 @@
                 third.AttachNorth(fourth);
                 fourth.AttachBelow(fifth);
             }
+
         }
+
     }
+
 }

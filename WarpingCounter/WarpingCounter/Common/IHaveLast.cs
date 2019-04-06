@@ -5,6 +5,9 @@
 
     public interface IHaveLast
     {
+
         Tile Last { get; }
+
     }
+
 }

@@ -5,18 +5,13 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using Common;
-
     using Models;
-
-    using WarpingCounter;
 
     public class SouthToNorthLine : IHaveFirst, IHaveLast
     {
 
         public readonly List<Tile> Tiles;
-        public Tile First  { get; }
-        public Tile Last { get; }
+
 
         public SouthToNorthLine(int bitsLong)
         {
@@ -26,12 +21,12 @@
             {
                 if (i == 0)
                 {
-                    builder.StartWith(new Tile(Guid.NewGuid().ToString()))
+                    builder.StartWith(new Tile(Guid.NewGuid()
+                                                   .ToString()))
                            .North()
                            .North()
                            .North();
-                }
-                else
+                } else
                 {
                     builder.North()
                            .North()
@@ -40,7 +35,9 @@
                 }
             }
 
-            Tiles = builder.Tiles().ToList();
+            Tiles = builder.Tiles()
+                           .ToList();
+
             Tiles.PrependNamesWith($"{nameof(SouthToNorthLine)} %seed%");
             First = Tiles.First();
             Last  = Tiles.Last();
@@ -51,5 +48,12 @@
             }
         }
 
+
+        public Tile First { get; }
+
+
+        public Tile Last { get; }
+
     }
+
 }

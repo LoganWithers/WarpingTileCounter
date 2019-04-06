@@ -11,15 +11,16 @@
 
     public class WarpBridge : IHaveFirst, IHaveLast
     {
-        public readonly List<Tile> Tiles;
-        public Tile First { get; }
-        public Tile Last { get; }
 
-        private readonly int digitsInMSR;
         private readonly string bits;
 
-        private readonly int index;
         private readonly bool carry;
+
+        private readonly int digitsInMSR;
+
+        private readonly int index;
+
+        public readonly List<Tile> Tiles;
 
 
         public WarpBridge(string bits, int index, bool carry, int digitsInMSR)
@@ -37,20 +38,28 @@
                 Last  = Tiles.Last();
 
                 Tiles.PrependNamesWith($"{nameof(WarpBridge)} bits={bits} index={index} carry={carry}");
-                
+
                 Last.North = GlueFactory.SecondWarp(bits, index, carry);
             }
-
         }
+
+
+        public Tile First { get; }
+
+
+        public Tile Last { get; }
+
 
         private List<Tile> Init()
         {
             switch (digitsInMSR)
             {
                 case 3:
+
                     return CreateForThreeDigits();
 
                 case 2:
+
                 {
                     // Not in the MSR
                     if (bits.EndsWith("00"))
@@ -74,14 +83,16 @@
                 }
 
                 case 1:
-                    return bits.EndsWith("11") ? CreateDigit1Case1()     // Digit 1 in the MSR
-                                               : CreateForThreeDigits(); // Not in the MSR
+
+                    return bits.EndsWith("11") ? CreateDigit1Case1() // Digit 1 in the MSR
+                    : CreateForThreeDigits();                        // Not in the MSR
 
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(digitsInMSR));
 
+                    throw new ArgumentOutOfRangeException(nameof(digitsInMSR));
             }
         }
+
 
         // Case 1 Only uses pre-warp, warp, and post warp, thus no tiles should be added
         private List<Tile> CreateDigit1Case1() => new List<Tile>();
@@ -106,10 +117,11 @@
 
             builder.North(13);
 
-            var tiles = builder.Tiles()
-                               .ToList();
+            List<Tile> tiles = builder.Tiles()
+                                      .ToList();
 
-            tiles.First().West = GlueFactory.WarpBridge(bits, index, carry);
+            tiles.First()
+                 .West = GlueFactory.WarpBridge(bits, index, carry);
 
             return builder.Tiles()
                           .ToList();
@@ -121,11 +133,16 @@
             var builder = new GadgetBuilder().Start();
             builder.West();
 
-            var tiles = builder.Tiles()
-                               .ToList();
+            List<Tile> tiles = builder.Tiles()
+                                      .ToList();
 
-            tiles.First().East = GlueFactory.WarpBridge(bits, index, carry);
-            return builder.Tiles().ToList();
+            tiles.First()
+                 .East = GlueFactory.WarpBridge(bits, index, carry);
+
+            return builder.Tiles()
+                          .ToList();
         }
+
     }
+
 }

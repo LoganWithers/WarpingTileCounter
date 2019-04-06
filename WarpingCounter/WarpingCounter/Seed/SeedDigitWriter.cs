@@ -10,9 +10,28 @@
     using Common.Enums;
     using Common.Models;
 
-
     public class InitialDigitWriter : IHaveFirst, IHaveLast
     {
+
+        private readonly string bits;
+
+        private readonly WriteDirection direction;
+
+
+        public readonly List<Tile> Tiles;
+
+
+        public InitialDigitWriter(string bits, WriteDirection direction = WriteDirection.SouthToNorth)
+        {
+            this.bits      = bits;
+            this.direction = direction;
+
+            Tiles = InitTiles();
+
+            First = Tiles.First();
+            Last  = Tiles.Last();
+        }
+
 
         public Tile First { get; }
 
@@ -20,29 +39,9 @@
         public Tile Last { get; }
 
 
-        public readonly List<Tile> Tiles;
-
-        private readonly WriteDirection direction;
-
-        private readonly string bits;
-
-
-        public InitialDigitWriter(string bits, WriteDirection direction = WriteDirection.SouthToNorth)
-        {
-            this.bits = bits;
-            this.direction = direction;
-
-            Tiles = InitTiles();
-
-            First = Tiles.First();
-            Last = Tiles.Last();
-        }
-
-
         private List<Tile> InitTiles()
         {
             var b = new GadgetBuilder().Start();
-
 
             if (direction == WriteDirection.NorthToSouth)
             {
@@ -77,23 +76,25 @@
                             throw new ArgumentOutOfRangeException(nameof(bit));
                     }
                 }
-            }
-            else
+            } else
             {
                 foreach (var bit in bits)
                 {
                     switch (bit)
                     {
                         case '0':
+
                             b.North()
                              .North()
                              .East()
                              .North()
                              .West()
                              .North();
+
                             break;
 
                         case '1':
+
                             b.North()
                              .North()
                              .Up()
@@ -102,6 +103,7 @@
                              .West()
                              .Down()
                              .North();
+
                             break;
 
                         default:
@@ -111,8 +113,8 @@
                 }
             }
 
-            var tiles = b.Tiles()
-                         .ToList();
+            List<Tile> tiles = b.Tiles()
+                                .ToList();
 
             tiles.PrependNamesWith($"Initial Digit: {bits}");
 
@@ -121,4 +123,5 @@
         }
 
     }
+
 }

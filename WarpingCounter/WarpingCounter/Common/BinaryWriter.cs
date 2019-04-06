@@ -15,30 +15,33 @@
 
     public class BinaryWriter : IHaveFirst, IHaveLast
     {
-        public readonly List<Tile> Tiles;
-
-        public Tile First { get; }
-        public Tile Last  { get; }
-
 
         private readonly string originalBits;
+
+        public readonly List<Tile> Tiles;
+
 
         public BinaryWriter(string originalBits, bool carry, int index, int digitsInMSR)
         {
             this.originalBits = originalBits;
-            Tiles = InitTiles();
+            Tiles             = InitTiles();
             Tiles.PrependNamesWith($"WRITE bits={originalBits} {carry} {index}");
             First       = Tiles.First();
             First.South = GlueFactory.DigitWriter(originalBits, carry, index);
 
-            Last        = Tiles.Last();
-            Last.North  = DetermineGadgetToAttachTo(digitsInMSR, originalBits, carry, index);
+            Last       = Tiles.Last();
+            Last.North = DetermineGadgetToAttachTo(digitsInMSR, originalBits, carry, index);
         }
+
+
+        public Tile First { get; }
+
+
+        public Tile Last { get; }
 
 
         private Glue DetermineGadgetToAttachTo(int digitsInMSR, string bits, bool carry, int index)
         {
-
             if (digitsInMSR == 1 && bits.EndsWith("11"))
             {
                 return GlueFactory.ReturnDigit1ReadNextRow(carry);
@@ -47,6 +50,7 @@
             if (digitsInMSR == 3 && bits.EndsWith("11"))
             {
                 Debug.Assert(digitsInMSR == 3, "digitsInMSR == 3");
+
                 return GlueFactory.DigitTopDigit3Case3(carry);
             }
 
@@ -63,6 +67,7 @@
             return GlueFactory.DigitTopDefault(carry, index);
         }
 
+
         private List<Tile> InitTiles()
         {
             var encoder = new BinaryToTileEncoder();
@@ -75,13 +80,16 @@
                 {
                     case '1':
                         encoder.AddOne();
+
                         break;
 
                     case '0':
                         encoder.AddZero();
+
                         break;
 
                     default:
+
                         throw new Exception($"Invalid bit found in: {originalBits}");
                 }
             }
@@ -90,16 +98,16 @@
         }
 
 
-
         private class BinaryToTileEncoder
         {
+
+            private readonly IGadgetBuilder builder;
+
 
             public BinaryToTileEncoder()
             {
                 builder = new GadgetBuilder().Start();
             }
-
-            private readonly IGadgetBuilder builder;
 
 
             public void AddOne()
@@ -131,5 +139,7 @@
                                               .ToList();
 
         }
+
     }
+
 }

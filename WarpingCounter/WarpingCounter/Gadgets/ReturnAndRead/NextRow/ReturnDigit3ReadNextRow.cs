@@ -9,24 +9,24 @@
     using Common.Models;
 
     /// <summary>
-    /// Gadget that is used in case 3, after writing digit 3 (MSD). Crosses and
-    /// attaches a blank reader to begin reading the next row.
+    ///   Gadget that is used in case 3, after writing digit 3 (MSD). Crosses and
+    ///   attaches a blank reader to begin reading the next row.
     /// </summary>
-    /// <seealso cref="WarpingCounter.Common.IHaveFirst" />
-    /// <seealso cref="WarpingCounter.Common.IHaveLast" />
+    /// <seealso cref="IHaveFirst" />
+    /// <seealso cref="IHaveLast" />
     public class ReturnDigit3ReadNextRow : IHaveFirst, IHaveLast
     {
-        public readonly List<Tile> Tiles;
-        public Tile First { get; }
-        public Tile Last  { get; }
 
+        private const int NextDigitRead = 1;
 
-        private const int NextDigitRead = 1; 
-        private readonly int rectangleWidth;
+        private readonly int bitsPerDigit;
 
         private readonly bool carry;
 
-        private readonly int bitsPerDigit;
+        private readonly int rectangleWidth;
+
+        public readonly List<Tile> Tiles;
+
 
         public ReturnDigit3ReadNextRow(bool carry, int bitsPerDigit, int numberOfRegions)
         {
@@ -34,20 +34,29 @@
             this.bitsPerDigit = bitsPerDigit;
             rectangleWidth    = numberOfRegions * 6 - 1;
 
-            Tiles             = InitializeTiles();
+            Tiles = InitializeTiles();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit3ReadNextRow)} carry={carry}");
 
             First       = Tiles.First();
             First.North = GlueFactory.ReturnDigit3ReadNextRow(carry);
 
-            Last        = Tiles.Last();
-            Last.North  = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
+            Last       = Tiles.Last();
+            Last.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
         }
 
+
+        public Tile First { get; }
+
+
+        public Tile Last { get; }
+
+
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         private List<Tile> InitializeTiles()
         {
             var build = new GadgetBuilder().Start();
-
 
             build.South(12);
 
@@ -81,15 +90,15 @@
                  .South()
                  .Up();
 
-
             build.East(rectangleWidth);
 
             build.North(3)
                  .Down();
 
-
-            return build.Tiles().ToList();
+            return build.Tiles()
+                        .ToList();
         }
+
     }
-    
+
 }

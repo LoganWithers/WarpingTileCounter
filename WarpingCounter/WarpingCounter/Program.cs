@@ -23,6 +23,7 @@
 
         private const int Digits = 3;
 
+
         private static void Main(string[] args)
         {
             RunCLI();
@@ -45,15 +46,16 @@
 
                     if (BigInteger.TryParse(input ?? "", out _))
                     {
-                        var seedCreator = new SeedCreator( baseM, input);
+                        var seedCreator = new SeedCreator(baseM, input);
 
                         if (seedCreator.Construction.DigitRegions < 2)
                         {
                             Error("Starting value must be result in >= 2 digit regions");
+
                             continue;
                         }
 
-                        var tiles = seedCreator.Tiles;
+                        List<Tile> tiles = seedCreator.Tiles;
                         AddCounterTiles(tiles, seedCreator.Construction);
                         Write($"WarpingCounter_b{baseM}_from_{input}", tiles);
 
@@ -66,6 +68,7 @@
                     }
 
                     Error($"Error parsing {input}...");
+
                     continue;
                 }
 
@@ -75,15 +78,14 @@
                 }
 
                 Error($"Error parsing {input}... make sure the base is a number between 2 and 1000");
-
             }
-
         }
 
 
         private static void Write(string name, IReadOnlyCollection<Tile> tiles)
         {
-            List<Tile> uniqueTiles = tiles.DistinctBy(t => t.Name).ToList();
+            List<Tile> uniqueTiles = tiles.DistinctBy(t => t.Name)
+                                          .ToList();
 
             Console.WriteLine($"Unique Tiles: {uniqueTiles.Count}");
 
@@ -109,26 +111,28 @@
             Console.ResetColor();
         }
 
+
         private static void AddCounterTiles(List<Tile> tiles, ConstructionDetails construction)
         {
-            var inMSR = construction.DigitsInMSR;
+            var inMSR   = construction.DigitsInMSR;
             var counter = new ReaderFactory(construction.ActualBitsPerDigit, construction.BitsPerCounterDigit, construction.BaseM, construction.DigitsInMSR);
             tiles.AddRange(counter.Readers.SelectMany(reader => reader.Tiles));
             tiles.AddRange(CreateReturnAndRead(construction.ActualBitsPerDigit, construction.DigitRegions, inMSR));
             tiles.AddRange(CreateDigitTops(construction.ActualBitsPerDigit, inMSR));
-     
 
             Console.WriteLine($"Bits Per Counter Digit: {construction.BitsPerCounterDigit}");
             Console.WriteLine($"Actual Bits Per Digit:  {construction.ActualBitsPerDigit}");
-            var fullSizeDigits = counter.UniqueDigits.Where(d => d.Length == construction.ActualBitsPerDigit).ToList();
+
+            List<string> fullSizeDigits = counter.UniqueDigits.Where(d => d.Length == construction.ActualBitsPerDigit)
+                                                 .ToList();
 
             Console.WriteLine($"Full Digits: {fullSizeDigits.Count}");
+
             foreach (var binaryString in fullSizeDigits)
             {
                 tiles.AddRange(CreateWarpUnits(binaryString, construction.DigitsInMSR));
                 tiles.AddRange(CreateWriters(binaryString, construction.DigitsInMSR));
             }
-
         }
 
 
@@ -147,20 +151,22 @@
                 switch (digitsInMSR)
                 {
                     case 1:
+
                         break;
 
                     case 2:
 
-                        results.AddRange(new DigitTopDigit2Case2(carry,  bitsPerDigit).Tiles);
-                        results.AddRange(new DigitTopDigit1Case2(carry,  bitsPerDigit).Tiles);
+                        results.AddRange(new DigitTopDigit2Case2(carry, bitsPerDigit).Tiles);
+                        results.AddRange(new DigitTopDigit1Case2(carry, bitsPerDigit).Tiles);
+
                         break;
 
                     case 3:
-                        results.AddRange(new DigitTopDigit3Case3(carry,  bitsPerDigit).Tiles);
+                        results.AddRange(new DigitTopDigit3Case3(carry, bitsPerDigit).Tiles);
+
                         break;
                 }
             }
-
 
             return results;
         }
@@ -170,7 +176,7 @@
         {
             var results = new List<Tile>();
 
-            foreach (var carry in new[] { true, false })
+            foreach (var carry in new[] {true, false})
             {
                 var returnD1ReadD2 = new ReturnDigit1ReadDigit2(carry, bitsPerDigit);
                 var returnD2ReadD3 = new ReturnDigit2ReadDigit3(carry, bitsPerDigit);
@@ -183,7 +189,7 @@
                 switch (digitsInMSR)
                 {
                     case 1:
-                        var returnDigit1ReadNextRow      = new ReturnDigit1ReadNextRow(carry, bitsPerDigit, regions);
+                        var returnDigit1ReadNextRow = new ReturnDigit1ReadNextRow(carry, bitsPerDigit, regions);
                         results.AddRange(returnDigit1ReadNextRow.Tiles);
 
                         break;
@@ -192,6 +198,7 @@
                         var returnDigit1ReadDigit2Case2 = new ReturnDigit1ReadDigit2Case2(carry, bitsPerDigit);
                         results.AddRange(returnDigit1ReadDigit2Case2.Tiles);
                         results.AddRange(returnDigit2ReadNextRow.Tiles);
+
                         break;
                     case 3:
                         var returnDigit3ReadNextRow = new ReturnDigit3ReadNextRow(carry, bitsPerDigit, regions);
@@ -200,11 +207,11 @@
 
                         break;
                 }
-
             }
 
             return results;
         }
+
 
         private static IEnumerable<Tile> CreateWriters(string bits, int digitsInMSR)
         {
@@ -226,10 +233,8 @@
 
             for (var i = 1; i <= Digits; i++)
             {
-
-                results.AddRange(new WarpUnit(bits, i, true, digitsInMSR).Tiles);
+                results.AddRange(new WarpUnit(bits, i, true,  digitsInMSR).Tiles);
                 results.AddRange(new WarpUnit(bits, i, false, digitsInMSR).Tiles);
-
             }
 
             return results;
@@ -237,5 +242,4 @@
 
     }
 
-    
 }

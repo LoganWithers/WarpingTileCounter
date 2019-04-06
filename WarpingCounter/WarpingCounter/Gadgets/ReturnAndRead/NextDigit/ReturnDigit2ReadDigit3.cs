@@ -10,15 +10,15 @@
 
     public class ReturnDigit2ReadDigit3 : IHaveFirst, IHaveLast
     {
-        public readonly List<Tile> Tiles;
-        public Tile First { get; }
-        public Tile Last { get; }
-
 
         private const int NextDigitRead = 3;
 
-        private readonly bool carry;
         private readonly int bitsPerDigit;
+
+        private readonly bool carry;
+
+        public readonly List<Tile> Tiles;
+
 
         public ReturnDigit2ReadDigit3(bool carry, int bitsPerDigit)
         {
@@ -28,19 +28,23 @@
             Tiles = InitTiles();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit2ReadDigit3)} carry={carry}");
 
-
-            First = Tiles.First();
+            First       = Tiles.First();
             First.North = GlueFactory.ReturnDigit2ReadDigit3(carry);
 
-            Last  = Tiles.Last();
-            Last.North  = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
+            Last       = Tiles.Last();
+            Last.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
         }
+
+
+        public Tile First { get; }
+
+
+        public Tile Last { get; }
 
 
         private List<Tile> InitTiles()
         {
             var build = new GadgetBuilder().Start();
-
 
             build.South(12);
 
@@ -48,7 +52,6 @@
                  .Down();
 
             build.South(17);
-
 
             build.SouthLine(bitsPerDigit, carry);
 
@@ -75,7 +78,10 @@
                  .East()
                  .Down();
 
-            return build.Tiles().ToList();
+            return build.Tiles()
+                        .ToList();
         }
+
     }
+
 }

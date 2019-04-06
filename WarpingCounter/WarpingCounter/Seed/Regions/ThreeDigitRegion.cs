@@ -14,22 +14,25 @@
     public class ThreeDigitRegion
     {
 
-        private readonly string digit3;
-        private readonly string digit2;
+        private readonly int bitsPerDigit;
+
         private readonly string digit1;
+
+        private readonly string digit2;
+
+        private readonly string digit3;
+
+        private readonly bool leastSignificantRegion;
+
+        private readonly int regionIndex;
 
         public readonly List<Tile> Tiles;
 
-        private Tile Last { get; set; }
-        private readonly int bitsPerDigit;
 
-        private readonly int regionIndex;
-        private readonly bool leastSignificantRegion;
-
-        public ThreeDigitRegion(int bitsPerDigit,
+        public ThreeDigitRegion(int                                           bitsPerDigit,
                                 (string digit3, string digit2, string digit1) encodings,
-                                int regionIndex,
-                                bool leastSignificantRegion)
+                                int                                           regionIndex,
+                                bool                                          leastSignificantRegion)
         {
             this.bitsPerDigit           = bitsPerDigit;
             this.regionIndex            = regionIndex;
@@ -39,6 +42,9 @@
         }
 
 
+        private Tile Last { get; set; }
+
+
         private Tile GetFirstTile()
         {
             if (regionIndex == 0)
@@ -46,9 +52,8 @@
                 return new Tile("seed");
             }
 
-            var first = new Tile($"Region: {regionIndex} First BridgeConnect")
-            {
-                West = new Glue($"Region {regionIndex - 1}")
+            var first = new Tile($"Region: {regionIndex} First BridgeConnect") {
+            West = new Glue($"Region {regionIndex - 1}")
             };
 
             return first;
@@ -58,7 +63,7 @@
         private List<Tile> InitializeTiles()
         {
             var firstTile = GetFirstTile();
-            var build = new GadgetBuilder().StartWith(firstTile);
+            var build     = new GadgetBuilder().StartWith(firstTile);
 
             void North() => build.NorthLine(bitsPerDigit);
 
@@ -123,14 +128,19 @@
 
             tiles.PrependNamesWith($"Region: {regionIndex} msr");
 
-            tiles.Last().AttachSouth(digit3.First);
+            tiles.Last()
+                 .AttachSouth(digit3.First);
+
             tiles.AddRange(digit3.Tiles);
 
             var b2 = new GadgetBuilder();
             b2.Start();
             b2.South(8);
             b2.West();
-            b2.South(9).Up();
+
+            b2.South(9)
+              .Up();
+
             b2.South(4);
 
             b2.West()
@@ -188,8 +198,12 @@
 
             b2.South(10)
               .Down();
+
             b2.South(4);
-            var secondTiles = b2.Tiles().ToList();
+
+            List<Tile> secondTiles = b2.Tiles()
+                                       .ToList();
+
             digit3.Last.AttachSouth(secondTiles.First());
             secondTiles.PrependNamesWith($"Region: {regionIndex} D3 to D2");
             tiles.AddRange(secondTiles);
@@ -199,8 +213,11 @@
 
             tiles.AddRange(digit2.Tiles);
 
-            var digit2ToDigit1 = BuildFromDigit2ToDigit1();
-            digit2ToDigit1.First().AttachNorth(digit2.Last);
+            List<Tile> digit2ToDigit1 = BuildFromDigit2ToDigit1();
+
+            digit2ToDigit1.First()
+                          .AttachNorth(digit2.Last);
+
             tiles.AddRange(digit2ToDigit1);
 
             var digit1 = new InitialDigitWriter(this.digit1, WriteDirection.NorthToSouth);
@@ -210,8 +227,7 @@
             if (leastSignificantRegion)
             {
                 AddCounterStartTiles(tiles.Last(), tiles);
-            }
-            else
+            } else
             {
                 AddRegionBridge(tiles.Last(), tiles);
             }
@@ -222,18 +238,21 @@
 
         private void AddCounterStartTiles(Tile lastAdded, List<Tile> tiles)
         {
-            var regionEnd = new Tile(Guid.NewGuid().ToString());
+            var regionEnd = new Tile(Guid.NewGuid()
+                                         .ToString());
+
             lastAdded.AttachSouth(regionEnd);
 
-            var readerStart = new Tile(Guid.NewGuid().ToString())
-            {
-                North = GlueFactory.DigitReader(string.Empty, true, 1),
+            var readerStart = new Tile(Guid.NewGuid()
+                                           .ToString()) {
+            North = GlueFactory.DigitReader(string.Empty, true, 1)
             };
 
             regionEnd.AttachEast(readerStart);
-            tiles.AddRange(new[] { regionEnd, readerStart });
+            tiles.AddRange(new[] {regionEnd, readerStart});
             Last = readerStart;
         }
+
 
         private void AddRegionBridge(Tile lastAdded, List<Tile> tiles)
         {
@@ -244,24 +263,27 @@
                    .East()
                    .East();
 
-            var bridgeTiles = builder.Tiles().ToList();
+            List<Tile> bridgeTiles = builder.Tiles()
+                                            .ToList();
+
             bridgeTiles.RemoveAt(0);
             var firstBridgeTiles = bridgeTiles.First();
 
             lastAdded.AttachSouth(firstBridgeTiles);
             tiles.AddRange(bridgeTiles);
 
-
-            Last = bridgeTiles.Last();
+            Last      = bridgeTiles.Last();
             Last.East = new Glue($"Region {regionIndex}");
         }
 
+
         private List<Tile> BuildFromDigit2ToDigit1()
         {
-            var first = new Tile($"Region: {regionIndex}: {Guid.NewGuid().ToString()}");
+            var first   = new Tile($"Region: {regionIndex}: {Guid.NewGuid().ToString()}");
             var builder = new GadgetBuilder().StartWith(first);
 
-            builder.South(8).West();
+            builder.South(8)
+                   .West();
 
             builder.South(9)
                    .Up();
@@ -273,7 +295,8 @@
             builder.South(8);
             builder.SouthLine(bitsPerDigit);
 
-            var last = builder.Tiles().Last();
+            var last = builder.Tiles()
+                              .Last();
 
             var line = new SouthToNorthLine(bitsPerDigit);
             line.First.AttachBelow(last);
@@ -282,6 +305,7 @@
 
             var firstBack = b2.Tiles()
                               .First();
+
             firstBack.Prepend($"Region: {regionIndex} B2 FirstBack");
             line.Last.AttachNorth(firstBack);
 
@@ -306,9 +330,12 @@
 
             b2.South(10)
               .Down();
+
             b2.South(4);
 
-            var results = builder.Tiles().ToList();
+            List<Tile> results = builder.Tiles()
+                                        .ToList();
+
             results.AddRange(line.Tiles);
             results.AddRange(b2.Tiles());
 
@@ -316,4 +343,5 @@
         }
 
     }
+
 }

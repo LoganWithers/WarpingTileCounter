@@ -10,17 +10,14 @@
 
     public class DigitTopDigit2Case2 : IHaveLast, IHaveFirst
     {
-        public readonly List<Tile> Tiles;
-
-        public Tile First { get; }
-        public Tile Last  { get; }
 
         private readonly int bitsPerDigit;
+
+        public readonly List<Tile> Tiles;
 
 
         public DigitTopDigit2Case2(bool carry, int bitsPerDigit)
         {
-
             this.bitsPerDigit = bitsPerDigit;
 
             Tiles = InitializeTiles();
@@ -29,9 +26,15 @@
             First       = Tiles.First();
             First.South = GlueFactory.DigitTopDigit2Case2(carry);
 
-            Last        =  Tiles.Last();
-            Last.South  = GlueFactory.ReturnDigit2ReadNextRow(carry);
+            Last       = Tiles.Last();
+            Last.South = GlueFactory.ReturnDigit2ReadNextRow(carry);
         }
+
+
+        public Tile First { get; }
+
+
+        public Tile Last { get; }
 
 
         private List<Tile> InitializeTiles()
@@ -54,12 +57,13 @@
                    .East()
                    .East();
 
-
             builder.South(7);
             builder.SouthLine(bitsPerDigit);
 
             return builder.Tiles()
                           .ToList();
         }
+
     }
+
 }

@@ -9,15 +9,16 @@
 
     public class WarpUnit : IHaveFirst
     {
-        public readonly List<Tile> Tiles;
-        public Tile First { get; }
-        private readonly int digitIndex;
 
         private readonly string bits;
 
         private readonly bool carry;
 
+        private readonly int digitIndex;
+
         private readonly int digitsInMSR;
+
+        public readonly List<Tile> Tiles;
 
 
         public WarpUnit(string bits, int digitIndex, bool carry, int digitsInMSR)
@@ -32,6 +33,9 @@
         }
 
 
+        public Tile First { get; }
+
+
         private List<Tile> InitTiles()
         {
             var preFirstWarp = new PreFirstWarp(bits, digitIndex, carry, digitsInMSR);
@@ -39,7 +43,6 @@
             var warpBridge   = new WarpBridge(bits, digitIndex, carry, digitsInMSR);
             var secondWarp   = new SecondWarp(bits, digitIndex, carry, digitsInMSR);
             var postWarp     = new PostWarp(bits, digitIndex, carry, digitsInMSR);
-
 
             var tiles = new List<Tile>();
 
@@ -51,5 +54,7 @@
 
             return tiles;
         }
+
     }
+
 }

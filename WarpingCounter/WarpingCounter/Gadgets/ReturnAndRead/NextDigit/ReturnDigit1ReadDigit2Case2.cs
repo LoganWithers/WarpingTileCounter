@@ -10,13 +10,12 @@
 
     public class ReturnDigit1ReadDigit2Case2 : IHaveFirst, IHaveLast
     {
-        public readonly List<Tile> Tiles;
-        public Tile First { get; }
-        public Tile Last  { get; }
-
 
         private const int NextDigitRead = 2;
+
         private readonly int bitsPerDigit;
+
+        public readonly List<Tile> Tiles;
 
 
         public ReturnDigit1ReadDigit2Case2(bool carry, int bitsPerDigit)
@@ -29,9 +28,15 @@
             First       = Tiles.First();
             First.North = GlueFactory.ReturnDigit1ReadDigit2Case2(carry);
 
-            Last        = Tiles.Last();
-            Last.North  = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
+            Last       = Tiles.Last();
+            Last.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
         }
+
+
+        public Tile First { get; }
+
+
+        public Tile Last { get; }
 
 
         private List<Tile> InitializeTiles()
@@ -50,7 +55,10 @@
                    .East()
                    .Down();
 
-            return builder.Tiles().ToList();
+            return builder.Tiles()
+                          .ToList();
         }
+
     }
+
 }

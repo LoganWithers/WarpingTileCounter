@@ -11,14 +11,13 @@
 
     public class PreFirstWarp : IHaveFirst, IHaveLast
     {
-        public readonly List<Tile> Tiles;
-
-        public Tile First { get; }
-        public Tile Last  { get; }
-        
-        private readonly int digitsInMSR;
 
         private readonly string bits;
+
+        private readonly int digitsInMSR;
+
+        public readonly List<Tile> Tiles;
+
 
         public PreFirstWarp(string bits, int index, bool carry, int digitsInMSR)
         {
@@ -34,10 +33,16 @@
                 First       = Tiles.First();
                 First.South = GlueFactory.PreFirstWarp(bits, carry, index);
 
-                Last        = Tiles.Last();
-                Last.North  = GlueFactory.FirstWarp(bits, index, carry);
+                Last       = Tiles.Last();
+                Last.North = GlueFactory.FirstWarp(bits, index, carry);
             }
         }
+
+
+        public Tile First { get; }
+
+
+        public Tile Last { get; }
 
 
         private List<Tile> InitializeTiles()
@@ -45,16 +50,18 @@
             switch (digitsInMSR)
             {
                 case 3:
+
                     return CreateForDigitsCase3();
 
                 case 2:
+
                 {
                     // Not in the MSR
                     if (bits.EndsWith("00"))
                     {
                         return CreateForDigitsCase3();
                     }
-                    
+
                     // Digit 1 in the MSR
                     if (bits.EndsWith("01"))
                     {
@@ -71,14 +78,16 @@
                 }
 
                 case 1:
-                    return bits.EndsWith("11") ? CreateDigit1Case1()     // Digit 1 in the MSR
-                                               : CreateForDigitsCase3(); // Not in the MSR
-            
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(digitsInMSR));
 
+                    return bits.EndsWith("11") ? CreateDigit1Case1() // Digit 1 in the MSR
+                    : CreateForDigitsCase3();                        // Not in the MSR
+
+                default:
+
+                    throw new ArgumentOutOfRangeException(nameof(digitsInMSR));
             }
         }
+
 
         private List<Tile> CreateForDigitsCase3()
         {
@@ -140,6 +149,7 @@
         private static List<Tile> CreateDigit1Case2()
         {
             var builder = new GadgetBuilder().Start();
+
             builder.North(9)
                    .Up()
                    .West()
@@ -153,13 +163,13 @@
 
         private static List<Tile> CreateDigit2Case2()
         {
-            var tile = new Tile(Guid.NewGuid().ToString());
+            var tile = new Tile(Guid.NewGuid()
+                                    .ToString());
 
             // Only one tile is used.
-            return new List<Tile> { tile };
-
+            return new List<Tile> {tile};
         }
-        
+
     }
 
 }

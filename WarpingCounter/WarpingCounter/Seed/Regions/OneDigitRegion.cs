@@ -12,51 +12,64 @@
     public class OneDigitRegion : IHaveLast
     {
 
-        private readonly string digit1;
-
         private readonly int bitsPerDigit;
 
+        private readonly string digit1;
+
         public readonly List<Tile> Tiles;
-        public Tile Last { get; }
+
 
         public OneDigitRegion(int bitsPerDigit, string digit1)
         {
             this.bitsPerDigit = bitsPerDigit;
-            this.digit1 = digit1;
-            Tiles = Init();
-            Last = Tiles.Last();
-            Last.East = new Glue("Region 0");
+            this.digit1       = digit1;
+            Tiles             = Init();
+            Last              = Tiles.Last();
+            Last.East         = new Glue("Region 0");
         }
+
+
+        public Tile Last { get; }
 
 
         private List<Tile> Init()
         {
             var tiles = new List<Tile>();
-            var line = new SouthToNorthLine(bitsPerDigit);
+            var line  = new SouthToNorthLine(bitsPerDigit);
 
             var seed = new Tile("seed") {
-                North = new Glue(line.First.North.Label)
+            North = new Glue(line.First.North.Label)
             };
 
             tiles.Add(seed);
             tiles.AddRange(line.Tiles);
 
             var builder = new GadgetBuilder().StartWith(line.Last);
-            builder.North(16).West();
-            builder.North(4).East();
+
+            builder.North(16)
+                   .West();
+
+            builder.North(4)
+                   .East();
+
             builder.North(10);
 
             tiles.AddRange(builder.Tiles());
             var line2 = new SouthToNorthLine(bitsPerDigit);
 
-            tiles.Last().AttachNorth(line2.First);
+            tiles.Last()
+                 .AttachNorth(line2.First);
+
             tiles.AddRange(line2.Tiles);
             var builderB = new GadgetBuilder().StartWith(line2.Last);
             builderB.North(30);
             tiles.AddRange(builderB.Tiles());
 
             var line3 = new SouthToNorthLine(bitsPerDigit);
-            tiles.Last().AttachNorth(line3.First);
+
+            tiles.Last()
+                 .AttachNorth(line3.First);
+
             tiles.AddRange(line3.Tiles);
 
             var builder3 = new GadgetBuilder().StartWith(line3.Last);
@@ -75,14 +88,19 @@
                     .East()
                     .South()
                     .South()
-                    .South().Up().North().West();
+                    .South()
+                    .Up()
+                    .North()
+                    .West();
 
             builder3.South(7);
 
             tiles.AddRange(builder3.Tiles());
 
             var line4 = new NorthToSouthLine(bitsPerDigit);
-            tiles.Last().AttachSouth(line4.First);
+
+            tiles.Last()
+                 .AttachSouth(line4.First);
 
             tiles.AddRange(line4.Tiles);
 
@@ -91,7 +109,9 @@
             tiles.AddRange(builder4.Tiles());
 
             var line5 = new NorthToSouthLine(bitsPerDigit);
-            tiles.Last().AttachSouth(line5.First);
+
+            tiles.Last()
+                 .AttachSouth(line5.First);
 
             tiles.AddRange(line5.Tiles);
 
@@ -118,16 +138,20 @@
                   .East()
                   .East();
 
-            var bridgeTiles = bridge.Tiles().ToList();
+            List<Tile> bridgeTiles = bridge.Tiles()
+                                           .ToList();
+
             bridgeTiles.RemoveAt(0);
             var firstBridgeTiles = bridgeTiles.First();
 
-            tiles.Last().AttachSouth(firstBridgeTiles);
+            tiles.Last()
+                 .AttachSouth(firstBridgeTiles);
 
             tiles.AddRange(bridgeTiles);
 
-
             return tiles;
         }
+
     }
+
 }

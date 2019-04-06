@@ -9,19 +9,19 @@
     using Common.Models;
 
     /// <summary>
-    /// Gadget 
+    ///   Gadget
     /// </summary>
     /// <seealso cref="IHaveFirst" />
     /// <seealso cref="IHaveLast" />
     public class DigitTopDigit1Case2 : IHaveFirst, IHaveLast
     {
-        public readonly List<Tile> Tiles;
-
-        public Tile Last  { get; }
-        public Tile First { get; }
 
         private const int Index = 1;
+
         private readonly int bitsPerDigit;
+
+        public readonly List<Tile> Tiles;
+
 
         public DigitTopDigit1Case2(bool carry, int bitsPerDigit)
         {
@@ -32,9 +32,15 @@
             First       = Tiles.First();
             First.South = GlueFactory.DigitTopDigit1Case2(carry);
 
-            Last        = Tiles.Last();
-            Last.South  = GlueFactory.ReturnDigit1ReadDigit2Case2(carry);
+            Last       = Tiles.Last();
+            Last.South = GlueFactory.ReturnDigit1ReadDigit2Case2(carry);
         }
+
+
+        public Tile First { get; }
+
+
+        public Tile Last { get; }
 
 
         private List<Tile> InitializeTiles()
@@ -56,5 +62,7 @@
             return builder.Tiles()
                           .ToList();
         }
+
     }
+
 }

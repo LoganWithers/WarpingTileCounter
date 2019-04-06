@@ -11,8 +11,7 @@
     {
 
         public readonly List<Tile> Tiles;
-        public Tile First { get; }
-        public Tile Last { get; }
+
 
         public NorthToSouthLine(int count, bool? carry = null)
         {
@@ -22,7 +21,8 @@
             {
                 if (i == 0)
                 {
-                    builder.StartWith(new Tile(Guid.NewGuid().ToString()))
+                    builder.StartWith(new Tile(Guid.NewGuid()
+                                                   .ToString()))
                            .South()
                            .South()
                            .South();
@@ -35,7 +35,9 @@
                 }
             }
 
-            Tiles = builder.Tiles().ToList();
+            Tiles = builder.Tiles()
+                           .ToList();
+
             Tiles.PrependNamesWith($"{nameof(NorthToSouthLine)} carry={carry}");
             First = Tiles.First();
             Last  = Tiles.Last();
@@ -46,5 +48,12 @@
             }
         }
 
+
+        public Tile First { get; }
+
+
+        public Tile Last { get; }
+
     }
+
 }

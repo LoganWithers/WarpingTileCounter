@@ -5,6 +5,7 @@
 
     public class TdpOptions
     {
+
         public TdpOptions(string tdsFileName, string seedName = "seed")
         {
             SimpleTileSetName = tdsFileName;
@@ -15,11 +16,15 @@
 
         public string SimpleTileSetName { get; }
 
+
         private int Temperature { get; } = 1;
+
 
         private string SeedName { get; }
 
+
         private Coordinates Coordinates { get; }
+
 
         public override string ToString() => new StringBuilder()
                                             .Append($"{SimpleTileSetName}.tds")
@@ -30,5 +35,7 @@
                                             .AppendLine()
                                             .Append($"{SeedName} {Coordinates.ToString()}")
                                             .ToString();
+
     }
+
 }

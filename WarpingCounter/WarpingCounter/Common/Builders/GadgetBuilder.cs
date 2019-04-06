@@ -14,6 +14,9 @@
         private readonly LinkedList<Tile> tiles = new LinkedList<Tile>();
 
 
+        private Tile Last => tiles.Last.Value;
+
+
         public IGadgetBuilder StartWith(Tile tile)
         {
             tiles.AddFirst(tile);
@@ -29,11 +32,18 @@
             return this;
         }
 
-        
+
         public IFromNorthGadgetBuilder North(string name = null) => new FromNorthGadgetBuilder(tiles, this, name);
+
+
         public IFromSouthGadgetBuilder South(string name = null) => new FromSouthGadgetBuilder(tiles, this, name);
-        public IFromEastGadgetBuilder  East(string name = null)  => new FromEastGadgetBuilder(tiles, this, name);
-        public IFromWestGadgetBuilder  West(string name = null)  => new FromWestGadgetBuilder(tiles, this, name);
+
+
+        public IFromEastGadgetBuilder East(string name = null) => new FromEastGadgetBuilder(tiles, this, name);
+
+
+        public IFromWestGadgetBuilder West(string name = null) => new FromWestGadgetBuilder(tiles, this, name);
+
 
         public IFromNorthGadgetBuilder North(int n)
         {
@@ -47,6 +57,7 @@
             return lastBuilder;
         }
 
+
         public IFromSouthGadgetBuilder South(int n)
         {
             IFromSouthGadgetBuilder lastBuilder = null;
@@ -58,6 +69,7 @@
 
             return lastBuilder;
         }
+
 
         public IFromEastGadgetBuilder East(int n)
         {
@@ -83,6 +95,7 @@
 
             return lastBuilder;
         }
+
 
         public IGadgetBuilder NorthLine(int numberOfBits)
         {
@@ -113,7 +126,6 @@
             return this;
         }
 
-        private Tile Last => tiles.Last.Value;
 
         public IEnumerable<Tile> Tiles() => tiles;
 
