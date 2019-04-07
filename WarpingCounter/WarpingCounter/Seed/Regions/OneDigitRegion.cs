@@ -38,7 +38,7 @@
             var line  = new SouthToNorthLine(bitsPerDigit);
 
             var seed = new Tile("seed") {
-            North = new Glue(line.First.North.Label)
+                North = new Glue(line.First.North.Label)
             };
 
             tiles.Add(seed);

@@ -12,8 +12,8 @@
     ///   Gadget that is used only in case 2, after writing digit 2 (MSD). Crosses and
     ///   attaches a blank reader to begin reading the next row.
     /// </summary>
-    /// <seealso cref="WarpingCounter.Common.IHaveFirst" />
-    /// <seealso cref="WarpingCounter.Common.IHaveLast" />
+    /// <seealso cref="IHaveFirst" />
+    /// <seealso cref="IHaveLast" />
     public class ReturnDigit2ReadNextRow : IHaveFirst, IHaveLast
     {
 
@@ -32,7 +32,7 @@
             rectangleWidth    = (numberOfRegions - 1) * 6;
 
             Tiles = InitializeTiles();
-            Tiles.PrependNamesWith($"{nameof(ReturnDigit2ReadNextRow)} carry={carry}");
+            Tiles.PrependNamesWith($"{nameof(ReturnDigit2ReadNextRow)} {carry}");
 
             First       = Tiles.First();
             First.North = GlueFactory.ReturnDigit2ReadNextRow(carry);

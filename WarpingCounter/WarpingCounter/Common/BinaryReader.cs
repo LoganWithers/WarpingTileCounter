@@ -60,7 +60,6 @@
             if (inputBits.Length + 1 == length && inputBits.All(bit => bit == '1'))
             {
                 guessOne.Last.North.Bind  = 0;
-                guessZero.Last.North.Bind = 0;
             }
         }
 

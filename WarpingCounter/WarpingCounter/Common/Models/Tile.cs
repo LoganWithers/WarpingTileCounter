@@ -13,8 +13,6 @@
             Name = name.Replace("True", "true")
                        .Replace("False", "false");
 
-            ;
-
             if (name == "seed")
             {
                 Color = "red";
@@ -176,53 +174,9 @@
         }
 
 
-        //public override string ToString()
-        //{
-        //    var sb = new StringBuilder()
-        //            .Append($"TILENAME {Name}")
-        //            .AppendLine()
-        //            .Append($"NORTHBIND {North.Bind}")
-        //            .AppendLine()
-        //            .Append($"EASTBIND {East.Bind}")
-        //            .AppendLine()
-        //            .Append($"SOUTHBIND {South.Bind}")
-        //            .AppendLine()
-        //            .Append($"WESTBIND {West.Bind}")
-        //            .AppendLine()
-        //            .Append($"UPBIND {Up.Bind}")
-        //            .AppendLine()
-        //            .Append($"DOWNBIND {Down.Bind}")
-        //            .AppendLine()
-        //            .Append($"NORTHLABEL {North.Label}")
-        //            .AppendLine()
-        //            .Append($"EASTLABEL {East.Label}")
-        //            .AppendLine()
-        //            .Append($"SOUTHLABEL {South.Label}")
-        //            .AppendLine()
-        //            .Append($"WESTLABEL {West.Label}")
-        //            .AppendLine()
-        //            .Append($"UPLABEL {Up.Label}")
-        //            .AppendLine()
-        //            .Append($"DOWNLABEL {Down.Label}")
-        //            .AppendLine();
-
-
-        //    if (!string.IsNullOrEmpty(Color))
-        //    {
-        //        sb.Append($"TILECOLOR {Color}")
-        //          .AppendLine();
-        //    }
-
-        //    return sb.Append("CREATE")
-        //             .AppendLine()
-        //             .ToString();
-        //}
-
-
         public override string ToString()
         {
-            var sb = new StringBuilder()
-           .AppendLine($"TILENAME {Name}");
+            var sb = new StringBuilder().AppendLine($"TILENAME {Name}");
 
             if (North.Bind > 0)
             {

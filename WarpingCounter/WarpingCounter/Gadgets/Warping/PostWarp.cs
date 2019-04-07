@@ -33,7 +33,7 @@
             this.digitsInMSR = digitsInMSR;
 
             Tiles = Init();
-            Tiles.PrependNamesWith($"{nameof(PostWarp)} bits={bits} index={index} carry={carry}");
+            Tiles.PrependNamesWith($"{nameof(PostWarp)} {bits} {index} {carry}");
             First = Tiles.First();
             Last  = Tiles.Last();
 
@@ -61,7 +61,6 @@
                     return CreateDigitCase3();
 
                 case 2:
-
                 {
                     // Not in the MSR
                     if (bits.EndsWith("00"))
@@ -87,7 +86,7 @@
                 case 1:
 
                     return bits.EndsWith("11") ? CreateDigit1Case1() // Digit 1 in the MSR
-                    : CreateDigitCase3();                            // Not in the MSR
+                                               : CreateDigitCase3(); // Not in the MSR
 
                 default:
 
@@ -169,7 +168,6 @@
                 // First digit in a region has a slightly different path than D2/D3
                 // (D1's PostWarp needs to go through the crossing region)  
                 case 1:
-
                 {
                     List<Tile> tiles = builder.StartWith(new Tile())
                                               .East()
@@ -209,7 +207,6 @@
                 }
 
                 default:
-
                 {
                     builder.StartWith(new Tile())
                            .East()

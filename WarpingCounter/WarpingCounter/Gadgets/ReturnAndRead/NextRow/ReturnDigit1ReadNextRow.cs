@@ -10,15 +10,18 @@
 
     /// <summary>
     ///   Gadget that is used only in case 1, after writing digit 1 (MSD). Crosses and
-    ///   attaches a blank reader to begin reading the next row.
+    ///   attaches a blank reader to begin reading the value of the counter.
     /// </summary>
-    /// <seealso cref="WarpingCounter.Common.IHaveFirst" />
-    /// <seealso cref="WarpingCounter.Common.IHaveLast" />
+    /// <seealso cref="IHaveFirst" />
+    /// <seealso cref="IHaveLast" />
     public class ReturnDigit1ReadNextRow : IHaveFirst, IHaveLast
     {
 
         private const int NextDigitRead = 1;
 
+        /// <summary>
+        ///    Ceil( log M ) + 2
+        /// </summary>
         private readonly int bitsPerDigit;
 
         private readonly int rectangleWidth;
@@ -31,8 +34,8 @@
             this.bitsPerDigit = bitsPerDigit;
             rectangleWidth    = 6 * (totalOtherRegions - 1);
 
-            Tiles = Init();
-            Tiles.PrependNamesWith($"ReturnDigit1ReadNextRow {carry}");
+            Tiles = InitializeTiles();
+            Tiles.PrependNamesWith($"{nameof(ReturnDigit1ReadNextRow)} {carry}");
 
             First       = Tiles.First();
             First.South = GlueFactory.ReturnDigit1ReadNextRow(carry);
@@ -48,7 +51,7 @@
         public Tile Last { get; }
 
 
-        private List<Tile> Init()
+        private List<Tile> InitializeTiles()
         {
             var builder = new GadgetBuilder().Start();
 

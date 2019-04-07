@@ -26,7 +26,7 @@
             this.bitsPerDigit = bitsPerDigit;
 
             Tiles = InitTiles();
-            Tiles.PrependNamesWith($"{nameof(ReturnDigit3ReadDigit1)} carry={carry}");
+            Tiles.PrependNamesWith($"{nameof(ReturnDigit3ReadDigit1)} {carry}");
 
             First       = Tiles.First();
             First.North = GlueFactory.ReturnDigit3ReadDigit1(carry);

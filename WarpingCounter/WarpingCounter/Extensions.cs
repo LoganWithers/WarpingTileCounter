@@ -43,6 +43,10 @@
         }
 
 
+        public static bool None<T>(this IEnumerable<T> elements) => !elements.Any();
+
+        public static bool None<T>(this IEnumerable<T> elements, Func<T, bool> predicate) => !elements.Any(predicate);
+        
         /// <summary>
         ///   Retrieves the last n characters from this instance.
         /// </summary>

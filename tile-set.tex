@@ -1,0 +1,86 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{braket}
+
+\usepackage{comment}
+
+\usepackage{enumitem}
+
+\usepackage{fullpage}
+\usepackage{listings}
+\usepackage{mathtools}
+
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\title{}
+\author{Logan Withers}
+\date{}
+
+
+
+\begin{document}
+
+    \begin{flalign*}
+       \text{Let }  m & = \text{base of the counter} & \\
+                    s & = \text{starting value of counter} & \\
+                    h & = m^{\ceil*{\log_m{s} }} - 1 \text{, halting value of the counter}  & \\
+                    d & = \ceil*{\log_m{s}} \text{, number of digits in each value of the counter } & \\
+                  d_r & = \ceil*{\frac{d}{3}} \text{, number of digit regions}         & \\
+                    l & = \ceil{\log_2 m} + 2 \text{, number of bits needed to represent each digit plus 2 for MSR and MSD} & \\
+              H_{d_r} & = 3 \cdot (l + 30) \text{, height of a counter value }
+    \end{flalign*}
+
+
+    \subsubsection*{Warp Units}
+
+        \noindent\texttt{Pre\_First\_Warp}
+
+        \noindent\texttt{First\_Warp}
+
+        \noindent\texttt{Warp\_Bridge}
+
+        \noindent\texttt{Second\_Warp}
+
+        \noindent\texttt{Post\_Warp}
+
+
+
+    \subsubsection*{Digit Top}
+
+        \noindent\texttt{DigitTop}
+
+        \noindent\texttt{DigitTop\_Digit1}
+
+        \noindent\texttt{DigitTop\_Digit2}
+
+        \noindent\texttt{DigitTop\_Digit3}
+
+
+
+    \subsubsection*{ReturnDigitNReadDigitN+1}
+
+        \noindent\texttt{ReturnDigit1\_ReadDigit2}
+
+        \noindent\texttt{ReturnDigit2\_ReadDigit3}
+
+        \noindent\texttt{ReturnDigit3\_ReadDigit1}
+
+
+    \subsubsection*{ReturnDigitNReadNextRow}
+
+        \noindent\texttt{ReturnDigit1\_ReadNextRow}
+
+        \noindent\texttt{ReturnDigit2\_ReadNextRow}
+
+        \noindent\texttt{ReturnDigit3\_ReadNextRow}
+
+
+\end{document}

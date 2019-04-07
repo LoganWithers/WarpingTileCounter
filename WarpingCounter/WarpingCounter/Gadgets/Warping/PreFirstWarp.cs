@@ -26,16 +26,19 @@
 
             Tiles = InitializeTiles();
 
-            if (Tiles.Any())
+            if (Tiles.None())
             {
-                Tiles.PrependNamesWith($"{nameof(PreFirstWarp)} bits={bits} {index} {carry}");
-
-                First       = Tiles.First();
-                First.South = GlueFactory.PreFirstWarp(bits, carry, index);
-
-                Last       = Tiles.Last();
-                Last.North = GlueFactory.FirstWarp(bits, index, carry);
+                return;
             }
+
+            Tiles.PrependNamesWith($"{nameof(PreFirstWarp)} {bits} {index} {carry}");
+
+            First       = Tiles.First();
+            First.South = GlueFactory.PreFirstWarp(bits, carry, index);
+
+            Last       = Tiles.Last();
+            Last.North = GlueFactory.FirstWarp(bits, index, carry);
+
         }
 
 
@@ -50,11 +53,9 @@
             switch (digitsInMSR)
             {
                 case 3:
-
                     return CreateForDigitsCase3();
 
                 case 2:
-
                 {
                     // Not in the MSR
                     if (bits.EndsWith("00"))

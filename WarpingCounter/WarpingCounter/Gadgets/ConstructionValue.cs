@@ -6,7 +6,7 @@
     using System.Linq;
     using System.Numerics;
 
-    public class ConstructionDetails
+    public class ConstructionValues
     {
 
         private const double DigitsPerRegion = 3;
@@ -28,21 +28,21 @@
 
         private readonly double power;
 
+        private readonly int digitsPerValue;
+        private readonly BigInteger rows;
 
-        public ConstructionDetails(string initialValueBase10, int baseM)
+        public ConstructionValues(string initialValueBase10, int baseM)
         {
             this.initialValueBase10 = BigInteger.Parse(initialValueBase10);
             BaseM                   = baseM;
 
             initialValueBaseM  = this.initialValueBase10.ToBase(BaseM);
             power              = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
-            haltingValueBase10 = BigInteger.Pow(BaseM, Convert.ToInt32(power));
+            haltingValueBase10 = BigInteger.Pow(BaseM, Convert.ToInt32(power)) - 1;
+            rows = haltingValueBase10 - this.initialValueBase10;
+            BitsPerCounterDigit = Convert.ToString(BaseM - 1, 2).Length;
 
-            BitsPerCounterDigit = Convert.ToString(BaseM - 1, 2)
-                                         .Length;
-
-            var leadingZeroes = BaseM.ToString()
-                                     .Length;
+            var leadingZeroes = BaseM.ToString().Length;
 
             var digits    = (double) initialValueBaseM.Count;
             var remainder = digits % DigitsPerRegion;
@@ -53,6 +53,7 @@
             DigitRegions = IsZero(remainder) ? quotient : quotient + 1;
             DigitsInMSR  = remainderDigits == 0 ? 3 : remainderDigits;
 
+            digitsPerValue = initialValueBase10.ToBase(BaseM).Count;
             List<string> ConvertToBaseMWithLeadingZeroes(BigInteger value, int m) => value.ToBase(m)
                                                                                           .Select(s => s.PadLeft(leadingZeroes, '0'))
                                                                                           .ToList();
@@ -111,6 +112,17 @@
 
         private void Summarize()
         {
+            Console.WriteLine($"Digits per value:  {digitsPerValue}");
+            
+            Console.WriteLine($"Amount to count:   {rows}");
+            var heightPerRegion = 3 * (ActualBitsPerDigit + 30);
+            var n = (heightPerRegion * rows) + 1;
+            var k = digitsPerValue * 2;
+            Console.WriteLine($"Height per region: {heightPerRegion}");
+            Console.WriteLine($"N: {n:N}");
+            Console.WriteLine($"K: {k}");
+            Console.WriteLine($"O: {BigInteger.Pow(n, (int) Math.Ceiling(1 / Math.Floor((decimal) k / 2)))}");
+
             Console.WriteLine("Decimal:");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"    Start: {initialValueBase10}");
@@ -121,7 +133,7 @@
             var zeroes = string.Concat(Enumerable.Repeat('0', length));
             Console.WriteLine($"B{BaseM}:");
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine($"    Start: {zeroes} {string.Join(" ", initialValueBaseM.Select(digit => digit.PadLeft(length, '0')))}");
+            Console.WriteLine($"    Start: {string.Join(" ", initialValueBaseM.Select(digit => digit.PadLeft(length, '0')))}");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"    Halt:  {string.Join(" ", haltingValueBaseM.Select(digit => digit.PadLeft(length, '0')))}");
             Console.ResetColor();
@@ -138,8 +150,10 @@
 
             switch (initialValueBaseM.Count % 3)
             {
+                // Takes the two most significant regions, removes them, groups the other 
+                // regions into groups of three, and re-inserts the two regions 
+                // back into the beginning of the list
                 case 2:
-
                 {
                     var first  = initialValueBaseM[0];
                     var second = initialValueBaseM[1];
@@ -153,8 +167,11 @@
 
                     return chunks;
                 }
-                case 1:
 
+                // Takes the most significant regions, removes it, groups the other 
+                // regions into groups of three, and re-inserts the most significant region 
+                // back into the beginning of the list
+                case 1:
                 {
                     var first = initialValueBaseM[0];
                     initialValueBaseM.RemoveAt(0);
@@ -166,8 +183,8 @@
 
                     return chunks;
                 }
-                default:
 
+                default:
                     return initialValueBaseM.SplitEvery(3);
             }
         }

@@ -35,7 +35,7 @@
             rectangleWidth    = numberOfRegions * 6 - 1;
 
             Tiles = InitializeTiles();
-            Tiles.PrependNamesWith($"{nameof(ReturnDigit3ReadNextRow)} carry={carry}");
+            Tiles.PrependNamesWith($"{nameof(ReturnDigit3ReadNextRow)} {carry}");
 
             First       = Tiles.First();
             First.North = GlueFactory.ReturnDigit3ReadNextRow(carry);

@@ -24,8 +24,6 @@
     public class DigitTopDigit3Case3 : IHaveLast, IHaveFirst
     {
 
-        private const int Index = 3;
-
         private readonly int bitsPerDigit;
 
         private readonly bool carry;
@@ -38,7 +36,7 @@
             this.carry        = carry;
             this.bitsPerDigit = bitsPerDigit;
             Tiles             = InitializeTiles();
-            Tiles.PrependNamesWith($"{nameof(DigitTopDigit3Case3)} {carry} {Index}");
+            Tiles.PrependNamesWith($"{nameof(DigitTopDigit3Case3)} {carry}");
 
             First       = Tiles.First();
             First.South = GlueFactory.DigitTopDigit3Case3(carry);

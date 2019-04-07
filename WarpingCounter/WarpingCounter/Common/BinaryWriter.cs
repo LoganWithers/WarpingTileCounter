@@ -25,7 +25,7 @@
         {
             this.originalBits = originalBits;
             Tiles             = InitTiles();
-            Tiles.PrependNamesWith($"WRITE bits={originalBits} {carry} {index}");
+            Tiles.PrependNamesWith($"Write {originalBits} {carry} {index}");
             First       = Tiles.First();
             First.South = GlueFactory.DigitWriter(originalBits, carry, index);
 
@@ -80,12 +80,10 @@
                 {
                     case '1':
                         encoder.AddOne();
-
                         break;
 
                     case '0':
                         encoder.AddZero();
-
                         break;
 
                     default:

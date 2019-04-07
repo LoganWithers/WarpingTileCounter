@@ -53,7 +53,7 @@
             }
 
             var first = new Tile($"Region: {regionIndex} First BridgeConnect") {
-            West = new Glue($"Region {regionIndex - 1}")
+                West = new Glue($"Region {regionIndex - 1}")
             };
 
             return first;
@@ -243,9 +243,8 @@
 
             lastAdded.AttachSouth(regionEnd);
 
-            var readerStart = new Tile(Guid.NewGuid()
-                                           .ToString()) {
-            North = GlueFactory.DigitReader(string.Empty, true, 1)
+            var readerStart = new Tile(Guid.NewGuid().ToString()) {
+                North = GlueFactory.DigitReader(string.Empty, true, 1)
             };
 
             regionEnd.AttachEast(readerStart);

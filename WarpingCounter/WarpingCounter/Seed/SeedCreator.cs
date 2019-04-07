@@ -14,13 +14,13 @@
     public class SeedCreator
     {
 
-        public readonly ConstructionDetails Construction;
+        private readonly ConstructionValues construction;
 
 
-        public SeedCreator(int baseM, string initialValueBase10)
+        public SeedCreator(ConstructionValues construction)
         {
             Tiles        = new List<Tile>();
-            Construction = new ConstructionDetails(initialValueBase10, baseM);
+            this.construction = construction;
             CreateTilesForInitialValue();
         }
 
@@ -28,12 +28,12 @@
         public List<Tile> Tiles { get; }
 
 
-        private string ToBinary(string key) => Construction.BinaryDigitEncodings[key];
+        private string ToBinary(string key) => construction.BinaryDigitEncodings[key];
 
 
         private void CreateTilesForInitialValue()
         {
-            List<IEnumerable<string>> regions = Construction.SplitIntoDigitRegions()
+            List<IEnumerable<string>> regions = construction.SplitIntoDigitRegions()
                                                             .ToList();
 
             List<string> msr = regions[0]
@@ -41,7 +41,7 @@
 
             var isMsrLeastSignificant = regions.Count == 1;
 
-            switch (Construction.DigitsInMSR)
+            switch (construction.DigitsInMSR)
             {
                 case 1:
                     CreateMsr(msr[0]);
@@ -57,7 +57,7 @@
                     break;
                 default:
 
-                    throw new ArgumentOutOfRangeException(nameof(Construction.DigitsInMSR));
+                    throw new ArgumentOutOfRangeException(nameof(construction.DigitsInMSR));
             }
 
             for (var regionIndex = 1; regionIndex < regions.Count; regionIndex++)
@@ -79,7 +79,7 @@
             var digit1 = $"{ToBinary(digit1BaseM)}11";
             Console.WriteLine($"Region 0 (MSR):\n    D1: {digit1}\n\n");
 
-            var region = new OneDigitRegion(Construction.ActualBitsPerDigit, digit1);
+            var region = new OneDigitRegion(construction.ActualBitsPerDigit, digit1);
             Tiles.AddRange(region.Tiles);
         }
 
@@ -92,7 +92,7 @@
             var digit1 = $"{ToBinary(digit1BaseM)}01";
             Console.WriteLine($"Region 0 (MSR):\n    D2: {digit2}\n    D1: {digit1}\n\n");
 
-            var region = new TwoDigitRegion(Construction.ActualBitsPerDigit, (digit2, digit1));
+            var region = new TwoDigitRegion(construction.ActualBitsPerDigit, (digit2, digit1));
             Tiles.AddRange(region.Tiles);
         }
 
@@ -111,7 +111,7 @@
             var digit1 = $"{ToBinary(digit1BaseM)}00";
             Console.WriteLine($"Region 0 (MSR):\n    D3: {digit3}\n    D2: {digit2}\n    D1: {digit1}\n\n");
 
-            var region = new ThreeDigitRegion(Construction.ActualBitsPerDigit,
+            var region = new ThreeDigitRegion(construction.ActualBitsPerDigit,
                                               (digit3, digit2, digit1),
                                               0,
                                               isLeastSignificant);
@@ -131,7 +131,7 @@
             var digit1 = $"{ToBinary(digit1BaseM)}00";
             Console.WriteLine($"Region {regionIndex}:\n    D3: {digit3}\n    D2: {digit2}\n    D1: {digit1}\n\n");
 
-            var region = new ThreeDigitRegion(Construction.ActualBitsPerDigit,
+            var region = new ThreeDigitRegion(construction.ActualBitsPerDigit,
                                               (digit3, digit2, digit1),
                                               regionIndex,
                                               isLeastSignificant);

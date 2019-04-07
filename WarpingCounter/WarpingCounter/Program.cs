@@ -46,18 +46,18 @@
 
                     if (BigInteger.TryParse(input ?? "", out _))
                     {
-                        var seedCreator = new SeedCreator(baseM, input);
+                        var generator = new TileGenerator(baseM, input);
 
-                        if (seedCreator.Construction.DigitRegions < 2)
+                        if (generator.IsStartingValueTooSmall())
                         {
                             Error("Starting value must be result in >= 2 digit regions");
 
                             continue;
                         }
-
-                        List<Tile> tiles = seedCreator.Tiles;
-                        AddCounterTiles(tiles, seedCreator.Construction);
-                        Write($"WarpingCounter_b{baseM}_from_{input}", tiles);
+                  
+                        //List<Tile> tiles = seedCreator.Tiles;
+                        //AddCounterTiles(tiles, seedCreator.Construction);
+                        Write($"WarpingCounter_b{baseM}_from_{input}", generator.Generate());
 
                         continue;
                     }
@@ -112,7 +112,7 @@
         }
 
 
-        private static void AddCounterTiles(List<Tile> tiles, ConstructionDetails construction)
+        private static void AddCounterTiles(List<Tile> tiles, ConstructionValues construction)
         {
             var inMSR   = construction.DigitsInMSR;
             var counter = new ReaderFactory(construction.ActualBitsPerDigit, construction.BitsPerCounterDigit, construction.BaseM, construction.DigitsInMSR);

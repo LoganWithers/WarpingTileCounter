@@ -32,15 +32,17 @@
 
             Tiles = Init();
 
-            if (Tiles.Any())
+            if (Tiles.None())
             {
-                First = Tiles.First();
-                Last  = Tiles.Last();
-
-                Tiles.PrependNamesWith($"{nameof(WarpBridge)} bits={bits} index={index} carry={carry}");
-
-                Last.North = GlueFactory.SecondWarp(bits, index, carry);
+                return;
             }
+
+            First = Tiles.First();
+            Last  = Tiles.Last();
+
+            Tiles.PrependNamesWith($"{nameof(WarpBridge)} {bits} {index} {carry}");
+
+            Last.North = GlueFactory.SecondWarp(bits, index, carry);
         }
 
 
@@ -102,7 +104,10 @@
         // the warp bridge
         private List<Tile> CreateDigit1Case2() => new List<Tile>();
 
-
+        /// <summary>
+        /// Add 29 nine tiles, each with the next digit value to write and the carry signal. 
+        /// </summary>
+        /// <returns></returns>
         private List<Tile> CreateForThreeDigits()
         {
             var builder = new GadgetBuilder();

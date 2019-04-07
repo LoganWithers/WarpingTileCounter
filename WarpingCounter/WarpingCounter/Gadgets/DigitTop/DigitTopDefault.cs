@@ -17,6 +17,7 @@
     /// <seealso cref="IHaveFirst" />
     public class DigitTopDefault : IHaveFirst, IHaveLast
     {
+        public readonly List<Tile> Tiles;
 
         private readonly int bitsPerDigit;
 
@@ -32,7 +33,7 @@
         /// </summary>
         private readonly int index;
 
-        public readonly List<Tile> Tiles;
+        
 
 
         public DigitTopDefault(bool carry, int index, int bitsPerDigit)

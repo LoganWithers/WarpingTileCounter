@@ -15,9 +15,7 @@
     /// <seealso cref="IHaveLast" />
     public class DigitTopDigit1Case2 : IHaveFirst, IHaveLast
     {
-
-        private const int Index = 1;
-
+        
         private readonly int bitsPerDigit;
 
         public readonly List<Tile> Tiles;
@@ -27,7 +25,7 @@
         {
             this.bitsPerDigit = bitsPerDigit;
             Tiles             = InitializeTiles();
-            Tiles.PrependNamesWith($"{nameof(DigitTopDigit1Case2)} {carry} {Index}");
+            Tiles.PrependNamesWith($"{nameof(DigitTopDigit1Case2)} {carry}");
 
             First       = Tiles.First();
             First.South = GlueFactory.DigitTopDigit1Case2(carry);
