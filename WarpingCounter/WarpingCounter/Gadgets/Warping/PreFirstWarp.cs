@@ -11,13 +11,14 @@
 
     public class PreFirstWarp : IHaveFirst, IHaveLast
     {
-
+        /// <summary>
+        /// The value to write
+        /// </summary>
         private readonly string bits;
 
         private readonly int digitsInMSR;
 
         public readonly List<Tile> Tiles;
-
 
         public PreFirstWarp(string bits, int index, bool carry, int digitsInMSR)
         {
@@ -38,7 +39,6 @@
 
             Last       = Tiles.Last();
             Last.North = GlueFactory.FirstWarp(bits, index, carry);
-
         }
 
 
@@ -53,14 +53,14 @@
             switch (digitsInMSR)
             {
                 case 3:
-                    return CreateForDigitsCase3();
+                    return CreateDefaultPath();
 
                 case 2:
                 {
                     // Not in the MSR
                     if (bits.EndsWith("00"))
                     {
-                        return CreateForDigitsCase3();
+                        return CreateDefaultPath();
                     }
 
                     // Digit 1 in the MSR
@@ -80,8 +80,8 @@
 
                 case 1:
 
-                    return bits.EndsWith("11") ? CreateDigit1Case1() // Digit 1 in the MSR
-                    : CreateForDigitsCase3();                        // Not in the MSR
+                    return bits.EndsWith("11") ? CreateDigit1Case1()  // Digit 1 in the MSR
+                                               : CreateDefaultPath(); // Not in the MSR
 
                 default:
 
@@ -90,84 +90,54 @@
         }
 
 
-        private List<Tile> CreateForDigitsCase3()
+        private List<Tile> CreateDefaultPath()
         {
-            var builder = new GadgetBuilder();
+            var b = new GadgetBuilder().Start();
 
-            return builder.StartWith(new Tile())
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .West()
-                          .North()
-                          .North()
-                          .North()
-                          .Up()
-                          .North()
-                          .West()
-                          .North()
-                          .Down()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .North()
-                          .End()
-                          .Tiles()
-                          .ToList();
+            b.North(17);
+            b.West();
+            b.North(3)
+             .Up()
+             .North()
+             .West()
+             .North()
+             .Down();
+            b.North(7);
+
+            return b.Tiles().ToList();
         }
 
 
         private static List<Tile> CreateDigit1Case1()
         {
-            var builder = new GadgetBuilder().Start();
+            var b = new GadgetBuilder().Start();
 
-            builder.North(17);
-            builder.West();
-            builder.North(12);
+            b.North(17);
+            b.West();
+            b.North(12);
 
-            return builder.Tiles()
-                          .ToList();
+            return b.Tiles().ToList();
         }
 
 
         private static List<Tile> CreateDigit1Case2()
         {
-            var builder = new GadgetBuilder().Start();
+            var b = new GadgetBuilder().Start();
 
-            builder.North(9)
+            b.North(9)
                    .Up()
                    .West()
                    .West()
                    .Down();
 
-            return builder.Tiles()
-                          .ToList();
+            return b.Tiles().ToList();
         }
 
 
         private static List<Tile> CreateDigit2Case2()
         {
-            var tile = new Tile(Guid.NewGuid()
-                                    .ToString());
+            var tile = new Tile(Guid.NewGuid().ToString());
 
-            // Only one tile is used.
             return new List<Tile> {tile};
         }
 

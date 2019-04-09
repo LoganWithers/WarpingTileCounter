@@ -20,11 +20,11 @@
 
         private readonly int digitsInMSR;
 
-        private readonly List<string> possibilities;
+        public readonly List<string> digitsWithLengthL;
 
         public readonly List<BinaryReader> Readers;
 
-        public readonly HashSet<string> UniqueDigits;
+        public readonly HashSet<string> digitsThatCanBeRead;
 
 
         public ReaderFactory(int actualBitsPerEncodedDigit, int bitsRequiredForBaseM, int baseOfEncodedDigits, int digitsInMSR)
@@ -34,9 +34,9 @@
             this.baseOfEncodedDigits       = baseOfEncodedDigits;
             this.digitsInMSR               = digitsInMSR;
 
-            UniqueDigits  = new HashSet<string>();
-            possibilities = new List<string>();
-            Readers       = CreateCounterReaders();
+            digitsThatCanBeRead = new HashSet<string>();
+            digitsWithLengthL   = new List<string>();
+            Readers             = CreateCounterReaders();
         }
 
 
@@ -46,33 +46,31 @@
 
             for (var i = 0; i < baseOfEncodedDigits; i++)
             {
-                var value = Convert.ToString(i, 2)
-                                   .PadLeft(bitsRequiredForBaseM, '0');
+                var value = Convert.ToString(i, 2).PadLeft(bitsRequiredForBaseM, '0');
 
-                possibilities.Add(value);
-                possibilities.Add($"{value}00");
-                possibilities.Add($"{value}11");
-                possibilities.Add($"{value}01");
+                digitsWithLengthL.Add($"{value}00");
+                digitsWithLengthL.Add($"{value}01");
+                digitsWithLengthL.Add($"{value}11");
             }
 
-            foreach (var possibility in possibilities)
+            foreach (var lengthLDigit in digitsWithLengthL)
             {
-                for (var i = 0; i <= possibility.Length; i++)
+                for (var i = 0; i <= lengthLDigit.Length; i++)
                 {
-                    var substring = possibility.Substring(possibility.Length - i);
-                    UniqueDigits.Add(substring);
+                    var substring = lengthLDigit.Substring(lengthLDigit.Length - i);
+                    digitsThatCanBeRead.Add(substring);
                 }
             }
 
-            Console.WriteLine($"Unique: {UniqueDigits.Count}");
+            Console.WriteLine($"Unique: {digitsThatCanBeRead.Count}");
 
-            foreach (var key in UniqueDigits.OrderBy(s => s.Length)
-                                            .ThenBy(s => s))
+            foreach (var bitsRead in digitsThatCanBeRead.OrderBy(s => s.Length)
+                                                        .ThenBy(s => s))
             {
                 for (var i = 1; i <= Digits; i++)
                 {
-                    results.Add(new BinaryReader(key, true,  i, actualBitsPerEncodedDigit, baseOfEncodedDigits));
-                    results.Add(new BinaryReader(key, false, i, actualBitsPerEncodedDigit, baseOfEncodedDigits));
+                    results.Add(new BinaryReader(bitsRead, true,  i, actualBitsPerEncodedDigit, baseOfEncodedDigits));
+                    results.Add(new BinaryReader(bitsRead, false, i, actualBitsPerEncodedDigit, baseOfEncodedDigits));
                 }
             }
 

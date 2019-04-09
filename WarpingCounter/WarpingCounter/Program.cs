@@ -123,7 +123,7 @@
             Console.WriteLine($"Bits Per Counter Digit: {construction.BitsPerCounterDigit}");
             Console.WriteLine($"Actual Bits Per Digit:  {construction.ActualBitsPerDigit}");
 
-            List<string> fullSizeDigits = counter.UniqueDigits.Where(d => d.Length == construction.ActualBitsPerDigit)
+            List<string> fullSizeDigits = counter.digitsThatCanBeRead.Where(d => d.Length == construction.ActualBitsPerDigit)
                                                  .ToList();
 
             Console.WriteLine($"Full Digits: {fullSizeDigits.Count}");

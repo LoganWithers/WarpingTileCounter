@@ -32,7 +32,7 @@
             this.carry       = carry;
             this.digitsInMSR = digitsInMSR;
 
-            Tiles = Init();
+            Tiles = InitializeTiles();
             Tiles.PrependNamesWith($"{nameof(PostWarp)} {bits} {index} {carry}");
             First = Tiles.First();
             Last  = Tiles.Last();
@@ -52,7 +52,7 @@
         public Tile Last { get; }
 
 
-        private List<Tile> Init()
+        private List<Tile> InitializeTiles()
         {
             switch (digitsInMSR)
             {
@@ -137,69 +137,51 @@
 
         private List<Tile> CreateDigit1Case1()
         {
-            var builder = new GadgetBuilder().Start();
+            var b = new GadgetBuilder().Start();
 
-            builder.East()
-                   .North()
-                   .North()
-                   .North()
-                   .North()
-                   .Down();
+            b.East();
 
-            builder.North(16)
-                   .West()
-                   .North();
+            b.North(4)
+             .Down();
 
-            builder.Tiles()
-                   .First()
-                   .Down = GlueFactory.PostWarp(bits, index, carry);
+            b.North(16)
+             .West()
+             .North();
 
-            return builder.Tiles()
-                          .ToList();
+            b.Tiles()
+             .First()
+             .Down = GlueFactory.PostWarp(bits, index, carry);
+
+            return b.Tiles()
+                    .ToList();
         }
 
 
         private List<Tile> CreateDigitCase3()
         {
-            var builder = new GadgetBuilder();
-
             switch (index)
             {
                 // First digit in a region has a slightly different path than D2/D3
                 // (D1's PostWarp needs to go through the crossing region)  
                 case 1:
                 {
-                    List<Tile> tiles = builder.StartWith(new Tile())
-                                              .East()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .Down()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .East()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .East()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .North()
-                                              .West()
-                                              .North()
-                                              .End()
-                                              .Tiles()
-                                              .ToList();
+                    var b = new GadgetBuilder().Start();
 
+                    b.East();
+                    b.North(4)
+                     .Down();
+
+                    b.North(9)
+                     .East();
+
+                    b.North(3)
+                     .East();
+
+                    b.North(4)
+                     .West()
+                     .North();
+
+                    var tiles = b.Tiles().ToList();
                     tiles.First()
                          .Down = GlueFactory.PostWarp(bits, index, carry);
 
@@ -208,21 +190,18 @@
 
                 default:
                 {
-                    builder.StartWith(new Tile())
-                           .East()
-                           .North()
-                           .North()
-                           .North()
-                           .North()
-                           .Down();
+                    var b = new GadgetBuilder();
+                    b.Start()
+                     .East();
+                    b.North(4)
+                     .Down();
 
-                    builder.North(9);
-                    builder.East();
+                    b.North(9)
+                     .East();
+                    b.North(8);
 
-                    List<Tile> tiles = builder.North(8)
-                                              .End()
-                                              .Tiles()
-                                              .ToList();
+
+                    var tiles = b.Tiles().ToList();
 
                     tiles.First()
                          .Down = GlueFactory.PostWarp(bits, index, carry);

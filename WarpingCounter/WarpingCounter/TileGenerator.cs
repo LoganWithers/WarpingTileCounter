@@ -21,10 +21,6 @@
     /// assemble a counter with a specific base and starting value. Namely, the
     /// following "gadgets" will be created.
     ///
-    /// CounterUnits
-    ///     -> Readers
-    ///     -> Writers
-    ///     -> Warper
     /// 
     /// </summary>
     public class TileGenerator
@@ -78,18 +74,18 @@
         {
             var readerFactory = new ReaderFactory(bitsPerDigit, bitsPerCounterDigit, baseM, digitsInMSR);
             tiles.AddRange(readerFactory.Readers.SelectMany(reader => reader.Tiles));
-        
-            // Digits with LogM + 2 length?
-            List<string> fullSizeDigits = readerFactory.UniqueDigits
-                                                       .Where(d => d.Length == bitsPerDigit)
-                                                       .ToList();
 
+            // Digits with LogM + 2 length?
+            List<string> fullSizeDigits = readerFactory.digitsWithLengthL;
+            
+            
             Console.WriteLine($"Full Digits: {fullSizeDigits.Count}");
 
-            foreach (var binaryString in fullSizeDigits)
+            // Foreach digit in {0, 1}^l
+            foreach (var lengthLDigit in fullSizeDigits)
             {
-                tiles.AddRange(CreateWarpUnits(binaryString));
-                tiles.AddRange(CreateWriters(binaryString));
+                tiles.AddRange(CreateWarpUnits(lengthLDigit));
+                tiles.AddRange(CreateWriters(lengthLDigit));
             }
         }
 
@@ -180,6 +176,11 @@
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bits"></param>
+        /// <returns></returns>
         private IEnumerable<Tile> CreateWriters(string bits)
         {
             var results = new List<Tile>();
@@ -194,14 +195,24 @@
         }
 
 
+        /// <summary>
+        /// Creates 6 total warp units.
+        /// 
+        /// For each digit index (i..3), 
+        ///     create 1 warp unit with an increment signal
+        ///     create 1 warp unit with a copy signal
+        /// 
+        /// </summary>
+        /// <param name="bits">A base 2 encoded digit, with 2 bits padded to the end for indicating MSR/MSD</param>
+        /// <returns></returns>
         private IEnumerable<Tile> CreateWarpUnits(string bits)
         {
             var results = new List<Tile>();
 
             for (var i = 1; i <= Digits; i++)
             {
-                results.AddRange(new WarpUnit(bits, i, true,  digitsInMSR).Tiles);
-                results.AddRange(new WarpUnit(bits, i, false, digitsInMSR).Tiles);
+                results.AddRange(new WarpUnit(bits, i, carry: true,  digitsInMSR).Tiles);
+                results.AddRange(new WarpUnit(bits, i, carry: false, digitsInMSR).Tiles);
             }
 
             return results;

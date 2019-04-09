@@ -38,7 +38,7 @@
 
             initialValueBaseM  = this.initialValueBase10.ToBase(BaseM);
             power              = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
-            haltingValueBase10 = BigInteger.Pow(BaseM, Convert.ToInt32(power)) - 1;
+            haltingValueBase10 = BigInteger.Pow(BaseM, Convert.ToInt32(power));
             rows = haltingValueBase10 - this.initialValueBase10;
             BitsPerCounterDigit = Convert.ToString(BaseM - 1, 2).Length;
 
