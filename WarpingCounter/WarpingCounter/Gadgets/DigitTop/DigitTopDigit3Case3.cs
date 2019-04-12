@@ -11,7 +11,7 @@
     using ReturnAndRead.NextRow;
 
     /// <summary>
-    ///   A gadget that is used only in case 3. After writing the third digit (MSD) in MSR,
+    ///   A gadget that is used only for the third digit (MSD) in MSR when case 3.
     ///   this gadget is placed will alter the succeeding return and read gadget accordingly.
     ///   <br />
     ///   The first tile connects to a digit that ends with "11" and is
@@ -24,7 +24,7 @@
     public class DigitTopDigit3Case3 : IHaveLast, IHaveFirst
     {
 
-        private readonly int bitsPerDigit;
+        private readonly int L;
 
         private readonly bool carry;
 
@@ -34,7 +34,7 @@
         public DigitTopDigit3Case3(bool carry, int bitsPerDigit)
         {
             this.carry        = carry;
-            this.bitsPerDigit = bitsPerDigit;
+            L = bitsPerDigit;
             Tiles             = InitializeTiles();
             Tiles.PrependNamesWith($"{nameof(DigitTopDigit3Case3)} {carry}");
 
@@ -80,9 +80,7 @@
 
             build.South(7);
 
-            return build.SouthLine(bitsPerDigit, carry)
-                        .Tiles()
-                        .ToList();
+            return build.SouthLine(L, carry).Tiles().ToList();
         }
 
     }

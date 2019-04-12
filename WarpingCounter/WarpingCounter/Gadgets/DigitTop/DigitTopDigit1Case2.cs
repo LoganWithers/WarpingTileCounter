@@ -8,11 +8,20 @@
     using Common.Builders;
     using Common.Models;
 
+    using ReturnAndRead.NextDigit;
+
+
     /// <summary>
-    ///   Gadget
+    ///   A gadget that is used only for the first digit in a MSR when it's case 2.
+    ///   <br />
+    ///   This digit top is special in that its tiles are mostly assembled in the z=0 plane,
+    ///   contrary to a standard digit top.
+    /// 
+    ///   <br />
+    ///   The last tile of this gadget connects to <see cref="ReturnDigit1ReadDigit2Case2" />
     /// </summary>
-    /// <seealso cref="IHaveFirst" />
     /// <seealso cref="IHaveLast" />
+    /// <seealso cref="IHaveFirst" />
     public class DigitTopDigit1Case2 : IHaveFirst, IHaveLast
     {
         

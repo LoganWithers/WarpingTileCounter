@@ -19,7 +19,7 @@
     public class WarpUnit : IHaveFirst
     {
 
-        private readonly string bits;
+        private readonly string digitValueToWrite;
 
         private readonly bool carry;
 
@@ -30,12 +30,12 @@
         public readonly List<Tile> Tiles;
 
 
-        public WarpUnit(string bits, int digitIndex, bool carry, int digitsInMSR)
+        public WarpUnit(string digitValueToWrite, int digitIndex, bool carry, int digitsInMSR)
         {
-            this.digitIndex  = digitIndex;
-            this.bits        = bits;
-            this.carry       = carry;
-            this.digitsInMSR = digitsInMSR;
+            this.digitIndex        = digitIndex;
+            this.digitValueToWrite = digitValueToWrite;
+            this.carry             = carry;
+            this.digitsInMSR       = digitsInMSR;
 
             Tiles = InitializeTiles();
             First = Tiles.First();
@@ -47,11 +47,11 @@
 
         private List<Tile> InitializeTiles()
         {
-            var preFirstWarp = new PreFirstWarp(bits, digitIndex, carry, digitsInMSR);
-            var firstWarp    = new FirstWarp(bits,    digitIndex, carry, digitsInMSR);
-            var warpBridge   = new WarpBridge(bits,   digitIndex, carry, digitsInMSR);
-            var secondWarp   = new SecondWarp(bits,   digitIndex, carry, digitsInMSR);
-            var postWarp     = new PostWarp(bits,     digitIndex, carry, digitsInMSR);
+            var preFirstWarp = new PreFirstWarp(digitValueToWrite, digitIndex, carry, digitsInMSR);
+            var firstWarp    = new FirstWarp(digitValueToWrite,    digitIndex, carry, digitsInMSR);
+            var warpBridge   = new WarpBridge(digitValueToWrite,   digitIndex, carry, digitsInMSR);
+            var secondWarp   = new SecondWarp(digitValueToWrite,   digitIndex, carry, digitsInMSR);
+            var postWarp     = new PostWarp(digitValueToWrite,     digitIndex, carry, digitsInMSR);
 
             var tiles = new List<Tile>();
 

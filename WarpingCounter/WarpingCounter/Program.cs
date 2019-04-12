@@ -16,8 +16,6 @@
     using Gadgets.ReturnAndRead.NextRow;
     using Gadgets.Warping;
 
-    using Seed;
-
     internal static class Program
     {
 
@@ -115,15 +113,15 @@
         private static void AddCounterTiles(List<Tile> tiles, ConstructionValues construction)
         {
             var inMSR   = construction.DigitsInMSR;
-            var counter = new ReaderFactory(construction.ActualBitsPerDigit, construction.BitsPerCounterDigit, construction.BaseM, construction.DigitsInMSR);
+            var counter = new ReaderFactory(construction.L, construction.BitsRequiredForBaseM, construction.BaseM, construction.DigitsInMSR);
             tiles.AddRange(counter.Readers.SelectMany(reader => reader.Tiles));
-            tiles.AddRange(CreateReturnAndRead(construction.ActualBitsPerDigit, construction.DigitRegions, inMSR));
-            tiles.AddRange(CreateDigitTops(construction.ActualBitsPerDigit, inMSR));
+            tiles.AddRange(CreateReturnAndRead(construction.L, construction.DigitRegions, inMSR));
+            tiles.AddRange(CreateDigitTops(construction.L, inMSR));
 
-            Console.WriteLine($"Bits Per Counter Digit: {construction.BitsPerCounterDigit}");
-            Console.WriteLine($"Actual Bits Per Digit:  {construction.ActualBitsPerDigit}");
+            Console.WriteLine($"Bits Per Counter Digit: {construction.BitsRequiredForBaseM}");
+            Console.WriteLine($"Actual Bits Per Digit:  {construction.L}");
 
-            List<string> fullSizeDigits = counter.digitsThatCanBeRead.Where(d => d.Length == construction.ActualBitsPerDigit)
+            List<string> fullSizeDigits = counter.digitsThatCanBeRead.Where(d => d.Length == construction.L)
                                                  .ToList();
 
             Console.WriteLine($"Full Digits: {fullSizeDigits.Count}");

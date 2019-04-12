@@ -36,11 +36,11 @@
             this.initialValueBase10 = BigInteger.Parse(initialValueBase10);
             BaseM                   = baseM;
 
-            initialValueBaseM  = this.initialValueBase10.ToBase(BaseM);
-            power              = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
-            haltingValueBase10 = BigInteger.Pow(BaseM, Convert.ToInt32(power));
-            rows = haltingValueBase10 - this.initialValueBase10;
-            BitsPerCounterDigit = Convert.ToString(BaseM - 1, 2).Length;
+            initialValueBaseM   = this.initialValueBase10.ToBase(BaseM);
+            power               = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
+            haltingValueBase10  = BigInteger.Pow(BaseM, Convert.ToInt32(power));
+            rows                = haltingValueBase10 - this.initialValueBase10;
+            BitsRequiredForBaseM = Convert.ToString(BaseM - 1, 2).Length;
 
             var leadingZeroes = BaseM.ToString().Length;
 
@@ -66,12 +66,12 @@
             foreach (var digit in initialValueBaseM)
             {
                 BinaryDigitEncodings[digit] = Convert.ToString(Convert.ToInt32(digit), 2)
-                                                     .PadLeft(BitsPerCounterDigit, '0');
+                                                     .PadLeft(BitsRequiredForBaseM, '0');
             }
 
             EncodedDigits = new List<string>();
 
-            void AddWithLeadingZeroes(string value) => EncodedDigits.Add(value.PadLeft(ActualBitsPerDigit, '0'));
+            void AddWithLeadingZeroes(string value) => EncodedDigits.Add(value.PadLeft(L, '0'));
 
             for (var i = 0; i < baseM; i++)
             {
@@ -94,10 +94,12 @@
         public int DigitsInMSR { get; }
 
 
-        public int BitsPerCounterDigit { get; }
+        public int BitsRequiredForBaseM { get; }
 
-
-        public int ActualBitsPerDigit => BitsPerCounterDigit + BitsUsedAsFlags;
+        /// <summary>
+        /// The number of bits in a single digit, equal to: Ceil( Log2(M) ) + 2 
+        /// </summary>
+        public int L => BitsRequiredForBaseM + BitsUsedAsFlags;
 
 
         /// <summary>
@@ -115,7 +117,7 @@
             Console.WriteLine($"Digits per value:  {digitsPerValue}");
             
             Console.WriteLine($"Amount to count:   {rows}");
-            var heightPerRegion = 3 * (ActualBitsPerDigit + 30);
+            var heightPerRegion = 3 * (L + 30);
             var n = (heightPerRegion * rows) + 1;
             var k = digitsPerValue * 2;
             Console.WriteLine($"Height per region: {heightPerRegion}");

@@ -29,10 +29,10 @@
         public readonly List<Tile> Tiles;
 
 
-        public ReturnDigit1ReadNextRow(bool carry, int bitsPerDigit, int totalOtherRegions)
+        public ReturnDigit1ReadNextRow(bool carry, int bitsPerDigit, int numberOfRegions)
         {
             this.bitsPerDigit = bitsPerDigit;
-            rectangleWidth    = 6 * (totalOtherRegions - 1);
+            rectangleWidth    = 6 * (numberOfRegions - 1);
 
             Tiles = InitializeTiles();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit1ReadNextRow)} {carry}");

@@ -32,23 +32,23 @@
         private readonly List<Tile> tiles = new List<Tile>();
 
         private readonly int digitsInMSR;
-        private readonly int bitsPerDigit;
-        private readonly int bitsPerCounterDigit;
+        private readonly int L;
+        private readonly int bitsRequiredForBaseM;
         private readonly int regions;
 
         private readonly int baseM;
 
         public TileGenerator(int baseM, string initialValueB10)
         {
-            this.baseM          = baseM;
-            construction        = new ConstructionValues(initialValueB10, baseM);
-            digitsInMSR         = construction.DigitsInMSR;
-            bitsPerDigit        = construction.ActualBitsPerDigit;
-            bitsPerCounterDigit = construction.BitsPerCounterDigit;
-            regions             = construction.DigitRegions;
+            this.baseM           = baseM;
+            construction         = new ConstructionValues(initialValueB10, baseM);
+            digitsInMSR          = construction.DigitsInMSR;
+            L                    = construction.L;
+            bitsRequiredForBaseM = construction.BitsRequiredForBaseM;
+            regions              = construction.DigitRegions;
 
-            Console.WriteLine($"Bits Per Counter Digit: {bitsPerCounterDigit}");
-            Console.WriteLine($"Actual Bits Per Digit:  {bitsPerDigit}");
+            Console.WriteLine($"Bits Per Counter Digit: {bitsRequiredForBaseM}");
+            Console.WriteLine($"Actual Bits Per Digit:  {L}");
         }
 
         public bool IsStartingValueTooSmall() => construction.DigitRegions < 2;
@@ -72,10 +72,9 @@
 
         private void AddCounter()
         {
-            var readerFactory = new ReaderFactory(bitsPerDigit, bitsPerCounterDigit, baseM, digitsInMSR);
+            var readerFactory = new ReaderFactory(L, bitsRequiredForBaseM, baseM, digitsInMSR);
             tiles.AddRange(readerFactory.Readers.SelectMany(reader => reader.Tiles));
 
-            // Digits with LogM + 2 length?
             List<string> fullSizeDigits = readerFactory.digitsWithLengthL;
             
             
@@ -90,19 +89,22 @@
         }
 
         /// <summary>
-        /// Adds  
+        /// Adds the top of the digits, (constant 3 for each digit index in a standard region)
+        ///
+        /// If it's case 2 or case 3, special digit tops are required due to
+        /// paths being slightly different. 
         /// </summary>
         private void AddDigitTops()
         {
             
-            tiles.AddRange(new DigitTopDefault(true,  1, bitsPerDigit).Tiles);
-            tiles.AddRange(new DigitTopDefault(false, 1, bitsPerDigit).Tiles);
+            tiles.AddRange(new DigitTopDefault(true,  1, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTopDefault(false, 1, bitsPerDigit: L).Tiles);
 
-            tiles.AddRange(new DigitTopDefault(true,  2, bitsPerDigit).Tiles);
-            tiles.AddRange(new DigitTopDefault(false, 2, bitsPerDigit).Tiles);
+            tiles.AddRange(new DigitTopDefault(true,  2, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTopDefault(false, 2, bitsPerDigit: L).Tiles);
 
-            tiles.AddRange(new DigitTopDefault(true,  3, bitsPerDigit).Tiles);
-            tiles.AddRange(new DigitTopDefault(false, 3, bitsPerDigit).Tiles);
+            tiles.AddRange(new DigitTopDefault(true,  3, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTopDefault(false, 3, bitsPerDigit: L).Tiles);
 
             switch (digitsInMSR)
             {
@@ -110,15 +112,15 @@
                     break;
     
                 case 2:
-                    tiles.AddRange(new DigitTopDigit2Case2(true,  bitsPerDigit).Tiles);
-                    tiles.AddRange(new DigitTopDigit2Case2(false, bitsPerDigit).Tiles);
-                    tiles.AddRange(new DigitTopDigit1Case2(true,  bitsPerDigit).Tiles);
-                    tiles.AddRange(new DigitTopDigit1Case2(false, bitsPerDigit).Tiles);
+                    tiles.AddRange(new DigitTopDigit2Case2(carry: true,  bitsPerDigit: L).Tiles);
+                    tiles.AddRange(new DigitTopDigit2Case2(carry: false, bitsPerDigit: L).Tiles);
+                    tiles.AddRange(new DigitTopDigit1Case2(carry: true,  bitsPerDigit: L).Tiles);
+                    tiles.AddRange(new DigitTopDigit1Case2(carry: false, bitsPerDigit: L).Tiles);
                     break;
     
                 case 3:
-                    tiles.AddRange(new DigitTopDigit3Case3(true, bitsPerDigit).Tiles);
-                    tiles.AddRange(new DigitTopDigit3Case3(false, bitsPerDigit).Tiles);
+                    tiles.AddRange(new DigitTopDigit3Case3(true,  bitsPerDigit: L).Tiles);
+                    tiles.AddRange(new DigitTopDigit3Case3(false, bitsPerDigit: L).Tiles);
                     break;
             }
         
@@ -127,18 +129,18 @@
         private void AddReturnAndRead()
         {
            
-            var returnD1ReadD2Carry = new ReturnDigit1ReadDigit2(carry: true, bitsPerDigit);
-            var returnD2ReadD3Carry = new ReturnDigit2ReadDigit3(carry: true, bitsPerDigit);
-            var returnD3ReadD1Carry = new ReturnDigit3ReadDigit1(carry: true, bitsPerDigit);
+            var returnD1ReadD2Carry = new ReturnDigit1ReadDigit2(carry: true, bitsPerDigit: L);
+            var returnD2ReadD3Carry = new ReturnDigit2ReadDigit3(carry: true, bitsPerDigit: L);
+            var returnD3ReadD1Carry = new ReturnDigit3ReadDigit1(carry: true, bitsPerDigit: L);
 
             tiles.AddRange(returnD3ReadD1Carry.Tiles);
             tiles.AddRange(returnD1ReadD2Carry.Tiles);
             tiles.AddRange(returnD2ReadD3Carry.Tiles);
 
 
-            var returnD1ReadD2NoCarry = new ReturnDigit1ReadDigit2(carry: false, bitsPerDigit);
-            var returnD2ReadD3NoCarry = new ReturnDigit2ReadDigit3(carry: false, bitsPerDigit);
-            var returnD3ReadD1NoCarry = new ReturnDigit3ReadDigit1(carry: false, bitsPerDigit);
+            var returnD1ReadD2NoCarry = new ReturnDigit1ReadDigit2(carry: false, bitsPerDigit: L);
+            var returnD2ReadD3NoCarry = new ReturnDigit2ReadDigit3(carry: false, bitsPerDigit: L);
+            var returnD3ReadD1NoCarry = new ReturnDigit3ReadDigit1(carry: false, bitsPerDigit: L);
 
             tiles.AddRange(returnD3ReadD1NoCarry.Tiles);
             tiles.AddRange(returnD1ReadD2NoCarry.Tiles);
@@ -147,27 +149,27 @@
             switch (digitsInMSR)
             {
                 case 1:
-                    var returnDigit1ReadNextRowCarry   = new ReturnDigit1ReadNextRow(carry: true, bitsPerDigit, regions);
-                    var returnDigit1ReadNextRowNoCarry = new ReturnDigit1ReadNextRow(carry: false, bitsPerDigit, regions);
-                    tiles.AddRange(returnDigit1ReadNextRowCarry.Tiles);
+                    var returnDigit1ReadNextRowCarry   = new ReturnDigit1ReadNextRow(carry: true,  bitsPerDigit: L, numberOfRegions: regions);
+                    var returnDigit1ReadNextRowNoCarry = new ReturnDigit1ReadNextRow(carry: false, bitsPerDigit: L, numberOfRegions: regions);
+                    tiles.AddRange(returnDigit1ReadNextRowCarry.Tiles);                            
                     tiles.AddRange(returnDigit1ReadNextRowNoCarry.Tiles);
                     break;
 
                 case 2:
-                    var returnDigit2ReadNextRowCarry   = new ReturnDigit2ReadNextRow(carry: true,  bitsPerDigit, regions);
-                    var returnDigit2ReadNextRowNoCarry = new ReturnDigit2ReadNextRow(carry: false, bitsPerDigit, regions);
+                    var returnDigit2ReadNextRowCarry   = new ReturnDigit2ReadNextRow(carry: true,  bitsPerDigit: L, numberOfRegions: regions);
+                    var returnDigit2ReadNextRowNoCarry = new ReturnDigit2ReadNextRow(carry: false, bitsPerDigit: L, numberOfRegions: regions);
                     tiles.AddRange(returnDigit2ReadNextRowCarry.Tiles);
                     tiles.AddRange(returnDigit2ReadNextRowNoCarry.Tiles);
 
-                    var returnDigit1ReadDigit2Case2Carry   = new ReturnDigit1ReadDigit2Case2(carry: true, bitsPerDigit);
-                    var returnDigit1ReadDigit2Case2NoCarry = new ReturnDigit1ReadDigit2Case2(carry: false, bitsPerDigit);
+                    var returnDigit1ReadDigit2Case2Carry   = new ReturnDigit1ReadDigit2Case2(carry: true,  bitsPerDigit: L);
+                    var returnDigit1ReadDigit2Case2NoCarry = new ReturnDigit1ReadDigit2Case2(carry: false, bitsPerDigit: L);
                     tiles.AddRange(returnDigit1ReadDigit2Case2Carry.Tiles);
                     tiles.AddRange(returnDigit1ReadDigit2Case2NoCarry.Tiles);
                     break;
 
                 case 3:
-                    var returnDigit3ReadNextRowCarry   = new ReturnDigit3ReadNextRow(carry: true,  bitsPerDigit, regions);
-                    var returnDigit3ReadNextRowNoCarry = new ReturnDigit3ReadNextRow(carry: false, bitsPerDigit, regions);
+                    var returnDigit3ReadNextRowCarry   = new ReturnDigit3ReadNextRow(carry: true,  bitsPerDigit: L, regions);
+                    var returnDigit3ReadNextRowNoCarry = new ReturnDigit3ReadNextRow(carry: false, bitsPerDigit: L, regions);
                     tiles.AddRange(returnDigit3ReadNextRowCarry.Tiles);
                     tiles.AddRange(returnDigit3ReadNextRowNoCarry.Tiles);
                     break;
@@ -211,8 +213,8 @@
 
             for (var i = 1; i <= Digits; i++)
             {
-                results.AddRange(new WarpUnit(bits, i, carry: true,  digitsInMSR).Tiles);
-                results.AddRange(new WarpUnit(bits, i, carry: false, digitsInMSR).Tiles);
+                results.AddRange(new WarpUnit(digitValueToWrite: bits, digitIndex: i, carry: true,  digitsInMSR).Tiles);
+                results.AddRange(new WarpUnit(digitValueToWrite: bits, digitIndex: i, carry: false, digitsInMSR).Tiles);
             }
 
             return results;

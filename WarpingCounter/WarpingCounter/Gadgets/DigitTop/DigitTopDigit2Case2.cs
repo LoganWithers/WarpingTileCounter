@@ -8,6 +8,22 @@
     using Common.Builders;
     using Common.Models;
 
+    using ReturnAndRead.NextRow;
+
+    /// <summary>
+    ///   A gadget that is used only for the second digit (MSD) in a MSR when it's case 2.
+    ///   <br />
+    ///   This digit top is special in that it builds to the right (east) instead of going west.
+    ///   It then assembles south in the z=1 plane, above the tiles that assembled as part of
+    ///   its neighbor digit region to the east.
+    /// 
+    ///   The first tile connects to a digit that ends with "11" and is
+    ///   in a region with one other digit.
+    ///   <br />
+    ///   The last tile of this gadget connects to <see cref="ReturnDigit2ReadNextRow" />
+    /// </summary>
+    /// <seealso cref="IHaveLast" />
+    /// <seealso cref="IHaveFirst" />
     public class DigitTopDigit2Case2 : IHaveLast, IHaveFirst
     {
 
@@ -60,8 +76,7 @@
             builder.South(7);
             builder.SouthLine(bitsPerDigit);
 
-            return builder.Tiles()
-                          .ToList();
+            return builder.Tiles().ToList();
         }
 
     }

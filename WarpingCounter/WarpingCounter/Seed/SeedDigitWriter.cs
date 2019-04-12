@@ -10,6 +10,15 @@
     using Common.Enums;
     using Common.Models;
 
+    /// <summary>
+    /// Takes as input a digit value encoded in binary,
+    /// and generates the tiles required to assemble that digit from
+    /// south to north.
+    ///
+    /// <remarks>
+    /// Used only in the construction of the seed.
+    /// </remarks>
+    /// </summary>
     public class InitialDigitWriter : IHaveFirst, IHaveLast
     {
 
