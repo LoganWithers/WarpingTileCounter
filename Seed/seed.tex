@@ -1,0 +1,104 @@
+\documentclass[10pt]{article}
+%\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{ifthen}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage[linesnumbered, nofillcomment,noend]{algorithm2e}
+\usepackage{stackrel}
+\usepackage[export]{adjustbox}% http://ctan.org/pkg/adjustbox
+% \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+% \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\title{}
+\author{Logan Withers}
+\date{}
+
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+
+\begin{figure}
+    \centering
+
+    \begin{subfigure}[t]{0.23\textwidth}
+        \centering
+        \includegraphics[width=.85in,valign=t]{mid_level_timeline_phase_1}
+        \caption{\label{fig:mid_level_timeline_phase_1} Seed tile is placed. }
+    \end{subfigure} %
+    ~
+    \begin{subfigure}[t]{0.23\textwidth}
+        \centering
+        \includegraphics[width=.85in,valign=t]{mid_level_timeline_phase_2}
+        \caption{\label{fig:mid_level_timeline_phase_2} Digit 3 is written }
+    \end{subfigure}%
+   ~
+    \begin{subfigure}[t]{0.23\textwidth}
+        \centering
+        \includegraphics[width=.85in,valign=t]{mid_level_timeline_phase_3}
+        \caption{\label{fig:mid_level_timeline_phase_3} Digit 2 is written }
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.23\textwidth}
+        \centering
+        \includegraphics[width=.85in,valign=t]{mid_level_timeline_phase_4}
+        \caption{\label{fig:mid_level_timeline_phase_4} Digit 1 is written }
+    \end{subfigure}
+
+    \caption{\label{fig:mid_level_timeline_overview} An overview of how a digit region in the seed is assembled. In the seed, the path is reversed, the digits are written in order of most signifcant to least significant. }
+\end{figure}
+
+
+
+\begin{figure}
+    \centering
+
+    \begin{subfigure}[t]{0.14\textwidth}
+        \centering
+        \includegraphics[width=.5in,valign=t]{mid_level_timeline_phase_5}
+        \caption{\label{fig:mid_level_timeline_phase_5} Read ${\mathcal{D}_1}$, write ${\mathcal{D}_1}'$.}
+    \end{subfigure} %
+    ~
+    \begin{subfigure}[t]{0.14\textwidth}
+        \centering
+        \includegraphics[width=.5in,valign=t]{mid_level_timeline_phase_6}
+        \caption{\label{fig:mid_level_timeline_phase_6} Return from ${\mathcal{D}_1}'$ down to ${\mathcal{D}_2}$ }
+    \end{subfigure}%
+   ~
+    \begin{subfigure}[t]{0.14\textwidth}
+        \centering
+        \includegraphics[width=.5in,valign=t]{mid_level_timeline_phase_7}
+        \caption{\label{fig:mid_level_timeline_phase_7} Read ${\mathcal{D}_2}$, write ${\mathcal{D}_2}'$. }
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.14\textwidth}
+        \centering
+        \includegraphics[width=.5in,valign=t]{mid_level_timeline_phase_8}
+        \caption{\label{fig:mid_level_timeline_phase_8} Return from ${\mathcal{D}_2}'$ down to ${\mathcal{D}_3}$ }
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.14\textwidth}
+        \centering
+        \includegraphics[width=.5in,valign=t]{mid_level_timeline_phase_9}
+        \caption{\label{fig:mid_level_timeline_phase_9} Read ${\mathcal{D}_3}$, write ${\mathcal{D}_3}'$. }
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{0.14\textwidth}
+        \centering
+        \includegraphics[width=.5in,valign=t]{mid_level_timeline_phase_10}
+        \caption{\label{fig:mid_level_timeline_phase_10} Return from ${\mathcal{D}_3}'$ down to ${\mathcal{D}_1}'$ }
+    \end{subfigure}
+
+
+    \caption{\label{fig:mid_level_timeline_overview} An overview of how the counter executes a single ``count''.  }
+\end{figure}
+
+
+\end{document}
