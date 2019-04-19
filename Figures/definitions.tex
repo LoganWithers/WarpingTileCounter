@@ -1,0 +1,59 @@
+\section{Definitions}
+\label{sec:prelims}
+
+\newcommand{\dr}{\mathcal{DR}}
+
+\begin{flalign*}
+    \text{Let }  m & = \text{base of the counter} & \\
+               MSR & = \text{ most signifcant digit region } \\
+             c_{0} & = \text{starting value of counter}  \\
+                 d & = \ceil*{\log_m({c_0})},              \text{ number of digits per row }  \\
+              \dr  & = \ceil*{\frac{d}{3}},                \text{ digit regions per row }           \\
+             c_{f} & = m^{d} - 1,                          \text{ final value of the counter} \\
+        c_{\Delta} & = c_f - c_0,                          \text{ number of rows }            \\
+                 l & = \ceil{\log m} + 2, \text{ bits needed to represent each digit plus 2 for MSR and MSD} & \\
+\dr_{height} & = 3 \cdot (l + 30),                   \text{ height of a row }           \\
+                 h & = c_{\Delta} \cdot \dr_{height}, \text{ height of constuction without roof tiles }   \\
+\end{flalign*}
+
+
+In order to determine the number of digits per row, given some value $k$, let $R = k \mod 6$. There are 3 distinct cases to consider.
+
+\begin{itemize}[label={--}]
+
+    \item if $0 \leq R \leq 1$, then $\setl{d\in\mathbb{N}}{3 \text{ divides } d}$ \\
+        MSR $\gets$ 3 digits
+
+    \item if $2 \leq R \leq 3$, then $\setl{d\in\mathbb{N}}{3 \text{ divides } d - 1}$ \\
+        MSR $\gets$ 1 digit
+
+    \item if $4 \leq R \leq 5$, then $\setl{d\in\mathbb{N}}{3 \text{ divides } d - 2}$ \\
+        MSR $\gets$ 2 digits
+
+\end{itemize}
+
+In order to account for odd values of $k$, when $k$ is odd, one vertical filler tile is added to increase the width
+of the rectangle. O(1)
+
+
+
+$\dr_{1st}$ = $3l + 90$ + 1
+
+$\dr_{general}$ = $3l + 90$
+
+$\dr_{last}$ = $3l + 75$
+
+Let $n$ be the number of counter unit rows, then
+\begin{flalign*}
+    h & = (n - 1) \cdot \dr_{general} + \dr_{1st} + \dr_{last}  & \\
+      & = (m^d - 1) (3l + 90) + 6l + 166  \\
+\end{flalign*}
+
+$m = \ceil*{\left(\frac{N}{93}\right)^{\frac{1}{d}}}$
+
+\begin{flalign*}
+    N & = 93 \left(\frac{N}{93}\right) = 93 \left(\left(\frac{N}{93}\right)^{\frac{1}{d}}\right)^d \leq 93 \ceil*{\left(\frac{N}{93}\right)^{\frac{1}{d}}}^d & \\
+      & = 93 (m^d - 1) \leq 3lm^d + 90m^d \leq 3lm^d + 90m^d + 3l + 91  \\
+      & = (m^d - 1) (3l + 90) + 6l + 166  \\
+\end{flalign*}
+

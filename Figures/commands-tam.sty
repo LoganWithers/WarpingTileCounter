@@ -1,0 +1,58 @@
+%\ProvidesPackage{commands-tam}
+\usepackage{amsfonts}
+%\usepackage[labelfont=bf]{caption}
+
+\providecommand{\prob}{\mathrm{Pr}}
+\newcommand{\calT}{\mathcal{T}}
+
+% Blackboard Bold Sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+
+% easy way to write sets
+% use setr if the contents to the right of the | are bigger
+% use setl if the contents to the left of the | are bigger
+\newcommand{\setr}[2]{\left\{\ #1 \ \left|\ #2 \right. \ \right\}}
+\newcommand{\setl}[2]{\left\{\ \left. #1 \ \right|\ #2 \ \right\}}
+
+% TAM stuff
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\Real}{\mathbb R}
+\newcommand{\eps}{\varepsilon}
+\providecommand{\To}{\longrightarrow}
+\newcommand{\BX}{\mathbf{B}(X)}
+\newcommand{\A}{\mathcal{A}}
+\providecommand{\func}[3]{#1 : #2 \rightarrow #3 }
+\newcommand{\pfunc}[3]{#1 : #2 \dashrightarrow #3 }
+\newcommand{\bigpair[2]}{\left(#1, #2\right)}
+%\newcommand{\color}{{\rm col}}
+\newcommand{\lab}{{\rm label}}
+\newcommand{\colorf}[1]{\color(#1)}
+\newcommand{\strength}{{\rm str}}
+\newcommand{\strengthf}[1]{\strength(#1)}
+\newcommand{\bbval}[1]{\left[\!\left[ #1 \right] \! \right]}
+\newcommand{\dom}{{\rm dom} \;}
+\newcommand{\asmb}{\mathcal{A}}
+\newcommand{\asmbt}[2]{\asmb^{#1}_{#2}}
+\newcommand{\asmbtt}{\mathcal{A}^\tau_T}
+\newcommand{\ste}[2]{#1 \mapsto #2}
+\newcommand{\frontier}[3]{{\partial}^{#1}_{#2}{#3}}
+\newcommand{\frontiert}[1]{\partial^{\tau}{#1}}
+\newcommand{\frontiertt}[1]{\frontier{\tau}{t}{#1}}
+\newcommand{\frontiertx}[2]{{\partial}^{\tau}_{#1}{#2}}
+\newcommand{\frontiertau}[1]{{\partial}^{\tau}{#1}}
+\newcommand{\arrowstett}[2]{#1 \xrightarrow[\tau,T]{1} #2}
+\newcommand{\arrowste}[2]{#1 \stackrel{1}{\To} #2}
+\newcommand{\arrowtett}[2]{#1 \xrightarrow[\tau,T]{} #2}
+\newcommand{\res}[1]{\textrm{res}(#1)}
+\newcommand{\termasm}[1]{\mathcal{A}_{\Box}[\mathcal{#1}]}
+\newcommand{\prodasm}[1]{\mathcal{A}[\mathcal{#1}]}
+\newcommand{\fgg}[1]{fgg^\#_{#1}}
+\newcommand{\ftdepth}[2]{\textrm{ft-depth}_{#1}\left(#2\right)}
+\newcommand{\str}[1][*]{\textrm{str}_{#1}}
+\newcommand{\col}[1]{\textrm{col}_{#1}}
+\newcommand{\tmblank}{\llcorner \negthinspace\lrcorner}
+\newcommand{\fullgridgraph}{G^\mathrm{f}}\newcommand{\bindinggraph}{G^\mathrm{b}}
