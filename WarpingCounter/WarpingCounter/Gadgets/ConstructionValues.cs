@@ -28,9 +28,6 @@
 
         private readonly double power;
 
-        private readonly int digitsPerValue;
-        private readonly BigInteger rows;
-
         public ConstructionValues(string initialValueBase10, int baseM)
         {
             this.initialValueBase10 = BigInteger.Parse(initialValueBase10);
@@ -39,7 +36,6 @@
             initialValueBaseM   = this.initialValueBase10.ToBase(BaseM);
             power               = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
             haltingValueBase10  = BigInteger.Pow(BaseM, Convert.ToInt32(power));
-            rows                = haltingValueBase10 - this.initialValueBase10;
             BitsRequiredForBaseM = Convert.ToString(BaseM - 1, 2).Length;
 
             var leadingZeroes = BaseM.ToString().Length;
@@ -53,7 +49,6 @@
             DigitRegions = IsZero(remainder) ? quotient : quotient + 1;
             DigitsInMSR  = remainderDigits == 0 ? 3 : remainderDigits;
 
-            digitsPerValue = initialValueBase10.ToBase(BaseM).Count;
             List<string> ConvertToBaseMWithLeadingZeroes(BigInteger value, int m) => value.ToBase(m)
                                                                                           .Select(s => s.PadLeft(leadingZeroes, '0'))
                                                                                           .ToList();
@@ -114,17 +109,6 @@
 
         private void Summarize()
         {
-            Console.WriteLine($"Digits per value:  {digitsPerValue}");
-            
-            Console.WriteLine($"Amount to count:   {rows}");
-            var heightPerRegion = 3 * (L + 30);
-            var n = (heightPerRegion * rows) + 1;
-            var k = digitsPerValue * 2;
-            Console.WriteLine($"Height per region: {heightPerRegion}");
-            Console.WriteLine($"N: {n:N}");
-            Console.WriteLine($"K: {k}");
-            Console.WriteLine($"O: {BigInteger.Pow(n, (int) Math.Ceiling(1 / Math.Floor((decimal) k / 2)))}");
-
             Console.WriteLine("Decimal:");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"    Start: {initialValueBase10}");

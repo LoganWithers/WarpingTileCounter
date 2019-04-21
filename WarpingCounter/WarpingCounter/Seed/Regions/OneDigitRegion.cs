@@ -44,26 +44,28 @@
             tiles.Add(seed);
             tiles.AddRange(line.Tiles);
 
-            var builder = new GadgetBuilder().StartWith(line.Last);
+            var b = new GadgetBuilder().StartWith(line.Last);
 
-            builder.North(16)
-                   .West();
+            b.North(16)
+             .West();
 
-            builder.North(4)
-                   .East();
+            b.North(4)
+             .East();
 
-            builder.North(10);
+            b.North(10);
 
-            tiles.AddRange(builder.Tiles());
+            tiles.AddRange(b.Tiles());
+
             var line2 = new SouthToNorthLine(bitsPerDigit);
 
             tiles.Last()
                  .AttachNorth(line2.First);
 
             tiles.AddRange(line2.Tiles);
-            var builderB = new GadgetBuilder().StartWith(line2.Last);
-            builderB.North(30);
-            tiles.AddRange(builderB.Tiles());
+
+            b = new GadgetBuilder().StartWith(line2.Last);
+            b.North(30);
+            tiles.AddRange(b.Tiles());
 
             var line3 = new SouthToNorthLine(bitsPerDigit);
 
@@ -72,30 +74,30 @@
 
             tiles.AddRange(line3.Tiles);
 
-            var builder3 = new GadgetBuilder().StartWith(line3.Last);
+            b = new GadgetBuilder().StartWith(line3.Last);
 
-            builder3.North(15)
-                    .West()
-                    .West()
-                    .Down()
-                    .South()
-                    .South()
-                    .South()
-                    .East()
-                    .South()
-                    .West()
-                    .South()
-                    .East()
-                    .South()
-                    .South()
-                    .South()
-                    .Up()
-                    .North()
-                    .West();
+            b.North(15)
+             .West()
+             .West()
+             .Down()
+             .South()
+             .South()
+             .South()
+             .East()
+             .South()
+             .West()
+             .South()
+             .East()
+             .South()
+             .South()
+             .South()
+             .Up()
+             .North()
+             .West();
 
-            builder3.South(7);
+            b.South(7);
 
-            tiles.AddRange(builder3.Tiles());
+            tiles.AddRange(b.Tiles());
 
             var line4 = new NorthToSouthLine(bitsPerDigit);
 
@@ -104,9 +106,9 @@
 
             tiles.AddRange(line4.Tiles);
 
-            var builder4 = new GadgetBuilder().StartWith(line4.Last);
-            builder4.South(30);
-            tiles.AddRange(builder4.Tiles());
+            b = new GadgetBuilder().StartWith(line4.Last);
+            b.South(30);
+            tiles.AddRange(b.Tiles());
 
             var line5 = new NorthToSouthLine(bitsPerDigit);
 
@@ -115,14 +117,14 @@
 
             tiles.AddRange(line5.Tiles);
 
-            var builder5 = new GadgetBuilder().StartWith(line5.Last);
+            b = new GadgetBuilder().StartWith(line5.Last);
 
-            builder5.South(14)
-                    .Down();
+            b.South(14)
+             .Down();
 
-            builder5.South(16);
+            b.South(16);
 
-            tiles.AddRange(builder5.Tiles());
+            tiles.AddRange(b.Tiles());
 
             var digit = new InitialDigitWriter(digit1, WriteDirection.NorthToSouth);
 
@@ -131,15 +133,16 @@
 
             tiles.AddRange(digit.Tiles);
 
-            var bridge = new GadgetBuilder().Start();
+            // Bridge to non-msr regions
+            b = new GadgetBuilder().Start();
 
-            bridge.South()
-                  .Up()
-                  .East()
-                  .East();
+            b.South()
+             .Up()
+             .East()
+             .East();
 
-            List<Tile> bridgeTiles = bridge.Tiles()
-                                           .ToList();
+            List<Tile> bridgeTiles = b.Tiles()
+                                      .ToList();
 
             bridgeTiles.RemoveAt(0);
             var firstBridgeTiles = bridgeTiles.First();
