@@ -158,9 +158,9 @@ INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
-INPUT c:/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT c:/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/Figures/counter.tex
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/Figures/counter.tex
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/Figures/counter_read_start_general_case3_middle_level.eps
@@ -182,6 +182,17 @@ INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/Figures/counter
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/Figures/counter_read_digit1_return_read_digit2_general_case3_middle_level-eps-converted-to.pdf
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/Figures/counter_read_digit1_return_read_digit2_general_case3_middle_level-eps-converted-to.pdf
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/Figures/counter_read_digit1_return_read_digit2_general_case3_middle_level-eps-converted-to.pdf
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmmi9.tfm
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmsy9.tfm
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/Figures/counter_read_digit2_return_read_digit3_general_case3_middle_level.eps
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/Figures/counter_read_digit2_return_read_digit3_general_case3_middle_level.eps
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/Figures/counter_read_digit2_return_read_digit3_general_case3_middle_level.eps
@@ -209,6 +220,7 @@ INPUT c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
 INPUT c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+INPUT c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb
 INPUT c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb
 INPUT c:/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb

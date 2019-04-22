@@ -10,13 +10,10 @@
       \text{Let }  m & = \ceil*{\left( \frac{N}{93} \right)^{\frac{1}{d}} } \text{, base of the counter} & \\
                  MSR & = \text{ most signifcant digit region } \\
        \mathcal{C}_0 & = \text{starting value of counter}  \\
-                   d & = \ceil*{\log_m({\mathcal{C}_0})},              \text{ number of digits per row }  \\
-                \dr  & = \ceil*{\frac{d}{3}},                \text{ digit regions per row }           \\
-     \mathcal{C}_{f} & = m^{d} - 1,                          \text{ final value of the counter} \\
-\mathcal{C}_{\Delta} & = \mathcal{C}_f - \mathcal{C}_0,                          \text{ number of rows }            \\
-                   l & = \ceil{\log m} + 2, \text{ bits needed to represent each digit plus 2 for MSR and MSD} & \\
-        \dr_{height} & = 3 \cdot (l + 30),                   \text{ height of a row }           \\
-                   h & = c_{\Delta} \cdot \dr_{height}, \text{ height of constuction without roof tiles }   \\
+                   d & = \ceil*{\log_m {\mathcal{C}_0}} = \floor*{\frac{k}{2}},  \text{ number of digits per row }  \\
+     \mathcal{C}_{f} & = m^{d},                          \text{ final value of the counter} \\
+\mathcal{C}_{\Delta} & = \mathcal{C}_f - \mathcal{C}_0,  \text{ number of rows/ times to count} \\
+                   l & = \ceil{\log m} + 2, \text{ bits needed to encode each digit in binary, plus 2 for MSR and MSD} & \\
 \end{flalign*}
 
 
@@ -44,13 +41,13 @@ number of digits per row of the counter, $m$ is the base of the counter, $l$ is 
 needed to encode each digit in binary plus 2 for indicating whether a digit is in the MSR and is the
 MSD in that region, and $\mathcal{C}_0$ is the start of the counter in decimal.
 
-In general, the height of a digit region is $3l + 90$. There are two cases when this is false, in the first
-digit region the height is $3l + 91$, and the last digit region has a height of $3l + 75$. To ensure
-the rectangle ends with height $N$, let $h$ be the height of the construction before any filler/roof
-tiles are added. If we define $\countersize$ as the number of \texttt{Counter} unit rows, then
-$h = n(3l + 90) + (3l + 91) + (3l + 75)$, which we will re-write as $n (3l + 90) + 3l + 76$.
-So then the maximum height of the counter is $m^d (3l + 90) + 3l + 76$. Since our goal is to end with
-with a rectangle of height $N$, we need to pick a base such that the counter can increment so many times that
+In general, the height of a digit region is $3l + 90$. There are two cases when the height is different,
+namely in the first and last digit regions, where the height is $3l + 91$ and $3l + 75$, respectively.
+Let $h$ be the height of the construction before any filler/roof tiles are added. If we define
+$\countersize$ as the number of \texttt{Counter} unit rows, then
+$h = \countersize (3l + 90) + (3l + 91) + (3l + 75)$, simplifying to $\countersize (3l + 90) + 3l + 76$.
+So then the maximum height of the counter is $m^d (3l + 90) + 3l + 76$. Since our goal is to end with a
+rectangle of height $N$, we need to pick a base such that the counter can increment so many times that
 when it stops, it is at least $N$.
 
 \begin{lemma} $N \leq m^d (3l + 90) + 3l + 76$.
@@ -67,12 +64,13 @@ when it stops, it is at least $N$.
 
 \subsection{Filling in the gaps}
 
-This means that the number of \texttt{Counter} unit rows $\countersize$ is $m^d - \mathcal{C}_0$,
+...this means that the number of \texttt{Counter} unit rows $\countersize$ is $m^d - \mathcal{C}_0$,
 where we have \mbox{defined} $\mathcal{C}_0$ as the starting value of the counter. To
 choose the best starting value, \mbox{ we find the value for $\countersize$ that gets $h$ as
 close to $N$} without exceeding $N$. It follows from the equation $h = \countersize (3l+90)+3l+76$,
 that $\countersize = \counterrows$. Thus, $\mathcal{C}_0 = m^d - \counterrows$. As a result of
 each digit requiring a width of 2 tiles, if $k$ is odd, one additional tile column must be added.
 The number of filler tiles needed for the width is $k \mod 2$, and the number of filler tiles for
-the height is $N-h$, which is $N - 3l - 76 \mod 3l + 90$.
+the height is $N - 3l - 76 \mod 3l + 90$. % does this expression simplify like in Christian's?
+
 
