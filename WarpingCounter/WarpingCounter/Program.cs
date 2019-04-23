@@ -3,8 +3,8 @@
 
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
-    using System.Numerics;
 
     using Common.IO;
     using Common.Models;
@@ -19,52 +19,54 @@
         }
 
 
+        private static (int baseM, string startingValue) CalculateCounterInputs(double N, double k)
+        {
+            var d = Math.Floor(k / 2);
+            var m = Math.Ceiling(Math.Pow(N / 93, 1 / d));
+            var l = Math.Ceiling(Math.Log(m, 2)) + 2;
+            var md = Math.Pow(m, d);
+            var s = md - Math.Floor((N - 3*l - 76) / 
+                                                (3*l + 90));
+            
+            return ((int) m, Convert.ToString((int) s, CultureInfo.InvariantCulture));
+        }
+
         private static void RunCLI()
         {
+
             while (true)
             {
-                Console.WriteLine("Base value?");
+                Console.WriteLine("Enter a value for N");
                 var input = Console.ReadLine();
-
                 bool IsExitCommand() => input == "-e" || string.IsNullOrEmpty(input);
 
-                if (int.TryParse(input, out var baseM) && baseM >= 2 && baseM <= 1000)
+                if (int.TryParse(input, out var N))
                 {
-                    Console.WriteLine("Starting value?");
+                    Console.WriteLine("Enter a value for k");
                     input = Console.ReadLine();
 
-                    if (BigInteger.TryParse(input ?? "", out _))
+                    if (int.TryParse(input, out var k))
                     {
-                        var generator = new TileGenerator(baseM, input);
+                        var (baseM, startingValue) = CalculateCounterInputs(N, k);
+
+                        var generator = new TileGenerator(baseM, startingValue);
 
                         if (generator.IsStartingValueTooSmall())
                         {
                             Error("Starting value must be result in >= 2 digit regions");
-
                             continue;
                         }
-                  
-                        Write($"WarpingCounter_b{baseM}_from_{input}", generator.Generate());
 
+                        Write($"ThinRectangle_{N}x{k}_b={baseM}_c0={startingValue}", generator.Generate());
                         continue;
                     }
-
-                    if (IsExitCommand())
-                    {
-                        break;
-                    }
-
-                    Error($"Error parsing {input}...");
-
-                    continue;
                 }
-
                 if (IsExitCommand())
                 {
                     break;
                 }
 
-                Error($"Error parsing {input}... make sure the base is a number between 2 and 1000");
+                Error($"Error parsing {input}...");
             }
         }
 
