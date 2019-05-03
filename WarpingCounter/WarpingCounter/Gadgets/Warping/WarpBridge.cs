@@ -9,7 +9,7 @@
     using Common.Builders;
     using Common.Models;
 
-    public class WarpBridge : IHaveFirst, IHaveLast
+    public class WarpBridge : IHaveInput, IHaveOutput
     {
 
         private readonly string bits;
@@ -37,19 +37,19 @@
                 return;
             }
 
-            First = Tiles.First();
-            Last  = Tiles.Last();
+            Input = Tiles.First();
+            Output  = Tiles.Last();
 
             Tiles.PrependNamesWith($"{nameof(WarpBridge)} {bits} {index} {carry}");
 
-            Last.North = GlueFactory.SecondWarp(bits, index, carry);
+            Output.North = GlueFactory.SecondWarp(bits, index, carry);
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private List<Tile> Init()

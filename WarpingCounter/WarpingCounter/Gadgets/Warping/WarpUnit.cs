@@ -16,7 +16,7 @@
     ///     index (within the current digit-region, i.e., 1, 2, or 3)
     ///     
     /// </summary>
-    public class WarpUnit : IHaveFirst
+    public class WarpUnit : IHaveInput
     {
 
         private readonly string digitValueToWrite;
@@ -38,16 +38,16 @@
             this.digitsInMSR       = digitsInMSR;
 
             Tiles = InitializeTiles();
-            First = Tiles.First();
+            Input = Tiles.First();
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
         private List<Tile> InitializeTiles()
         {
-            var preFirstWarp = new PreFirstWarp(digitValueToWrite, digitIndex, carry, digitsInMSR);
+            var preFirstWarp = new PreInputWarp(digitValueToWrite, digitIndex, carry, digitsInMSR);
             var firstWarp    = new FirstWarp(digitValueToWrite,    digitIndex, carry, digitsInMSR);
             var warpBridge   = new WarpBridge(digitValueToWrite,   digitIndex, carry, digitsInMSR);
             var secondWarp   = new SecondWarp(digitValueToWrite,   digitIndex, carry, digitsInMSR);

@@ -3,7 +3,6 @@
 
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
 
     using Builders;
@@ -13,7 +12,7 @@
 
     using Models;
 
-    public class BinaryWriter : IHaveFirst, IHaveLast
+    public class BinaryWriter : IHaveInput, IHaveOutput
     {
 
         private readonly string originalBits;
@@ -26,45 +25,34 @@
             this.originalBits = originalBits;
             Tiles             = InitTiles();
             Tiles.PrependNamesWith($"Write {originalBits} {carry} {index}");
-            First       = Tiles.First();
-            First.South = GlueFactory.DigitWriter(originalBits, carry, index);
+            Input       = Tiles.First();
+            Input.South = GlueFactory.DigitWriter(originalBits, carry, index);
 
-            Last       = Tiles.Last();
-            Last.North = DetermineGadgetToAttachTo(digitsInMSR, originalBits, carry, index);
+            Output       = Tiles.Last();
+            Output.North = DetermineGadgetToAttachTo(digitsInMSR, originalBits, carry, index);
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private Glue DetermineGadgetToAttachTo(int digitsInMSR, string bits, bool carry, int index)
         {
-            if (digitsInMSR == 1 && bits.EndsWith("11"))
+            switch (digitsInMSR)
             {
-                return GlueFactory.ReturnDigit1ReadNextRow(carry);
+                case 1 when bits.EndsWith("11"): return GlueFactory.ReturnDigit1ReadNextRow(carry);
+
+                case 2 when bits.EndsWith("01"): return GlueFactory.DigitTopDigit1Case2(carry);
+
+                case 2 when bits.EndsWith("11"): return GlueFactory.DigitTopDigit2Case2(carry);
+
+                case 3 when bits.EndsWith("11"): return GlueFactory.DigitTopDigit3Case3(carry);
+
+                default:                         return GlueFactory.DigitTop(carry, index);
             }
-
-            if (digitsInMSR == 3 && bits.EndsWith("11"))
-            {
-                Debug.Assert(digitsInMSR == 3, "digitsInMSR == 3");
-
-                return GlueFactory.DigitTopDigit3Case3(carry);
-            }
-
-            if (digitsInMSR == 2 && bits.EndsWith("11"))
-            {
-                return GlueFactory.DigitTopDigit2Case2(carry);
-            }
-
-            if (digitsInMSR == 2 && bits.EndsWith("01"))
-            {
-                return GlueFactory.DigitTopDigit1Case2(carry);
-            }
-
-            return GlueFactory.DigitTopDefault(carry, index);
         }
 
 

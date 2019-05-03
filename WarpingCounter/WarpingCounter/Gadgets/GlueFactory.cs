@@ -33,7 +33,7 @@
         #region Digit Tops
 
 
-        public static Glue DigitTopDefault(bool carry, int index) => new Glue($"DigitTopStart {carry} {index}");
+        public static Glue DigitTop(bool carry, int index) => new Glue($"DigitTopStart {carry} {index}");
 
 
         public static Glue DigitTopDigit3Case3(bool carry) => new Glue($"DigitTopDigit3 {carry} 3");

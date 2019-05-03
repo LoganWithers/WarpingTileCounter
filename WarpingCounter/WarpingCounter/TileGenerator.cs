@@ -97,14 +97,14 @@
         private void AddDigitTops()
         {
             
-            tiles.AddRange(new DigitTopDefault(true,  1, bitsPerDigit: L).Tiles);
-            tiles.AddRange(new DigitTopDefault(false, 1, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTop(true,  1, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTop(false, 1, bitsPerDigit: L).Tiles);
 
-            tiles.AddRange(new DigitTopDefault(true,  2, bitsPerDigit: L).Tiles);
-            tiles.AddRange(new DigitTopDefault(false, 2, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTop(true,  2, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTop(false, 2, bitsPerDigit: L).Tiles);
 
-            tiles.AddRange(new DigitTopDefault(true,  3, bitsPerDigit: L).Tiles);
-            tiles.AddRange(new DigitTopDefault(false, 3, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTop(true,  3, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTop(false, 3, bitsPerDigit: L).Tiles);
 
             switch (digitsInMSR)
             {

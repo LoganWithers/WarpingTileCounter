@@ -19,7 +19,7 @@
     /// Used only in the construction of the seed.
     /// </remarks>
     /// </summary>
-    public class InitialDigitWriter : IHaveFirst, IHaveLast
+    public class InitialDigitWriter : IHaveInput, IHaveOutput
     {
 
         private readonly string bits;
@@ -37,15 +37,15 @@
 
             Tiles = InitTiles();
 
-            First = Tiles.First();
-            Last  = Tiles.Last();
+            Input = Tiles.First();
+            Output  = Tiles.Last();
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private List<Tile> InitTiles()

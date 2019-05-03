@@ -103,7 +103,7 @@
 
             if (tiles.Any())
             {
-                line.First.AttachSouth(tiles.Last.Value);
+                line.Input.AttachSouth(tiles.Last.Value);
             }
 
             tiles.AppendRange(line.Tiles);
@@ -118,7 +118,7 @@
 
             if (tiles.Any())
             {
-                line.First.AttachNorth(tiles.Last.Value);
+                line.Input.AttachNorth(tiles.Last.Value);
             }
 
             tiles.AppendRange(line.Tiles);

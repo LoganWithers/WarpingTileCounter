@@ -49,9 +49,9 @@
 
             var (one, zero) = GetOutputGlues(length);
 
-            guessZero.Last.North = zero;
-            guessOne.Last.North  = one;
-            guessOne.First.South = input;
+            guessZero.Output.North = zero;
+            guessOne.Output.North  = one;
+            guessOne.Input.South = input;
 
             Tiles = new List<Tile>();
             Tiles.AddRange(guessOne.Tiles);
@@ -59,7 +59,7 @@
 
             if (inputBits.Length + 1 == length && inputBits.All(bit => bit == '1'))
             {
-                guessOne.Last.North.Bind  = 0;
+                guessOne.Output.North.Bind  = 0;
             }
         }
 
@@ -126,7 +126,7 @@
         }
 
 
-        private class GuessOne : IHaveFirst, IHaveLast
+        private class GuessOne : IHaveInput, IHaveOutput
         {
 
             private readonly Tile first;
@@ -147,8 +147,8 @@
                 third  = new Tile(Name(inputBits, carry, index));
                 fourth = new Tile(Name(inputBits, carry, index));
 
-                First  = first;
-                Last   = fourth;
+                Input  = first;
+                Output   = fourth;
                 Result = $"1{inputBits}";
 
                 AttachInternalGlues();
@@ -159,18 +159,18 @@
             public string Result { get; }
 
 
-            public Tile First { get; }
+            public Tile Input { get; }
 
 
-            public Tile Last { get; }
+            public Tile Output { get; }
 
 
             private static string Name(string input, bool carry, int index) => $"GuessOne={input} {carry} {index} id: {Guid.NewGuid()}";
 
 
-            public void Bind(IHaveFirst zero)
+            public void Bind(IHaveInput zero)
             {
-                First.AttachAbove(zero.First);
+                Input.AttachAbove(zero.Input);
             }
 
 
@@ -183,7 +183,7 @@
 
         }
 
-        private class GuessZero : IHaveFirst, IHaveLast
+        private class GuessZero : IHaveInput, IHaveOutput
         {
 
             private readonly Tile fifth;
@@ -207,8 +207,8 @@
                 fourth = new Tile(Name(inputBits, carry, index));
                 fifth  = new Tile(Name(inputBits, carry, index));
 
-                First  = first;
-                Last   = fifth;
+                Input  = first;
+                Output   = fifth;
                 Result = $"0{inputBits}";
                 AttachInternalGlues();
 
@@ -219,10 +219,10 @@
             public string Result { get; }
 
 
-            public Tile First { get; }
+            public Tile Input { get; }
 
 
-            public Tile Last { get; }
+            public Tile Output { get; }
 
 
             private static string Name(string input, bool carry, int index) => $"GuessZero={input} {carry} {index} id: {Guid.NewGuid()}";

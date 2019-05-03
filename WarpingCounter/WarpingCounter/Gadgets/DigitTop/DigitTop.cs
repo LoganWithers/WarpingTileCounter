@@ -1,21 +1,18 @@
 ﻿namespace WarpingCounter.Gadgets.DigitTop
 {
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
     using Common;
     using Common.Builders;
     using Common.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     ///   The first tile of this gadget is connected to the last tile of a digit when it ends with "00".
     ///   The last tile is connected to a return and read gadget.
     /// </summary>
-    /// <seealso cref="IHaveLast" />
-    /// <seealso cref="IHaveFirst" />
-    public class DigitTopDefault : IHaveFirst, IHaveLast
+    public class DigitTop : IHaveInput, IHaveOutput
     {
         public readonly List<Tile> Tiles;
 
@@ -33,30 +30,29 @@
         /// </summary>
         private readonly int index;
 
-        
 
 
-        public DigitTopDefault(bool carry, int index, int bitsPerDigit)
+        public DigitTop(bool carry, int index, int bitsPerDigit)
         {
-            this.carry        = carry;
+            this.carry = carry;
             this.bitsPerDigit = bitsPerDigit;
-            this.index        = index;
+            this.index = index;
 
             Tiles = InitializeTiles();
             Tiles.PrependNamesWith($"DigitTop {this.carry} {this.index}");
 
-            First       = Tiles.First();
-            First.South = GlueFactory.DigitTopDefault(carry, index);
+            Input = Tiles.First();
+            Input.South = GlueFactory.DigitTop(carry, index);
 
-            Last       = Tiles.Last();
-            Last.South = GetNextDigitToRead();
+            Output = Tiles.Last();
+            Output.South = GetNextDigitToRead();
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private Glue GetNextDigitToRead()

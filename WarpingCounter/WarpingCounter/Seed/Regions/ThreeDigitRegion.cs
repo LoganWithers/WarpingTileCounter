@@ -129,7 +129,7 @@
             tiles.PrependNamesWith($"Region: {regionIndex} msr");
 
             tiles.Last()
-                 .AttachSouth(digit3.First);
+                 .AttachSouth(digit3.Input);
 
             tiles.AddRange(digit3.Tiles);
 
@@ -204,24 +204,24 @@
             List<Tile> secondTiles = b2.Tiles()
                                        .ToList();
 
-            digit3.Last.AttachSouth(secondTiles.First());
+            digit3.Output.AttachSouth(secondTiles.First());
             secondTiles.PrependNamesWith($"Region: {regionIndex} D3 to D2");
             tiles.AddRange(secondTiles);
 
             var digit2 = new InitialDigitWriter(this.digit2, WriteDirection.NorthToSouth);
-            digit2.First.AttachNorth(tiles.Last());
+            digit2.Input.AttachNorth(tiles.Last());
 
             tiles.AddRange(digit2.Tiles);
 
             List<Tile> digit2ToDigit1 = BuildFromDigit2ToDigit1();
 
             digit2ToDigit1.First()
-                          .AttachNorth(digit2.Last);
+                          .AttachNorth(digit2.Output);
 
             tiles.AddRange(digit2ToDigit1);
 
             var digit1 = new InitialDigitWriter(this.digit1, WriteDirection.NorthToSouth);
-            digit1.First.AttachNorth(tiles.Last());
+            digit1.Input.AttachNorth(tiles.Last());
             tiles.AddRange(digit1.Tiles);
 
             if (leastSignificantRegion)
@@ -298,7 +298,7 @@
                               .Last();
 
             var line = new SouthToNorthLine(bitsPerDigit);
-            line.First.AttachBelow(last);
+            line.Input.AttachBelow(last);
 
             var b2 = new GadgetBuilder().Start();
 
@@ -306,7 +306,7 @@
                               .First();
 
             firstBack.Prepend($"Region: {regionIndex} B2 FirstBack");
-            line.Last.AttachNorth(firstBack);
+            line.Output.AttachNorth(firstBack);
 
             b2.North(7)
               .East()

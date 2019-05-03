@@ -22,9 +22,9 @@
     ///   <br />
     ///   The last tile of this gadget connects to <see cref="ReturnDigit2ReadNextRow" />
     /// </summary>
-    /// <seealso cref="IHaveLast" />
-    /// <seealso cref="IHaveFirst" />
-    public class DigitTopDigit2Case2 : IHaveLast, IHaveFirst
+    /// <seealso cref="IHaveOutput" />
+    /// <seealso cref="IHaveInput" />
+    public class DigitTopDigit2Case2 : IHaveOutput, IHaveInput
     {
 
         private readonly int bitsPerDigit;
@@ -39,18 +39,18 @@
             Tiles = InitializeTiles();
             Tiles.PrependNamesWith($"DigitTopDigit2Case2 {carry}");
 
-            First       = Tiles.First();
-            First.South = GlueFactory.DigitTopDigit2Case2(carry);
+            Input       = Tiles.First();
+            Input.South = GlueFactory.DigitTopDigit2Case2(carry);
 
-            Last       = Tiles.Last();
-            Last.South = GlueFactory.ReturnDigit2ReadNextRow(carry);
+            Output       = Tiles.Last();
+            Output.South = GlueFactory.ReturnDigit2ReadNextRow(carry);
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private List<Tile> InitializeTiles()

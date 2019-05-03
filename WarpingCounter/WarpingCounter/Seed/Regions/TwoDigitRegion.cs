@@ -9,7 +9,7 @@
     using Common.Enums;
     using Common.Models;
 
-    public class TwoDigitRegion : IHaveLast
+    public class TwoDigitRegion : IHaveOutput
     {
 
         private readonly int bitsPerDigit;
@@ -27,12 +27,12 @@
             (digit2, digit1)  = digits;
 
             Tiles     = Init();
-            Last      = Tiles.Last();
-            Last.East = new Glue("Region 0");
+            Output      = Tiles.Last();
+            Output.East = new Glue("Region 0");
         }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private List<Tile> Init()
@@ -55,22 +55,22 @@
             var line1 = new NorthToSouthLine(bitsPerDigit);
 
             tiles.Last()
-                 .AttachSouth(line1.First);
+                 .AttachSouth(line1.Input);
 
             tiles.AddRange(line1.Tiles);
 
-            builder = new GadgetBuilder().StartWith(line1.Last);
+            builder = new GadgetBuilder().StartWith(line1.Output);
             builder.South(30);
             tiles.AddRange(builder.Tiles());
 
             var digit2 = new InitialDigitWriter(this.digit2, WriteDirection.NorthToSouth);
 
             tiles.Last()
-                 .AttachSouth(digit2.First);
+                 .AttachSouth(digit2.Input);
 
             tiles.AddRange(digit2.Tiles);
 
-            builder = new GadgetBuilder().StartWith(digit2.Last);
+            builder = new GadgetBuilder().StartWith(digit2.Output);
 
             builder.South(25)
                    .West();
@@ -99,7 +99,7 @@
             var digit1 = new InitialDigitWriter(this.digit1, WriteDirection.NorthToSouth);
 
             tiles.Last()
-                 .AttachSouth(digit1.First);
+                 .AttachSouth(digit1.Input);
 
             tiles.AddRange(digit1.Tiles);
 

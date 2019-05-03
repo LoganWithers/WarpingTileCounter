@@ -12,9 +12,9 @@
     ///   Gadget that is used in case 3, after writing digit 3 (MSD). Crosses and
     ///   attaches a blank reader to begin reading the next row.
     /// </summary>
-    /// <seealso cref="IHaveFirst" />
-    /// <seealso cref="IHaveLast" />
-    public class ReturnDigit3ReadNextRow : IHaveFirst, IHaveLast
+    /// <seealso cref="IHaveInput" />
+    /// <seealso cref="IHaveOutput" />
+    public class ReturnDigit3ReadNextRow : IHaveInput, IHaveOutput
     {
 
         private const int NextDigitRead = 1;
@@ -37,18 +37,18 @@
             Tiles = InitializeTiles();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit3ReadNextRow)} {carry}");
 
-            First       = Tiles.First();
-            First.North = GlueFactory.ReturnDigit3ReadNextRow(carry);
+            Input       = Tiles.First();
+            Input.North = GlueFactory.ReturnDigit3ReadNextRow(carry);
 
-            Last       = Tiles.Last();
-            Last.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
+            Output       = Tiles.Last();
+            Output.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         /// <summary>

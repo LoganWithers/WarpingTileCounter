@@ -19,9 +19,9 @@
     ///   <br />
     ///   The last tile of this gadget connects to <see cref="ReturnDigit3ReadNextRow" />
     /// </summary>
-    /// <seealso cref="IHaveLast" />
-    /// <seealso cref="IHaveFirst" />
-    public class DigitTopDigit3Case3 : IHaveLast, IHaveFirst
+    /// <seealso cref="IHaveOutput" />
+    /// <seealso cref="IHaveInput" />
+    public class DigitTopDigit3Case3 : IHaveOutput, IHaveInput
     {
 
         private readonly int L;
@@ -38,18 +38,18 @@
             Tiles             = InitializeTiles();
             Tiles.PrependNamesWith($"{nameof(DigitTopDigit3Case3)} {carry}");
 
-            First       = Tiles.First();
-            First.South = GlueFactory.DigitTopDigit3Case3(carry);
+            Input       = Tiles.First();
+            Input.South = GlueFactory.DigitTopDigit3Case3(carry);
 
-            Last       = Tiles.Last();
-            Last.South = GlueFactory.ReturnDigit3ReadNextRow(carry);
+            Output       = Tiles.Last();
+            Output.South = GlueFactory.ReturnDigit3ReadNextRow(carry);
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private List<Tile> InitializeTiles()

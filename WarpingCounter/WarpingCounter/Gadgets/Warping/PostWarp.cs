@@ -9,7 +9,7 @@
     using Common.Builders;
     using Common.Models;
 
-    public class PostWarp : IHaveFirst, IHaveLast
+    public class PostWarp : IHaveInput, IHaveOutput
     {
 
         private readonly string bits;
@@ -34,10 +34,10 @@
 
             Tiles = InitializeTiles();
             Tiles.PrependNamesWith($"{nameof(PostWarp)} {bits} {index} {carry}");
-            First = Tiles.First();
-            Last  = Tiles.Last();
+            Input = Tiles.First();
+            Output  = Tiles.Last();
 
-            Last.North = GlueFactory.DigitWriter(bits, carry, index);
+            Output.North = GlueFactory.DigitWriter(bits, carry, index);
 
             foreach (var t in Tiles)
             {
@@ -46,10 +46,10 @@
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private List<Tile> InitializeTiles()

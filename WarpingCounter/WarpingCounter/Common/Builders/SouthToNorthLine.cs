@@ -7,7 +7,7 @@
 
     using Models;
 
-    public class SouthToNorthLine : IHaveFirst, IHaveLast
+    public class SouthToNorthLine : IHaveInput, IHaveOutput
     {
 
         public readonly List<Tile> Tiles;
@@ -39,8 +39,8 @@
                            .ToList();
 
             Tiles.PrependNamesWith($"{nameof(SouthToNorthLine)} %seed%");
-            First = Tiles.First();
-            Last  = Tiles.Last();
+            Input = Tiles.First();
+            Output  = Tiles.Last();
 
             foreach (var tile in Tiles)
             {
@@ -49,10 +49,10 @@
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
     }
 

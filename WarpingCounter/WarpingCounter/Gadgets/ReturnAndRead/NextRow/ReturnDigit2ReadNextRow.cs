@@ -12,9 +12,9 @@
     ///   Gadget that is used only in case 2, after writing digit 2 (MSD). Crosses and
     ///   attaches a blank reader to begin reading the next row.
     /// </summary>
-    /// <seealso cref="IHaveFirst" />
-    /// <seealso cref="IHaveLast" />
-    public class ReturnDigit2ReadNextRow : IHaveFirst, IHaveLast
+    /// <seealso cref="IHaveInput" />
+    /// <seealso cref="IHaveOutput" />
+    public class ReturnDigit2ReadNextRow : IHaveInput, IHaveOutput
     {
 
         private const int NextDigitRead = 1;
@@ -34,18 +34,18 @@
             Tiles = InitializeTiles();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit2ReadNextRow)} {carry}");
 
-            First       = Tiles.First();
-            First.North = GlueFactory.ReturnDigit2ReadNextRow(carry);
+            Input       = Tiles.First();
+            Input.North = GlueFactory.ReturnDigit2ReadNextRow(carry);
 
-            Last       = Tiles.Last();
-            Last.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
+            Output       = Tiles.Last();
+            Output.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private List<Tile> InitializeTiles()

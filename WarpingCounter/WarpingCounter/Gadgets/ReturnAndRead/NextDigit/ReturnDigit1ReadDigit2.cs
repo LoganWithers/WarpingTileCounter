@@ -12,12 +12,12 @@
 
     /// <summary>
     ///   Gadget that occurs in a standard 3 digit region. Attached after digit 1 and its corresponding top is placed.
-    ///   The first tile of this gadget is connected to the last tile of a <see cref="DigitTopDefault" /> gadget.
+    ///   The first tile of this gadget is connected to the last tile of a <see cref="DigitTop" /> gadget.
     ///   The last tile of this gadget binds to an empty digit 2 reader.
     /// </summary>
-    /// <seealso cref="IHaveFirst" />
-    /// <seealso cref="IHaveLast" />
-    public class ReturnDigit1ReadDigit2 : IHaveFirst, IHaveLast
+    /// <seealso cref="IHaveInput" />
+    /// <seealso cref="IHaveOutput" />
+    public class ReturnDigit1ReadDigit2 : IHaveInput, IHaveOutput
     {
 
         private const int NextDigitRead = 2;
@@ -37,18 +37,18 @@
             Tiles = InitializeTiles();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit1ReadDigit2)} {carry}");
 
-            First       = Tiles.First();
-            First.North = GlueFactory.ReturnDigit1ReadDigit2(carry);
+            Input       = Tiles.First();
+            Input.North = GlueFactory.ReturnDigit1ReadDigit2(carry);
 
-            Last       = Tiles.Last();
-            Last.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
+            Output       = Tiles.Last();
+            Output.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private List<Tile> InitializeTiles()

@@ -9,7 +9,7 @@
     using Common.Enums;
     using Common.Models;
 
-    public class OneDigitRegion : IHaveLast
+    public class OneDigitRegion : IHaveOutput
     {
 
         private readonly int bitsPerDigit;
@@ -24,12 +24,12 @@
             this.bitsPerDigit = bitsPerDigit;
             this.digit1       = digit1;
             Tiles             = Init();
-            Last              = Tiles.Last();
-            Last.East         = new Glue("Region 0");
+            Output              = Tiles.Last();
+            Output.East         = new Glue("Region 0");
         }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private List<Tile> Init()
@@ -38,13 +38,13 @@
             var line  = new SouthToNorthLine(bitsPerDigit);
 
             var seed = new Tile("seed") {
-                North = new Glue(line.First.North.Label)
+                North = new Glue(line.Input.North.Label)
             };
 
             tiles.Add(seed);
             tiles.AddRange(line.Tiles);
 
-            var b = new GadgetBuilder().StartWith(line.Last);
+            var b = new GadgetBuilder().StartWith(line.Output);
 
             b.North(16)
              .West();
@@ -59,22 +59,22 @@
             var line2 = new SouthToNorthLine(bitsPerDigit);
 
             tiles.Last()
-                 .AttachNorth(line2.First);
+                 .AttachNorth(line2.Input);
 
             tiles.AddRange(line2.Tiles);
 
-            b = new GadgetBuilder().StartWith(line2.Last);
+            b = new GadgetBuilder().StartWith(line2.Output);
             b.North(30);
             tiles.AddRange(b.Tiles());
 
             var line3 = new SouthToNorthLine(bitsPerDigit);
 
             tiles.Last()
-                 .AttachNorth(line3.First);
+                 .AttachNorth(line3.Input);
 
             tiles.AddRange(line3.Tiles);
 
-            b = new GadgetBuilder().StartWith(line3.Last);
+            b = new GadgetBuilder().StartWith(line3.Output);
 
             b.North(15)
              .West()
@@ -102,22 +102,22 @@
             var line4 = new NorthToSouthLine(bitsPerDigit);
 
             tiles.Last()
-                 .AttachSouth(line4.First);
+                 .AttachSouth(line4.Input);
 
             tiles.AddRange(line4.Tiles);
 
-            b = new GadgetBuilder().StartWith(line4.Last);
+            b = new GadgetBuilder().StartWith(line4.Output);
             b.South(30);
             tiles.AddRange(b.Tiles());
 
             var line5 = new NorthToSouthLine(bitsPerDigit);
 
             tiles.Last()
-                 .AttachSouth(line5.First);
+                 .AttachSouth(line5.Input);
 
             tiles.AddRange(line5.Tiles);
 
-            b = new GadgetBuilder().StartWith(line5.Last);
+            b = new GadgetBuilder().StartWith(line5.Output);
 
             b.South(14)
              .Down();
@@ -129,7 +129,7 @@
             var digit = new InitialDigitWriter(digit1, WriteDirection.NorthToSouth);
 
             tiles.Last()
-                 .AttachSouth(digit.First);
+                 .AttachSouth(digit.Input);
 
             tiles.AddRange(digit.Tiles);
 

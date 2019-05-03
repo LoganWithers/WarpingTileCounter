@@ -8,7 +8,7 @@
     using Common.Builders;
     using Common.Models;
 
-    public class ReturnDigit2ReadDigit3 : IHaveFirst, IHaveLast
+    public class ReturnDigit2ReadDigit3 : IHaveInput, IHaveOutput
     {
 
         private const int NextDigitRead = 3;
@@ -28,18 +28,18 @@
             Tiles = InitTiles();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit2ReadDigit3)} {carry}");
 
-            First       = Tiles.First();
-            First.North = GlueFactory.ReturnDigit2ReadDigit3(carry);
+            Input       = Tiles.First();
+            Input.North = GlueFactory.ReturnDigit2ReadDigit3(carry);
 
-            Last       = Tiles.Last();
-            Last.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
+            Output       = Tiles.Last();
+            Output.North = GlueFactory.DigitReader(string.Empty, carry, NextDigitRead);
         }
 
 
-        public Tile First { get; }
+        public Tile Input { get; }
 
 
-        public Tile Last { get; }
+        public Tile Output { get; }
 
 
         private List<Tile> InitTiles()
