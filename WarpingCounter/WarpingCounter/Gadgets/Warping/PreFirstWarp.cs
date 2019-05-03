@@ -9,7 +9,7 @@
     using Common.Builders;
     using Common.Models;
 
-    public class PreInputWarp : IHaveInput, IHaveOutput
+    public class PreFirstWarp : IHaveInput, IHaveOutput
     {
         /// <summary>
         /// The value to write
@@ -20,7 +20,7 @@
 
         public readonly List<Tile> Tiles;
 
-        public PreInputWarp(string bits, int index, bool carry, int digitsInMSR)
+        public PreFirstWarp(string bits, int index, bool carry, int digitsInMSR)
         {
             this.digitsInMSR = digitsInMSR;
             this.bits        = bits;
@@ -32,7 +32,7 @@
                 return;
             }
 
-            Tiles.PrependNamesWith($"{nameof(PreInputWarp)} {bits} {index} {carry}");
+            Tiles.PrependNamesWith($"{nameof(PreFirstWarp)} {bits} {index} {carry}");
 
             Input       = Tiles.First();
             Input.South = GlueFactory.PreFirstWarp(bits, carry, index);

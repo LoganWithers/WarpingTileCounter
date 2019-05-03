@@ -1,0 +1,168 @@
+\section{Gadgets}
+\label{gadgets}
+
+{ \tt Gadget}( $\left\langle \text{Input} \right\rangle, \left\langle \text{Output}  \right\rangle$ )
+
+\newcommand{\warpunit}{{\tt Warp\_Unit}}
+\newcommand{\prewarp}{{\tt Pre\_Warp}}
+\newcommand{\firstwarp}{{\tt First\_Warp}}
+\newcommand{\warpbridge}{{\tt Warp\_Bridge}}
+\newcommand{\secondwarp}{{\tt Second\_Warp}}
+\newcommand{\postwarp}{{\tt Post\_Warp}}
+
+\newcommand{\dtop}{{\tt Digit\_Top}}
+\newcommand{\dwriter}{{\tt Digit\_Writer}}
+\newcommand{\dreader}{{\tt Digit\_Reader}}
+
+\newcommand{\returnfromdonereadnextrow}{{\tt Return\_From\_Digit1\_Read\_Next\_Row}}
+\newcommand{\returnfromdtworeadnextrow}{{\tt Return\_From\_Digit2\_Read\_Next\_Row}}
+\newcommand{\returnfromdthreereadnextrow}{{\tt Return\_From\_Digit3\_Read\_Next\_Row}}
+
+\newcommand{\returnfromdonereaddtwo}{{\tt Return\_From\_Digit1\_Read\_Digit2}}
+\newcommand{\returnfromdonereaddtwocasetwo}{{\tt Return\_From\_Digit1\_Read\_Digit2\_Case2}}
+\newcommand{\returnfromdtworeaddthree}{{\tt Return\_From\_Digit2\_Read\_Digit3}}
+\newcommand{\returnfromdthreereaddone}{{\tt Return\_From\_Digit3\_Read\_Digit1}}
+
+\newcommand{\inc}{{\tt carry}}
+
+\newcommand{\dtopdonecasetwo}{{\tt Digit\_Top\_Digit1\_Case2}}
+\newcommand{\dtopdtwocasetwo}{{\tt Digit\_Top\_Digit2\_Case2}}
+\newcommand{\dtopdthreecasethree}{{\tt Digit\_Top\_Digit3\_Case3}}
+
+\subsection{ Counter Unit }
+
+
+
+    \subsubsection{ Digit readers }
+
+    % For each digit length L
+    \subsubsection{ Warping }
+    % For each index in 1, 2, 3, and carry in 0,1
+        \begin{enumerate}
+
+            \item \prewarp
+
+            \item \firstwarp
+
+            \item \warpbridge
+
+            \item \secondwarp
+
+            \item \postwarp
+
+        \end{enumerate}
+
+    % For each digit length L
+    \subsubsection{ Digit writers }
+        % For each index in 1, 2, 3, and carry in 0,1
+        %
+
+    \subsubsection{ Digit tops }
+    The {\dtop} gadgets of have specific geometry, such that they allow {\firstwarp} and {\secondwarp} units to ``wake up" and
+    end their warp journey. A {\dtop} is placed on the north end of a digit. These hold a increment/copy signal and the regional index
+    of the next digit to read.
+
+        \begin{enumerate}
+            \item \dtop
+
+            For each $i = 1, 2, 3$, and each {\inc} $\in \{ {\tt increment, copy } \}$
+
+            Create \dtop ($\langle \inc, i, l \rangle$)
+            \begin{flalign*}
+                \text{input$\rightarrow$south}  & = \dtop(\inc, i) & \\
+                \text{if $i$ is 1 then output$\rightarrow$north} & = \returnfromdonereaddtwo(\inc) & \\
+                \text{else if $i$ is 2 then output$\rightarrow$north} & = \returnfromdtworeaddthree(\inc) & \\
+                \text{else if $i$ is 3 then output$\rightarrow$north} & = \returnfromdthreereaddone(\inc) &
+            \end{flalign*}
+            \vspace{.5cm}
+
+            \item \dtopdonecasetwo
+
+            If MSR contains 2 digits, and $i$ is 1
+
+            \item \dtopdtwocasetwo
+
+            If MSR contains 2 digits, and $i$ is 2
+
+            \item \dtopdthreecasethree
+
+            If MSR contains 3 digits, and $i$ is 3
+
+        \end{enumerate}
+
+    \subsubsection{Return paths between the MSD and LSD in different rows}
+    The gadgets of this class hold a increment/copy signal.
+    The height of these gadgets is dependent on $l$ and the width is dependent of $k$.
+    These gadgets are used to begin reading the first digit in the following row, once
+    the MSD has been read in the current row.
+    \vspace{1cm}
+
+    \noindent For each {\inc} $\in \{ {\tt increment, copy } \}$
+
+        \begin{enumerate}
+            \item \returnfromdonereadnextrow
+
+            \begin{flalign*}
+                \text{input$\rightarrow$south}  & = \returnfromdonereadnextrow(\inc) & \\
+                \text{output$\rightarrow$north} & = \dreader(\inc, 1)
+            \end{flalign*}
+            % $\approx O(\log m) + O(k)$
+            \vspace{.5cm}
+
+            \item \returnfromdtworeadnextrow
+            \begin{flalign*}
+                \text{input$\rightarrow$north}  & = \returnfromdtworeadnextrow(\inc) & \\
+                \text{output$\rightarrow$north} & = \dreader(\inc, 1)
+            \end{flalign*}
+            % $\approx O(\log m) + O(k)$
+            \vspace{.5cm}
+
+            \item \returnfromdthreereadnextrow
+            \begin{flalign*}
+                \text{input$\rightarrow$north}  & = \returnfromdthreereadnextrow(\inc) & \\
+                \text{output$\rightarrow$north} & = \dreader(\inc, 1)
+            \end{flalign*}
+            % $\approx O(\log m) + O(k)$
+
+        \end{enumerate}
+
+    \vspace{1cm}
+    \subsubsection{Return paths between digits in the same row}
+        The gadgets of this class hold a increment/copy signal and the regional index
+        of the next digit to read. The height of these gadgets is dependent on $l$.
+        These gadgets are used so that upon writing a digit, the counter
+        is able to move back down to the next digit in the current row, and continue
+        reading.
+
+        \begin{enumerate}[label={--}]
+            \item \returnfromdonereaddtwo
+            \begin{flalign*}
+                \text{input$\rightarrow$north}  & = \returnfromdonereaddtwo(\inc) & \\
+                \text{output$\rightarrow$north} & = \dreader(\inc, 2)
+            \end{flalign*}\vspace{.5cm}
+
+            \item \returnfromdonereaddtwocasetwo
+            \begin{flalign*}
+                \text{input$\rightarrow$north}  & = \returnfromdonereaddtwocasetwo (\inc) & \\
+                \text{output$\rightarrow$north} & = \dreader(\inc, 2)
+            \end{flalign*}\vspace{.5cm}
+
+            \item \returnfromdtworeaddthree
+            \begin{flalign*}
+                \text{input$\rightarrow$north}  & = \returnfromdtworeaddthree(\inc) & \\
+                \text{output$\rightarrow$north} & = \dreader(\inc, 3)
+            \end{flalign*}\vspace{.5cm}
+
+
+            \item \returnfromdthreereaddone
+            \begin{flalign*}
+                \text{input$\rightarrow$north}  & = \returnfromdthreereaddone(\inc) & \\
+                \text{output$\rightarrow$north} & = \dreader(\inc, 1)
+            \end{flalign*}
+
+        \end{enumerate}
+
+
+
+\subsection{Seed Unit}
+

@@ -47,7 +47,7 @@
 
         private List<Tile> InitializeTiles()
         {
-            var preFirstWarp = new PreInputWarp(digitValueToWrite, digitIndex, carry, digitsInMSR);
+            var preFirstWarp = new PreFirstWarp(digitValueToWrite, digitIndex, carry, digitsInMSR);
             var firstWarp    = new FirstWarp(digitValueToWrite,    digitIndex, carry, digitsInMSR);
             var warpBridge   = new WarpBridge(digitValueToWrite,   digitIndex, carry, digitsInMSR);
             var secondWarp   = new SecondWarp(digitValueToWrite,   digitIndex, carry, digitsInMSR);
