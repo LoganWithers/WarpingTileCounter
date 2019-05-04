@@ -21,8 +21,6 @@
 
         private readonly int bitsPerDigit;
 
-        private readonly bool carry;
-
         private readonly int rectangleWidth;
 
         public readonly List<Tile> Tiles;
@@ -30,7 +28,6 @@
 
         public ReturnDigit3ReadNextRow(bool carry, int bitsPerDigit, int numberOfRegions)
         {
-            this.carry        = carry;
             this.bitsPerDigit = bitsPerDigit;
             rectangleWidth    = numberOfRegions * 6 - 1;
 
@@ -67,7 +64,7 @@
 
             build.South(14);
 
-            build.SouthLine(bitsPerDigit, carry);
+            build.SouthLine(bitsPerDigit);
 
             build.South(11);
 
@@ -80,7 +77,7 @@
 
             build.South(16);
 
-            build.SouthLine(bitsPerDigit, carry);
+            build.SouthLine(bitsPerDigit);
 
             build.South()
                  .South()

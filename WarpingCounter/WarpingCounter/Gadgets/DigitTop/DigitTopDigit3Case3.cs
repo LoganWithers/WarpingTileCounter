@@ -26,14 +26,11 @@
 
         private readonly int L;
 
-        private readonly bool carry;
-
         public readonly List<Tile> Tiles;
 
 
         public DigitTopDigit3Case3(bool carry, int bitsPerDigit)
         {
-            this.carry        = carry;
             L = bitsPerDigit;
             Tiles             = InitializeTiles();
             Tiles.PrependNamesWith($"{nameof(DigitTopDigit3Case3)} {carry}");
@@ -80,7 +77,7 @@
 
             build.South(7);
 
-            return build.SouthLine(L, carry).Tiles().ToList();
+            return build.SouthLine(L).Tiles().ToList();
         }
 
     }

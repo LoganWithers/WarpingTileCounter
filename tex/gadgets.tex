@@ -1,6 +1,18 @@
 \section{Gadgets}
 \label{gadgets}
 
+\begin{itemize}
+\item h, here
+\item t, top
+\item b, bottom
+\item p, page of float
+\end{itemize}
+and LaTeX will try to honour the placement with respect to the actual place, the top or bottom of the page,
+or a separate page of floats coming immediately after the present insertion point. For example, when using
+ht LaTeX will try to put the figure at the insertion point, then on the top of the next page if it happens
+to violate its typesetting rules. You may also force LaTeX to "insist" on these specifications by adding an
+exclamation mark (!) before the placement parameters, e.g. !htb
+
 { \tt Gadget}( $\left\langle \text{Input} \right\rangle, \left\langle \text{Output}  \right\rangle$ )
 
 \newcommand{\warpunit}{{\tt Warp\_Unit}}
@@ -38,58 +50,154 @@
     % For each digit length L
     \subsubsection{ Warping }
     % For each index in 1, 2, 3, and carry in 0,1
-        \begin{enumerate}
+        For each $d \in \{0, 1\}^l$, $i = 1, 2, 3$
 
-            \item \prewarp
+        \begin{enumerate}[label={--}]
 
-            \item \firstwarp
+            \item $\prewarp   (\langle d, i, \inc\rangle)\approx O(1)$
+                \begin{figure}[h]
+                    \centering
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/pre_warp_general}
+                        \caption{\label{fig:warping/pre_warp_general} General }
+                    \end{subfigure}%
+                    ~
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/pre_warp_case1_digit1_msr}
+                        \caption{\label{fig:warping/pre_warp_case1_digit1_msr} Case 1 -- Digit 1}
+                    \end{subfigure}%
+                    ~
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/pre_warp_case2_digit1_msr}
+                        \caption{\label{fig:warping/pre_warp_case2_digit1_msr} Case 2 -- Digit 1}
+                    \end{subfigure}%
+                    ~
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/pre_warp_case2_digit2_msr}
+                        \caption{\label{fig:warping/pre_warp_case2_digit2_msr} Case 2 -- Digit 2}
+                    \end{subfigure}%
+                    ~
+                    \caption{\label{fig:pre_warp_gadgets} {\prewarp} gadgets }
+                \end{figure}
 
-            \item \warpbridge
 
-            \item \secondwarp
+            \item $\firstwarp (\langle d, i, \inc\rangle)$ $\approx O(1)$
 
-            \item \postwarp
+            \item $\warpbridge(\langle d, i, \inc\rangle)$ $\approx O(1)$
+
+            \item $\secondwarp(\langle d, i, \inc\rangle)$ $\approx O(1)$
+
+            \item $\postwarp  (\langle d, i, \inc\rangle)$ $\approx O(1)$
+                \begin{figure}[h]
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/post_warp_general_digit1}
+                        \caption{\label{fig:warping/post_warp_general_digit1} Digit 1}
+                    \end{subfigure}%
+                    ~
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/post_warp_general_digit2and3}
+                        \caption{\label{fig:warping/post_warp_general_digit2and3} Digits 2 and 3 }
+                    \end{subfigure}%
+                    ~
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/post_warp_case1_digit1_msr}
+                        \caption{\label{fig:warping/post_warp_case1_digit1_msr} Case 1 -- Digit 1}
+                    \end{subfigure}%
+                    ~
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/post_warp_case2_digit1_msr}
+                        \caption{\label{fig:warping/post_warp_case2_digit1_msr} Case 2 -- Digit 1}
+                    \end{subfigure}%
+                    ~
+
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/post_warp_case2_digit2_msr}
+                        \caption{\label{fig:warping/post_warp_case2_digit2_msr} Case 2 -- Digit 2}
+                    \end{subfigure}%
+                    ~
+                    \caption{\label{fig:post_warp_gadgets} {\postwarp} gadgets }
+                \end{figure}
 
         \end{enumerate}
 
+        Tiles created for the warp units $\approx O(\log m)$
     % For each digit length L
     \subsubsection{ Digit writers }
         % For each index in 1, 2, 3, and carry in 0,1
         %
 
     \subsubsection{ Digit tops }
-    The {\dtop} gadgets of have specific geometry, such that they allow {\firstwarp} and {\secondwarp} units to ``wake up" and
-    end their warp journey. A {\dtop} is placed on the north end of a digit. These hold a increment/copy signal and the regional index
-    of the next digit to read.
+    The {\dtop} gadgets of have specific geometry, such that they allow {\firstwarp} and
+    {\secondwarp} units to ``wake up" and end their warp journey. A {\dtop} is placed on
+    the north end of a digit. These hold a increment/copy signal and the regional index
+    of the next digit to read. $\approx O(\log m)$
+    \vspace{1cm}
 
-        \begin{enumerate}
-            \item \dtop
+        For each {\inc} $\in \{ {\tt increment, copy } \}$
+        \begin{itemize}
+            \item General digit tops common to all assemblies
 
-            For each $i = 1, 2, 3$, and each {\inc} $\in \{ {\tt increment, copy } \}$
+            \begin{enumerate}[label={--}]
+                \item create \dtop ($\langle \inc, 1, l \rangle$)
+                \begin{flalign*}
+                    \text{input$\rightarrow$south}  & = \dtop(\inc, 1) \\
+                    \text{output$\rightarrow$south} & = \returnfromdonereaddtwo(\inc)
+                \end{flalign*}
+                \vspace{.5cm}
 
-            Create \dtop ($\langle \inc, i, l \rangle$)
+                \item create \dtop ($\langle \inc, 2, l \rangle$)
+                \begin{flalign*}
+                    \text{input$\rightarrow$south}  & = \dtop(\inc, 2) \\
+                    \text{output$\rightarrow$south} & = \returnfromdtworeaddthree(\inc)
+                \end{flalign*}
+                \vspace{.5cm}
+
+                \item create \dtop ($\langle \inc, 3, l \rangle$)
+                \begin{flalign*}
+                    \text{input$\rightarrow$south}  & = \dtop(\inc, 3) \\
+                    \text{output$\rightarrow$south} & = \returnfromdthreereaddone(\inc)
+                \end{flalign*}
+                \vspace{.5cm}
+            \end{enumerate}
+
+        \item MSR-specific digit tops.
+            \begin{enumerate}[label={--}]
+
+            % For digit 1, in MSR, in case 2
+            \item if $i$ is 1 and MSR contains 2 digits: create $\dtopdonecasetwo(\langle \inc, l \rangle)$
             \begin{flalign*}
-                \text{input$\rightarrow$south}  & = \dtop(\inc, i) & \\
-                \text{if $i$ is 1 then output$\rightarrow$north} & = \returnfromdonereaddtwo(\inc) & \\
-                \text{else if $i$ is 2 then output$\rightarrow$north} & = \returnfromdtworeaddthree(\inc) & \\
-                \text{else if $i$ is 3 then output$\rightarrow$north} & = \returnfromdthreereaddone(\inc) &
+                \text{input$\rightarrow$south}  & = \dtopdonecasetwo(\inc) \\
+                \text{output$\rightarrow$south} & = \returnfromdonereaddtwocasetwo(\inc)
             \end{flalign*}
             \vspace{.5cm}
 
-            \item \dtopdonecasetwo
+            % For digit 2 in case 2, in MSR (MSD)
+            \item if $i$ is 2 and MSR contains 2 digits: create $\dtopdtwocasetwo(\langle \inc, l \rangle)$
+            \begin{flalign*}
+                \text{input$\rightarrow$south}  & = \dtopdtwocasetwo(\inc) \\
+                \text{output$\rightarrow$south} & = \returnfromdtworeadnextrow(\inc)
+            \end{flalign*}
+            \vspace{.5cm}
 
-            If MSR contains 2 digits, and $i$ is 1
-
-            \item \dtopdtwocasetwo
-
-            If MSR contains 2 digits, and $i$ is 2
-
-            \item \dtopdthreecasethree
-
-            If MSR contains 3 digits, and $i$ is 3
+            % For digit 3, in MSR, in case 3 (MSD)
+            \item if $i$ is 3 and MSR contains 3 digits: create $\dtopdthreecasethree(\langle \inc, l \rangle)$
+            \begin{flalign*}
+                \text{input$\rightarrow$south}  & = \dtopdthreecasethree(\inc) \\
+                \text{output$\rightarrow$south} & = \returnfromdthreereadnextrow(\inc)
+            \end{flalign*}
+            \vspace{.5cm}
 
         \end{enumerate}
-
+    \end{itemize}
     \subsubsection{Return paths between the MSD and LSD in different rows}
     The gadgets of this class hold a increment/copy signal.
     The height of these gadgets is dependent on $l$ and the width is dependent of $k$.

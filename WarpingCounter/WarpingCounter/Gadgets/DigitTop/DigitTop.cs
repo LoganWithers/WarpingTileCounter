@@ -103,7 +103,7 @@
 
             build.South(7);
 
-            return build.SouthLine(bitsPerDigit, carry)
+            return build.SouthLine(bitsPerDigit)
                         .Tiles()
                         .ToList();
         }

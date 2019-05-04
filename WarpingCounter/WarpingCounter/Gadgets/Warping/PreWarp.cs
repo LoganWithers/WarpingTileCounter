@@ -125,11 +125,11 @@
             var b = new GadgetBuilder().Start();
 
             b.North(9)
-                   .Up()
-                   .West()
-                   .West()
-                   .Down();
-
+             .Up()
+             .West()
+             .West()
+             .Down();
+     
             return b.Tiles().ToList();
         }
 

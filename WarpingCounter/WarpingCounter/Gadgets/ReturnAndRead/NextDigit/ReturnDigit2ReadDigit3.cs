@@ -15,14 +15,11 @@
 
         private readonly int bitsPerDigit;
 
-        private readonly bool carry;
-
         public readonly List<Tile> Tiles;
 
 
         public ReturnDigit2ReadDigit3(bool carry, int bitsPerDigit)
         {
-            this.carry        = carry;
             this.bitsPerDigit = bitsPerDigit;
 
             Tiles = InitTiles();
@@ -53,7 +50,7 @@
 
             build.South(17);
 
-            build.SouthLine(bitsPerDigit, carry);
+            build.SouthLine(bitsPerDigit);
 
             build.South(15)
                  .East()
@@ -71,7 +68,7 @@
                  .South()
                  .South();
 
-            build.SouthLine(bitsPerDigit, carry);
+            build.SouthLine(bitsPerDigit);
 
             build.South()
                  .East()

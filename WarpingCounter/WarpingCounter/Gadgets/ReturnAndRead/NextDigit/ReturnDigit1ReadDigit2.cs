@@ -23,15 +23,12 @@
         private const int NextDigitRead = 2;
 
         private readonly int bitsPerDigit;
-
-        private readonly bool carry;
-
+        
         public readonly List<Tile> Tiles;
 
 
         public ReturnDigit1ReadDigit2(bool carry, int bitsPerDigit)
         {
-            this.carry        = carry;
             this.bitsPerDigit = bitsPerDigit;
 
             Tiles = InitializeTiles();
@@ -85,7 +82,7 @@
 
             builder.South(14);
 
-            builder.SouthLine(bitsPerDigit, carry);
+            builder.SouthLine(bitsPerDigit);
 
             builder.South(15)
                    .East()
@@ -103,7 +100,7 @@
                    .South()
                    .South();
 
-            builder.SouthLine(bitsPerDigit, carry);
+            builder.SouthLine(bitsPerDigit);
 
             builder.South()
                    .East()
