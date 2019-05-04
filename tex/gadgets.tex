@@ -1,17 +1,6 @@
 \section{Gadgets}
 \label{gadgets}
 
-\begin{itemize}
-\item h, here
-\item t, top
-\item b, bottom
-\item p, page of float
-\end{itemize}
-and LaTeX will try to honour the placement with respect to the actual place, the top or bottom of the page,
-or a separate page of floats coming immediately after the present insertion point. For example, when using
-ht LaTeX will try to put the figure at the insertion point, then on the top of the next page if it happens
-to violate its typesetting rules. You may also force LaTeX to "insist" on these specifications by adding an
-exclamation mark (!) before the placement parameters, e.g. !htb
 
 { \tt Gadget}( $\left\langle \text{Input} \right\rangle, \left\langle \text{Output}  \right\rangle$ )
 
@@ -55,7 +44,7 @@ exclamation mark (!) before the placement parameters, e.g. !htb
         \begin{enumerate}[label={--}]
 
             \item $\prewarp   (\langle d, i, \inc\rangle)\approx O(1)$
-                \begin{figure}[h]
+                \begin{figure}[H]
                     \centering
                     \begin{subfigure}[t]{0.2\textwidth}
                         \centering
@@ -92,17 +81,17 @@ exclamation mark (!) before the placement parameters, e.g. !htb
             \item $\secondwarp(\langle d, i, \inc\rangle)$ $\approx O(1)$
 
             \item $\postwarp  (\langle d, i, \inc\rangle)$ $\approx O(1)$
-                \begin{figure}[h]
+                \begin{figure}[H]
                     \begin{subfigure}[t]{0.2\textwidth}
                         \centering
                         \includegraphics[width=0.2\textwidth]{warping/post_warp_general_digit1}
-                        \caption{\label{fig:warping/post_warp_general_digit1} Digit 1}
+                        \caption{\label{fig:warping/post_warp_general_digit1} General Digit 1}
                     \end{subfigure}%
                     ~
                     \begin{subfigure}[t]{0.2\textwidth}
                         \centering
                         \includegraphics[width=0.2\textwidth]{warping/post_warp_general_digit2and3}
-                        \caption{\label{fig:warping/post_warp_general_digit2and3} Digits 2 and 3 }
+                        \caption{\label{fig:warping/post_warp_general_digit2and3} General Digits 2 and 3 }
                     \end{subfigure}%
                     ~
                     \begin{subfigure}[t]{0.2\textwidth}
@@ -136,7 +125,7 @@ exclamation mark (!) before the placement parameters, e.g. !htb
         %
 
     \subsubsection{ Digit tops }
-    The {\dtop} gadgets of have specific geometry, such that they allow {\firstwarp} and
+    The {\dtop} gadgets have specific geometry, such that they allow {\firstwarp} and
     {\secondwarp} units to ``wake up" and end their warp journey. A {\dtop} is placed on
     the north end of a digit. These hold a increment/copy signal and the regional index
     of the next digit to read. $\approx O(\log m)$
@@ -198,6 +187,7 @@ exclamation mark (!) before the placement parameters, e.g. !htb
 
         \end{enumerate}
     \end{itemize}
+
     \subsubsection{Return paths between the MSD and LSD in different rows}
     The gadgets of this class hold a increment/copy signal.
     The height of these gadgets is dependent on $l$ and the width is dependent of $k$.

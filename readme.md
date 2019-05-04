@@ -4,7 +4,7 @@
 
 [Most recent figures and equations](tex/main.pdf)
 
-[Old seed figures](seed/seed.pdf)
+[Old seed figures](Seed/seed.pdf)
 
 
 ## Program for generating tile set
