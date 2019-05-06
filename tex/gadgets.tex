@@ -2,7 +2,7 @@
 \label{gadgets}
 
 
-{ \tt Gadget}( $\left\langle \text{Input} \right\rangle, \left\langle \text{Output}  \right\rangle$ )
+% { \tt Gadget}( $\left\langle \text{Input} \right\rangle, \left\langle \text{Output}  \right\rangle$ )
 
 \newcommand{\warpunit}{{\tt Warp\_Unit}}
 \newcommand{\prewarp}{{\tt Pre\_Warp}}
@@ -30,7 +30,12 @@
 \newcommand{\dtopdtwocasetwo}{{\tt Digit\_Top\_Digit2\_Case2}}
 \newcommand{\dtopdthreecasethree}{{\tt Digit\_Top\_Digit3\_Case3}}
 
+% todo: fix wording
+When describing a special cases, i.e. ``case $x$ - digit $y$'', whatever follows
+will only apply to the MSR (due to each case only affecting the MSR.)
+
 \subsection{ Counter Unit }
+
 
 
 
@@ -38,6 +43,7 @@
 
     % For each digit length L
     \subsubsection{ Warping }
+
     % For each index in 1, 2, 3, and carry in 0,1
         For each $d \in \{0, 1\}^l$, $i = 1, 2, 3$
 
@@ -45,7 +51,6 @@
 
             \item $\prewarp   (\langle d, i, \inc\rangle)\approx O(1)$
                 \begin{figure}[H]
-                    \centering
                     \begin{subfigure}[t]{0.2\textwidth}
                         \centering
                         \includegraphics[width=0.2\textwidth]{warping/pre_warp_general}
@@ -75,10 +80,31 @@
 
 
             \item $\firstwarp (\langle d, i, \inc\rangle)$ $\approx O(1)$
+                1 tile is created
 
             \item $\warpbridge(\langle d, i, \inc\rangle)$ $\approx O(1)$
 
+                A {\warpbridge} gadget binds the last tile of the {\firstwarp} gadgets to the
+                first tile of the {\secondwarp} gadgets. In case 1, and case 2 - digit 1, the
+                {\warpbridge} is omitted from the {\warpunit}.
+
+                \begin{figure}[H]
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/warp_bridge_general}
+                        \caption{\label{fig:warping/warp_bridge_general} General}
+                    \end{subfigure}%
+                    ~
+                    \begin{subfigure}[t]{0.2\textwidth}
+                        \centering
+                        \includegraphics[width=0.2\textwidth]{warping/warp_bridge_case2_digit2_msr}
+                        \caption{\label{fig:warping/warp_bridge_case2_digit2_msr} Case 2 -- Digit 2}
+                    \end{subfigure}%
+                    ~
+                \end{figure}
+
             \item $\secondwarp(\langle d, i, \inc\rangle)$ $\approx O(1)$
+                1 tile is created, $O(1)$.
 
             \item $\postwarp  (\langle d, i, \inc\rangle)$ $\approx O(1)$
                 \begin{figure}[H]
