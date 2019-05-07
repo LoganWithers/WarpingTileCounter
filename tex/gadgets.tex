@@ -38,7 +38,6 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
 
 
-
     \subsubsection{ Digit readers }
 
     % For each digit length L
@@ -161,6 +160,16 @@ will only apply to the MSR (due to each case only affecting the MSR.)
         \begin{itemize}
             \item General digit tops common to all assemblies
 
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/digit_top_general}
+                    \caption{\label{fig:warping/digit_top_general} General }
+                \end{subfigure}%
+                ~
+            \end{figure}
+
             \begin{enumerate}[label={--}]
                 \item create \dtop ($\langle \inc, 1, l \rangle$)
                 \begin{flalign*}
@@ -184,7 +193,29 @@ will only apply to the MSR (due to each case only affecting the MSR.)
                 \vspace{.5cm}
             \end{enumerate}
 
-        \item MSR-specific digit tops.
+        \item MSR-specific digit tops. The first tile placed in all digit top gadgets is the rightmost, bottommost tile.
+
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/digit_top_case1_digit1_msr}
+                    \caption{\label{fig:warping/digit_top_case1_digit1_msr} Case 1 -- Digit 1}
+                \end{subfigure}%
+                ~
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/digit_top_case2_digit1_msr}
+                    \caption{\label{fig:warping/digit_top_case2_digit1_msr} Case 2 -- Digit 1}
+                \end{subfigure}%
+                ~
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/digit_top_case2_digit2_msr}
+                    \caption{\label{fig:warping/digit_top_case2_digit2_msr} Case 2 -- Digit 2}
+                \end{subfigure}%
+            \end{figure}
+
             \begin{enumerate}[label={--}]
 
             % For digit 1, in MSR, in case 2
@@ -193,6 +224,7 @@ will only apply to the MSR (due to each case only affecting the MSR.)
                 \text{input$\rightarrow$south}  & = \dtopdonecasetwo(\inc) \\
                 \text{output$\rightarrow$south} & = \returnfromdonereaddtwocasetwo(\inc)
             \end{flalign*}
+
             \vspace{.5cm}
 
             % For digit 2 in case 2, in MSR (MSD)

@@ -149,8 +149,7 @@
              .North();
 
             b.Tiles()
-             .First()
-             .Down = GlueFactory.PostWarp(bits, index, carry);
+             .First().Down = GlueFactory.PostWarp(bits, index, carry);
 
             return b.Tiles()
                     .ToList();

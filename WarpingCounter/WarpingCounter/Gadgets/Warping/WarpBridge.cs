@@ -105,7 +105,7 @@
         private List<Tile> CreateDigit1Case2() => new List<Tile>();
 
         /// <summary>
-        /// Add 29 nine tiles, each with the next digit value to write and the carry signal. 
+        /// Add 29 tiles, each with the next digit value to write and the carry signal. 
         /// </summary>
         /// <returns></returns>
         private List<Tile> CreateForThreeDigits()

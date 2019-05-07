@@ -59,17 +59,10 @@
         {
             switch (index)
             {
-                case 1:
-
-                    return GlueFactory.ReturnDigit1ReadDigit2(carry);
-                case 2:
-
-                    return GlueFactory.ReturnDigit2ReadDigit3(carry);
-                case 3:
-
-                    return GlueFactory.ReturnDigit3ReadDigit1(carry);
-                default:
-
+                case 1: return GlueFactory.ReturnDigit1ReadDigit2(carry);
+                case 2: return GlueFactory.ReturnDigit2ReadDigit3(carry);
+                case 3: return GlueFactory.ReturnDigit3ReadDigit1(carry);
+                default: 
                     throw new ArgumentOutOfRangeException($"Invalid digit index: {index}");
             }
         }
