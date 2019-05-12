@@ -48,7 +48,7 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
         \begin{enumerate}[label={--}]
 
-            \item $\prewarp   (\langle d, i, \inc\rangle)\approx O(1)$
+            \item $\prewarp   (\langle d, i, \inc\rangle)$
                 \begin{figure}[H]
                     \begin{subfigure}[t]{0.2\textwidth}
                         \centering
@@ -78,10 +78,10 @@ will only apply to the MSR (due to each case only affecting the MSR.)
                 \end{figure}
 
 
-            \item $\firstwarp (\langle d, i, \inc\rangle)$ $\approx O(1)$
+            \item $\firstwarp (\langle d, i, \inc\rangle)$
                 1 tile is created
 
-            \item $\warpbridge(\langle d, i, \inc\rangle)$ $\approx O(1)$
+            \item $\warpbridge(\langle d, i, \inc\rangle)$
 
                 A {\warpbridge} gadget binds the last tile of the {\firstwarp} gadgets to the
                 first tile of the {\secondwarp} gadgets. In case 1, and case 2 - digit 1, the
@@ -102,10 +102,10 @@ will only apply to the MSR (due to each case only affecting the MSR.)
                     ~
                 \end{figure}
 
-            \item $\secondwarp(\langle d, i, \inc\rangle)$ $\approx O(1)$
-                1 tile is created, $O(1)$.
+            \item $\secondwarp(\langle d, i, \inc\rangle)$
+                1 tile is created
 
-            \item $\postwarp  (\langle d, i, \inc\rangle)$ $\approx O(1)$
+            \item $\postwarp  (\langle d, i, \inc\rangle)$
                 \begin{figure}[H]
                     \begin{subfigure}[t]{0.2\textwidth}
                         \centering
@@ -143,18 +143,17 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
         \end{enumerate}
 
-        Tiles created for the warp units $\approx O(\log m)$
     % For each digit length L
     \subsubsection{ Digit writers }
         % For each index in 1, 2, 3, and carry in 0,1
         %
 
     \subsubsection{ Digit tops }
-    The {\dtop} gadgets have specific geometry, such that they allow {\firstwarp} and
-    {\secondwarp} units to ``wake up" and end their warp journey. A {\dtop} is placed on
-    the north end of a digit. These hold a increment/copy signal and the regional index
-    of the next digit to read. $\approx O(\log m)$
-    \vspace{1cm}
+        The {\dtop} gadgets have specific geometry, such that they allow {\firstwarp} and
+        {\secondwarp} units to ``wake up" and end their warp journey. A {\dtop} is placed on
+        the north end of a digit. These hold a increment/copy signal and the regional index
+        of the next digit to read.
+        \vspace{1cm}
 
         For each {\inc} $\in \{ {\tt increment, copy } \}$
         \begin{itemize}
@@ -171,29 +170,36 @@ will only apply to the MSR (due to each case only affecting the MSR.)
             \end{figure}
 
             \begin{enumerate}[label={--}]
-                \item create \dtop ($\langle \inc, 1, l \rangle$)
-                \begin{flalign*}
-                    \text{input$\rightarrow$south}  & = \dtop(\inc, 1) \\
-                    \text{output$\rightarrow$south} & = \returnfromdonereaddtwo(\inc)
-                \end{flalign*}
-                \vspace{.5cm}
+                \item
+                \begin{itemize}
+                    \item Create
+                    \begin{flalign*}
+                        \dtop(& \left \langle \text{``DigitTopDigit1"}, l, \inc \right\rangle, & \\
+                              & \left \langle \text{``ReturnD1ReadD2"},    \inc \right\rangle \;)
+                    \end{flalign*}
+                \end{itemize}
 
-                \item create \dtop ($\langle \inc, 2, l \rangle$)
-                \begin{flalign*}
-                    \text{input$\rightarrow$south}  & = \dtop(\inc, 2) \\
-                    \text{output$\rightarrow$south} & = \returnfromdtworeaddthree(\inc)
-                \end{flalign*}
-                \vspace{.5cm}
+                \item
+                \begin{itemize}
+                    \item Create
+                    \begin{flalign*}
+                        \dtop(& \left \langle \text{``DigitTopDigit2"}, l, \inc \right\rangle, & \\
+                              & \left \langle \text{``ReturnD2ReadD3"},    \inc \right\rangle \;)
+                    \end{flalign*}
+                \end{itemize}
 
-                \item create \dtop ($\langle \inc, 3, l \rangle$)
-                \begin{flalign*}
-                    \text{input$\rightarrow$south}  & = \dtop(\inc, 3) \\
-                    \text{output$\rightarrow$south} & = \returnfromdthreereaddone(\inc)
-                \end{flalign*}
-                \vspace{.5cm}
+                \item
+                \begin{itemize}
+                    \item Create
+                    \begin{flalign*}
+                        \dtop(& \left \langle \text{``DigitTopDigit3"}, l, \inc \right\rangle, & \\
+                              & \left \langle \text{``ReturnD3ReadD1"},    \inc \right\rangle \;)
+                    \end{flalign*}
+                \end{itemize}
+
             \end{enumerate}
 
-        \item MSR-specific digit tops. The first tile placed in all digit top gadgets is the rightmost, bottommost tile.
+            \item MSR-specific digit tops. The first tile placed in all digit top gadgets is the rightmost, bottommost tile.
 
             \begin{figure}[H]
                 \centering
@@ -217,33 +223,39 @@ will only apply to the MSR (due to each case only affecting the MSR.)
             \end{figure}
 
             \begin{enumerate}[label={--}]
+                % For digit 1, in MSR, in case 2
+                \item if $i$ is 1 and MSR contains 2 digits and $l$ starts with 01:
+                \begin{itemize}
+                    \item Create
+                    \begin{flalign*}
+                        \dtopdonecasetwo(& \left \langle \text{``DigitTopDigit1-Case2"}, l, \inc \right\rangle, & \\
+                                        & \left \langle \text{``ReturnD1ReadD2-Case2"},    \inc \right\rangle \;)
+                    \end{flalign*}
+                \end{itemize}
+                \vspace{.5cm}
 
-            % For digit 1, in MSR, in case 2
-            \item if $i$ is 1 and MSR contains 2 digits: create $\dtopdonecasetwo(\langle \inc, l \rangle)$
-            \begin{flalign*}
-                \text{input$\rightarrow$south}  & = \dtopdonecasetwo(\inc) \\
-                \text{output$\rightarrow$south} & = \returnfromdonereaddtwocasetwo(\inc)
-            \end{flalign*}
+                % For digit 2 in case 2, in MSR (MSD)
+                \item if $i$ is 2 and MSR contains 2 digits and $l$ starts with 11:
+                \begin{itemize}
+                    \item Create
+                    \begin{flalign*}
+                        \dtopdtwocasetwo(& \left \langle \text{``DigitTopDigit2-Case2"}, l, \inc \right\rangle, & \\
+                                        & \left \langle \text{``ReturnD2ReadNextRow"},     \inc \right\rangle \;)
+                    \end{flalign*}
+                \end{itemize}
 
-            \vspace{.5cm}
+                % For digit 3, in MSR, in case 3 (MSD)
+                \item if $i$ is 3 and MSR contains 3 digits and $l$ starts with 11:
+                \begin{itemize}
+                    \item Create
+                    \begin{flalign*}
+                        \dtopdthreecasethree(& \left \langle \text{``DigitTopDigit3-Case3"}, l, \inc \right\rangle, & \\
+                                            & \left \langle \text{``ReturnD3ReadNextRow"}, \inc \right\rangle \;)
+                    \end{flalign*}
+                \end{itemize}
+                \vspace{.5cm}
 
-            % For digit 2 in case 2, in MSR (MSD)
-            \item if $i$ is 2 and MSR contains 2 digits: create $\dtopdtwocasetwo(\langle \inc, l \rangle)$
-            \begin{flalign*}
-                \text{input$\rightarrow$south}  & = \dtopdtwocasetwo(\inc) \\
-                \text{output$\rightarrow$south} & = \returnfromdtworeadnextrow(\inc)
-            \end{flalign*}
-            \vspace{.5cm}
-
-            % For digit 3, in MSR, in case 3 (MSD)
-            \item if $i$ is 3 and MSR contains 3 digits: create $\dtopdthreecasethree(\langle \inc, l \rangle)$
-            \begin{flalign*}
-                \text{input$\rightarrow$south}  & = \dtopdthreecasethree(\inc) \\
-                \text{output$\rightarrow$south} & = \returnfromdthreereadnextrow(\inc)
-            \end{flalign*}
-            \vspace{.5cm}
-
-        \end{enumerate}
+            \end{enumerate}
     \end{itemize}
 
     \subsubsection{Return paths between the MSD and LSD in different rows}
@@ -255,32 +267,25 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
     \noindent For each {\inc} $\in \{ {\tt increment, copy } \}$
 
-        \begin{enumerate}
-            \item \returnfromdonereadnextrow
-
+        \begin{itemize}
+            \item Create
             \begin{flalign*}
-                \text{input$\rightarrow$south}  & = \returnfromdonereadnextrow(\inc) & \\
-                \text{output$\rightarrow$north} & = \dreader(\inc, 1)
+                \returnfromdonereadnextrow(& \left \langle \text{``ReturnD1ReadNextRow", \inc}       \right\rangle, & \\
+                                           & \left \langle \text{``DigitReader""}, \epsilon, 1, \inc \right\rangle \;)
             \end{flalign*}
-            % $\approx O(\log m) + O(k)$
-            \vspace{.5cm}
 
-            \item \returnfromdtworeadnextrow
+            \item Create
             \begin{flalign*}
-                \text{input$\rightarrow$north}  & = \returnfromdtworeadnextrow(\inc) & \\
-                \text{output$\rightarrow$north} & = \dreader(\inc, 1)
+                \returnfromdtworeadnextrow(& \left \langle \text{``ReturnD2ReadNextRow", \inc}      \right\rangle, & \\
+                                           & \left \langle \text{``DigitReader"}, \epsilon, 1, \inc \right\rangle \;)
             \end{flalign*}
-            % $\approx O(\log m) + O(k)$
-            \vspace{.5cm}
 
-            \item \returnfromdthreereadnextrow
+            \item Create
             \begin{flalign*}
-                \text{input$\rightarrow$north}  & = \returnfromdthreereadnextrow(\inc) & \\
-                \text{output$\rightarrow$north} & = \dreader(\inc, 1)
+                \returnfromdthreereadnextrow(& \left \langle \text{``ReturnD3ReadNextRow", \inc}      \right\rangle, & \\
+                                             & \left \langle \text{``DigitReader"}, \epsilon, 1, \inc \right\rangle \;)
             \end{flalign*}
-            % $\approx O(\log m) + O(k)$
-
-        \end{enumerate}
+        \end{itemize}
 
     \vspace{1cm}
     \subsubsection{Return paths between digits in the same row}
@@ -289,34 +294,36 @@ will only apply to the MSR (due to each case only affecting the MSR.)
         These gadgets are used so that upon writing a digit, the counter
         is able to move back down to the next digit in the current row, and continue
         reading.
+        \vspace{1cm}
 
-        \begin{enumerate}[label={--}]
-            \item \returnfromdonereaddtwo
+        \noindent For each {\inc} $\in \{ {\tt increment, copy } \}$
+
+        \begin{itemize}
+            \item Create
             \begin{flalign*}
-                \text{input$\rightarrow$north}  & = \returnfromdonereaddtwo(\inc) & \\
-                \text{output$\rightarrow$north} & = \dreader(\inc, 2)
-            \end{flalign*}\vspace{.5cm}
-
-            \item \returnfromdonereaddtwocasetwo
-            \begin{flalign*}
-                \text{input$\rightarrow$north}  & = \returnfromdonereaddtwocasetwo (\inc) & \\
-                \text{output$\rightarrow$north} & = \dreader(\inc, 2)
-            \end{flalign*}\vspace{.5cm}
-
-            \item \returnfromdtworeaddthree
-            \begin{flalign*}
-                \text{input$\rightarrow$north}  & = \returnfromdtworeaddthree(\inc) & \\
-                \text{output$\rightarrow$north} & = \dreader(\inc, 3)
-            \end{flalign*}\vspace{.5cm}
-
-
-            \item \returnfromdthreereaddone
-            \begin{flalign*}
-                \text{input$\rightarrow$north}  & = \returnfromdthreereaddone(\inc) & \\
-                \text{output$\rightarrow$north} & = \dreader(\inc, 1)
+                \returnfromdonereaddtwo(& \left \langle \text{``ReturnD1ReadD2", \inc}            \right\rangle, & \\
+                                        & \left \langle \text{``DigitReader''}, \epsilon, 2, \inc \right\rangle \;)
             \end{flalign*}
 
-        \end{enumerate}
+            \item Create
+            \begin{flalign*}
+                \returnfromdonereaddtwocasetwo(& \left \langle \text{``ReturnD1ReadD2-Case2", \inc}      \right\rangle, & \\
+                                               & \left \langle \text{``DigitReader''}, \epsilon, 2, \inc \right\rangle \;)
+            \end{flalign*}
+
+            \item Create
+            \begin{flalign*}
+                \returnfromdtworeaddthree(& \left \langle \text{``ReturnD2ReadD3", \inc} \right\rangle, & \\
+                                          & \left \langle \text{``DigitReader''}, \epsilon, 3, \inc \right\rangle \;)
+            \end{flalign*}
+
+            \item Create
+            \begin{flalign*}
+                 \returnfromdthreereaddone(& \left \langle \text{``ReturnD3ReadD1", \inc}            \right \rangle, & \\
+                                           & \left \langle \text{``DigitReader''}, \epsilon, 1, \inc \right \rangle \;)
+            \end{flalign*}
+
+        \end{itemize}
 
 
 
