@@ -75,7 +75,7 @@
             var readerFactory = new ReaderFactory(L, bitsRequiredForBaseM, baseM, digitsInMSR);
             tiles.AddRange(readerFactory.Readers.SelectMany(reader => reader.Tiles));
 
-            List<string> fullSizeDigits = readerFactory.digitsWithLengthL;
+            List<string> fullSizeDigits = readerFactory.DigitsWithLengthL;
             
             
             Console.WriteLine($"Full Digits: {fullSizeDigits.Count}");

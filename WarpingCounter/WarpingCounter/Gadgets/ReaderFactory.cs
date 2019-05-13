@@ -20,11 +20,11 @@
 
         private readonly int digitsInMSR;
 
-        public readonly List<string> digitsWithLengthL;
+        public readonly List<string> DigitsWithLengthL;
 
         public readonly List<BinaryReader> Readers;
 
-        public readonly HashSet<string> digitsThatCanBeRead;
+        public readonly HashSet<string> DigitsThatCanBeRead;
 
 
         public ReaderFactory(int actualBitsPerEncodedDigit, int bitsRequiredForBaseM, int baseOfEncodedDigits, int digitsInMSR)
@@ -34,8 +34,8 @@
             this.baseOfEncodedDigits       = baseOfEncodedDigits;
             this.digitsInMSR               = digitsInMSR;
 
-            digitsThatCanBeRead = new HashSet<string>();
-            digitsWithLengthL   = new List<string>();
+            DigitsThatCanBeRead = new HashSet<string>();
+            DigitsWithLengthL   = new List<string>();
             Readers             = CreateCounterReaders();
         }
 
@@ -48,23 +48,23 @@
             {
                 var value = Convert.ToString(i, 2).PadLeft(bitsRequiredForBaseM, '0');
 
-                digitsWithLengthL.Add($"{value}00");
-                digitsWithLengthL.Add($"{value}01");
-                digitsWithLengthL.Add($"{value}11");
+                DigitsWithLengthL.Add($"{value}00");
+                DigitsWithLengthL.Add($"{value}01");
+                DigitsWithLengthL.Add($"{value}11");
             }
 
-            foreach (var lengthLDigit in digitsWithLengthL)
+            foreach (var lengthLDigit in DigitsWithLengthL)
             {
                 for (var i = 0; i <= lengthLDigit.Length; i++)
                 {
                     var substring = lengthLDigit.Substring(lengthLDigit.Length - i);
-                    digitsThatCanBeRead.Add(substring);
+                    DigitsThatCanBeRead.Add(substring);
                 }
             }
 
-            Console.WriteLine($"Unique: {digitsThatCanBeRead.Count}");
+            Console.WriteLine($"Unique: {DigitsThatCanBeRead.Count}");
 
-            foreach (var bitsRead in digitsThatCanBeRead.OrderBy(s => s.Length)
+            foreach (var bitsRead in DigitsThatCanBeRead.OrderBy(s => s.Length)
                                                         .ThenBy(s => s))
             {
                 for (var i = 1; i <= Digits; i++)
