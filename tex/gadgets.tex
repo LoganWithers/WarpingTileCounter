@@ -40,119 +40,214 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
 
     \subsubsection{ Digit readers }
+    \begin{figure}[H]
+        \centering
+        \begin{subfigure}[t]{0.2\textwidth}
+            \centering
+            \includegraphics[width=0.2\textwidth]{read/read_0}
+            \caption{\label{fig:read/read_1} Counter\_Read\_0}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[t]{0.2\textwidth}
+            \centering
+            \includegraphics[width=0.2\textwidth]{read/read_1}
+            \caption{\label{fig:read/read_1} Counter\_Read\_1}
+        \end{subfigure}%
+    \end{figure}
 
     % For each digit length L
     \subsubsection{ Warping }
 
     % For each index in 1, 2, 3, and carry in 0,1
-        For each $d \in \{0, 1\}^l$, $i = 1, 2, 3$
+        For each $d \in \{0, 1\}^l$, each $i = 1, 2, 3$, and each {\inc} $\in \{ {\tt increment, copy } \}$
+        (note: since this might not be the correct notation, in words: do this for each binary encoded digit of length $l$,
+        for each digit-region index, and both copy/increment signals)
 
-        \begin{enumerate}[label={--}]
+        \begin{itemize}
 
-            \item $\prewarp   (\langle d, i, \inc\rangle)$
-                \begin{figure}[H]
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/pre_warp_general}
-                        \caption{\label{fig:warping/pre_warp_general} General }
-                    \end{subfigure}%
-                    ~
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/pre_warp_case1_digit1_msr}
-                        \caption{\label{fig:warping/pre_warp_case1_digit1_msr} Digit 1 -- Case 1}
-                    \end{subfigure}%
-                    ~
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/pre_warp_case2_digit1_msr}
-                        \caption{\label{fig:warping/pre_warp_case2_digit1_msr} Digit 1 -- Case 2}
-                    \end{subfigure}%
-                    ~
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/pre_warp_case2_digit2_msr}
-                        \caption{\label{fig:warping/pre_warp_case2_digit2_msr} Digit 2 -- Case 2}
-                    \end{subfigure}%
-                    ~
-                    \caption{\label{fig:pre_warp_gadgets} {\prewarp} gadgets }
-                \end{figure}
+            \item Create
+            $\begin{aligned}[t]
+                \prewarp(& \left\langle \text{``PreWarp"}, d, i, \inc \right\rangle, \\
+                         & \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle \;)
+            \end{aligned}$
+            \vspace{.5cm}
 
 
-            \item $\firstwarp (\langle d, i, \inc\rangle)$
-                1 tile is created
+            \begin{figure}[H]
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/pre_warp_general}
+                    \caption{\label{fig:warping/pre_warp_general} General }
+                \end{subfigure}%
+                ~
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/pre_warp_case1_digit1_msr}
+                    \caption{\label{fig:warping/pre_warp_case1_digit1_msr} Digit 1 -- Case 1}
+                \end{subfigure}%
+                ~
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/pre_warp_case2_digit1_msr}
+                    \caption{\label{fig:warping/pre_warp_case2_digit1_msr} Digit 1 -- Case 2}
+                \end{subfigure}%
+                ~
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/pre_warp_case2_digit2_msr}
+                    \caption{\label{fig:warping/pre_warp_case2_digit2_msr} Digit 2 -- Case 2}
+                \end{subfigure}%
+                ~
+                \caption{\label{fig:pre_warp_gadgets} {\prewarp} gadgets }
+            \end{figure}
 
-            \item $\warpbridge(\langle d, i, \inc\rangle)$
 
-                A {\warpbridge} gadget binds the last tile of the {\firstwarp} gadgets to the
-                first tile of the {\secondwarp} gadgets. In case 1, and case 2 - digit 1, the
-                {\warpbridge} is omitted from the {\warpunit}.
+            \item A {\firstwarp} connects to a {\warpbridge} gadget in all cases except when it's assembling
+                  in the MSR and it is digit 1 in case 1 or 2, in which the {\firstwarp} gadget attaches directly
+                  to a {\postwarp}.
 
-                \begin{figure}[H]
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/warp_bridge_general}
-                        \caption{\label{fig:warping/warp_bridge_general} General}
-                    \end{subfigure}%
-                    ~
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/warp_bridge_case2_digit2_msr}
-                        \caption{\label{fig:warping/warp_bridge_case2_digit2_msr} Digit 2 -- Case 2}
-                    \end{subfigure}%
-                    ~
-                \end{figure}
+            \begin{itemize}
+                \item if MSR has 1 digit and $d$ starts with 11: Create
+                $\begin{aligned}[t]
+                    \firstwarp(& \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
+                               & \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
+                               & \left\langle \text{``PostWarp"}, d, i, \inc \right\rangle \;)
+                \end{aligned}$
+                \vspace{.5cm}
 
 
-            \item $\secondwarp(\langle d, i, \inc\rangle)$
-                1 tile is created
+                \item if MSR has 2 digits and $d$ starts with 01: Create
+                $\begin{aligned}[t]
+                    \firstwarp(& \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
+                    & \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
+                    & \left\langle \text{``PostWarp"}, d, i, \inc \right\rangle \;)
+                \end{aligned}$
+                \vspace{.5cm}
 
 
-            \item $\postwarp  (\langle d, i, \inc\rangle)$
-                \begin{figure}[H]
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/post_warp_general_digit1}
-                        \caption{\label{fig:warping/post_warp_general_digit1} General Digit 1}
-                    \end{subfigure}%
-                    ~
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/post_warp_general_digit2and3}
-                        \caption{\label{fig:warping/post_warp_general_digit2and3} General Digits 2 and 3 }
-                    \end{subfigure}%
-                    ~
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/post_warp_case1_digit1_msr}
-                        \caption{\label{fig:warping/post_warp_case1_digit1_msr} Digit 1 -- Case 1}
-                    \end{subfigure}%
-                    ~
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/post_warp_case2_digit1_msr}
-                        \caption{\label{fig:warping/post_warp_case2_digit1_msr} Digit 1 -- Case 2}
-                    \end{subfigure}%
-                    ~
+                \item if MSR has 2 digits and $d$ starts with 11: Create
+                $\begin{aligned}[t]
+                    \firstwarp(& \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
+                    & \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
+                    & \left\langle \text{``WarpBridge"}, d, i, \inc \right\rangle \;)
+                \end{aligned}$
+                \vspace{.5cm}
 
-                    \begin{subfigure}[t]{0.2\textwidth}
-                        \centering
-                        \includegraphics[width=0.2\textwidth]{warping/post_warp_case2_digit2_msr}
-                        \caption{\label{fig:warping/post_warp_case2_digit2_msr} Digit 2 -- Case 2}
-                    \end{subfigure}%
-                    ~
-                    \caption{\label{fig:post_warp_gadgets} {\postwarp} gadgets }
-                \end{figure}
+                \item if MSR has 3 digits or $d$ starts with 00: Create
+                $\begin{aligned}[t]
+                    \firstwarp(& \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
+                               & \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
+                               & \left\langle \text{``WarpBridge"}, d, i, \inc \right\rangle \;)
+                \end{aligned}$
 
-        \end{enumerate}
+            \end{itemize}
+            \vspace{.5cm}
+
+            \item A {\warpbridge} gadget binds the last tile of the {\firstwarp} gadgets to the
+            first tile of the {\secondwarp} gadgets. For digit 1 in cases 1 and 2, the
+            {\warpbridge} is omitted from the {\warpunit}.
+
+            \begin{itemize}
+                \item Create
+                $\begin{aligned}[t]
+                    \warpbridge(& \left\langle \text{``WarpBridge"}, d, i, \inc \right\rangle, \\
+                                & \left\langle \text{``SecondWarp"}, d, i, \inc \right\rangle \;)
+                \end{aligned}$
+                \vspace{.5cm}
+            \end{itemize}
+
+            \begin{figure}[H]
+                \centering
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/warp_bridge_general}
+                    \caption{\label{fig:warping/warp_bridge_general} General}
+                \end{subfigure}%
+                ~
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/warp_bridge_case2_digit2_msr}
+                    \caption{\label{fig:warping/warp_bridge_case2_digit2_msr} Digit 2 -- Case 2}
+                \end{subfigure}%
+                ~
+            \end{figure}
+
+
+
+
+            \item
+            Create
+            $\begin{aligned}[t]
+                \secondwarp(& \left\langle \text{``SecondWarp"}, d, i, \inc \right\rangle, \\
+                            & \left\langle \text{``SecondWarp"}, d, i, \inc \right\rangle, \\
+                            & \left\langle \text{``PostWarp"},   d, i, \inc \right\rangle \;)
+            \end{aligned}$
+
+
+            \item
+            Create
+            $\begin{aligned}[t]
+                \postwarp(& \left \langle \text{``PostWarp"},    d, i, \inc \right\rangle, \\
+                          & \left \langle \text{``DigitWriter"}, d, i, \inc \right\rangle \;)
+            \end{aligned}$
+
+            \begin{figure}[H]
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/post_warp_general_digit1}
+                    \caption{\label{fig:warping/post_warp_general_digit1} General Digit 1}
+                \end{subfigure}%
+                ~
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/post_warp_general_digit2and3}
+                    \caption{\label{fig:warping/post_warp_general_digit2and3} General Digits 2 and 3 }
+                \end{subfigure}%
+                ~
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/post_warp_case1_digit1_msr}
+                    \caption{\label{fig:warping/post_warp_case1_digit1_msr} Digit 1 -- Case 1}
+                \end{subfigure}%
+                ~
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/post_warp_case2_digit1_msr}
+                    \caption{\label{fig:warping/post_warp_case2_digit1_msr} Digit 1 -- Case 2}
+                \end{subfigure}%
+                ~
+
+                \begin{subfigure}[t]{0.2\textwidth}
+                    \centering
+                    \includegraphics[width=0.2\textwidth]{warping/post_warp_case2_digit2_msr}
+                    \caption{\label{fig:warping/post_warp_case2_digit2_msr} Digit 2 -- Case 2}
+                \end{subfigure}%
+                ~
+                \caption{\label{fig:post_warp_gadgets} {\postwarp} gadgets }
+            \end{figure}
+
+        \end{itemize}
 
     % For each digit length L
     \subsubsection{ Digit writers }
         % For each index in 1, 2, 3, and carry in 0,1
         %
+        \begin{figure}[H]
+            \centering
+            \begin{subfigure}[t]{0.2\textwidth}
+                \centering
+                \includegraphics[width=0.2\textwidth]{write/write_0}
+                \caption{\label{fig:write/write_1} Counter\_Write\_0}
+            \end{subfigure}%
+            ~
+            \begin{subfigure}[t]{0.2\textwidth}
+                \centering
+                \includegraphics[width=0.2\textwidth]{write/write_1}
+                \caption{\label{fig:write/write_1} Counter\_Write\_1}
+            \end{subfigure}%
+        \end{figure}
 
-
-    \subsubsection{ Digit tops }
+    \subsubsection{Digit tops}
         The {\dtop} gadgets have specific geometry, such that they allow {\firstwarp} and
         {\secondwarp} units to ``wake up" and end their warp journey. A {\dtop} is placed on
         the north end of a digit. These hold a increment/copy signal and the regional index
@@ -173,7 +268,7 @@ will only apply to the MSR (due to each case only affecting the MSR.)
                 ~
             \end{figure}
 
-            \begin{enumerate}[label={--}]
+            \begin{itemize}
                 \item Create
                 $\begin{aligned}[t]
                     \dtop(& \left \langle \text{``DigitTopDigit1"}, l, \inc \right\rangle, & \\
@@ -194,7 +289,7 @@ will only apply to the MSR (due to each case only affecting the MSR.)
                           & \left \langle \text{``ReturnD3ReadD1"},    \inc \right\rangle \;)
                 \end{aligned}$
 
-            \end{enumerate}
+            \end{itemize}
 
 
             \item MSR-specific digit tops. The first tile placed in all digit top gadgets is the rightmost, bottommost tile.
@@ -221,13 +316,13 @@ will only apply to the MSR (due to each case only affecting the MSR.)
                 ~
                 \begin{subfigure}[t]{0.2\textwidth}
                     \centering
-                    \includegraphics[width=0.2\textwidth]{warping/digit_top_general}
-                    \caption{\label{fig:warping/digit_top_general} Digit 3 -- Case 3}
+                    \includegraphics[width=0.2\textwidth]{warping/digit_top_case3_digit3_msr}
+                    \caption{\label{fig:warping/digit_top_case3_digit3_msr} All digits -- Case 3}
                 \end{subfigure}%
             \end{figure}
 
 
-            \begin{itemize}
+            \begin{enumerate}[label=\alph*)]
                 % For digit 1, case 1
                 \item if $i$ is 1 and MSR contains 1 digit and $l$ starts with 11:
 
@@ -272,7 +367,7 @@ will only apply to the MSR (due to each case only affecting the MSR.)
                 \vspace{.5cm}
 
 
-            \end{itemize}
+            \end{enumerate}
 
         \end{itemize}
     \vspace{1cm}
@@ -280,18 +375,44 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
 
     \subsubsection{Return paths between the MSD and LSD in different rows}
+
         The gadgets of this class hold a increment/copy signal.
         The height of these gadgets is dependent on $l$ and the width is dependent of $k$.
         These gadgets are used to begin reading the first digit in the following row, once
         the MSD has been read in the current row.
         \vspace{1cm}
 
+        \begin{figure}[H]
+            \centering
+            \begin{subfigure}[t]{0.3\textwidth}
+                \centering
+                \includegraphics[width=0.3\textwidth]{return_paths/return_digit1_read_next_row}
+                \caption{\label{fig:return_paths/return_digit1_read_next_row} Case -- 1}
+            \end{subfigure}%
+            ~
+            \begin{subfigure}[t]{0.3\textwidth}
+                \centering
+                \includegraphics[width=0.3\textwidth]{return_paths/return_digit2_read_next_row}
+                \caption{\label{fig:return_paths/return_digit2_read_next_row} Case -- 2}
+            \end{subfigure}%
+            ~
+            \begin{subfigure}[t]{0.3\textwidth}
+                \centering
+                \includegraphics[width=0.3\textwidth]{return_paths/return_digit3_read_next_row}
+                \caption{\label{fig:return_paths/return_digit3_read_next_row} Case -- 3}
+            \end{subfigure}%
+            \caption{\label{fig:return_path_next_row}
+            All of these gadgets assemble north to south. The vertical gray lines tiles have a height
+            that depends on $l$ and the horizontal gray lines depend on $k$. (cases 1 and 2 are geometrically equivalent)}
+        \end{figure}
+
+
         \noindent For each {\inc} $\in \{ {\tt increment, copy } \}$
 
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                \returnfromdonereadnextrow(& \left \langle \text{``ReturnD1ReadNextRow", \inc}       \right\rangle, & \\
+                \returnfromdonereadnextrow(& \left \langle \text{``ReturnD1ReadNextRow", \inc}      \right\rangle, & \\
                                            & \left \langle \text{``DigitReader"}, \epsilon, 1, \inc \right\rangle \;)
             \end{aligned}$
 
@@ -344,8 +465,7 @@ will only apply to the MSR (due to each case only affecting the MSR.)
                 \includegraphics[width=0.2\textwidth]{return_paths/return_digit3_read_digit1_general}
                 \caption{\label{fig:return_paths/return_digit1_read_digit2_general} Return digit 3 read digit 1}
             \end{subfigure}%
-            \caption{\label{fig:return_path_same_row} All of these gadgets grow from north to south, the gray tiles have a height that
-            depends on $l$.}
+            \caption{\label{fig:return_path_same_row} All of these gadgets grow from north to south, the height of gray tiles depends on $l$.}
         \end{figure}
 
         \noindent For each {\inc} $\in \{ {\tt increment, copy } \}$.
@@ -355,7 +475,7 @@ will only apply to the MSR (due to each case only affecting the MSR.)
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                \returnfromdonereaddtwo(& \left \langle \text{``ReturnD1ReadD2"}, l, \inc,      \right\rangle, \\
+                \returnfromdonereaddtwo(& \left \langle \text{``ReturnD1ReadD2"}, l, \inc,       \right\rangle, \\
                                         & \left \langle \text{``DigitReader"}, \epsilon, 2, \inc \right\rangle \;)
             \end{aligned}$
 
@@ -373,7 +493,7 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
             \item Create
             $\begin{aligned}[t]
-                 \returnfromdthreereaddone(& \left \langle \text{``ReturnD3ReadD1"}, l, \inc       \right \rangle, \\
+                 \returnfromdthreereaddone(& \left \langle \text{``ReturnD3ReadD1"}, l, \inc        \right \rangle, \\
                                            & \left \langle \text{``DigitReader"}, \epsilon, 1, \inc \right \rangle \;)
             \end{aligned}$
 
