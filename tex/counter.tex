@@ -44,14 +44,13 @@
 \subsection{ Digit region explanation (in progress) }
 
 Each logical row of the counter is made up of $\ceil*{\frac{d}{3}}$ ``digit regions". A digit region
-is a group of 1-3 digits, stacked on top of each other vertically. Within a digit region, the digits are
-sorted in order of significance, thus the top digit is the most signifcant digit,
-the middle digit is second most significant and the bottomt digit is the least
-signifcant.
+is a group of 1-3 digits, stacked vertically on top of one another. Within a digit region, the digits are
+sorted in order of significance, thus the top digit is the most signifcant digit, the middle digit
+is second most significant and the bottommost digit is the least signifcant.
 
 The leftmost digit region is most signifcant and the rightmost is the least signifcant.
 The counter reads the least signifcant digit (1) in digit region 1, and continues in the current row
-until it detects the final digit, in the MSR...
+until it detects the final digit, in the most signifcant digit region (MSR).
 
 \begin{figure}[H]
     \centering
@@ -69,5 +68,24 @@ until it detects the final digit, in the MSR...
     ~
 \end{figure}
 
-Contrary to a typical counter, each counter row has an approximate height of 3 digits.
-The digits are stacked up to 3 before increasing the width..
+Contrary to a typical counter, each counter row has an approximate height of 3 digits $\approx 12l$.
+The digits are stacked up to 3 before increasing the width.
+
+\subsection{ Detecting the edges }
+
+The counter must detect if a digit is in the MSR and if it's in the MSR, whether or not it is the most
+signifcant digit. To do this, all digits are encoded with two additional bits on the bottommost end.
+If bit $l$ is 1, the reader tiles know they could be reading the most signifcant digit (MSD) or in case 2, the
+second most signifcant digit. If bit $l - 1$ is 1, the digit currently being read is the MSD, otherwise
+the digit is digit 1 in case 2.
+
+\begin{table}[H]
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \multirow{5}{*}{bits} & $l-1$ & $l$   & Meaning                                 \\ \cline{2-4}
+                          &   0   & 0   & digit is not in MSR                    \\ \cline{2-4}
+                          &   0   & 1   & digit is in the MSR but is not the MSD \\ \cline{2-4}
+                          &   1   & 0   &                                        \\ \cline{2-4}
+                          &   1   & 1   & digit is in the MSR and is MSD         \\ \hline
+    \end{tabular}
+\end{table}

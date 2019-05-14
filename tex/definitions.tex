@@ -1,14 +1,14 @@
 \newcommand{\counterstart}{\mathcal{C}_0}
-\newcommand{\counterrows}{\floor*{\frac{N-3l-76}{3l + 90}}}
+\newcommand{\counterrows}{\floor*{\frac{N-12l-76}{12l + 90}}}
 \newcommand{\countersize}{\mathcal{C}_{\Delta}}
 
 \section{Definitions}
 \label{sec:prelims}
 
 % \subsection{Digit regions}
-    
-%     A digit region is a group of 3 digits within a counter value. Starting with the least significant digit ($d_0$), 
-%     we consider    
+
+%     A digit region is a group of 3 digits within a counter value. Starting with the least significant digit ($d_0$),
+%     we consider
 
 
 
@@ -16,7 +16,7 @@
 \subsection{Misc}
 
 \begin{flalign*}
-      \text{Let }  m & = \ceil*{\left( \frac{N}{93} \right)^{\frac{1}{d}} } \text{, base of the counter} & \\
+      \text{Let }  m & = \ceil*{\left( \frac{N}{102} \right)^{\frac{1}{d}} } \text{, base of the counter} & \\
                  MSR & = \text{ most signifcant digit region } \\
        \mathcal{C}_0 & = \text{starting value of counter}  \\
                    d & = \ceil*{\log_m {\mathcal{C}_0}} = \floor*{\frac{k}{2}},  \text{ number of digits per row }  \\
@@ -30,28 +30,28 @@
 
 \subsection{Determining the starting value $\mathcal{C}_0$}
 
-...therefore, let $d = \floor*{\frac{k}{2}}$, $m = \ceil*{\left(\frac{N}{93}\right)^{\frac{1}{d}}}$,
-$l = \ceil{\log m} + 2$, $\mathcal{C}_0 = m^d - \floor*{\frac{N-3l-76}{3l + 90}}$, where $d$ is the
+...therefore, let $d = \floor*{\frac{k}{2}}$, $m = \ceil*{\left(\frac{N}{102}\right)^{\frac{1}{d}}}$,
+$l = \ceil{\log m} + 2$, $\mathcal{C}_0 = m^d - \floor*{\frac{N-12l-76}{12l + 90}}$, where $d$ is the
 number of digits per row of the counter, $m$ is the base of the counter, $l$ is the number of bits
 needed to encode each digit in binary plus 2 for indicating whether a digit is in the MSR and is the
 MSD in that region, and $\mathcal{C}_0$ is the start of the counter in decimal.
 
-In general, the height of a digit region is $3l + 90$. There are two cases when the height is different,
-namely in the first and last digit regions, where the height is $3l + 91$ and $3l + 75$, respectively.
+In general, the height of a digit region is $12l + 90$. There are two cases when the height is different,
+namely in the first and last digit regions, where the height is $12l + 91$ and $12l + 75$, respectively.
 Let $h$ be the height of the construction before any filler/roof tiles are added. If we define
 $\countersize$ as the number of \texttt{Counter} unit rows, then
-$h = (\countersize - 1) (3l + 90) + (3l + 91) + (3l + 75)$, simplifying to $\countersize (3l + 90) + 3l + 76$.
-So then the maximum height of the counter is $m^d (3l + 90) + 3l + 76$. Since our goal is to end with a
+$h = (\countersize - 1) (12l + 90) + (12l + 91) + (12l + 75)$, simplifying to $\countersize (12l + 90) + 12l + 76$.
+So then the maximum height of the counter is $m^d (12l + 90) + 12l + 76$. Since our goal is to end with a
 rectangle of height $N$, we need to pick a base such that the counter can increment so many times that
 when it stops, it is at least $N$.
 
-\begin{lemma} $N \leq m^d (3l + 90) + 3l + 76$.
+\begin{lemma} $N \leq m^d (12l + 90) + 12l + 76$.
     \begin{proof}
         \begin{flalign*}
-            N & = 93 \left( \frac{N}{93} \right) = 93 \left(\left( \frac{N}{93} \right)^{\frac{1}{d}} \right)^d
-                \leq 93 \ceil*{\left( \frac{N}{93} \right)^{\frac{1}{d}} }^d \\
-            & = 93m^d \leq 3lm^d + 90m^d \leq 3lm^d + 90m^d + 3l + 76 \\
-            & = m^d (3l + 90) + 3l + 76
+            N & = 102 \left( \frac{N}{102} \right) = 102 \left(\left( \frac{N}{102} \right)^{\frac{1}{d}} \right)^d
+                \leq 102 \ceil*{\left( \frac{N}{102} \right)^{\frac{1}{d}} }^d \\
+            & = 102m^d \leq 12lm^d + 90m^d \leq 12lm^d + 90m^d + 12l + 76 \\
+            & = m^d (12l + 90) + 12l + 76
         \end{flalign*}
     \end{proof}
 \end{lemma}
@@ -62,10 +62,10 @@ when it stops, it is at least $N$.
 ...this means that the number of \texttt{Counter} unit rows $\countersize$ is $m^d - \mathcal{C}_0$,
 where we have \mbox{defined} $\mathcal{C}_0$ as the starting value of the counter. To
 choose the best starting value, \mbox{ we find the value for $\countersize$ that gets $h$ as
-close to $N$} without exceeding $N$. It follows from the equation $h = \countersize (3l+90)+3l+76$,
+close to $N$} without exceeding $N$. It follows from the equation $h = \countersize (12l+90)+12l+76$,
 that $\countersize = \counterrows$. Thus, $\mathcal{C}_0 = m^d - \counterrows$. As a result of
 each digit requiring a width of 2 tiles, if $k$ is odd, one additional tile column must be added.
 The number of filler tiles needed for the width is $k \mod 2$, and the number of filler tiles for
-the height is $N - 3l - 76 \mod 3l + 90$. % does this expression simplify like in Christian's?
+the height is $N - 12l - 76 \mod 12l + 90$.
 
 
