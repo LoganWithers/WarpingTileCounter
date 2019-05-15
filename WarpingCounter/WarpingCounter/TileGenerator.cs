@@ -72,7 +72,7 @@
 
         private void AddCounter()
         {
-            var readerFactory = new ReaderFactory(L, bitsRequiredForBaseM, baseM, digitsInMSR);
+            var readerFactory = new ReaderFactory(L, bitsRequiredForBaseM, baseM);
             tiles.AddRange(readerFactory.Readers.SelectMany(reader => reader.Tiles));
 
             List<string> fullSizeDigits = readerFactory.DigitsWithLengthL;

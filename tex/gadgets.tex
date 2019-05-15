@@ -41,22 +41,22 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
     \subsubsection{ Digit readers }
         \begin{itemize}
-            \item For each $i = 0,\ldots,m$ and each $u \in \{0, 1\}^i$, and
+            \item For each $i = 0,\ldots,l$ and each $u \in \{0, 1\}^i$, and
                   each $\inc \in \{{\tt increment}, {\tt copy} \}$
 
                 \begin{itemize}
                 \item Create
                     $\begin{aligned}[t]
-                        \dreader(& \left\langle \text{``Read"}, u, \inc \right\rangle, \\
-                                 & \left\langle \text{``Read"}, 0u, \inc \right\rangle, \\
-                                 & \left\langle \text{``Read"}, 0u, \inc \right\rangle \;)
+                        \dreader(& \left\langle {\tt DigitReader}, u, \inc \right\rangle, \\
+                                 & \left\langle {\tt DigitReader}, 0u, \inc \right\rangle, \\
+                                 & \left\langle {\tt DigitReader}, 0u, \inc \right\rangle \;)
                     \end{aligned}$
 
                 \item Create
                 $\begin{aligned}[t]
-                    \dreader(& \left\langle \text{``Read"}, u,  \inc \right\rangle, \\
-                             & \left\langle \text{``Read"}, 1u, \inc \right\rangle, \\
-                             & \left\langle \text{``Read"}, 1u, \inc \right\rangle \;)
+                    \dreader(& \left\langle {\tt DigitReader}, u,  \inc \right\rangle, \\
+                             & \left\langle {\tt DigitReader}, 1u, \inc \right\rangle, \\
+                             & \left\langle {\tt DigitReader}, 1u, \inc \right\rangle \;)
                 \end{aligned}$
                 \end{itemize}
             \vspace{.5cm}
@@ -83,7 +83,7 @@ will only apply to the MSR (due to each case only affecting the MSR.)
     \subsubsection{ Warping }
 
     % For each index in 1, 2, 3, and carry in 0,1
-        For each $d \in \{0, 1\}^l$, each $i = 1, 2, 3$, and each {\inc} $\in \{ {\tt increment, copy } \}$
+        For each $d \in \{0, 1\}^l$, each $i = 1, 2, 3$, and each $\inc \in \{ {\tt increment, copy } \}$
         (note: since this might not be the correct notation, in words: do this for each binary encoded digit of length $l$,
         for each digit-region index, and both copy/increment signals)
 
@@ -91,8 +91,8 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
             \item Create
             $\begin{aligned}[t]
-                \prewarp(& \left\langle \text{``PreWarp"}, d, i, \inc \right\rangle, \\
-                         & \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle \;)
+                \prewarp(& \left\langle {\tt PreWarp}, d, i, \inc \right\rangle, \\
+                         & \left\langle {\tt FirstWarp}, d, i, \inc \right\rangle \;)
             \end{aligned}$
             \vspace{.5cm}
 
@@ -133,35 +133,35 @@ will only apply to the MSR (due to each case only affecting the MSR.)
             \begin{itemize}
                 \item if MSR has 1 digit and $d$ starts with 11: Create
                 $\begin{aligned}[t]
-                    \firstwarp(& \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
-                               & \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
-                               & \left\langle \text{``PostWarp"}, d, i, \inc \right\rangle \;)
+                    \firstwarp(& \left\langle {\tt FirstWarp}, d, i, \inc \right\rangle, \\
+                               & \left\langle {\tt FirstWarp}, d, i, \inc \right\rangle, \\
+                               & \left\langle {\tt PostWarp}, d, i, \inc \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
 
                 \item if MSR has 2 digits and $d$ starts with 01: Create
                 $\begin{aligned}[t]
-                    \firstwarp(& \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
-                    & \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
-                    & \left\langle \text{``PostWarp"}, d, i, \inc \right\rangle \;)
+                    \firstwarp(& \left\langle {\tt FirstWarp}, d, i, \inc \right\rangle, \\
+                    & \left\langle {\tt FirstWarp}, d, i, \inc \right\rangle, \\
+                    & \left\langle {\tt PostWarp}, d, i, \inc \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
 
                 \item if MSR has 2 digits and $d$ starts with 11: Create
                 $\begin{aligned}[t]
-                    \firstwarp(& \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
-                    & \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
-                    & \left\langle \text{``WarpBridge"}, d, i, \inc \right\rangle \;)
+                    \firstwarp(& \left\langle {\tt FirstWarp}, d, i, \inc \right\rangle, \\
+                    & \left\langle {\tt FirstWarp}, d, i, \inc \right\rangle, \\
+                    & \left\langle {\tt WarpBridge}, d, i, \inc \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
                 \item if MSR has 3 digits or $d$ starts with 00: Create
                 $\begin{aligned}[t]
-                    \firstwarp(& \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
-                               & \left\langle \text{``FirstWarp"}, d, i, \inc \right\rangle, \\
-                               & \left\langle \text{``WarpBridge"}, d, i, \inc \right\rangle \;)
+                    \firstwarp(& \left\langle {\tt FirstWarp}, d, i, \inc \right\rangle, \\
+                               & \left\langle {\tt FirstWarp}, d, i, \inc \right\rangle, \\
+                               & \left\langle {\tt WarpBridge}, d, i, \inc \right\rangle \;)
                 \end{aligned}$
 
             \end{itemize}
@@ -174,8 +174,8 @@ will only apply to the MSR (due to each case only affecting the MSR.)
             \begin{itemize}
                 \item Create
                 $\begin{aligned}[t]
-                    \warpbridge(& \left\langle \text{``WarpBridge"}, d, i, \inc \right\rangle, \\
-                                & \left\langle \text{``SecondWarp"}, d, i, \inc \right\rangle \;)
+                    \warpbridge(& \left\langle {\tt WarpBridge}, d, i, \inc \right\rangle, \\
+                                & \left\langle {\tt SecondWarp}, d, i, \inc \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
             \end{itemize}
@@ -202,17 +202,17 @@ will only apply to the MSR (due to each case only affecting the MSR.)
             \item
             Create
             $\begin{aligned}[t]
-                \secondwarp(& \left\langle \text{``SecondWarp"}, d, i, \inc \right\rangle, \\
-                            & \left\langle \text{``SecondWarp"}, d, i, \inc \right\rangle, \\
-                            & \left\langle \text{``PostWarp"},   d, i, \inc \right\rangle \;)
+                \secondwarp(& \left\langle {\tt SecondWarp}, d, i, \inc \right\rangle, \\
+                            & \left\langle {\tt SecondWarp}, d, i, \inc \right\rangle, \\
+                            & \left\langle {\tt PostWarp},   d, i, \inc \right\rangle \;)
             \end{aligned}$
 
 
             \item
             Create
             $\begin{aligned}[t]
-                \postwarp(& \left \langle \text{``PostWarp"},    d, i, \inc \right\rangle, \\
-                          & \left \langle \text{``DigitWriter"}, d, i, \inc \right\rangle \;)
+                \postwarp(& \left \langle {\tt PostWarp},    d, i, \inc \right\rangle, \\
+                          & \left \langle {\tt DigitWriter}, d, i, \inc \right\rangle \;)
             \end{aligned}$
 
             \begin{figure}[H]
@@ -295,22 +295,22 @@ will only apply to the MSR (due to each case only affecting the MSR.)
             \begin{itemize}
                 \item Create
                 $\begin{aligned}[t]
-                    \dtop(& \left \langle \text{``DigitTopDigit1"}, l, \inc \right\rangle, & \\
-                          & \left \langle \text{``ReturnD1ReadD2"},    \inc \right\rangle \;)
+                    \dtop(& \left \langle {\tt DigitTopDigit1}, l, \inc \right\rangle, & \\
+                          & \left \langle {\tt ReturnD1ReadD2}, l,  \inc \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
                 \item Create
                 $\begin{aligned}[t]
-                    \dtop(& \left \langle \text{``DigitTopDigit2"}, l, \inc \right\rangle, & \\
-                          & \left \langle \text{``ReturnD2ReadD3"},    \inc \right\rangle \;)
+                    \dtop(& \left \langle {\tt DigitTopDigit2}, l, \inc \right\rangle, & \\
+                          & \left \langle {\tt ReturnD2ReadD3}, l, \inc \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
                 \item Create
                 $\begin{aligned}[t]
-                    \dtop(& \left \langle \text{``DigitTopDigit3"}, l, \inc \right\rangle,  \\
-                          & \left \langle \text{``ReturnD3ReadD1"},    \inc \right\rangle \;)
+                    \dtop(& \left \langle {\tt DigitTopDigit3}, l, \inc \right\rangle,  \\
+                          & \left \langle {\tt ReturnD3ReadD1}, l, \inc \right\rangle \;)
                 \end{aligned}$
 
             \end{itemize}
@@ -352,8 +352,8 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
                 Create
                 $\begin{aligned}[t]
-                    \dtopdonecaseone(& \left \langle \text{``DigitTopDigit1--Case1"}, l, \inc \right\rangle, & \\
-                                     & \left \langle \text{``ReturnD1ReadNextRow"},      \inc \right\rangle \;)
+                    \dtopdonecaseone(& \left \langle {\tt DigitTopDigit1-Case1}, l, \inc \right\rangle, & \\
+                                     & \left \langle {\tt ReturnD1ReadNextRow},  l, \inc \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
@@ -363,8 +363,8 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
                 Create
                 $\begin{aligned}[t]
-                    \dtopdonecasetwo(& \left \langle \text{``DigitTopDigit1--Case2"}, l, \inc \right\rangle, & \\
-                                     & \left \langle \text{``ReturnD1ReadD2--Case2"},    \inc \right\rangle \;)
+                    \dtopdonecasetwo(& \left \langle {\tt DigitTopDigit1-Case2}, l, \inc \right\rangle, & \\
+                                     & \left \langle {\tt ReturnD1ReadD2-Case2}, l, \inc \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
@@ -374,8 +374,8 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
                 Create
                 $\begin{aligned}[t]
-                    \dtopdtwocasetwo(& \left \langle \text{``DigitTopDigit2--Case2"}, l, \inc \right\rangle, & \\
-                                     & \left \langle \text{``ReturnD2ReadNextRow"},     \inc \right\rangle \;)
+                    \dtopdtwocasetwo(& \left \langle {\tt DigitTopDigit2-Case2}, l, \inc \right\rangle, & \\
+                                     & \left \langle {\tt ReturnD2ReadNextRow},  l,   \inc \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
@@ -385,8 +385,8 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 
                 Create
                 $\begin{aligned}[t]
-                    \dtopdthreecasethree(& \left \langle \text{``DigitTopDigit3--Case3"}, l, \inc \right\rangle, & \\
-                                         & \left \langle \text{``ReturnD3ReadNextRow"},     \inc \right\rangle \;)
+                    \dtopdthreecasethree(& \left \langle {\tt DigitTopDigit3-Case3}, l, \inc \right\rangle, & \\
+                                         & \left \langle {\tt ReturnD3ReadNextRow},  l, \inc \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
@@ -436,20 +436,20 @@ will only apply to the MSR (due to each case only affecting the MSR.)
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                \returnfromdonereadnextrow(& \left \langle \text{``ReturnD1ReadNextRow", \inc}      \right\rangle, & \\
-                                           & \left \langle \text{``DigitReader"}, \epsilon, 1, \inc \right\rangle \;)
+                \returnfromdonereadnextrow(& \left \langle {\tt ReturnD1ReadNextRow}, l, \inc \right\rangle, & \\
+                                           & \left \langle {\tt DigitReader}, \lambda, 1, \inc \right\rangle \;)
             \end{aligned}$
 
             \item Create
             $\begin{aligned}[t]
-                \returnfromdtworeadnextrow(& \left \langle \text{``ReturnD2ReadNextRow", \inc}      \right\rangle, & \\
-                                           & \left \langle \text{``DigitReader"}, \epsilon, 1, \inc \right\rangle \;)
+                \returnfromdtworeadnextrow(& \left \langle {\tt ReturnD2ReadNextRow}, l, \inc  \right\rangle, & \\
+                                           & \left \langle {\tt DigitReader}, \lambda, 1, \inc \right\rangle \;)
             \end{aligned}$
 
             \item Create
             $\begin{aligned}[t]
-                \returnfromdthreereadnextrow(& \left \langle \text{``ReturnD3ReadNextRow", \inc}      \right\rangle, & \\
-                                             & \left \langle \text{``DigitReader"}, \epsilon, 1, \inc \right\rangle \;)
+                \returnfromdthreereadnextrow(& \left \langle {\tt ReturnD3ReadNextRow}, l, \inc \right\rangle, & \\
+                                             & \left \langle {\tt DigitReader}, \lambda, 1, \inc \right\rangle \;)
             \end{aligned}$
         \end{itemize}
     \vspace{1cm}
@@ -499,26 +499,26 @@ will only apply to the MSR (due to each case only affecting the MSR.)
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                \returnfromdonereaddtwo(& \left \langle \text{``ReturnD1ReadD2"}, l, \inc,       \right\rangle, \\
-                                        & \left \langle \text{``DigitReader"}, \epsilon, 2, \inc \right\rangle \;)
+                \returnfromdonereaddtwo(& \left \langle {\tt ReturnD1ReadD2}, l, \inc, \right\rangle, \\
+                                        & \left \langle {\tt DigitReader}, \lambda, 2, \inc \right\rangle \;)
             \end{aligned}$
 
             \item Create
             $\begin{aligned}[t]
-                \returnfromdonereaddtwocasetwo(& \left \langle \text{``ReturnD1ReadD2--Case2"}, l, \inc \right\rangle, \\
-                                               & \left \langle \text{``DigitReader"}, \epsilon, 2, \inc \right\rangle \;)
+                \returnfromdonereaddtwocasetwo(& \left \langle {\tt ReturnD1ReadD2-Case2}, l, \inc \right\rangle, \\
+                                               & \left \langle {\tt DigitReader}, \lambda, 2, \inc \right\rangle \;)
             \end{aligned}$
 
             \item Create
             $\begin{aligned}[t]
-                \returnfromdtworeaddthree(& \left \langle \text{``ReturnD2ReadD3"}, l, \inc        \right\rangle, \\
-                                          & \left \langle \text{``DigitReader"}, \epsilon, 3, \inc \right\rangle \;)
+                \returnfromdtworeaddthree(& \left \langle {\tt ReturnD2ReadD3}, l, \inc  \right\rangle, \\
+                                          & \left \langle {\tt DigitReader}, \lambda, 3, \inc \right\rangle \;)
             \end{aligned}$
 
             \item Create
             $\begin{aligned}[t]
-                 \returnfromdthreereaddone(& \left \langle \text{``ReturnD3ReadD1"}, l, \inc        \right \rangle, \\
-                                           & \left \langle \text{``DigitReader"}, \epsilon, 1, \inc \right \rangle \;)
+                 \returnfromdthreereaddone(& \left \langle {\tt ReturnD3ReadD1}, l, \inc \right \rangle, \\
+                                           & \left \langle {\tt DigitReader}, \lambda, 1, \inc \right \rangle \;)
             \end{aligned}$
 
         \end{itemize}
