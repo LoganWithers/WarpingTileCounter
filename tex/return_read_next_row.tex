@@ -11,45 +11,46 @@ the MSD has been read in the current row.
     \begin{subfigure}[t]{0.3\textwidth}
         \centering
         \includegraphics[width=0.3\textwidth]{return_paths/return_digit1_read_next_row}
-        \caption{\label{fig:return_paths/return_digit1_read_next_row} Case -- 1}
+        \caption{\label{fig:return_digit1_read_next_row} Case -- 1}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.3\textwidth}
         \centering
         \includegraphics[width=0.3\textwidth]{return_paths/return_digit2_read_next_row}
-        \caption{\label{fig:return_paths/return_digit2_read_next_row} Case -- 2}
+        \caption{\label{fig:return_digit2_read_next_row} Case -- 2}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.3\textwidth}
         \centering
         \includegraphics[width=0.3\textwidth]{return_paths/return_digit3_read_next_row}
-        \caption{\label{fig:return_paths/return_digit3_read_next_row} Case -- 3}
+        \caption{\label{fig:return_digit3_read_next_row} Case -- 3}
     \end{subfigure}%
-    \caption{\label{fig:return_path_next_row}
+    \caption{\label{fig:return_path_next_row} {\tt Return\_From\_Digit\_Read\_Next\_Row} gadgets.
     All of these gadgets assemble north to south. The vertical gray lines tiles have a height
     that depends on $l$ and the horizontal gray lines depend on $k$. (cases 1 and 2 are geometrically equivalent)}
 \end{figure}
 
-
-\noindent For each {\inc} $\in \{ {\tt increment, copy } \}$
+\noindent For each $\inc \in \{  {\tt increment, copy } \}$
 
 \begin{itemize}
     \item Create
     $\begin{aligned}[t]
-        \returnfromdonereadnextrow(& \left \langle {\tt ReturnD1ReadNextRow},     \inc \right\rangle, & \\
-                                    & \left \langle {\tt DigitReader}, 1, \lambda, \inc \right\rangle \;)
+        \returnfromdonereadnextrow(& \left \langle {\tt ReturnD1ReadNextRow},     \inc \right\rangle,
+                                     \left \langle {\tt DigitReader}, 1, \lambda, \inc \right\rangle \;)
     \end{aligned}$
+    \\ from the general gadget in Figure~\ref{fig:return_digit1_read_next_row}
 
     \item Create
     $\begin{aligned}[t]
-        \returnfromdtworeadnextrow(& \left \langle {\tt ReturnD2ReadNextRow},     \inc \right\rangle, & \\
-                                    & \left \langle {\tt DigitReader}, 1, \lambda, \inc \right\rangle \;)
+        \returnfromdtworeadnextrow(& \left \langle {\tt ReturnD2ReadNextRow},     \inc \right\rangle,
+                                     \left \langle {\tt DigitReader}, 1, \lambda, \inc \right\rangle \;)
     \end{aligned}$
+    \\ from the general gadget in Figure~\ref{fig:return_digit2_read_next_row}
 
     \item Create
     $\begin{aligned}[t]
-        \returnfromdthreereadnextrow(& \left \langle {\tt ReturnD3ReadNextRow},     \inc \right\rangle, & \\
-                                        & \left \langle {\tt DigitReader}, 1, \lambda, \inc \right\rangle \;)
+        \returnfromdthreereadnextrow(& \left \langle {\tt ReturnD3ReadNextRow},     \inc \right\rangle,
+                                       \left \langle {\tt DigitReader}, 1, \lambda, \inc \right\rangle \;)
     \end{aligned}$
+    \\ from the general gadget in Figure~\ref{fig:return_digit3_read_next_row}
 \end{itemize}
-\vspace{1cm}

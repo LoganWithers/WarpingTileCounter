@@ -31,7 +31,7 @@ reading.
         \includegraphics[width=0.2\textwidth]{return_paths/return_digit3_read_digit1_general}
         \caption{\label{fig:return_digit3_read_digit1_general} Return digit 3 read digit 1}
     \end{subfigure}%
-    \caption{\label{fig:return_path_same_row} All of these gadgets grow from north to south, the height of gray tiles depends on $l$.}
+    \caption{\label{fig:return_path_same_row} {\tt Return\_From\_Digit\_Read\_Digit} gadgets. These gadgets assemble north to south, starting on the south side of a digit top.}
 \end{figure}
 
 \noindent For each {\inc} $\in \{ {\tt increment, copy } \}$.
@@ -43,25 +43,25 @@ reading.
     $\begin{aligned}[t]
         \returnfromdonereaddtwo(& \left \langle {\tt ReturnD1ReadD2},          \inc \right\rangle, \\
                                 & \left \langle {\tt DigitReader}, 2, \lambda, \inc \right\rangle \;)
-    \end{aligned}$
+    \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:return_digit1_read_digit2_general}
 
     \item Create
     $\begin{aligned}[t]
         \returnfromdonereaddtwocasetwo(& \left \langle {\tt ReturnD1ReadD2-Case2},    \inc \right\rangle, \\
                                         & \left \langle {\tt DigitReader}, 2, \lambda, \inc \right\rangle \;)
-    \end{aligned}$
+    \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:return_digit1_read_digit2_case2_msr}
 
     \item Create
     $\begin{aligned}[t]
         \returnfromdtworeaddthree(& \left \langle {\tt ReturnD2ReadD3},             \inc \right\rangle, \\
                                     & \left \langle {\tt DigitReader},  3, \lambda, \inc \right\rangle \;)
-    \end{aligned}$
+    \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:return_digit2_read_digit3_general}
 
     \item Create
     $\begin{aligned}[t]
             \returnfromdthreereaddone(& \left \langle {\tt ReturnD3ReadD1},           \inc \right\rangle, \\
                                     & \left \langle {\tt DigitReader},  1, \lambda,   \inc \right\rangle \;)
-    \end{aligned}$
+    \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:return_digit3_read_digit1_general}
 
 \end{itemize}
 
