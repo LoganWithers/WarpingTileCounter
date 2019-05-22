@@ -7,41 +7,60 @@
     for each digit-region index, and both copy/increment signals)
 
 
-
     \begin{itemize}
 
-        \item Create
+        \item if $u$ ends with 00:
+        Create
         $\begin{aligned}[t]
-            \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle, \\
-                     & \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle \;)
+            \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
+                       \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle \;)
+        \end{aligned}$ %\\ % from the general gadget in Figure~\ref{fig:pre_warp_general}
+
+        \item if $u$ ends with 01:
+        Create
+        $\begin{aligned}[t]
+            \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
+                       \left\langle {\tt FirstWarp}, i, u, \inc, {\tt msr} \right\rangle \;)
+        \end{aligned}$ % \\ % from the general gadget in Figure~\ref{fig:pre_warp_case2_digit1_msr}
+
+        \item if $u$ ends with 11:
+        Create
+        $\begin{aligned}[t]
+            \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
+                       \left\langle {\tt FirstWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
         \end{aligned}$
+
+        Depending on the number of digits in the MSR, the gadget created in this step will differ.
+        If $i$ is 1 (case 1) use the general gadget in Figure~\ref{fig:pre_warp_case1_digit1_msr}.
+        If $i$ is 2 (case 2) use the general gadget in Figure~\ref{fig:pre_warp_case2_digit2_msr}.
+        If $i$ is 3 (case 3) use the general gadget in Figure~\ref{fig:pre_warp_general}.
+
+
         \vspace{.5cm}
-
-
 
         \begin{figure}[H]
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/pre_warp_general}
-                \caption{\label{fig:warping/pre_warp_general} General }
+                \caption{\label{fig:pre_warp_general} General }
             \end{subfigure}%
             ~
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/pre_warp_case1_digit1_msr}
-                \caption{\label{fig:warping/pre_warp_case1_digit1_msr} Digit 1 -- Case 1}
+                \caption{\label{fig:pre_warp_case1_digit1_msr} Digit 1 -- Case 1}
             \end{subfigure}%
             ~
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/pre_warp_case2_digit1_msr}
-                \caption{\label{fig:warping/pre_warp_case2_digit1_msr} Digit 1 -- Case 2}
+                \caption{\label{fig:pre_warp_case2_digit1_msr} Digit 1 -- Case 2}
             \end{subfigure}%
             ~
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/pre_warp_case2_digit2_msr}
-                \caption{\label{fig:warping/pre_warp_case2_digit2_msr} Digit 2 -- Case 2}
+                \caption{\label{fig:pre_warp_case2_digit2_msr} Digit 2 -- Case 2}
             \end{subfigure}%
             ~
             \caption{\label{fig:pre_warp_gadgets} {\prewarp} gadgets }
@@ -52,41 +71,41 @@
               in the MSR and it is digit 1 in case 1 or 2, in which the {\firstwarp} gadget attaches directly
               to a {\postwarp}.
 
-        \begin{itemize}
-            \item if MSR has 1 digit and $u$ ends with 11: Create
-            $\begin{aligned}[t]
-                \firstwarp(& \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle, \\
-                           & \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle, \\
-                           & \left\langle {\tt PostWarp},  i, u, \inc \right\rangle \;)
-            \end{aligned}$
-            \vspace{.5cm}
+              \begin{itemize}
+                \item if MSR has 1 digit and $u$ ends with 11: Create
+                $\begin{aligned}[t]
+                    \firstwarp(& \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle, \\
+                               & \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle, \\
+                               & \left\langle {\tt PostWarp},  i, u, \inc \right\rangle \;)
+                \end{aligned}$
+                \vspace{.5cm}
 
 
-            \item if MSR has 2 digits and $u$ ends with 01: Create
-            $\begin{aligned}[t]
-                \firstwarp(& \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle, \\
-                & \left\langle {\tt FirstWarp},            i, u, \inc \right\rangle, \\
-                & \left\langle {\tt PostWarp},             i, u, \inc \right\rangle \;)
-            \end{aligned}$
-            \vspace{.5cm}
+                \item if MSR has 2 digits and $u$ ends with 01: Create
+                $\begin{aligned}[t]
+                    \firstwarp(& \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle, \\
+                    & \left\langle {\tt FirstWarp},            i, u, \inc \right\rangle, \\
+                    & \left\langle {\tt PostWarp},             i, u, \inc \right\rangle \;)
+                \end{aligned}$
+                \vspace{.5cm}
 
 
-            \item if MSR has 2 digits and $u$ ends with 11: Create
-            $\begin{aligned}[t]
-                \firstwarp(& \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle, \\
-                & \left\langle {\tt FirstWarp},            i, u, \inc \right\rangle, \\
-                & \left\langle {\tt WarpBridge},           i, u, \inc \right\rangle \;)
-            \end{aligned}$
-            \vspace{.5cm}
+                \item if MSR has 2 digits and $u$ ends with 11: Create
+                $\begin{aligned}[t]
+                    \firstwarp(& \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle, \\
+                    & \left\langle {\tt FirstWarp},            i, u, \inc \right\rangle, \\
+                    & \left\langle {\tt WarpBridge},           i, u, \inc \right\rangle \;)
+                \end{aligned}$
+                \vspace{.5cm}
 
-            \item if MSR has 3 digits or $d$ starts with 00: Create
-            $\begin{aligned}[t]
-                \firstwarp(& \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle, \\
-                           & \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle, \\
-                           & \left\langle {\tt WarpBridge}, i, u, \inc \right\rangle \;)
-            \end{aligned}$
+                \item if MSR has 3 digits or $d$ starts with 00: Create
+                $\begin{aligned}[t]
+                    \firstwarp(& \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle, \\
+                               & \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle, \\
+                               & \left\langle {\tt WarpBridge}, i, u, \inc \right\rangle \;)
+                \end{aligned}$
 
-        \end{itemize}
+            \end{itemize}
         \vspace{.5cm}
 
         \item A {\warpbridge} gadget binds the last tile of the {\firstwarp} gadgets to the
@@ -107,15 +126,15 @@
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/warp_bridge_general}
-                \caption{\label{fig:warping/warp_bridge_general} General}
+                \caption{\label{fig:warp_bridge_general} General}
             \end{subfigure}%
             ~
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/warp_bridge_case2_digit2_msr}
-                \caption{\label{fig:warping/warp_bridge_case2_digit2_msr} Digit 2 -- Case 2}
+                \caption{\label{fig:warp_bridge_case2_digit2_msr} Digit 2 -- Case 2}
             \end{subfigure}%
-            ~
+            ~\caption{\label{fig:warp_bridge} {\tt Warp\_Bridge} gadgets}
         \end{figure}
 
 
@@ -141,32 +160,32 @@
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/post_warp_general_digit1}
-                \caption{\label{fig:warping/post_warp_general_digit1} General Digit 1}
+                \caption{\label{fig:post_warp_general_digit1} General Digit 1}
             \end{subfigure}%
             ~
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/post_warp_general_digit2and3}
-                \caption{\label{fig:warping/post_warp_general_digit2and3} General Digits 2 and 3 }
+                \caption{\label{fig:post_warp_general_digit2and3} General Digits 2 and 3 }
             \end{subfigure}%
             ~
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/post_warp_case1_digit1_msr}
-                \caption{\label{fig:warping/post_warp_case1_digit1_msr} Digit 1 -- Case 1}
+                \caption{\label{fig:post_warp_case1_digit1_msr} Digit 1 -- Case 1}
             \end{subfigure}%
             ~
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/post_warp_case2_digit1_msr}
-                \caption{\label{fig:warping/post_warp_case2_digit1_msr} Digit 1 -- Case 2}
+                \caption{\label{fig:post_warp_case2_digit1_msr} Digit 1 -- Case 2}
             \end{subfigure}%
             ~
 
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/post_warp_case2_digit2_msr}
-                \caption{\label{fig:warping/post_warp_case2_digit2_msr} Digit 2 -- Case 2}
+                \caption{\label{fig:post_warp_case2_digit2_msr} Digit 2 -- Case 2}
             \end{subfigure}%
             ~
             \caption{\label{fig:post_warp_gadgets} {\postwarp} gadgets }

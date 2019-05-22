@@ -1,0 +1,54 @@
+\subsubsection{ Digit readers }
+
+\begin{itemize}
+
+\item For each $i = 1,2,3$ and each $\inc \in \{{\tt increment}, {\tt copy} \}$
+
+    \begin{itemize}
+        \item if $j = 0$:
+        Create
+        $\begin{aligned}[t]
+            \dreader(& \left\langle {\tt DigitReader}, i, \lambda, \inc \right\rangle, \\
+                     & \left\langle {\tt DigitReader}, i, 0, \inc \right\rangle, \\
+                     & \left\langle {\tt DigitReader}, i, 1, \inc \right\rangle \;)
+        \end{aligned}$\\
+        from the general gadget in Figure~\ref{fig:counter_read}
+
+        \item if $1 \leqslant j \leqslant l -2$:
+        Create
+        $\begin{aligned}[t]
+        \dreader(& \left\langle {\tt DigitReader}, i, u, \inc \right\rangle, \\
+                 & \left\langle {\tt DigitReader}, i, 0u, \inc \right\rangle, \\
+                 & \left\langle {\tt DigitReader}, i, 1u, \inc \right\rangle \;)
+        \end{aligned}$\\
+        from the general gadget in Figure~\ref{fig:counter_read}
+
+        \item if $j = l - 1$:
+        Create
+        $\begin{aligned}[t]
+            \dreader(& \left\langle {\tt DigitReader}, i, u, \inc \right\rangle, \\
+                     & \left\langle {\tt PreWarp}, i, 0u, \inc \right\rangle, \\
+                     & \left\langle {\tt PreWarp}, i, 1u, \inc \right\rangle \;)
+        \end{aligned}$\\
+        from the general gadget in Figure~\ref{fig:counter_read}
+
+    \end{itemize}
+
+
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.2\textwidth}
+        \centering
+        \includegraphics[width=0.2\textwidth]{read/read_0}
+        \caption{\label{fig:read_0} {\tt Counter\_Read\_0}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.2\textwidth}
+        \centering
+        \includegraphics[width=0.2\textwidth]{read/read_1}
+        \caption{\label{fig:read_1} {\tt Counter\_Read\_1}}
+    \end{subfigure}%
+    \caption{\label{fig:counter_read} {\tt {Counter\_Read}}}
+\end{figure}
