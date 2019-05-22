@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1558536525 "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.tex" "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.pdf" "main" 1558536526
-  "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.aux" 1558536526 14933 8b17827dfd3a63e0807ffae484772fe5 ""
+["pdflatex"] 1558538715 "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.tex" "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.pdf" "main" 1558538717
+  "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.aux" 1558538716 14933 8b17827dfd3a63e0807ffae484772fe5 ""
   "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.tex" 1558144996 719 b018be37ed56d5b9e093bda8c5aa5237 ""
   "c:/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1543891946 3332 103109f5612ad95229751940c61aada0 ""
   "c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1543890795 1004 54797486969f23fa377b128694d548df ""
@@ -119,7 +119,7 @@
   "counter_read_start_general_case3_middle_level.eps" 1555998425 24721 196fff10bb5ded302294de21719576b2 ""
   "definitions.tex" 1558144594 3665 a37262f70c3142dbae26c9f57f1e312d ""
   "digit_readers.tex" 1558535164 1996 c1151b195983910b42a3a527ec694071 ""
-  "digit_tops.tex" 1558501207 4274 36a2b36ddabe4542fd6bd08d8ad21358 ""
+  "digit_tops.tex" 1558538715 4265 2d50cc107a461db90f518e9a732f45c5 ""
   "digit_tops/digit_top_case1_digit1_msr.eps" 1558144982 19016 f7d091e36faa2fb73effaff1e55e3a94 ""
   "digit_tops/digit_top_case2_digit1_msr.eps" 1557191871 25344 870b848d48e4f1dfe5bf253e5034e49c ""
   "digit_tops/digit_top_case2_digit2_msr.eps" 1557192709 29196 f72a0f9b4cc31a735ddfcd6ff5d93f2e ""
@@ -131,8 +131,8 @@
   "full_overview_case2_colored.eps" 1558323595 1237386 5e4fcceef9395bd5c8f5468539e2a8b9 ""
   "full_overview_case3_colored.eps" 1558322588 687858 7583b43803d0205a36ea6fda91b28324 ""
   "gadgets.tex" 1558536083 3629 e77534da10c9cbfc8ab7ef498a95a318 ""
-  "main.aux" 1558536526 14933 8b17827dfd3a63e0807ffae484772fe5 ""
-  "main.out" 1558536526 1250 6e1070cbcf1cc8fdee8cca99e22631b5 ""
+  "main.aux" 1558538716 14933 8b17827dfd3a63e0807ffae484772fe5 ""
+  "main.out" 1558538716 1250 6e1070cbcf1cc8fdee8cca99e22631b5 ""
   "main.tex" 1558144996 719 b018be37ed56d5b9e093bda8c5aa5237 ""
   "read/read_0.eps" 1557715275 3674 192aa20ef93f8b255746517ade35683c ""
   "read/read_1.eps" 1557715250 3479 668d374bd3b951e010e1e54eeb9d9f65 ""
@@ -164,8 +164,8 @@
   "write/write_1.eps" 1557714932 3927 14580e0812cf81196c18f9eea2490fd0 ""
   (generated)
   "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.pdf"
-  "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.log"
+  "main.log"
   "main.aux"
   "main.pdf"
-  "main.log"
   "main.out"
+  "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.log"
