@@ -8,7 +8,12 @@
 
 
     \begin{itemize}
-        \item {\prewarp}
+        \item {\prewarp}: These gadgets take the bits read from the {\dreader} gadgets and convert it into
+                          a signal used until the {\dtop} gadgets are attached after writing the current digit. This signal is
+                          used to tell the counter whether to begin reading another digit in the current row,
+                          or cut across the rectangle and begin reading the first digit in the next row.
+
+
             \begin{itemize}
 
             \item if $u$ ends with 00:
