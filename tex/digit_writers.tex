@@ -10,33 +10,81 @@
                    $\inc \in \{{\tt increment}, {\tt copy} \}$:
         \begin{itemize}
         \item Create
-            $\begin{aligned}[t]
-                \dwriter(& \left\langle {\tt DigitWriter}, i, u0, \inc \right\rangle, \\
-                        & \left\langle {\tt DigitWriter},  i, u,  \inc \right\rangle \;)
-            \end{aligned}$
+        $\begin{aligned}[t]
+            \dwriter(& \left\langle {\tt DigitWriter}, i, u0, \inc \right\rangle,
+                       \left\langle {\tt DigitWriter},  i, u, \inc \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_0}
 
         \item Create
         $\begin{aligned}[t]
-            \dwriter(& \left\langle {\tt DigitWriter},    i,  u1, \inc \right\rangle, \\
-                        & \left\langle {\tt DigitWriter}, i,  u,  \inc \right\rangle \;)
-        \end{aligned}$
+            \dwriter(& \left\langle {\tt DigitWriter},    i,  u1, \inc \right\rangle,
+                       \left\langle {\tt DigitWriter}, i,  u,  \inc \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_1}
 
+
+        \item Create
+        $\begin{aligned}[t]
+            \dwriter(& \left\langle {\tt DigitWriter}, i, u0, \inc, {\tt msr} \right\rangle,
+                       \left\langle {\tt DigitWriter},  i, u, \inc, {\tt msr} \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_0}
+
+        \item Create
+        $\begin{aligned}[t]
+            \dwriter(& \left\langle {\tt DigitWriter},    i,  u1, \inc, {\tt msr} \right\rangle,
+                       \left\langle {\tt DigitWriter}, i,  u,  \inc, {\tt msr} \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_1}
+
+        \item Create
+        $\begin{aligned}[t]
+            \dwriter(& \left\langle {\tt DigitWriter}, i, u0, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                       \left\langle {\tt DigitWriter},  i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_0}
+
+        \item Create
+        $\begin{aligned}[t]
+            \dwriter(& \left\langle {\tt DigitWriter}, i,  u1, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                       \left\langle {\tt DigitWriter}, i,  u,  \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_1}
         \end{itemize}
 
     \item For each $i = 1,2,3$ and each $\inc \in \{{\tt increment}, {\tt copy} \}$:
     \begin{itemize}
         \item Create
-            $\begin{aligned}[t]
-                \dwriter(& \left\langle {\tt DigitWriter}, i, 0, \inc \right\rangle, \\
-                         & \left\langle {\tt DigitTop}, i, \inc \right\rangle \;)
-            \end{aligned}$
+        $\begin{aligned}[t]
+            \dwriter(& \left\langle {\tt DigitWriter}, i, 0, \inc \right\rangle,
+                       \left\langle {\tt DigitTop},    i,    \inc \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_0}
 
         \item Create
         $\begin{aligned}[t]
-            \dwriter(& \left\langle {\tt DigitWriter}, i, 1, \inc\right\rangle, \\
-                     & \left\langle {\tt DigitTop},    i,    \inc\right\rangle \;)
-        \end{aligned}$
-        \end{itemize}
+            \dwriter(& \left\langle {\tt DigitWriter}, i, 1, \inc\right\rangle,
+                       \left\langle {\tt DigitTop},    i,    \inc\right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_1}
+
+        \item Create
+        $\begin{aligned}[t]
+            \dwriter(& \left\langle {\tt DigitWriter}, i, 0, \inc, {\tt msr} \right\rangle,
+                       \left\langle {\tt DigitTop},    i,    \inc, {\tt msr} \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_0}
+
+        \item Create
+        $\begin{aligned}[t]
+            \dwriter(& \left\langle {\tt DigitWriter}, i, 1, \inc, {\tt msr} \right\rangle,
+                       \left\langle {\tt DigitTop},    i,    \inc, {\tt msr} \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_1}
+
+        \item Create
+        $\begin{aligned}[t]
+            \dwriter(& \left\langle {\tt DigitWriter}, i, 0, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                       \left\langle {\tt DigitTop},    i,    \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_0}
+
+        \item Create
+        $\begin{aligned}[t]
+            \dwriter(& \left\langle {\tt DigitWriter}, i, 1, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                       \left\langle {\tt DigitTop},    i,    \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+        \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:write_1}
+    \end{itemize}
 
 
 \end{itemize}
@@ -48,12 +96,13 @@
     \begin{subfigure}[t]{0.2\textwidth}
         \centering
         \includegraphics[width=0.2\textwidth]{write/write_0}
-        \caption{\label{fig:write/write_1} Counter\_Write\_0}
+        \caption{\label{fig:write_0} Digit\_Write\_0}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.2\textwidth}
         \centering
         \includegraphics[width=0.2\textwidth]{write/write_1}
-        \caption{\label{fig:write/write_1} Counter\_Write\_1}
+        \caption{\label{fig:write_1} Digit\_Write\_1}
     \end{subfigure}%
+    \caption{\label{fig:digit_write} {\tt Digit\_Write} gadgets}
 \end{figure}
