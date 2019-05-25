@@ -1,17 +1,15 @@
-% For each digit length L
+
 \subsubsection{ Warping }
 
-% For each index in 1, 2, 3, and carry in 0,1
     For each $i = 1, 2, 3$, $u \in \{0, 1\}^l$, and each $\inc \in \{ {\tt increment, copy } \}$
-    % (note: since this might not be the correct notation, in words: do this for each binary encoded digit of length $l$,
-    % for each digit-region index, and both copy/increment signals)
 
 
     \begin{itemize}
         \item {\prewarp}: These gadgets take the bits read from the {\dreader} gadgets and convert it into
-                          a signal used until the {\dtop} gadgets are attached after writing the current digit. This signal is
-                          used to tell the counter whether to begin reading another digit in the current row,
-                          or cut across the rectangle and begin reading the first digit in the next row.
+                          a signal used until the {\dtop} gadgets are attached after writing the current digit.
+                          The signal started by this gadget is used to tell the counter whether to begin reading
+                          another digit in the current row, or cut across the rectangle and begin reading the
+                          first digit in the next row.
 
 
             \begin{itemize}
@@ -35,16 +33,13 @@
             $\begin{aligned}[t]
                 \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
                            \left\langle {\tt FirstWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-            \end{aligned}$
-
-            Depending on the number of digits in the MSR, the gadget created in this step will differ.
-            If $i$ is 1 (case 1) use the general gadget in Figure~\ref{fig:pre_warp_case1_digit1_msr}.
-            If $i$ is 2 (case 2) use the general gadget in Figure~\ref{fig:pre_warp_case2_digit2_msr}.
-            If $i$ is 3 (case 3) use the general gadget in Figure~\ref{fig:pre_warp_general}.
+            \end{aligned}$ from the general gadget in Figure~\ref{fig:pre_warp_case1_digit1_msr} if $i = 1$ (case 1), or Figure~\ref{fig:pre_warp_case2_digit2_msr}.
+            $i = 2$ (case 2), or Figure~\ref{fig:pre_warp_general} if $i = 3$ (case 3).
         \end{itemize}
         \vspace{.5cm}
 
         \begin{figure}[H]
+            \centering
             \begin{subfigure}[t]{0.2\textwidth}
                 \centering
                 \includegraphics[width=0.2\textwidth]{warping/pre_warp_general}
