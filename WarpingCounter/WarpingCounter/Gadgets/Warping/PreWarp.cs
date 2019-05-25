@@ -25,7 +25,7 @@
             this.digitsInMSR = digitsInMSR;
             this.bits        = bits;
 
-            Tiles = InitializeTiles();
+            Tiles = Create();
 
             if (Tiles.None())
             {
@@ -48,7 +48,7 @@
         public Tile Output { get; }
 
 
-        private List<Tile> InitializeTiles()
+        private List<Tile> Create()
         {
             switch (digitsInMSR)
             {

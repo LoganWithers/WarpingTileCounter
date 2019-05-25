@@ -38,7 +38,7 @@
             this.regionIndex            = regionIndex;
             (digit3, digit2, digit1)    = encodings;
             this.leastSignificantRegion = leastSignificantRegion;
-            Tiles                       = InitializeTiles();
+            Tiles                       = Create();
         }
 
 
@@ -60,7 +60,7 @@
         }
 
 
-        private List<Tile> InitializeTiles()
+        private List<Tile> Create()
         {
             var firstTile = GetFirstTile();
             var build     = new GadgetBuilder().StartWith(firstTile);
@@ -121,7 +121,7 @@
 
             build.South(4);
 
-            var digit3 = new InitialDigitWriter(this.digit3, WriteDirection.NorthToSouth);
+            var digit3 = new CreateialDigitWriter(this.digit3, WriteDirection.NorthToSouth);
 
             List<Tile> tiles = build.Tiles()
                                     .ToList();
@@ -208,7 +208,7 @@
             secondTiles.PrependNamesWith($"Region: {regionIndex} D3 to D2");
             tiles.AddRange(secondTiles);
 
-            var digit2 = new InitialDigitWriter(this.digit2, WriteDirection.NorthToSouth);
+            var digit2 = new CreateialDigitWriter(this.digit2, WriteDirection.NorthToSouth);
             digit2.Input.AttachNorth(tiles.Last());
 
             tiles.AddRange(digit2.Tiles);
@@ -220,7 +220,7 @@
 
             tiles.AddRange(digit2ToDigit1);
 
-            var digit1 = new InitialDigitWriter(this.digit1, WriteDirection.NorthToSouth);
+            var digit1 = new CreateialDigitWriter(this.digit1, WriteDirection.NorthToSouth);
             digit1.Input.AttachNorth(tiles.Last());
             tiles.AddRange(digit1.Tiles);
 

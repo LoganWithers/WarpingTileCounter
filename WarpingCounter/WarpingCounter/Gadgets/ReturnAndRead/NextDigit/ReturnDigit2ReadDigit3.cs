@@ -22,7 +22,7 @@
         {
             this.bitsPerDigit = bitsPerDigit;
 
-            Tiles = InitTiles();
+            Tiles = CreateTiles();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit2ReadDigit3)} {carry}");
 
             Input       = Tiles.First();
@@ -39,7 +39,7 @@
         public Tile Output { get; }
 
 
-        private List<Tile> InitTiles()
+        private List<Tile> CreateTiles()
         {
             var build = new GadgetBuilder().Start();
 

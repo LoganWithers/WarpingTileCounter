@@ -19,7 +19,7 @@
     /// Used only in the construction of the seed.
     /// </remarks>
     /// </summary>
-    public class InitialDigitWriter : IHaveInput, IHaveOutput
+    public class CreateialDigitWriter : IHaveInput, IHaveOutput
     {
 
         private readonly string bits;
@@ -30,12 +30,12 @@
         public readonly List<Tile> Tiles;
 
 
-        public InitialDigitWriter(string bits, WriteDirection direction = WriteDirection.SouthToNorth)
+        public CreateialDigitWriter(string bits, WriteDirection direction = WriteDirection.SouthToNorth)
         {
             this.bits      = bits;
             this.direction = direction;
 
-            Tiles = InitTiles();
+            Tiles = CreateTiles();
 
             Input = Tiles.First();
             Output  = Tiles.Last();
@@ -48,7 +48,7 @@
         public Tile Output { get; }
 
 
-        private List<Tile> InitTiles()
+        private List<Tile> CreateTiles()
         {
             var b = new GadgetBuilder().Start();
 
@@ -125,7 +125,7 @@
             List<Tile> tiles = b.Tiles()
                                 .ToList();
 
-            tiles.PrependNamesWith($"Initial Digit: {bits}");
+            tiles.PrependNamesWith($"Createial Digit: {bits}");
 
             return tiles.Skip(1)
                         .ToList();

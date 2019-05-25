@@ -32,7 +32,7 @@
         public DigitTopDigit3Case3(bool carry, int bitsPerDigit)
         {
             L = bitsPerDigit;
-            Tiles             = InitializeTiles();
+            Tiles             = Create();
             Tiles.PrependNamesWith($"{nameof(DigitTopDigit3Case3)} {carry}");
 
             Input       = Tiles.First();
@@ -49,7 +49,7 @@
         public Tile Output { get; }
 
 
-        private List<Tile> InitializeTiles()
+        private List<Tile> Create()
         {
             var build = new GadgetBuilder().Start();
 

@@ -32,7 +32,7 @@
             this.carry       = carry;
             this.digitsInMSR = digitsInMSR;
 
-            Tiles = InitializeTiles();
+            Tiles = Create();
             Tiles.PrependNamesWith($"{nameof(PostWarp)} {bits} {index} {carry}");
             Input = Tiles.First();
             Output  = Tiles.Last();
@@ -52,7 +52,7 @@
         public Tile Output { get; }
 
 
-        private List<Tile> InitializeTiles()
+        private List<Tile> Create()
         {
             switch (digitsInMSR)
             {

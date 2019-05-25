@@ -25,7 +25,7 @@
             Tiles        = new List<Tile>();
             this.construction = construction;
 
-            CreateTilesForInitialValue();
+            CreateTilesForCreateialValue();
         }
 
 
@@ -38,7 +38,7 @@
         /// 
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">DigitsInMSR</exception>
-        private void CreateTilesForInitialValue()
+        private void CreateTilesForCreateialValue()
         {
             List<IEnumerable<string>> regions = construction.SplitIntoDigitRegions()
                                                             .ToList();

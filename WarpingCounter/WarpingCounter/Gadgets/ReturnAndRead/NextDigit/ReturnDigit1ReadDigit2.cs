@@ -31,7 +31,7 @@
         {
             this.bitsPerDigit = bitsPerDigit;
 
-            Tiles = InitializeTiles();
+            Tiles = Create();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit1ReadDigit2)} {carry}");
 
             Input       = Tiles.First();
@@ -48,7 +48,7 @@
         public Tile Output { get; }
 
 
-        private List<Tile> InitializeTiles()
+        private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
 

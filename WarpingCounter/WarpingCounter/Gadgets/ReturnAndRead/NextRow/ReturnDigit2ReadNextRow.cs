@@ -31,7 +31,7 @@
             this.bitsPerDigit = bitsPerDigit;
             rectangleWidth    = (numberOfRegions - 1) * 6;
 
-            Tiles = InitializeTiles();
+            Tiles = Create();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit2ReadNextRow)} {carry}");
 
             Input       = Tiles.First();
@@ -48,7 +48,7 @@
         public Tile Output { get; }
 
 
-        private List<Tile> InitializeTiles()
+        private List<Tile> Create()
         {
             var build = new GadgetBuilder().Start();
 

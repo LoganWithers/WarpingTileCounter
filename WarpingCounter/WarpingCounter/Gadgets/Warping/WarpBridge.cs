@@ -30,7 +30,7 @@
             this.carry       = carry;
             this.digitsInMSR = digitsInMSR;
 
-            Tiles = Init();
+            Tiles = Create();
 
             if (Tiles.None())
             {
@@ -52,7 +52,7 @@
         public Tile Output { get; }
 
 
-        private List<Tile> Init()
+        private List<Tile> Create()
         {
             switch (digitsInMSR)
             {

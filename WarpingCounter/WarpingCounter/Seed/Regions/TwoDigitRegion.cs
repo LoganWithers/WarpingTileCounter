@@ -26,7 +26,7 @@
             this.bitsPerDigit = bitsPerDigit;
             (digit2, digit1)  = digits;
 
-            Tiles     = Init();
+            Tiles     = Create();
             Output      = Tiles.Last();
             Output.East = new Glue("Region 0");
         }
@@ -35,7 +35,7 @@
         public Tile Output { get; }
 
 
-        private List<Tile> Init()
+        private List<Tile> Create()
         {
             var seed = new Tile("seed");
 
@@ -63,7 +63,7 @@
             builder.South(30);
             tiles.AddRange(builder.Tiles());
 
-            var digit2 = new InitialDigitWriter(this.digit2, WriteDirection.NorthToSouth);
+            var digit2 = new CreateialDigitWriter(this.digit2, WriteDirection.NorthToSouth);
 
             tiles.Last()
                  .AttachSouth(digit2.Input);
@@ -96,7 +96,7 @@
             builder.South(4);
             tiles.AddRange(builder.Tiles());
 
-            var digit1 = new InitialDigitWriter(this.digit1, WriteDirection.NorthToSouth);
+            var digit1 = new CreateialDigitWriter(this.digit1, WriteDirection.NorthToSouth);
 
             tiles.Last()
                  .AttachSouth(digit1.Input);

@@ -23,7 +23,7 @@
         public BinaryWriter(string originalBits, bool carry, int index, int digitsInMSR)
         {
             this.originalBits = originalBits;
-            Tiles             = InitTiles();
+            Tiles             = CreateTiles();
             Tiles.PrependNamesWith($"Write {originalBits} {carry} {index}");
             Input       = Tiles.First();
             Input.South = GlueFactory.DigitWriter(originalBits, carry, index);
@@ -56,7 +56,7 @@
         }
 
 
-        private List<Tile> InitTiles()
+        private List<Tile> CreateTiles()
         {
             var encoder = new BinaryToTileEncoder();
 

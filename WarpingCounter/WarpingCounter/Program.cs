@@ -25,8 +25,7 @@
             var m = Math.Ceiling(Math.Pow(N / 93, 1 / d));
             var l = Math.Ceiling(Math.Log(m, 2)) + 2;
             var md = Math.Pow(m, d);
-            var s = md - Math.Floor((N - 3*l - 76) / 
-                                                (3*l + 90));
+            var s = md - Math.Floor((N - 3*l - 76) / (3*l + 90));
             
             return ((int) m, Convert.ToString((int) s, CultureInfo.InvariantCulture));
         }

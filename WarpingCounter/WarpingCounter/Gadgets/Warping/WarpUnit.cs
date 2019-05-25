@@ -37,7 +37,7 @@
             this.carry             = carry;
             this.digitsInMSR       = digitsInMSR;
 
-            Tiles = InitializeTiles();
+            Tiles = Create();
             Input = Tiles.First();
         }
 
@@ -45,7 +45,7 @@
         public Tile Input { get; }
 
 
-        private List<Tile> InitializeTiles()
+        private List<Tile> Create()
         {
             var preFirstWarp = new PreWarp(digitValueToWrite,      digitIndex, carry, digitsInMSR);
             var firstWarp    = new FirstWarp(digitValueToWrite,    digitIndex, carry, digitsInMSR);

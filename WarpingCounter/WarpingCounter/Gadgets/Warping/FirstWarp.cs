@@ -30,11 +30,11 @@
             this.digitsInMSR = digitsInMSR;
             name             = $"{nameof(FirstWarp)} {bits} {index} {carry}";
 
-            Tile = Init();
+            Tile = Create();
         }
 
 
-        private Tile Init()
+        private Tile Create()
         {
             switch (digitsInMSR)
             {

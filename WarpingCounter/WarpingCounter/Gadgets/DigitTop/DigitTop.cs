@@ -38,7 +38,7 @@
             this.bitsPerDigit = bitsPerDigit;
             this.index = index;
 
-            Tiles = InitializeTiles();
+            Tiles = Create();
             Tiles.PrependNamesWith($"DigitTop {this.carry} {this.index}");
 
             Input = Tiles.First();
@@ -68,7 +68,7 @@
         }
 
 
-        private List<Tile> InitializeTiles()
+        private List<Tile> Create()
         {
             var build = new GadgetBuilder().Start();
 

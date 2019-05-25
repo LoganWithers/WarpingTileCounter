@@ -33,7 +33,7 @@
         public DigitTopDigit1Case2(bool carry, int bitsPerDigit)
         {
             this.bitsPerDigit = bitsPerDigit;
-            Tiles             = InitializeTiles();
+            Tiles             = Create();
             Tiles.PrependNamesWith($"{nameof(DigitTopDigit1Case2)} {carry}");
 
             Input       = Tiles.First();
@@ -50,7 +50,7 @@
         public Tile Output { get; }
 
 
-        private List<Tile> InitializeTiles()
+        private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
 
