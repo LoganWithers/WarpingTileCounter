@@ -12,8 +12,8 @@
 \newcommand{\postwarp}{{\tt Post\_Warp}}
 
 \newcommand{\dtop}{{\tt Digit\_Top}}
-\newcommand{\dwriter}{{\tt Digit\_Writer}}
-\newcommand{\dreader}{{\tt Digit\_Reader}}
+\newcommand{\dwriter}{{\tt Bit\_Writer}}
+\newcommand{\dreader}{{\tt Bit\_Reader}}
 
 \newcommand{\returnfromdonereadnextrow}{{\tt Return\_From\_Digit1\_Read\_Next\_Row}}
 \newcommand{\returnfromdtworeadnextrow}{{\tt Return\_From\_Digit2\_Read\_Next\_Row}}
@@ -60,183 +60,60 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 We will use the notation {\tt LineN\_North} and {\tt LineN\_South} where {\tt N} corresponds to the length of a specific line gadget.
 
 
-\subsection{Initial Value (updated to assemble right to left like the other gadgets)}
-    We begin by encoding $\mathcal{C}_0$ with the Seed unit. It has $\ceil*{\frac{d}{3}}$ digit regions.
-    Each digit region has three digits, except for the most significant digit region (MSR) which has $d \mod 3$
-    if $d \mod 3 \not= 0$, otherwise it has 3 digits.
 
-
-    \begin{figure}[H]
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.25\textwidth}
         \centering
-        \begin{subfigure}[t]{0.3\textwidth}
-            \centering
-            \includegraphics[width=0.3\textwidth]{seed/seed_overview_case3}
-            \caption{\label{fig:initial_value_case3} Initial value case 3}
-        \end{subfigure}%
-        ~
-        \begin{subfigure}[t]{0.3\textwidth}
-            \centering
-            \includegraphics[width=0.3\textwidth]{seed/seed_overview_case2}
-            \caption{\label{fig:initial_value_case2} Initial value case 2}
-        \end{subfigure}%
-        ~
-        \begin{subfigure}[t]{0.3\textwidth}
-            \centering
-            \includegraphics[width=0.3\textwidth]{seed/seed_overview_case1}
-            \caption{\label{fig:initial_value_case1} Initial value case 1}
-        \end{subfigure}%
-        ~
-    \end{figure}
+        \includegraphics[width=0.15\textwidth]{return_paths/return_path_start_digits_2_and_3}
+        \caption{\label{fig:return_start_a} {\tt Return\_Start\_A}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.14\textwidth]{seed/seed_return_digit_2}
+        \caption{\label{fig:seed_return_digit_2} {\tt Seed\_Return\_Digit\_2}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.15\textwidth]{seed/seed_return_digit_3}
+        \caption{\label{fig:seed_return_digit_3} {\tt Seed\_Return\_Digit\_3}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.15\textwidth]{seed/seed_internal_bridge}
+        \caption{\label{fig:seed_internal_bridge} {\tt Seed\_Internal\_Bridge}}
+    \end{subfigure}%
+    ~
 
-    For each $i=0,\ldots,d$
+    \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.15\textwidth]{seed/seed_return_digit_3_bump}
+        \caption{\label{fig:return_digit_3_bump} {\tt Return\_Digit\_3\_Bump}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.15\textwidth]{seed/seed_external_bridge}
+        \caption{\label{fig:seed_external_bridge} {\tt Seed\_External\_Bridge}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.15\textwidth]{seed/seed_return_row_case3}
+        \caption{\label{fig:seed_return_row_case3} {\tt Return\_Row\_Case3}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.25\textwidth}
+        \centering
+        \includegraphics[width=0.15\textwidth]{seed/seed_return_row_case1_and_case2}
+        \caption{\label{fig:seed_return_row_case1_and_case2} {\tt Return\_Row\_Case1\_And\_Case2}}
+    \end{subfigure}%
+\end{figure}
 
-    \begin{itemize}
-        \item Create
-        $\begin{aligned}[t]
-            {\tt Seed\_Start}(&\left\langle {\tt DigitWriter}, {\tt Seed}, i, \inc \right\rangle \; )
-        \end{aligned}$
-
-        \item {\tt Digit}: For each $j=0,\ldots,l$ and each $b$ in $bin(C_0[i])[j]$:
-        \begin{itemize}
-            \item if $j = 0$: create
-            $\begin{aligned}[t]
-                \dwriter(&\left\langle {\tt Digit\_1} \right\rangle, \left\langle {\tt Seed\_Bit}, i, j + 1 \right\rangle \;)
-            \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
-
-            \item if $0 \leqslant j \leqslant l$: create
-            $\begin{aligned}[t]
-                \dwriter(&\left\langle {\tt Seed\_Bit}, i, j \right\rangle, \left\langle {\tt Seed\_Bit}, i, j + 1 \right\rangle \;)
-            \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
-
-            \item if $j = l$:
-            $\begin{aligned}[t]
-                \dwriter(&\left\langle {\tt Seed\_Bit}, i, j \right\rangle, \left\langle {\tt Seed\_DigitTop\_1}, i \right\rangle \;)
-            \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
-
-        \end{itemize}
-
-        \item {\dtop}: The following statements create the gadget shown in Figure~\ref{fig:digit_top_general}
-        \begin{itemize}
-            \item Create
-            $\begin{aligned}[t]
-                {\tt North\_Line5}(& \left \langle {\tt Seed\_DigitTop\_1},    i \right\rangle,
-                                     \left \langle {\tt Seed\_DigitTop\_1\_A}, i \right\rangle \;)
-            \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:north_line}
-
-            \item Create
-            $\begin{aligned}[t]
-                {\tt Topper}(& \left \langle {\tt DigitTop\_1\_A}, i \right\rangle,
-                               \left \langle {\tt DigitTop\_1\_B}, i \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in\\ Figure~\ref{fig:topper_gen}
-
-            \item Create
-            $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left \langle {\tt DigitTop\_1\_B}, i \right\rangle,
-                                               \left \langle {\tt ReturnD3ReadD1}, i \right\rangle \;)
-            \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
-        \end{itemize}
-
-
-
-
-        \item Create
-        $\begin{aligned}[t]
-            \returnfromdonereaddtwo(&\left\langle {\tt TODO} \right\rangle,
-                                     \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            Single tile(&\left\langle {\tt TODO} \right\rangle,
-                         \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \secondwarp(&\left\langle {\tt TODO} \right\rangle,
-                         \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \postwarp(&\left\langle {\tt TODO} \right\rangle,
-                       \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \dwriter(&\left\langle {\tt TODO} \right\rangle,
-                      \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \dtop(&\left\langle {\tt TODO} \right\rangle,
-                   \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \returnfromdtworeaddthree (&\left\langle {\tt TODO} \right\rangle,
-                                        \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt Three\_Digit\_Region\_Connector} (&\left\langle {\tt TODO} \right\rangle,
-                                                    \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \firstwarp(&\left\langle {\tt TODO} \right\rangle,
-                        \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \warpbridge(&\left\langle {\tt TODO} \right\rangle,
-                         \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \secondwarp(&\left\langle {\tt TODO} \right\rangle,
-                         \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \postwarp(&\left\langle {\tt TODO} \right\rangle,
-                       \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \dwriter(&\left\langle {\tt TODO} \right\rangle,
-                      \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \dtop(&\left\langle {\tt TODO} \right\rangle,
-                   \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            \returnfromdthreereadnextrow(&\left\langle {\tt TODO} \right\rangle,
-                                          \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt Digit\_Region\_Bridge}(&\left\langle {\tt TODO} \right\rangle,
-                                         \left\langle {\tt TODO} \right\rangle \;)
-        \end{aligned}$
-    \end{itemize}
-
-
+\input{initial_value}
 \subsection{ Counter Unit }
 
     \input{digit_readers}
