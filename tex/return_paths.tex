@@ -69,12 +69,6 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
                            \left\langle {\tt NextRead},        1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1or2_op_msr_msd}.
 
-    \item Create
-    $\begin{aligned}[t]
-        \returnfromdigit(& \left\langle \returnpath, 1, {\tt seed}\right\rangle,
-                           \left\langle {\tt TODO},  1            \right\rangle \;)
-    \end{aligned}$
-
     % DIGIT 2
 
 
@@ -90,13 +84,6 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
                            \left\langle {\tt NextRead}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1or2_op_msr_msd}.
 
-    \item Create
-    $\begin{aligned}[t]
-        \returnfromdigit(& \left\langle \returnpath, 2, {\tt seed} \right\rangle,
-                           \left\langle {\tt TODO},  2, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit2_oporseed}.
-
-
 
     % DIGIT 3
 
@@ -110,18 +97,6 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    3, \inc, {\tt msr}, {\tt msd} \right\rangle,
                            \left\langle {\tt NextRead}, 3, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
-
-    \item Create
-    $\begin{aligned}[t]
-        \returnfromdigit(& \left\langle \returnpath, 3, {\tt seed} \right\rangle,
-                           \left\langle {\tt TODO},  3, {\tt seed} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
-
-    \item Create
-    $\begin{aligned}[t]
-        \returnfromdigit(& \left\langle \returnpath, 3, {\tt seed}, {\tt msr}, {\tt msd} \right\rangle,
-                           \left\langle {\tt TODO},  3, {\tt seed}, {\tt msr}, {\tt msd} \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
 
 \end{itemize}
@@ -177,14 +152,14 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     % DIGIT 1
     \item Create
     $\begin{aligned}[t]
-        \readnext(& \left\langle {\tt NextRead},     1,          \inc \right\rangle,
-                    \left\langle {\tt DigitReader},  2, \lambda, \inc \right\rangle \;)
+        \readnext(& \left\langle {\tt NextRead}, 1,          \inc \right\rangle,
+                    \left\langle {\tt Read},     2, \lambda, \inc \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op}.
 
     \item Create
     $\begin{aligned}[t]
-        \readnext(& \left\langle {\tt NextRead},    1,          \inc, {\tt msr} \right\rangle,
-                    \left\langle {\tt DigitReader}, 2, \lambda, \inc            \right\rangle \;)
+        \readnext(& \left\langle {\tt NextRead}, 1,          \inc, {\tt msr} \right\rangle,
+                    \left\langle {\tt Read},     2, \lambda, \inc            \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1_op_msr}.
 
     \item Create
@@ -199,8 +174,8 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
 
     \item Create
     $\begin{aligned}[t]
-        \readnext(& \left\langle {\tt NextRead},    2,          \inc \right\rangle,
-                    \left\langle {\tt DigitReader}, 3, \lambda, \inc \right\rangle \;)
+        \readnext(& \left\langle {\tt NextRead}, 2,          \inc \right\rangle,
+                    \left\langle {\tt Read},     3, \lambda, \inc \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op}.
 
     \item Create
@@ -214,8 +189,8 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
 
     \item Create
     $\begin{aligned}[t]
-        \readnext(& \left\langle {\tt NextRead},    3,          \inc \right\rangle,
-                    \left\langle {\tt DigitReader}, 1, \lambda, \inc \right\rangle \;)
+        \readnext(& \left\langle {\tt NextRead}, 3,          \inc \right\rangle,
+                    \left\langle {\tt Read},     1, \lambda, \inc \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
 
     \item Create
@@ -224,16 +199,5 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
                     \left\langle {\tt Cross\_Next\_Row}, \inc \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_3_oporseed_msr_msd}.
 
-    \item Create
-    $\begin{aligned}[t]
-        \readnext(& \left\langle {\tt NextRead}, 3, {\tt seed} \right\rangle,
-                    \left\langle {\tt TODO},     3, {\tt seed} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_3_seed}.
-
-    \item Create
-    $\begin{aligned}[t]
-        \readnext(& \left\langle {\tt NextRead}, 3, {\tt seed}, {\tt msr}, {\tt msd} \right\rangle,
-                    \left\langle {\tt Cross\_Next\_Row}, {\tt increment}  \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_3_oporseed_msr_msd}.
 
 \end{itemize}

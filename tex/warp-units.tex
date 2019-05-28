@@ -201,8 +201,8 @@ can write the next value in the correct locations.
            \item if $u$ ends with 00:\\
             create
             $\begin{aligned}[t]
-                \postwarp(& \left \langle {\tt PostWarp},  i, u,   \inc \right\rangle,
-                            \left \langle {\tt DigitWriter}, i, u, \inc \right\rangle \;)
+                \postwarp(& \left \langle {\tt PostWarp}, i, u, \inc \right\rangle,
+                            \left \langle {\tt Write},    i, u, \inc \right\rangle \;)
             \end{aligned}$ \\
             from the general gadget shown in Figure~\ref{fig:post_warp_general_digit1} if $i = 1$,
             or Figure~\ref{fig:post_warp_general_digit2and3} if $ i = 2$ or $i = 3$.
@@ -211,8 +211,8 @@ can write the next value in the correct locations.
             \item if $u$ ends with 01:\\
             create
             $\begin{aligned}[t]
-                \postwarp(& \left \langle {\tt PostWarp},    i, u, \inc, {\tt msr} \right\rangle,
-                            \left \langle {\tt DigitWriter}, i, u, \inc, {\tt msr} \right\rangle \;)
+                \postwarp(& \left \langle {\tt PostWarp}, i, u, \inc, {\tt msr} \right\rangle,
+                            \left \langle {\tt Write},    i, u, \inc, {\tt msr} \right\rangle \;)
             \end{aligned}$ \\
             from the general gadget in Figure~\ref{fig:post_warp_case2_digit1_msr}.
             \vspace{.5cm}
@@ -220,8 +220,8 @@ can write the next value in the correct locations.
             \item if $u$ ends with 11:\\
             create
             $\begin{aligned}[t]
-                \postwarp(& \left \langle {\tt PostWarp},    i, u, \inc, {\tt msr}, {\tt msd} \right\rangle,
-                            \left \langle {\tt DigitWriter}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+                \postwarp(& \left \langle {\tt PostWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                            \left \langle {\tt Write},    i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
             \end{aligned}$ \\
             from the general gadget shown in Figure~\ref{fig:post_warp_case1_digit1_msr} if $i = 1$, or
             Figure~\ref{fig:post_warp_case2_digit2_msr} if $i = 2$, or Figure~\ref{fig:post_warp_general_digit2and3} if $i = 3$.
