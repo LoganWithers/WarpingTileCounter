@@ -1,10 +1,241 @@
-\subsubsection{Return paths}
-In this section, we explain the gadgets used after writing a return path...
+
+
+\subsubsection{ Return paths}
+In this section, we explain the gadgets used after a digit and its {\dtop} gadget have assembled. These
+are the return paths, the purpose of these gadgets is to route the counter to the next place it needs to be, which
+could be the next digit, a new row, etc.
+
+In general, a {\tt Return\_Path} gadget is comprised of two micro-gadgets, the first being a {\returnfromdigit} micro-gadget, and
+the second being a {\readnext} micro-gadget.
+
+
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.9\textwidth}
+    \begin{subfigure}[t]{0.24\textwidth}
         \centering
-        \includegraphics[width=0.4\textwidth]{return_from_read_next}
-        \caption{\label{fig:return_from_read_next}}
+        \frame{\includegraphics[width=0.2\textwidth]{return_paths/return_from_digit_2_op-or-seed}}
+        \caption{\label{fig:return_from_digit2_oporseed}}
     \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \frame{\includegraphics[width=0.2\textwidth]{return_paths/return_from_digit_1_op}}
+        \caption{\label{fig:return_from_digit_1_op}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \frame{\includegraphics[width=0.2\textwidth]{return_paths/return_from_digit_1_op_msr}}
+        \caption{\label{fig:return_from_digit_1_op_msr}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.24\textwidth}
+        \centering
+        \frame{\includegraphics[width=0.2\textwidth]{return_paths/return_from_digit_1-or-2_op_msr_msd}}
+        \caption{\label{fig:return_from_digit_1or2_op_msr_msd}}
+    \end{subfigure}%
+    \caption{\label{fig:return_from_digits} The return paths for digits 1 and 2}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2in]{return_paths/return_from_digit_3}
+    \caption{\label{fig:return_from_digit_3} The {\returnfromdigit} gadget for digit 3.}
+\end{figure}
+
+
+The first part of the return paths is the {\returnfromdigit} micro-gadget.
+
+For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
+
+\begin{itemize}
+
+    % DIGIT 1
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath, 1, \inc \right\rangle,
+                           \left\langle {\tt NextRead},        1, \inc \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1_op}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath, 1, \inc, {\tt msr} \right\rangle,
+                           \left\langle {\tt NextRead},        1, \inc, {\tt msr} \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1_op_msr}
+
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath, 1, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                           \left\langle {\tt NextRead},        1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1or2_op_msr_msd}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath, 1, {\tt seed}\right\rangle,
+                           \left\langle {\tt TODO},            1            \right\rangle \;)
+    \end{aligned}$
+
+    % DIGIT 2
+
+
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath,    2, \inc \right\rangle,
+                           \left\langle {\tt NextRead}, 2, \inc \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit2_oporseed}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath,    2, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                           \left\langle {\tt NextRead}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1or2_op_msr_msd}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath, 2, {\tt seed} \right\rangle,
+                           \left\langle {\tt TODO},  2, \inc \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit2_oporseed}.
+
+
+
+    % DIGIT 3
+
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath,    3, \inc \right\rangle,
+                           \left\langle {\tt NextRead}, 3, \inc \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath,    3, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                           \left\langle {\tt NextRead}, 3, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath, 3, {\tt seed} \right\rangle,
+                           \left\langle {\tt TODO},  3, {\tt seed} \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \returnfromdigit(& \left\langle \returnpath, 3, {\tt seed}, {\tt msr}, {\tt msd} \right\rangle,
+                           \left\langle {\tt TODO},  3, {\tt seed}, {\tt msr}, {\tt msd} \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
+
+\end{itemize}
+
+
+The second part of the return gadgets is the {\readnext} micro-gadget. These gadgets output a blank {\dwriter}
+signal if the counter should read the preceding digit in the current row.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.3\textwidth]{return_paths/read_next_1-or-2_op}
+        \caption{\label{fig:read_next_1or2_op}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.3\textwidth]{return_paths/read_next_1_op_msr}
+        \caption{\label{fig:read_next_1_op_msr}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.3\textwidth]{return_paths/read_next_1-or-2_op_msr_msd}
+        \caption{\label{fig:read_next_1or2_op_msr_msd}}
+    \end{subfigure}%
+    \caption{\label{fig:readnext} The {\readnext} gadgets}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.3\textwidth]{return_paths/read_next_3_op-or-seed_msr_msd}
+        \caption{\label{fig:read_next_3_oporseed_msr_msd}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.3\textwidth]{return_paths/read_next_3_seed}
+        \caption{\label{fig:read_next_3_seed}}
+    \end{subfigure}%
+    ~
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=0.3\textwidth]{return_paths/read_next_2_seed}
+        \caption{\label{fig:read_next_2_seed}}
+    \end{subfigure}%
+    \caption{\label{fig:readnext} The {\readnext} gadgets}
+\end{figure}
+For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
+\begin{itemize}
+
+    % DIGIT 1
+    \item Create
+    $\begin{aligned}[t]
+        \readnext(& \left\langle {\tt NextRead},     1,          \inc \right\rangle,
+                    \left\langle {\tt DigitReader},  2, \lambda, \inc \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \readnext(& \left\langle {\tt NextRead},    1,          \inc, {\tt msr} \right\rangle,
+                    \left\langle {\tt DigitReader}, 2, \lambda, \inc            \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1_op_msr}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \readnext(& \left\langle {\tt NextRead}, 1,      \inc, {\tt msr}, {\tt msd} \right\rangle,
+                    \left\langle {\tt Cross\_Next\_Row}, \inc                       \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op_msr_msd}.
+
+
+    % DIGIT 2
+
+
+    \item Create
+    $\begin{aligned}[t]
+        \readnext(& \left\langle {\tt NextRead},    2,          \inc \right\rangle,
+                    \left\langle {\tt DigitReader}, 3, \lambda, \inc \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \readnext(& \left\langle {\tt NextRead}, 2,      \inc, {\tt msr}, {\tt msd} \right\rangle,
+                    \left\langle {\tt Cross\_Next\_Row}, \inc                       \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op_msr_msd}.
+
+
+    % DIGIT 3
+
+    \item Create
+    $\begin{aligned}[t]
+        \readnext(& \left\langle {\tt NextRead},    3,          \inc \right\rangle,
+                    \left\langle {\tt DigitReader}, 1, \lambda, \inc \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \readnext(& \left\langle {\tt NextRead}, 3, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                    \left\langle {\tt Cross\_Next\_Row}, \inc \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_3_oporseed_msr_msd}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \readnext(& \left\langle {\tt NextRead}, 3, {\tt seed} \right\rangle,
+                    \left\langle {\tt TODO},     3, {\tt seed} \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_3_seed}.
+
+    \item Create
+    $\begin{aligned}[t]
+        \readnext(& \left\langle {\tt NextRead}, 3, {\tt seed}, {\tt msr}, {\tt msd} \right\rangle,
+                    \left\langle {\tt Cross\_Next\_Row}, {\tt increment}  \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_3_oporseed_msr_msd}.
+
+\end{itemize}

@@ -32,9 +32,7 @@ If we examine the topper shown in Figure~\ref{fig:topper_gen},
 
 
 For each $\inc \in \{ {\tt increment, copy } \}$
-        % For digit 1, case 1
     \begin{itemize}
-
 
         \item Digit 1 (general): the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}
         \begin{itemize}
@@ -52,8 +50,8 @@ For each $\inc \in \{ {\tt increment, copy } \}$
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left \langle {\tt DigitTop\_1\_B}, \inc \right\rangle,
-                                               \left \langle {\tt ReturnD1ReadD2}, \inc \right\rangle \;)
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_1\_B}, \inc \right\rangle,
+                                               \left\langle \returnpath, 1,       \inc \right\rangle \;)
             \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
         \end{itemize}
         \vspace{1cm}
@@ -70,7 +68,7 @@ For each $\inc \in \{ {\tt increment, copy } \}$
             \item Create
             $\begin{aligned}[t]
                 {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_1\_MSR\_A},  \inc, \right\rangle,
-                                               \left\langle {\tt ReturnD1ReadD2-Case2}, \inc  \right\rangle \;)
+                                               \left\langle \returnpath, \inc, {\tt msr}  \right\rangle \;)
             \end{aligned}$ \\ from the micro-gadget shown in Figure~\ref{fig:south_line}
         \end{itemize}
         \vspace{1cm}
@@ -120,8 +118,8 @@ For each $\inc \in \{ {\tt increment, copy } \}$
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line17}(& \left\langle {\tt DigitTop\_1\_MSD\_G}, \inc \right\rangle,
-                                      \left\langle {\tt ReturnD1ReadNextRow}, \inc \right\rangle \;)
+                {\tt South\_Line17}(& \left\langle {\tt DigitTop\_1\_MSD\_G}, \inc                       \right\rangle,
+                                      \left\langle \returnpath, 1,            \inc, {\tt msr}, {\tt msd} \right\rangle \;)
             \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
         \end{itemize}
         \vspace{1cm}
@@ -144,7 +142,7 @@ For each $\inc \in \{ {\tt increment, copy } \}$
             \item Create
             $\begin{aligned}[t]
                 {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_2\_B}, \inc \right\rangle,
-                                               \left\langle {\tt ReturnD2ReadD3}, \inc \right\rangle \;)
+                                               \left\langle \returnpath, 2, \inc \right\rangle \;)
             \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:south_line}
         \end{itemize}
         \vspace{1cm}
@@ -172,8 +170,8 @@ For each $\inc \in \{ {\tt increment, copy } \}$
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line30}(& \left\langle {\tt DigitTop\_2\_MSD\_C}, \inc \right\rangle,
-                                      \left\langle {\tt ReturnD2ReadNextRow}, \inc \right\rangle \;)
+                {\tt South\_Line30}(& \left\langle {\tt DigitTop\_2\_MSD\_C}, \inc                      \right\rangle,
+                                      \left\langle \returnpath, 2,            \inc, {\tt msr}, {\tt msd}\right\rangle \;)
             \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:south_line}
         \end{itemize}
         \vspace{1cm}
@@ -183,20 +181,20 @@ For each $\inc \in \{ {\tt increment, copy } \}$
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                {\tt North\_Line5}(& \left \langle {\tt DigitTop}, 3,    \inc \right\rangle,
-                                     \left \langle {\tt DigitTop\_3\_A}, \inc \right\rangle \;)
+                {\tt North\_Line5}(& \left\langle {\tt DigitTop}, 3,    \inc \right\rangle,
+                                     \left\langle {\tt DigitTop\_3\_A}, \inc \right\rangle \;)
             \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:north_line}
 
             \item Create
             $\begin{aligned}[t]
-                {\tt Topper}(& \left \langle {\tt DigitTop\_3\_A}, \inc \right\rangle,
-                               \left \langle {\tt DigitTop\_3\_B}, \inc \right\rangle \;)
+                {\tt Topper}(& \left\langle {\tt DigitTop\_3\_A}, \inc \right\rangle,
+                               \left\langle {\tt DigitTop\_3\_B}, \inc \right\rangle \;)
             \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:topper_gen}
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left \langle {\tt DigitTop\_3\_B}, \inc \right\rangle,
-                                               \left \langle {\tt ReturnD3ReadD1}, \inc \right\rangle \;)
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_3\_B}, \inc \right\rangle,
+                                               \left\langle \returnpath, 3,       \inc \right\rangle \;)
             \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
         \end{itemize}
         \vspace{1cm}
@@ -219,8 +217,8 @@ For each $\inc \in \{ {\tt increment, copy } \}$
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_3\_MSD\_B}, \inc \right\rangle,
-                                               \left\langle {\tt ReturnD3ReadNextRow},      \inc \right\rangle \;)
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_3\_MSD\_B}, \inc                      \right\rangle,
+                                               \left\langle \returnpath, 3,            \inc, {\tt msr}, {\tt msd}\right\rangle \;)
             \end{aligned}$ \\ from the micro-gadget shown in Figure~\ref{fig:south_line}
         \end{itemize}
 

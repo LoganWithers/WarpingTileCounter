@@ -36,7 +36,7 @@
             {
                 var remainder = currentNumber % bigRadix;
                 digitList.AddFirst(digits[remainder]);
-                currentNumber = currentNumber / bigRadix;
+                currentNumber /= bigRadix;
             }
 
             return new List<string>(digitList);

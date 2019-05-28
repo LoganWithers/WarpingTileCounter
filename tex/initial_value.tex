@@ -1,7 +1,7 @@
 \subsubsection{Initial Value (updated to assemble right to left like the other gadgets)}
-    We begin by encoding $\mathcal{C}_0$ with the Seed unit. It has $\ceil*{\frac{d}{3}}$ digit regions.
-    Each digit region has three digits, except for the most significant digit region (MSR) which has $d \mod 3$
-    if $d \mod 3 \not= 0$, otherwise it has 3 digits.
+We begin by encoding $\mathcal{C}_0$ with the Seed unit. It has $\ceil*{\frac{d}{3}}$ digit regions.
+Each digit region has three digits, except for the most significant digit region (MSR) which has $d \mod 3$
+if $d \mod 3 \not= 0$, otherwise it has 3 digits. We
 
 
 while $i < d$:
@@ -17,39 +17,39 @@ while $i < d$:
         \item if $j = 0$: create
         $\begin{aligned}[t]
             \dwriter(&\left\langle {\tt SeedDigit1}, i \right\rangle, \left\langle {\tt SeedBit}, i, j + 1 \right\rangle \;)
-        \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
+        \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
 
         \item if $0 \leqslant j \leqslant l$: create
         $\begin{aligned}[t]
             \dwriter(&\left\langle {\tt SeedBit}, i, j \right\rangle, \left\langle {\tt SeedBit}, i, j + 1 \right\rangle \;)
-        \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
+        \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
 
         \item if $j = l$:
         $\begin{aligned}[t]
             \dwriter(&\left\langle {\tt SeedBit}, i, j \right\rangle, \left\langle {\tt SeedDigitTop}, i \right\rangle \;)
-        \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
+        \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
     \end{itemize}
 
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}
+    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
             {\tt North\_Line5}(& \left \langle {\tt SeedDigitTop},  i \right\rangle,
                                  \left \langle {\tt SeedDigitTopA}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:north_line}
+        \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:north_line}.
 
         \item Create
         $\begin{aligned}[t]
             {\tt Topper}(& \left \langle {\tt SeedDigitTopA}, i \right\rangle,
                            \left \langle {\tt SeedDigitTopB}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget shown in\\ Figure~\ref{fig:topper_gen}
+        \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:topper_gen}.
 
         \item Create
         $\begin{aligned}[t]
             {\tt South\_Line4\textit{l}}(& \left \langle {\tt SeedDigitTopB},       i \right\rangle,
                                            \left \langle {\tt SeedWarpInitializer}, i \right\rangle \;)
-        \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
+        \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
     \end{itemize}
 
     \item $i \gets i + 1$
@@ -70,70 +70,55 @@ while $i < d$:
     $\begin{aligned}[t]
         \postwarp(&\left\langle {\tt SeedPostWarp},   i \right\rangle,
                    \left\langle {\tt SeedDigit2},   i \right\rangle \;)
-    \end{aligned}$ from the general gadget show in Figure~\ref{fig:post_warp_general_digit2and3}
+    \end{aligned}$\\ from the general gadget show in Figure~\ref{fig:post_warp_general_digit2and3}.
 
     \item {\tt Digit2}: for each $j=0,\ldots,l$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
         \item if $j = 0$: create
         $\begin{aligned}[t]
             \dwriter(&\left\langle {\tt SeedDigit2}, i \right\rangle, \left\langle {\tt SeedBit}, i, j + 1 \right\rangle \;)
-        \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
+        \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
 
         \item if $0 \leqslant j \leqslant l$: create
         $\begin{aligned}[t]
             \dwriter(&\left\langle {\tt SeedBit}, i, j \right\rangle, \left\langle {\tt SeedBit}, i, j + 1 \right\rangle \;)
-        \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
+        \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
 
         \item if $j = l$:
         $\begin{aligned}[t]
             \dwriter(&\left\langle {\tt SeedBit}, i, j \right\rangle, \left\langle {\tt SeedDigitTop2}, i \right\rangle \;)
-        \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
+        \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
     \end{itemize}
 
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}
+    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
             {\tt North\_Line5}(& \left \langle {\tt SeedDigitTop},  i \right\rangle,
                                  \left \langle {\tt SeedDigitTopA}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:north_line}
+        \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:north_line}.
 
         \item Create
         $\begin{aligned}[t]
             {\tt Topper}(& \left \langle {\tt SeedDigitTopA}, i \right\rangle,
                            \left \langle {\tt SeedDigitTopB}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget shown in\\ Figure~\ref{fig:topper_gen}
+        \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:topper_gen}.
 
         \item Create
         $\begin{aligned}[t]
             {\tt South\_Line4\textit{l}}(& \left \langle {\tt SeedDigitTopB}, i \right\rangle,
                                            \left \langle {\tt SeedReturnPath},  i \right\rangle \;)
-        \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
+        \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
     \end{itemize}
 
 
-    \item {\tt Return\_Path}: the following statements create the gadget shown in Figure~\ref{fig:seed_return_digit_2}
-    \begin{itemize}
+    \item {\tt Return\_Path}: create
+    $\begin{aligned}[t]
+        \returnfromdigit(&\left\langle {\tt SeedReturnPath},     i \right\rangle,
+                          \left\langle {\tt SeedInternalBridge}, i \right\rangle \;)
+    \end{aligned}$\\ from the gadget in Figure~\ref{fig:return_from_digit2_oporseed}.
 
-        \item Create
-        $\begin{aligned}[t]
-            {\tt Return\_Path}(&\left\langle {\tt SeedReturnPath},  i \right\rangle,
-                                \left\langle {\tt SeedReturnPathA}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:return_start_a}
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt South\_Line18}(&\left\langle {\tt SeedReturnPathA}, i \right\rangle,
-                                 \left\langle {\tt SeedReturnPathB}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:south_line}
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt South\_Line4\textit{l}}(&\left\langle {\tt SeedReturnPathB}, i \right\rangle,
-                                          \left\langle {\tt SeedInternalBridge},  i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:south_line}
-    \end{itemize}
 
     \item $i \gets i + 1$
 
@@ -141,7 +126,7 @@ while $i < d$:
     $\begin{aligned}[t]
         {\tt Seed\_Internal\_Bridge}(&\left\langle {\tt SeedInternalBridge}, i - 1 \right\rangle,
                                       \left\langle {\tt SeedFirstWarp}, i \right\rangle \;)
-    \end{aligned}$ from the general gadget shown in Figure~\ref{fig:seed_internal_bridge}
+    \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:read_next_2_seed}.
 
     \item Create
     $\begin{aligned}[t]
@@ -153,7 +138,7 @@ while $i < d$:
     $\begin{aligned}[t]
         \warpbridge(&\left\langle {\tt SeedWarpBridge}, i \right\rangle,
                      \left\langle {\tt SeedSecondWarp}, i \right\rangle \;)
-    \end{aligned}$ from the general gadget shown in Figure~\ref{fig:warp_bridge_general}
+    \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:warp_bridge_general}.
 
     \item Create
     $\begin{aligned}[t]
@@ -165,7 +150,7 @@ while $i < d$:
     $\begin{aligned}[t]
         \postwarp(&\left\langle {\tt SeedPostWarp}, i \right\rangle,
                    \left\langle {\tt SeedDigit3} \right\rangle \;)
-    \end{aligned}$ from the general gadget shown in Figure~\ref{fig:post_warp_general_digit2and3}
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:post_warp_general_digit2and3}.
 
 
     \item {\tt Digit3}: for each $j=0,\ldots,l$ and each $b$ in $bin(C_0[i])[j]$:
@@ -173,96 +158,52 @@ while $i < d$:
         \item if $j = 0$: create
         $\begin{aligned}[t]
             \dwriter(&\left\langle {\tt SeedDigit3}, i \right\rangle, \left\langle {\tt SeedBit}, i, j + 1 \right\rangle \;)
-        \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
+        \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
 
         \item if $0 \leqslant j \leqslant l$: create
         $\begin{aligned}[t]
             \dwriter(&\left\langle {\tt SeedBit}, i, j \right\rangle, \left\langle {\tt SeedBit}, i, j + 1 \right\rangle \;)
-        \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
+        \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
 
         \item if $j = l$: create
         $\begin{aligned}[t]
             \dwriter(&\left\langle {\tt SeedBit}, i, j \right\rangle, \left\langle {\tt SeedDigitTop2}, i \right\rangle \;)
-        \end{aligned}$ from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
+        \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:write_0} if $b = 0$ or Figure~\ref{fig:write_1} if $b = 1$.
     \end{itemize}
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}
+    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
             {\tt North\_Line5}(&\left\langle {\tt SeedDigitTop},  i \right\rangle,
                                 \left\langle {\tt SeedDigitTopA}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:north_line}
+        \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:north_line}.
 
         \item Create
         $\begin{aligned}[t]
             {\tt Topper}(&\left\langle {\tt SeedDigitTopA}, i \right\rangle,
                           \left\langle {\tt SeedDigitTopB}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget shown in\\ Figure~\ref{fig:topper_gen}
+        \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:topper_gen}.
 
         \item Create
         $\begin{aligned}[t]
             {\tt South\_Line4\textit{l}}(&\left\langle {\tt SeedDigitTopB},  i \right\rangle,
                                           \left\langle {\tt SeedReturnPath}, i \right\rangle \;)
-        \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
+        \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
     \end{itemize}
 
-    \item {\tt Return\_Path}: the following statements create the gadget shown in Figure~\ref{fig:seed_return_digit_2}
-    \begin{itemize}
-        \item Create
-        $\begin{aligned}[t]
-            {\tt Return\_Path}(&\left\langle {\tt SeedReturnPath},  i \right\rangle,
-                                \left\langle {\tt SeedReturnPathA}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:return_start_a}
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt South\_Line3}(&\left\langle {\tt SeedReturnPathA}, i \right\rangle,
-                                \left\langle {\tt SeedReturnPathB}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:south_line}
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt South\_Line15}(&\left\langle {\tt SeedReturnPathB}, i \right\rangle,
-                                 \left\langle {\tt SeedReturnPathC}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:south_line}
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt South\_Line4\textit{l}}(&\left\langle {\tt SeedReturnPathC}, i \right\rangle,
-                                          \left\langle {\tt SeedReturnPathD}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:south_line}
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt South\_Line12}(&\left\langle {\tt SeedReturnPathD}, i \right\rangle,
-                                 \left\langle {\tt SeedReturnPathE}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:south_line}
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt Return\_Digit3\_Bump}(&\left\langle {\tt SeedReturnPathE}, i \right\rangle,
-                                        \left\langle {\tt SeedReturnPathF}, i \right\rangle \;)
-        \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:return_digit_3_bump}
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt South\_Line16}(&\left\langle {\tt SeedReturnPathF}, i \right\rangle,
-                                 \left\langle {\tt SeedReturnPathG}, i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:south_line}
-
-        \item Create
-        $\begin{aligned}[t]
-            {\tt South\_Line4\textit{l}}(&\left\langle {\tt SeedReturnPathG}, i \right\rangle,
-                                          \left\langle {\tt SeedRegionEnd},   i \right\rangle \;)
-        \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:south_line}
-    \end{itemize}
+    \item {\tt Return\_Path}:
+    Create
+    $\begin{aligned}[t]
+        \returnfromdigit(&\left\langle {\tt SeedReturnPath},     i \right\rangle,
+                          \left\langle {\tt SeedRegionEnd}, i \right\rangle \;)
+    \end{aligned}$\\from the gadget in Figure~\ref{fig:return_from_digit_3}.
 
     \item if $i + 1\not=d$: create
     $\begin{aligned}[t]
         {\tt Seed\_External\_Bridge}(&\left\langle {\tt SeedRegionEnd}, i \right\rangle,
-                                      \left\langle {\tt SeedDigit}, i + 1\right\rangle \;)
-    \end{aligned}$ from the general gadget shown in Figure~\ref{fig:seed_external_bridge}
+                                      \left\langle {\tt SeedDigit},   i + 1\right\rangle \;)
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:read_next_3_seed}.
 
     \item $i \gets i + 1$
 

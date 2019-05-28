@@ -8,31 +8,28 @@
                $\inc \in \{{\tt increment}, {\tt copy} \}$:
     \begin{itemize}
         \item if $j = 0$:
-        Create
+        create
         $\begin{aligned}[t]
             \dreader(& \left\langle {\tt DigitReader}, i, \lambda, \inc \right\rangle, \\
                      & \left\langle {\tt DigitReader}, i, 0, \inc \right\rangle, \\
                      & \left\langle {\tt DigitReader}, i, 1, \inc \right\rangle \;)
-        \end{aligned}$\\
-        from the general gadget in Figure~\ref{fig:digit_read}
+        \end{aligned}$\\ from the general gadget in Figure~\ref{fig:digit_read}
 
         \item if $1 \leqslant j \leqslant l -2$:
-        Create
+        create
         $\begin{aligned}[t]
-        \dreader(& \left\langle {\tt DigitReader}, i, u, \inc \right\rangle, \\
+        \dreader(& \left\langle {\tt DigitReader}, i, u,  \inc \right\rangle, \\
                  & \left\langle {\tt DigitReader}, i, 0u, \inc \right\rangle, \\
                  & \left\langle {\tt DigitReader}, i, 1u, \inc \right\rangle \;)
-        \end{aligned}$\\
-        from the general gadget in Figure~\ref{fig:digit_read}
+        \end{aligned}$\\ from the general gadget in Figure~\ref{fig:digit_read}
 
         \item if $j = l - 1$:
-        Create
+        create
         $\begin{aligned}[t]
             \dreader(& \left\langle {\tt DigitReader}, i, u, \inc \right\rangle, \\
                      & \left\langle {\tt PreWarp}, i, 0u, \inc \right\rangle, \\
                      & \left\langle {\tt PreWarp}, i, 1u, \inc \right\rangle \;)
-        \end{aligned}$\\
-        from the general gadget in Figure~\ref{fig:digit_read}
+        \end{aligned}$\\from the general gadget in Figure~\ref{fig:digit_read}
 
     \end{itemize}
 

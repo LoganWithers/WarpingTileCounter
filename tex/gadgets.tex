@@ -24,7 +24,7 @@
 \newcommand{\returnfromdtworeaddthree}{{\tt Return\_From\_Digit2\_Read\_Digit3}}
 \newcommand{\returnfromdthreereaddone}{{\tt Return\_From\_Digit3\_Read\_Digit1}}
 
-\newcommand{\inc}{{\tt op}}
+\newcommand{\inc}{ op}
 
 \newcommand{\dtopdonecaseone}{{\tt Digit\_Top\_Digit1\_Case1}}
 \newcommand{\dtopdonecasetwo}{{\tt Digit\_Top\_Digit1\_Case2}}
@@ -33,6 +33,9 @@
 
 \newcommand{\gadgetref}{from the general gadget shown in Figure~}
 \newcommand{\mgadgetref}{from the micro-gadget shown in Figure~}
+\newcommand{\returnpath}{{\tt ReturnPath}}
+\newcommand{\returnfromdigit}{{\tt Return\_From\_Digit}}
+\newcommand{\readnext}{{\tt Next\_Read}}
 
 % todo: fix wording
 When describing a special case, i.e. ``digit $x$ -- case $y$'', whatever follows
@@ -61,57 +64,6 @@ We will use the notation {\tt LineN\_North} and {\tt LineN\_South} where {\tt N}
 
 
 
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.25\textwidth}
-        \centering
-        \includegraphics[width=0.15\textwidth]{return_paths/return_path_start_digits_2_and_3}
-        \caption{\label{fig:return_start_a} {\tt Return\_Start\_A}}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.25\textwidth}
-        \centering
-        \includegraphics[width=0.14\textwidth]{seed/seed_return_digit_2}
-        \caption{\label{fig:seed_return_digit_2} {\tt Seed\_Return\_Digit\_2}}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.25\textwidth}
-        \centering
-        \includegraphics[width=0.15\textwidth]{seed/seed_return_digit_3}
-        \caption{\label{fig:seed_return_digit_3} {\tt Seed\_Return\_Digit\_3}}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.25\textwidth}
-        \centering
-        \includegraphics[width=0.15\textwidth]{seed/seed_internal_bridge}
-        \caption{\label{fig:seed_internal_bridge} {\tt Seed\_Internal\_Bridge}}
-    \end{subfigure}%
-    ~
-
-    \begin{subfigure}[t]{0.25\textwidth}
-        \centering
-        \includegraphics[width=0.15\textwidth]{seed/seed_return_digit_3_bump}
-        \caption{\label{fig:return_digit_3_bump} {\tt Return\_Digit\_3\_Bump}}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.25\textwidth}
-        \centering
-        \includegraphics[width=0.15\textwidth]{seed/seed_external_bridge}
-        \caption{\label{fig:seed_external_bridge} {\tt Seed\_External\_Bridge}}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.25\textwidth}
-        \centering
-        \includegraphics[width=0.15\textwidth]{seed/seed_return_row_case3}
-        \caption{\label{fig:seed_return_row_case3} {\tt Return\_Row\_Case3}}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.25\textwidth}
-        \centering
-        \includegraphics[width=0.15\textwidth]{seed/seed_return_row_case1_and_case2}
-        \caption{\label{fig:seed_return_row_case1_and_case2} {\tt Return\_Row\_Case1\_And\_Case2}}
-    \end{subfigure}%
-\end{figure}
 
 \input{initial_value}
 \subsection{ Counter Unit }
@@ -120,8 +72,8 @@ We will use the notation {\tt LineN\_North} and {\tt LineN\_South} where {\tt N}
     \input{warp-units}
     \input{digit_writers}
     \input{digit_tops}
-    \input{return_read_next_digit}
-    \input{return_read_next_row}
+    % \input{return_read_next_digit}
+    % \input{return_read_next_row}
     \input{return_paths}
 
 \subsection{Overviews}
