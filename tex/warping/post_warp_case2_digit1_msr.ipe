@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.9">
-<info created="D:20190504011803" modified="D:20190504012612"/>
+<info created="D:20190504011803" modified="D:20190527204340"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -255,7 +255,8 @@ h
 <page>
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
-<group layer="alpha">
+<group layer="alpha" matrix="1 0 0 1 64 -36">
+<group matrix="1 0 0 1 4 36">
 <group matrix="1 0 0 1 -708 540">
 <path matrix="1 0 0 1 2176 4400" stroke="white" fill="white">
 320 392 m
@@ -351,6 +352,40 @@ h
 </group>
 </group>
 </group>
+<group matrix="1 0 0 1 -864 576">
+<path matrix="1 0 0 1 2176 4400" stroke="white" fill="white">
+320 392 m
+320 360 l
+352 360 l
+352 392 l
+h
+</path>
+<path matrix="0.5 0 0 1 2336 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+<path matrix="0.5 0 0 1 2372 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+</group>
+</group>
+<path matrix="1 0 0 1 212 3612" stroke="black" fill="black">
+1504 1708 m
+1504 1712 l
+1512 1704 l
+1504 1696 l
+1504 1700 l
+1496 1700 l
+1496 1708 l
+h
+</path>
 <group matrix="1 0 0 1 -880 1784">
 <group matrix="1 0 0 1 172 -692">
 <path matrix="1 0 0 1 2176 4208" stroke="black" fill="white">

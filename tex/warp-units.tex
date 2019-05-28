@@ -2,8 +2,8 @@
 
 We now explain the Warp units. A warp unit generally consists of the following 5 gadgets: \prewarp,
 \firstwarp, \warpbridge, \secondwarp, \postwarp. The job of these 5 gadgets is to transport the value
-read by the {\tt Counter\_Read} all the way to the next digit region, so that the
-{\tt Counter\_Write} gadgets can write the next value in the correct location.
+read by the {\tt Counter\_Read} all the way to the next digit region, so that the {\dwriter} gadgets
+can write the next value in the correct locations.
 
 
 
@@ -23,14 +23,14 @@ read by the {\tt Counter\_Read} all the way to the next digit region, so that th
             $\begin{aligned}[t]
                 \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
                            \left\langle {\tt FirstWarp}, i, u, \inc \right\rangle \;)
-            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:pre_warp_general}
+            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:pre_warp_general}.
 
             \item if $u$ ends with 01:
             create
             $\begin{aligned}[t]
                 \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
                            \left\langle {\tt FirstWarp}, i, u, \inc, {\tt msr} \right\rangle \;)
-            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:pre_warp_case2_digit1_msr}
+            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:pre_warp_case2_digit1_msr}.
 
             \item if $u$ ends with 11:
             create
@@ -76,6 +76,7 @@ read by the {\tt Counter\_Read} all the way to the next digit region, so that th
               in the MSR and it is digit 1 in case 1 or 2, in which the {\firstwarp} gadget attaches directly
               to a {\postwarp}.
 
+              For each $i = 1,2,3$
               \begin{itemize}
 
                 \item Create
@@ -86,35 +87,35 @@ read by the {\tt Counter\_Read} all the way to the next digit region, so that th
                 \end{aligned}$
                 \vspace{.5cm}
 
-                \item (digit 1, case 2): Create
+                \item Create
                 $\begin{aligned}[t]
-                    \firstwarp(& \left\langle {\tt FirstWarp}, i, u, \inc, {\tt msr} \right\rangle, \\
-                               & \left\langle {\tt FirstWarp}, i, u, \inc, {\tt msr} \right\rangle, \\
-                               & \left\langle {\tt PostWarp},  i, u, \inc, {\tt msr} \right\rangle \;)
+                    \firstwarp(& \left\langle {\tt FirstWarp}, 1, u, \inc, {\tt msr} \right\rangle, \\
+                               & \left\langle {\tt FirstWarp}, 1, u, \inc, {\tt msr} \right\rangle, \\
+                               & \left\langle {\tt PostWarp},  1, u, \inc, {\tt msr} \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
-                \item (digit 1, case 1): Create
+                \item Create
                 $\begin{aligned}[t]
-                    \firstwarp(& \left\langle {\tt FirstWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
-                               & \left\langle {\tt FirstWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
-                               & \left\langle {\tt PostWarp},  i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+                    \firstwarp(& \left\langle {\tt FirstWarp}, 1, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
+                               & \left\langle {\tt FirstWarp}, 1, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
+                               & \left\langle {\tt PostWarp},  1, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
-                \item (digit 2, case 2): Create
+                \item Create
                 $\begin{aligned}[t]
-                    \firstwarp(& \left\langle {\tt FirstWarp},  i, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
-                               & \left\langle {\tt FirstWarp},  i, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
-                               & \left\langle {\tt WarpBridge}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+                    \firstwarp(& \left\langle {\tt FirstWarp},  2, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
+                               & \left\langle {\tt FirstWarp},  2, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
+                               & \left\langle {\tt WarpBridge}, 2, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
-                \item (digit 3, case 3): Create
+                \item Create
                 $\begin{aligned}[t]
-                    \firstwarp(& \left\langle {\tt FirstWarp},  i, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
-                               & \left\langle {\tt FirstWarp},  i, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
-                               & \left\langle {\tt WarpBridge}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+                    \firstwarp(& \left\langle {\tt FirstWarp},  3, u, \inc, {\tt msr}, {\tt msd} \right\rangle,\\
+                               & \left\langle {\tt FirstWarp},  3, u, \inc, {\tt msr}, {\tt msd} \right\rangle,\\
+                               & \left\langle {\tt WarpBridge}, 3, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
                 \end{aligned}$
                 \vspace{.5cm}
 
@@ -132,7 +133,7 @@ read by the {\tt Counter\_Read} all the way to the next digit region, so that th
             $\begin{aligned}[t]
                 \warpbridge(& \left\langle {\tt WarpBridge}, i, u, \inc \right\rangle,
                               \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle \;)
-            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:warp_bridge_general}
+            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:warp_bridge_general}.
             \vspace{.5cm}
 
             \item if $u$ ends with 11 and $i$ is 2: \\
@@ -140,7 +141,7 @@ read by the {\tt Counter\_Read} all the way to the next digit region, so that th
             $\begin{aligned}[t]
                 \warpbridge(& \left\langle {\tt WarpBridge}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle,
                               \left\langle {\tt SecondWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:warp_bridge_case2_digit2_msr}
+            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:warp_bridge_case2_digit2_msr}.
             \vspace{.5cm}
 
             \item if $u$ ends with 11 and $i$ is 3: \\
@@ -148,7 +149,7 @@ read by the {\tt Counter\_Read} all the way to the next digit region, so that th
             $\begin{aligned}[t]
                 \warpbridge(& \left\langle {\tt WarpBridge}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle,
                               \left\langle {\tt SecondWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:warp_bridge_general}
+            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:warp_bridge_general}.
             \vspace{.5cm}
         \end{itemize}
 
@@ -165,35 +166,34 @@ read by the {\tt Counter\_Read} all the way to the next digit region, so that th
                 \includegraphics[width=0.2\textwidth]{warping/warp_bridge_case2_digit2_msr}
                 \caption{\label{fig:warp_bridge_case2_digit2_msr} Digit 2 -- Case 2}
             \end{subfigure}%
-            ~\caption{\label{fig:warp_bridge} {\tt Warp\_Bridge} gadgets}
+            ~\caption{\label{fig:warp_bridge} The {\warpbridge} gadgets.}
         \end{figure}
 
 
-        \item {\secondwarp}:
+        \item {\secondwarp} - for each $i = 1,2,3$:
         \begin{itemize}
         \item Create
         $\begin{aligned}[t]
-            \secondwarp(& \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle, \\
-                        & \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle, \\
-                        & \left\langle {\tt PostWarp},   i, u, \inc \right\rangle \;)
+            \secondwarp(& \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,
+                          \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,
+                          \left\langle {\tt PostWarp},   i, u, \inc \right\rangle \;)
         \end{aligned}$
         \vspace{0.5cm}
 
         \item Create
         $\begin{aligned}[t]
-            \secondwarp(& \left\langle {\tt SecondWarp}, i, u, \inc, {\tt msr} \right\rangle, \\
-                        & \left\langle {\tt SecondWarp}, i, u, \inc, {\tt msr} \right\rangle, \\
-                        & \left\langle {\tt PostWarp},   i, u, \inc, {\tt msr} \right\rangle \;)
+            \secondwarp(& \left\langle {\tt SecondWarp}, 2, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
+                        & \left\langle {\tt SecondWarp}, 2, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
+                        & \left\langle {\tt PostWarp},   2, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
         \end{aligned}$
         \vspace{0.5cm}
 
         \item Create
         $\begin{aligned}[t]
-            \secondwarp(& \left\langle {\tt SecondWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
-                        & \left\langle {\tt SecondWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
-                        & \left\langle {\tt PostWarp},   i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+            \secondwarp(& \left\langle {\tt SecondWarp}, 3, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
+                        & \left\langle {\tt SecondWarp}, 3, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\
+                        & \left\langle {\tt PostWarp},   3, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
         \end{aligned}$
-        \vspace{0.5cm}
         \end{itemize}
 
         \item {\postwarp}:
@@ -262,7 +262,7 @@ read by the {\tt Counter\_Read} all the way to the next digit region, so that th
                 \caption{\label{fig:post_warp_case2_digit2_msr} Digit 2 -- Case 2}
             \end{subfigure}%
             ~
-            \caption{\label{fig:post_warp_gadgets} {\postwarp} gadgets }
+            \caption{\label{fig:post_warp_gadgets} The {\postwarp} gadgets }
         \end{figure}
 
     \end{itemize}

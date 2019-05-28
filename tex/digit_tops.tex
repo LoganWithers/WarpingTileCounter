@@ -38,21 +38,21 @@ For each $\inc \in \{ {\tt increment, copy } \}$
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                {\tt North\_Line5}(& \left \langle {\tt DigitTop}, 1,    \inc \right\rangle,
-                                     \left \langle {\tt DigitTop\_1\_A}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:north_line}
+                {\tt North\_Line5}(& \left \langle {\tt DigitTop},  1, \inc \right\rangle,
+                                     \left \langle {\tt DigitTopA}, 1, \inc \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:north_line}
 
             \item Create
             $\begin{aligned}[t]
-                {\tt Topper}(& \left \langle {\tt DigitTop\_1\_A}, \inc \right\rangle,
-                               \left \langle {\tt DigitTop\_1\_B}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:topper_gen}
+                {\tt Topper}(& \left \langle {\tt DigitTopA}, 1, \inc \right\rangle,
+                               \left \langle {\tt DigitTopB}, 1, \inc \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:topper_gen}
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_1\_B}, \inc \right\rangle,
-                                               \left\langle \returnpath, 1,       \inc \right\rangle \;)
-            \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopB}, 1, \inc \right\rangle,
+                                               \left\langle \returnpath,     1, \inc \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}
         \end{itemize}
         \vspace{1cm}
 
@@ -60,15 +60,15 @@ For each $\inc \in \{ {\tt increment, copy } \}$
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                {\tt Topper}(& \left\langle {\tt DigitTop}, 1,          \inc, {\tt msr} \right\rangle,
-                               \left\langle {\tt DigitTop\_1\_MSR\_A},  \inc            \right\rangle \;)
+                {\tt Topper}(& \left\langle {\tt DigitTop},  1, \inc, {\tt msr} \right\rangle,
+                               \left\langle {\tt DigitTopA}, 1, \inc, {\tt msr} \right\rangle \;)
             \end{aligned}$ \\ from the micro-gadget shown in Figure~\ref{fig:topper_case1}
 
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_1\_MSR\_A},  \inc, \right\rangle,
-                                               \left\langle \returnpath, \inc, {\tt msr}  \right\rangle \;)
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopA}, 1, \inc, {\tt msr}\right\rangle,
+                                               \left\langle \returnpath,     1, \inc, {\tt msr}\right\rangle \;)
             \end{aligned}$ \\ from the micro-gadget shown in Figure~\ref{fig:south_line}
         \end{itemize}
         \vspace{1cm}
@@ -78,49 +78,49 @@ For each $\inc \in \{ {\tt increment, copy } \}$
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                {\tt North\_Line4\textit{l}}(& \left\langle {\tt DigitTop}, 1,          \inc, {\tt msr}, {\tt msd} \right\rangle,
-                                               \left\langle {\tt DigitTop\_1\_MSD\_A},  \inc  \right\rangle \;)
-            \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:north_line}
+                {\tt North\_Line4\textit{l}}(& \left\langle {\tt DigitTop},  1, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                                               \left\langle {\tt DigitTopA}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:north_line}.
 
             \item Create $\begin{aligned}[t]
-                {\tt North\_Line4}(& \left\langle {\tt DigitTop\_1\_MSD\_A},  \inc \right\rangle,
-                                     \left\langle {\tt DigitTop\_1\_MSD\_B},  \inc  \right\rangle \;)
-            \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:north_line}
+                {\tt North\_Line4}(& \left\langle {\tt DigitTopA}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                                     \left\langle {\tt DigitTopB}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:north_line}.
 
             \item Create $\begin{aligned}[t]
-                {\tt Topper}(& \left\langle {\tt DigitTop\_1\_MSD\_B},  \inc \right\rangle,
-                               \left\langle {\tt DigitTop\_1\_MSD\_C},  \inc  \right\rangle \;)
-            \end{aligned}$ from the micro-\\gadget shown in Figure~\ref{fig:topper_gen}
+                {\tt Topper}(& \left\langle {\tt DigitTopB}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                               \left\langle {\tt DigitTopC}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:topper_gen}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_1\_MSD\_C}, \inc \right\rangle,
-                                               \left\langle {\tt DigitTop\_1\_MSD\_D}, \inc \right\rangle \;)
-            \end{aligned}$ from the\\ micro-gadget shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopC}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                                               \left\langle {\tt DigitTopD}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line30}(& \left\langle {\tt DigitTop\_1\_MSD\_D}, \inc \right\rangle,
-                                      \left\langle {\tt DigitTop\_1\_MSD\_E}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line30}(& \left\langle {\tt DigitTopD}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                                      \left\langle {\tt DigitTopE}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_1\_MSD\_E}, \inc \right\rangle,
-                                               \left\langle {\tt DigitTop\_1\_MSD\_F}, \inc \right\rangle \;)
-            \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopE}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                                               \left\langle {\tt DigitTopF}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line14}(& \left\langle {\tt DigitTop\_1\_MSD\_F}, \inc \right\rangle,
-                                      \left\langle {\tt DigitTop\_1\_MSD\_G}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line14}(& \left\langle {\tt DigitTopF}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                                      \left\langle {\tt DigitTopG}, 1, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line17}(& \left\langle {\tt DigitTop\_1\_MSD\_G}, \inc                       \right\rangle,
-                                      \left\langle \returnpath, 1,            \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-            \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line17}(& \left\langle {\tt DigitTopG}, 1, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                                      \left\langle \returnpath,     1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
         \vspace{1cm}
 
@@ -129,21 +129,21 @@ For each $\inc \in \{ {\tt increment, copy } \}$
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                {\tt North\_Line5}(& \left\langle {\tt DigitTop}, 2,    \inc \right\rangle,
-                                     \left\langle {\tt DigitTop\_2\_A}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:north_line}
+                {\tt North\_Line5}(& \left\langle {\tt DigitTop}, 2, \inc \right\rangle,
+                                     \left\langle {\tt DigitTopA} 2, \inc \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:north_line}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt Topper}(& \left \langle {\tt DigitTop\_2\_A}, \inc \right\rangle,
-                               \left \langle {\tt DigitTop\_2\_B}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:topper_gen}
+                {\tt Topper}(& \left\langle {\tt DigitTopA} 2, \inc \right\rangle,
+                               \left\langle {\tt DigitTopB} 2, \inc \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:topper_gen}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_2\_B}, \inc \right\rangle,
-                                               \left\langle \returnpath, 2, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget\\shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopB} 2, \inc \right\rangle,
+                                               \left\langle \returnpath,    2, \inc \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
         \vspace{1cm}
 
@@ -152,27 +152,27 @@ For each $\inc \in \{ {\tt increment, copy } \}$
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                {\tt North\_Line4\textit{l}}(& \left\langle {\tt DigitTop}, 2,          \inc, {\tt msr}, {\tt msd} \right\rangle,
-                                               \left\langle {\tt DigitTop\_2\_MSD\_A},  \inc                       \right\rangle \;)
-            \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:north_line}
+                {\tt North\_Line4\textit{l}}(& \left\langle {\tt DigitTop},  2, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                                               \left\langle {\tt DigitTopA}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle\;)
+            \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:north_line}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt Topper}(& \left\langle {\tt DigitTop\_2\_MSD\_A}, \inc \right\rangle,
-                               \left\langle {\tt DigitTop\_2\_MSD\_B}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:topper_case2}
+                {\tt Topper}(& \left\langle {\tt DigitTopA}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                               \left\langle {\tt DigitTopB}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:topper_case2}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_2\_MSD\_B}, \inc \right\rangle,
-                                               \left\langle {\tt DigitTop\_2\_MSD\_C}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopB}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                                               \left\langle {\tt DigitTopC}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line30}(& \left\langle {\tt DigitTop\_2\_MSD\_C}, \inc                      \right\rangle,
-                                      \left\langle \returnpath, 2,            \inc, {\tt msr}, {\tt msd}\right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line30}(& \left\langle {\tt DigitTopC}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                                      \left\langle \returnpath,     2, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
         \vspace{1cm}
 
@@ -181,21 +181,21 @@ For each $\inc \in \{ {\tt increment, copy } \}$
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                {\tt North\_Line5}(& \left\langle {\tt DigitTop}, 3,    \inc \right\rangle,
-                                     \left\langle {\tt DigitTop\_3\_A}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:north_line}
+                {\tt North\_Line5}(& \left\langle {\tt DigitTop},  3, \inc \right\rangle,
+                                     \left\langle {\tt DigitTopA}, 3, \inc \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:north_line}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt Topper}(& \left\langle {\tt DigitTop\_3\_A}, \inc \right\rangle,
-                               \left\langle {\tt DigitTop\_3\_B}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:topper_gen}
+                {\tt Topper}(& \left\langle {\tt DigitTopA}, 3, \inc  \right\rangle,
+                               \left\langle {\tt DigitTopB}, 3, \inc  \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:topper_gen}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_3\_B}, \inc \right\rangle,
-                                               \left\langle \returnpath, 3,       \inc \right\rangle \;)
-            \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopB}, 3, \inc \right\rangle,
+                                               \left\langle \returnpath,     3, \inc \right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
         \vspace{1cm}
 
@@ -204,22 +204,22 @@ For each $\inc \in \{ {\tt increment, copy } \}$
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
-                {\tt North\_Line5}(& \left\langle {\tt DigitTop}, 3,         \inc, {\tt msr}, {\tt msd} \right\rangle,
-                                     \left\langle {\tt DigitTop\_3\_MSD\_A}, \inc                       \right\rangle \;)
-            \end{aligned}$ from the\\micro-gadget shown in Figure~\ref{fig:north_line}
+                {\tt North\_Line5}(& \left\langle {\tt DigitTop},  3, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                                     \left\langle {\tt DigitTopA}, 3, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:north_line}.
 
             \item Create
             $\begin{aligned}[t]
-                {\tt Topper}(& \left\langle {\tt DigitTop\_3\_MSD\_A}, \inc \right\rangle,
-                               \left\langle {\tt DigitTop\_3\_MSD\_B}, \inc \right\rangle \;)
-            \end{aligned}$ from the micro-gadget shown in Figure~\ref{fig:topper_gen}
+                {\tt Topper}(& \left\langle {\tt DigitTopA}, 3, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                               \left\langle {\tt DigitTopB}, 3, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:topper_gen}.
 
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTop\_3\_MSD\_B}, \inc                      \right\rangle,
-                                               \left\langle \returnpath, 3,            \inc, {\tt msr}, {\tt msd}\right\rangle \;)
-            \end{aligned}$ \\ from the micro-gadget shown in Figure~\ref{fig:south_line}
+                {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopB}, 3, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                                               \left\langle \returnpath,     3, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
 
     \end{itemize}
