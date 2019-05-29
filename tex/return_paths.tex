@@ -195,9 +195,33 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
 
     \item Create
     $\begin{aligned}[t]
-        \readnext(& \left\langle {\tt NextRead}, 3, \inc, {\tt msr}, {\tt msd} \right\rangle,
+        \readnext(& \left\langle {\tt NextRead}, 3,      \inc, {\tt msr}, {\tt msd} \right\rangle,
                     \left\langle {\tt Cross\_Next\_Row}, \inc \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_3_oporseed_msr_msd}.
 
 
 \end{itemize}
+
+\subsubsection{Crosser gadget thingy}
+
+The idea behind this gadget is to assemble after reading the MSD, and route the
+counter to back to the start of the next row, in position for the counter to
+begin reading the first digit. The number of tiles shaded in darker grey is
+$6 \cdot \floor*{\frac{d}{3}}$.
+
+\vspace{.5cm}
+For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
+
+\begin{itemize}
+    \item Create
+    $\begin{aligned}[t]
+        {\tt Crosser}(&\left\langle {\tt Cross\_Next\_Row}, \inc \right\rangle,
+                       \left\langle {\tt Read}, 1, \lambda, \inc \right\rangle \;)
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:cross_to_next_row}.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1in]{cross_to_next_row}
+    \caption{\label{fig:cross_to_next_row} The {\tt Crosser} gadget.}
+\end{figure}
