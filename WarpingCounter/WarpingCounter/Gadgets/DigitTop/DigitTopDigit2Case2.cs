@@ -27,14 +27,14 @@
     public class DigitTopDigit2Case2 : IHaveOutput, IHaveInput
     {
 
-        private readonly int bitsPerDigit;
+        private readonly int tilesPerDigit;
 
         public readonly List<Tile> Tiles;
 
 
-        public DigitTopDigit2Case2(bool carry, int bitsPerDigit)
+        public DigitTopDigit2Case2(bool carry, int bits)
         {
-            this.bitsPerDigit = bitsPerDigit;
+            this.tilesPerDigit = bits * 4;
 
             Tiles = Create();
             Tiles.PrependNamesWith($"DigitTopDigit2Case2 {carry}");
@@ -57,24 +57,18 @@
         {
             var builder = new GadgetBuilder().Start();
 
-            builder.North(29);
-
-            builder.NorthLine(bitsPerDigit);
-
-            builder.North(5)
-                   .Up();
-
-            builder.North(2)
+            builder.North(29)
+                   .North(tilesPerDigit)
+                   .North(5)
+                   .Up()
+                   .North(2)
                    .West()
                    .Down()
                    .North()
                    .Up()
-                   .East()
-                   .East()
-                   .East();
-
-            builder.South(7);
-            builder.SouthLine(bitsPerDigit);
+                   .East(3)
+                   .South(7)
+                   .South(tilesPerDigit);
 
             return builder.Tiles().ToList();
         }

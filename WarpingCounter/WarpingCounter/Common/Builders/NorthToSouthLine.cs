@@ -23,15 +23,10 @@
                 {
                     builder.StartWith(new Tile(Guid.NewGuid()
                                                    .ToString()))
-                           .South()
-                           .South()
-                           .South();
+                           .South(3);
                 } else
                 {
-                    builder.South()
-                           .South()
-                           .South()
-                           .South();
+                    builder.South(4);
                 }
             }
 

@@ -96,12 +96,12 @@
             }
 
             // Right most bits, do not impact the value that used by the counter. 
-            var tail = inputBits.GetLast(2);
+            var indicatorBits = inputBits.GetLast(2);
 
-            // All bits but the tail.
+            // The bits relevant to the value of the digit.
             var bits = inputBits.Substring(0, inputBits.Length - 2);
 
-            // Convert the first n - 2 bits to an integer. 
+            // Convert these bits to its integer representation. 
             var value = Convert.ToInt32(bits, binary);
 
             bool CanAddOne(int n) => n + 1 <= baseM - 1;
@@ -111,18 +111,17 @@
                 var incremented = Convert.ToString(value + 1, binary)
                                          .PadLeft(bits.Length, '0');
 
-                // carry signal goes to false since we incremented, 
-                // the new value is the increments bits, with the original digit/region indicators 
-                // re-added to the end
-                return ($"{incremented}{tail}", false);
+                // take the newly incremented value, and
+                // set the carry signal to false since we incremented in this row. 
+                return ($"{incremented}{indicatorBits}", false);
             }
 
-            // set all the bits to 0 since adding a value to the current value will 
+            // Set all the bits to 0 since adding a value to the current value will 
             // result in some value that is not less than base M. Propagate the 
-            // carry signal
+            // carry signal.
             var carryOut = string.Concat(Enumerable.Repeat("0", bits.Length));
 
-            return ($"{carryOut}{tail}", true);
+            return ($"{carryOut}{indicatorBits}", true);
         }
 
 

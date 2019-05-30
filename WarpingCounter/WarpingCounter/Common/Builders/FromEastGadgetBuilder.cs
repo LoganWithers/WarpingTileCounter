@@ -49,6 +49,43 @@
 
         public IFromDownGadgetBuilder Down(string name = null) => new FromDownGadgetBuilder(tiles, original, name);
 
+        public IFromEastGadgetBuilder East(int n)
+        {
+            IFromEastGadgetBuilder lastBuilder = null;
+
+            for (var i = 0; i < n; i++)
+            {
+                lastBuilder = East();
+            }
+
+            return lastBuilder;
+        }
+
+
+        public IFromSouthGadgetBuilder South(int n)
+        {
+            IFromSouthGadgetBuilder lastBuilder = null;
+
+            for (var i = 0; i < n; i++)
+            {
+                lastBuilder = South();
+            }
+
+            return lastBuilder;
+        }
+
+
+        public IFromNorthGadgetBuilder North(int n)
+        {
+            IFromNorthGadgetBuilder lastBuilder = null;
+
+            for (var i = 0; i < n; i++)
+            {
+                lastBuilder = North();
+            }
+
+            return lastBuilder;
+        }
 
         public IGadgetBuilder End() => original;
 

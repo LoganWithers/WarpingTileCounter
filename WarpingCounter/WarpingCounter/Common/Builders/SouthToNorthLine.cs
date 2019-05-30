@@ -23,15 +23,10 @@
                 {
                     builder.StartWith(new Tile(Guid.NewGuid()
                                                    .ToString()))
-                           .North()
-                           .North()
-                           .North();
+                           .North(3);
                 } else
                 {
-                    builder.North()
-                           .North()
-                           .North()
-                           .North();
+                    builder.North(4);
                 }
             }
 
@@ -39,8 +34,8 @@
                            .ToList();
 
             Tiles.PrependNamesWith($"{nameof(SouthToNorthLine)} %seed%");
-            Input = Tiles.First();
-            Output  = Tiles.Last();
+            Input  = Tiles.First();
+            Output = Tiles.Last();
 
             foreach (var tile in Tiles)
             {

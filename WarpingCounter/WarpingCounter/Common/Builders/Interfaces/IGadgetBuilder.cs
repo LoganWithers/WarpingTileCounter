@@ -38,7 +38,7 @@
         IGadgetBuilder Start();
 
 
-        IGadgetBuilder SouthLine(int numberOfBits, bool? carry = null);
+        IGadgetBuilder SouthLine(int numberOfBits);
 
 
         IGadgetBuilder NorthLine(int numberOfBits);

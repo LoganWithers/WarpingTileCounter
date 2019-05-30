@@ -24,14 +24,14 @@
     public class DigitTopDigit3Case3 : IHaveOutput, IHaveInput
     {
 
-        private readonly int L;
+        private readonly int tilesPerDigit;
 
         public readonly List<Tile> Tiles;
 
 
-        public DigitTopDigit3Case3(bool carry, int bitsPerDigit)
+        public DigitTopDigit3Case3(bool carry, int bits)
         {
-            L = bitsPerDigit;
+            tilesPerDigit = bits * 4;
             Tiles             = Create();
             Tiles.PrependNamesWith($"{nameof(DigitTopDigit3Case3)} {carry}");
 
@@ -54,30 +54,24 @@
             var build = new GadgetBuilder().Start();
 
             build.North(4)
-                 .Up();
-
-            build.North(10)
-                 .West()
-                 .West()
+                 .Up()
+                 .North(10)
+                 .West(2)
                  .Down()
-                 .South()
-                 .South()
-                 .South()
+                 .South(3)
                  .East()
                  .South()
                  .West()
                  .South()
                  .East()
-                 .South()
-                 .South()
-                 .South()
+                 .South(3)
                  .Up()
                  .North()
-                 .West();
-
-            build.South(7);
-
-            return build.SouthLine(L).Tiles().ToList();
+                 .West()
+                 .South(7)
+                 .South(tilesPerDigit);
+            
+            return build.Tiles().ToList();
         }
 
     }

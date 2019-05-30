@@ -97,14 +97,14 @@
         private void AddDigitTops()
         {
             
-            tiles.AddRange(new DigitTop(true,  1, bitsPerDigit: L).Tiles);
-            tiles.AddRange(new DigitTop(false, 1, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTop(true,  1, bits: L).Tiles);
+            tiles.AddRange(new DigitTop(false, 1, bits: L).Tiles);
 
-            tiles.AddRange(new DigitTop(true,  2, bitsPerDigit: L).Tiles);
-            tiles.AddRange(new DigitTop(false, 2, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTop(true,  2, bits: L).Tiles);
+            tiles.AddRange(new DigitTop(false, 2, bits: L).Tiles);
 
-            tiles.AddRange(new DigitTop(true,  3, bitsPerDigit: L).Tiles);
-            tiles.AddRange(new DigitTop(false, 3, bitsPerDigit: L).Tiles);
+            tiles.AddRange(new DigitTop(true,  3, bits: L).Tiles);
+            tiles.AddRange(new DigitTop(false, 3, bits: L).Tiles);
 
             switch (digitsInMSR)
             {
@@ -112,15 +112,15 @@
                     break;
     
                 case 2:
-                    tiles.AddRange(new DigitTopDigit2Case2(carry: true,  bitsPerDigit: L).Tiles);
-                    tiles.AddRange(new DigitTopDigit2Case2(carry: false, bitsPerDigit: L).Tiles);
-                    tiles.AddRange(new DigitTopDigit1Case2(carry: true,  bitsPerDigit: L).Tiles);
-                    tiles.AddRange(new DigitTopDigit1Case2(carry: false, bitsPerDigit: L).Tiles);
+                    tiles.AddRange(new DigitTopDigit2Case2(carry: true,  bits: L).Tiles);
+                    tiles.AddRange(new DigitTopDigit2Case2(carry: false, bits: L).Tiles);
+                    tiles.AddRange(new DigitTopDigit1Case2(carry: true,  bits: L).Tiles);
+                    tiles.AddRange(new DigitTopDigit1Case2(carry: false, bits: L).Tiles);
                     break;
     
                 case 3:
-                    tiles.AddRange(new DigitTopDigit3Case3(true,  bitsPerDigit: L).Tiles);
-                    tiles.AddRange(new DigitTopDigit3Case3(false, bitsPerDigit: L).Tiles);
+                    tiles.AddRange(new DigitTopDigit3Case3(true,  bits: L).Tiles);
+                    tiles.AddRange(new DigitTopDigit3Case3(false, bits: L).Tiles);
                     break;
             }
         
@@ -129,18 +129,18 @@
         private void AddReturnAndRead()
         {
            
-            var returnD1ReadD2Carry = new ReturnDigit1ReadDigit2(carry: true, bitsPerDigit: L);
-            var returnD2ReadD3Carry = new ReturnDigit2ReadDigit3(carry: true, bitsPerDigit: L);
-            var returnD3ReadD1Carry = new ReturnDigit3ReadDigit1(carry: true, bitsPerDigit: L);
+            var returnD1ReadD2Carry = new ReturnDigit1ReadDigit2(carry: true, bits: L);
+            var returnD2ReadD3Carry = new ReturnDigit2ReadDigit3(carry: true, bits: L);
+            var returnD3ReadD1Carry = new ReturnDigit3ReadDigit1(carry: true, bits: L);
 
             tiles.AddRange(returnD3ReadD1Carry.Tiles);
             tiles.AddRange(returnD1ReadD2Carry.Tiles);
             tiles.AddRange(returnD2ReadD3Carry.Tiles);
 
 
-            var returnD1ReadD2NoCarry = new ReturnDigit1ReadDigit2(carry: false, bitsPerDigit: L);
-            var returnD2ReadD3NoCarry = new ReturnDigit2ReadDigit3(carry: false, bitsPerDigit: L);
-            var returnD3ReadD1NoCarry = new ReturnDigit3ReadDigit1(carry: false, bitsPerDigit: L);
+            var returnD1ReadD2NoCarry = new ReturnDigit1ReadDigit2(carry: false, bits: L);
+            var returnD2ReadD3NoCarry = new ReturnDigit2ReadDigit3(carry: false, bits: L);
+            var returnD3ReadD1NoCarry = new ReturnDigit3ReadDigit1(carry: false, bits: L);
 
             tiles.AddRange(returnD3ReadD1NoCarry.Tiles);
             tiles.AddRange(returnD1ReadD2NoCarry.Tiles);
@@ -161,8 +161,8 @@
                     tiles.AddRange(returnDigit2ReadNextRowCarry.Tiles);
                     tiles.AddRange(returnDigit2ReadNextRowNoCarry.Tiles);
 
-                    var returnDigit1ReadDigit2Case2Carry   = new ReturnDigit1ReadDigit2Case2(carry: true,  bitsPerDigit: L);
-                    var returnDigit1ReadDigit2Case2NoCarry = new ReturnDigit1ReadDigit2Case2(carry: false, bitsPerDigit: L);
+                    var returnDigit1ReadDigit2Case2Carry   = new ReturnDigit1ReadDigit2Case2(carry: true,  bits: L);
+                    var returnDigit1ReadDigit2Case2NoCarry = new ReturnDigit1ReadDigit2Case2(carry: false, bits: L);
                     tiles.AddRange(returnDigit1ReadDigit2Case2Carry.Tiles);
                     tiles.AddRange(returnDigit1ReadDigit2Case2NoCarry.Tiles);
                     break;

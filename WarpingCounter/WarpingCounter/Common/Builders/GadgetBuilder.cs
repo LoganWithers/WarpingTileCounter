@@ -112,9 +112,9 @@
         }
 
 
-        public IGadgetBuilder SouthLine(int numberOfBits, bool? carry = null)
+        public IGadgetBuilder SouthLine(int numberOfBits)
         {
-            var line = new NorthToSouthLine(numberOfBits, carry);
+            var line = new NorthToSouthLine(numberOfBits);
 
             if (tiles.Any())
             {

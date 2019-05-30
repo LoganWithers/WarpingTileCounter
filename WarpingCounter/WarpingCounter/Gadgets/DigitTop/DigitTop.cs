@@ -16,7 +16,7 @@
     {
         public readonly List<Tile> Tiles;
 
-        private readonly int bitsPerDigit;
+        private readonly int tilesPerDigit;
 
         /// <summary>
         ///   The current carry signal of the counter
@@ -29,22 +29,20 @@
         ///   Used in order to determine the correct output glue.
         /// </summary>
         private readonly int index;
-
-
-
-        public DigitTop(bool carry, int index, int bitsPerDigit)
+        
+        public DigitTop(bool carry, int index, int bits)
         {
             this.carry = carry;
-            this.bitsPerDigit = bitsPerDigit;
+            tilesPerDigit = bits * 4;
             this.index = index;
 
             Tiles = Create();
             Tiles.PrependNamesWith($"DigitTop {this.carry} {this.index}");
 
-            Input = Tiles.First();
-            Input.South = GlueFactory.DigitTop(carry, index);
+            Input        = Tiles.First();
+            Input.South  = GlueFactory.DigitTop(carry, index);
 
-            Output = Tiles.Last();
+            Output       = Tiles.Last();
             Output.South = GetNextDigitToRead();
         }
 
@@ -73,32 +71,25 @@
             var build = new GadgetBuilder().Start();
 
             build.North(4)
-                 .Up();
-
-            build.North(10)
-                 .West()
-                 .West()
+                 .Up()
+                 .North(10)
+                 .West(2)
                  .Down()
-                 .South()
-                 .South()
-                 .South()
+                 .South(3)
                  .East()
                  .South()
                  .West()
                  .South()
                  .East()
-                 .South()
-                 .South()
-                 .South()
+                 .South(3)
                  .Up()
                  .North()
-                 .West();
+                 .West()
+                 .South(7)
+                 .South(tilesPerDigit);
 
-            build.South(7);
-
-            return build.SouthLine(bitsPerDigit)
-                        .Tiles()
-                        .ToList();
+            
+            return build.Tiles().ToList();
         }
 
     }

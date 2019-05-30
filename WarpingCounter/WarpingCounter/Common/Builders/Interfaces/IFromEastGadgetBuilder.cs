@@ -19,6 +19,15 @@
         IFromSouthGadgetBuilder South(string name = null);
 
 
+
+        IFromEastGadgetBuilder East(int n);
+
+
+        IFromNorthGadgetBuilder North(int n);
+
+
+        IFromSouthGadgetBuilder South(int n);
+
         IGadgetBuilder End();
 
     }

@@ -13,14 +13,14 @@
 
         private const int NextDigitRead = 2;
 
-        private readonly int bitsPerDigit;
+        private readonly int tilesPerDigit;
 
         public readonly List<Tile> Tiles;
 
 
-        public ReturnDigit1ReadDigit2Case2(bool carry, int bitsPerDigit)
+        public ReturnDigit1ReadDigit2Case2(bool carry, int bits)
         {
-            this.bitsPerDigit = bitsPerDigit;
+            tilesPerDigit = bits * 4;
 
             Tiles = Create();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit1ReadDigit2Case2)} {carry}");
@@ -43,16 +43,13 @@
         {
             var builder = new GadgetBuilder().Start();
 
-            builder.South(29);
-            builder.SouthLine(bitsPerDigit);
-            builder.South(30);
-            builder.SouthLine(bitsPerDigit);
-
-            builder.South()
+            builder.South(29)
+                   .South(tilesPerDigit)
+                   .South(30)
+                   .South(tilesPerDigit)
+                   .South()
                    .Up()
-                   .East()
-                   .East()
-                   .East()
+                   .East(3)
                    .Down();
 
             return builder.Tiles()

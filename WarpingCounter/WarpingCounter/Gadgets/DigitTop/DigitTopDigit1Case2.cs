@@ -25,15 +25,15 @@
     public class DigitTopDigit1Case2 : IHaveInput, IHaveOutput
     {
         
-        private readonly int bitsPerDigit;
+        private readonly int tilesPerDigit;
 
         public readonly List<Tile> Tiles;
 
 
-        public DigitTopDigit1Case2(bool carry, int bitsPerDigit)
+        public DigitTopDigit1Case2(bool carry, int bits)
         {
-            this.bitsPerDigit = bitsPerDigit;
-            Tiles             = Create();
+            tilesPerDigit = bits * 4;
+            Tiles         = Create();
             Tiles.PrependNamesWith($"{nameof(DigitTopDigit1Case2)} {carry}");
 
             Input       = Tiles.First();
@@ -61,10 +61,9 @@
                    .West()
                    .Down()
                    .North()
-                   .West();
-
-            builder.South(7);
-            builder.SouthLine(bitsPerDigit);
+                   .West()
+                   .South(7)
+                   .South(tilesPerDigit);
 
             return builder.Tiles()
                           .ToList();
