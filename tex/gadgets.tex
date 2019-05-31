@@ -2,8 +2,6 @@
 \label{gadgets}
 
 
-% { \tt Gadget}( $\left\langle \text{Input} \right\rangle, \left\langle \text{Output}  \right\rangle$ )
-
 \newcommand{\warpunit}{{\tt Warp\_Unit}}
 \newcommand{\prewarp}{{\tt Pre\_Warp}}
 \newcommand{\firstwarp}{{\tt First\_Warp}}
@@ -12,8 +10,8 @@
 \newcommand{\postwarp}{{\tt Post\_Warp}}
 
 \newcommand{\dtop}{{\tt Digit\_Top}}
-\newcommand{\dwriter}{{\tt Counter\_Write}}
-\newcommand{\dreader}{{\tt Counter\_Read}}
+\newcommand{\cwrite}{{\tt Counter\_Write}}
+\newcommand{\cread}{{\tt Counter\_Read}}
 
 \newcommand{\returnfromdonereadnextrow}{{\tt Return\_From\_Digit1\_Read\_Next\_Row}}
 \newcommand{\returnfromdtworeadnextrow}{{\tt Return\_From\_Digit2\_Read\_Next\_Row}}
@@ -47,33 +45,29 @@ will only apply to the MSR (due to each case only affecting the MSR.)
     \centering
     \begin{subfigure}[t]{0.15\textwidth}
         \centering
-        \includegraphics[width=0.15\textwidth]{south_to_north_line}
-        \caption{\label{fig:north_line} {\tt Line\_North}}
+        \includegraphics[width=0.15\textwidth]{north_line}
+        \caption{\label{fig:north_line} {\tt North\_Line}}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.15\textwidth}
         \centering
-        \includegraphics[width=0.15\textwidth]{north_to_south_line}
-        \caption{\label{fig:south_line} {\tt Line\_South} }
+        \includegraphics[width=0.15\textwidth]{south_line}
+        \caption{\label{fig:south_line} {\tt South\_Line} }
     \end{subfigure}%
     ~
     \caption{\label{fig:line_gadgets} {\tt Line} gadgets}
 \end{figure}
 
-We will use the notation {\tt LineN\_North} and {\tt LineN\_South} where {\tt N} corresponds to the length of a specific line gadget.
+We will use the notation {\tt NorthN\_Line} and {\tt SouthN\_Line} where {\tt N} corresponds to the length of a specific line gadget.
 
 
-
-
-\input{initial_value}
+    \input{initial_value}
 \subsection{ Counter Unit }
 
-    \input{digit_readers}
-    \input{warp-units}
-    \input{digit_writers}
+    \input{counter_read}
+    \input{warping}
+    \input{counter_write}
     \input{digit_tops}
-    % \input{return_read_next_digit}
-    % \input{return_read_next_row}
     \input{return_paths}
 
 \subsection{Overviews}

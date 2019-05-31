@@ -13,25 +13,25 @@ the second being a {\readnext} micro-gadget.
     \centering
     \begin{subfigure}[t]{0.24\textwidth}
         \centering
-        \frame{\includegraphics[width=0.2\textwidth]{return_paths/return_from_digit_2_op-or-seed}}
+        \frame{\includegraphics[width=0.2\textwidth]{return_paths_return_from_digit_2_op-or-seed}}
         \caption{\label{fig:return_from_digit2_oporseed}}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.24\textwidth}
         \centering
-        \frame{\includegraphics[width=0.2\textwidth]{return_paths/return_from_digit_1_op}}
+        \frame{\includegraphics[width=0.2\textwidth]{return_paths_return_from_digit_1_op}}
         \caption{\label{fig:return_from_digit_1_op}}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.24\textwidth}
         \centering
-        \frame{\includegraphics[width=0.2\textwidth]{return_paths/return_from_digit_1_op_msr}}
+        \frame{\includegraphics[width=0.2\textwidth]{return_paths_return_from_digit_1_op_msr}}
         \caption{\label{fig:return_from_digit_1_op_msr}}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.24\textwidth}
         \centering
-        \frame{\includegraphics[width=0.2\textwidth]{return_paths/return_from_digit_1-or-2_op_msr_msd}}
+        \frame{\includegraphics[width=0.2\textwidth]{return_paths_return_from_digit_1-or-2_op_msr_msd}}
         \caption{\label{fig:return_from_digit_1or2_op_msr_msd}}
     \end{subfigure}%
     \caption{\label{fig:return_from_digits} The return paths for digits 1 and 2}
@@ -39,7 +39,7 @@ the second being a {\readnext} micro-gadget.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.2in]{return_paths/return_from_digit_3}
+    \includegraphics[width=0.2in]{return_paths_return_from_digit_3}
     \caption{\label{fig:return_from_digit_3} The {\returnfromdigit} gadget for digit 3.}
 \end{figure}
 
@@ -102,45 +102,45 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
 \end{itemize}
 
 
-The second part of the return gadgets is the {\readnext} micro-gadget. These gadgets output a blank {\dwriter}
+The second part of the return gadgets is the {\readnext} micro-gadget. These gadgets output a blank {\cwrite}
 signal if the counter should read the preceding digit in the current row.
 
 \begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=0.3\textwidth]{return_paths/read_next_1-or-2_op}
+        \includegraphics[width=0.3\textwidth]{return_paths_read_next_1-or-2_op}
         \caption{\label{fig:read_next_1or2_op}}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=0.3\textwidth]{return_paths/read_next_1_op_msr}
+        \includegraphics[width=0.3\textwidth]{return_paths_read_next_1_op_msr}
         \caption{\label{fig:read_next_1_op_msr}}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=0.3\textwidth]{return_paths/read_next_1-or-2_op_msr_msd}
+        \includegraphics[width=0.3\textwidth]{return_paths_read_next_1-or-2_op_msr_msd}
         \caption{\label{fig:read_next_1or2_op_msr_msd}}
     \end{subfigure}%
     ~
 
     \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=0.3\textwidth]{return_paths/read_next_3_op-or-seed_msr_msd}
+        \includegraphics[width=0.3\textwidth]{return_paths_read_next_3_op-or-seed_msr_msd}
         \caption{\label{fig:read_next_3_oporseed_msr_msd}}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=0.3\textwidth]{return_paths/read_next_3_seed}
+        \includegraphics[width=0.3\textwidth]{return_paths_read_next_3_seed}
         \caption{\label{fig:read_next_3_seed}}
     \end{subfigure}%
     ~
     \begin{subfigure}[t]{0.3\textwidth}
         \centering
-        \includegraphics[width=0.3\textwidth]{return_paths/read_next_2_seed}
+        \includegraphics[width=0.3\textwidth]{return_paths_read_next_2_seed}
         \caption{\label{fig:read_next_2_seed}}
     \end{subfigure}%
     \caption{\label{fig:readnext} The {\readnext} gadgets}
