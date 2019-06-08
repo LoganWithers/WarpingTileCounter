@@ -19,17 +19,17 @@
 
         private const int NextDigitRead = 1;
 
-        private readonly int bitsPerDigit;
+        private readonly int tilesPerDigit;
 
         private readonly int rectangleWidth;
 
         public readonly List<Tile> Tiles;
 
 
-        public ReturnDigit2ReadNextRow(bool carry, int bitsPerDigit, int numberOfRegions)
+        public ReturnDigit2ReadNextRow(bool carry, int bits, int numberOfRegions)
         {
-            this.bitsPerDigit = bitsPerDigit;
-            rectangleWidth    = (numberOfRegions - 1) * 6;
+            tilesPerDigit  = bits * 4;
+            rectangleWidth = (numberOfRegions - 1) * 6;
 
             Tiles = Create();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit2ReadNextRow)} {carry}");
@@ -52,26 +52,19 @@
         {
             var build = new GadgetBuilder().Start();
 
-            build.South(29);
-            build.SouthLine(bitsPerDigit);
-            build.South(11);
-            build.West();
-
-            build.South(4)
-                 .East();
-
-            build.South(15);
-
-            build.SouthLine(bitsPerDigit);
-
-            build.South(1)
-                 .West();
-
-            build.South(3);
-
-            build.East(rectangleWidth);
-
-            build.North(3)
+            build.South(29)
+                 .South(tilesPerDigit)
+                 .South(11)
+                 .West()
+                 .South(4)
+                 .East()
+                 .South(15)
+                 .South(tilesPerDigit)
+                 .South(1)
+                 .West()
+                 .South(3)
+                 .East(rectangleWidth)
+                 .North(3)
                  .Down();
 
             return build.Tiles()

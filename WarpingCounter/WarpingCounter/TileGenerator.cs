@@ -149,15 +149,15 @@
             switch (digitsInMSR)
             {
                 case 1:
-                    var returnDigit1ReadNextRowCarry   = new ReturnDigit1ReadNextRow(carry: true,  bitsPerDigit: L, numberOfRegions: regions);
-                    var returnDigit1ReadNextRowNoCarry = new ReturnDigit1ReadNextRow(carry: false, bitsPerDigit: L, numberOfRegions: regions);
+                    var returnDigit1ReadNextRowCarry   = new ReturnDigit1ReadNextRow(carry: true,  bits: L, numberOfRegions: regions);
+                    var returnDigit1ReadNextRowNoCarry = new ReturnDigit1ReadNextRow(carry: false, bits: L, numberOfRegions: regions);
                     tiles.AddRange(returnDigit1ReadNextRowCarry.Tiles);                            
                     tiles.AddRange(returnDigit1ReadNextRowNoCarry.Tiles);
                     break;
 
                 case 2:
-                    var returnDigit2ReadNextRowCarry   = new ReturnDigit2ReadNextRow(carry: true,  bitsPerDigit: L, numberOfRegions: regions);
-                    var returnDigit2ReadNextRowNoCarry = new ReturnDigit2ReadNextRow(carry: false, bitsPerDigit: L, numberOfRegions: regions);
+                    var returnDigit2ReadNextRowCarry   = new ReturnDigit2ReadNextRow(carry: true,  bits: L, numberOfRegions: regions);
+                    var returnDigit2ReadNextRowNoCarry = new ReturnDigit2ReadNextRow(carry: false, bits: L, numberOfRegions: regions);
                     tiles.AddRange(returnDigit2ReadNextRowCarry.Tiles);
                     tiles.AddRange(returnDigit2ReadNextRowNoCarry.Tiles);
 
@@ -168,8 +168,8 @@
                     break;
 
                 case 3:
-                    var returnDigit3ReadNextRowCarry   = new ReturnDigit3ReadNextRow(carry: true,  bitsPerDigit: L, regions);
-                    var returnDigit3ReadNextRowNoCarry = new ReturnDigit3ReadNextRow(carry: false, bitsPerDigit: L, regions);
+                    var returnDigit3ReadNextRowCarry   = new ReturnDigit3ReadNextRow(carry: true,  bits: L, regions);
+                    var returnDigit3ReadNextRowNoCarry = new ReturnDigit3ReadNextRow(carry: false, bits: L, regions);
                     tiles.AddRange(returnDigit3ReadNextRowCarry.Tiles);
                     tiles.AddRange(returnDigit3ReadNextRowNoCarry.Tiles);
                     break;

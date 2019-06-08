@@ -22,17 +22,17 @@
         /// <summary>
         ///    Ceil( log M ) + 2
         /// </summary>
-        private readonly int bitsPerDigit;
+        private readonly int tilesPerDigit;
 
         private readonly int rectangleWidth;
 
         public readonly List<Tile> Tiles;
 
 
-        public ReturnDigit1ReadNextRow(bool carry, int bitsPerDigit, int numberOfRegions)
+        public ReturnDigit1ReadNextRow(bool carry, int bits, int numberOfRegions)
         {
-            this.bitsPerDigit = bitsPerDigit;
-            rectangleWidth    = 6 * (numberOfRegions - 1);
+            tilesPerDigit  = bits * 4;
+            rectangleWidth = 6 * (numberOfRegions - 1);
 
             Tiles = Create();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit1ReadNextRow)} {carry}");
@@ -56,52 +56,39 @@
             var builder = new GadgetBuilder().Start();
 
             builder.North(16)
-                   .Up();
-
-            builder.North(13);
-            builder.NorthLine(bitsPerDigit);
-            builder.North(30);
-            builder.NorthLine(bitsPerDigit);
-
-            builder.North(8)
+                   .Up()
+                   .North(13)
+                   .North(tilesPerDigit)
+                   .North(30)
+                   .North(tilesPerDigit)
+                   .North(8)
                    .East()
                    .South()
                    .Down()
-                   .North()
-                   .North()
-                   .North()
+                   .North(3)
                    .West()
                    .North()
                    .East()
                    .North()
                    .West()
-                   .North()
-                   .North()
-                   .North()
+                   .North(3)
                    .Up()
+                   .East(2)
+                   .South(14)
+                   .South(tilesPerDigit)
+                   .South(30)
+                   .South(tilesPerDigit)
+                   .South(11)
+                   .West()
+                   .South(4)
                    .East()
-                   .East();
-
-            builder.South(14);
-            builder.SouthLine(bitsPerDigit);
-            builder.South(30);
-            builder.SouthLine(bitsPerDigit);
-
-            builder.South(11)
-                   .West();
-
-            builder.South(4);
-            builder.East();
-            builder.South(15);
-            builder.SouthLine(bitsPerDigit);
-
-            builder.South()
-                   .West();
-
-            builder.South(3);
-            builder.East(rectangleWidth);
-
-            builder.North(3)
+                   .South(15)
+                   .South(tilesPerDigit)
+                   .South()
+                   .West()
+                   .South(3)
+                   .East(rectangleWidth)
+                   .North(3)
                    .Down();
 
             return builder.Tiles()

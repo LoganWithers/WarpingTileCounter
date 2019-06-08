@@ -59,7 +59,6 @@
                  .South(tilesPerDigit)
                  .South()
                  .East(2)
-                 .East()
                  .Down();
 
             return build.Tiles()

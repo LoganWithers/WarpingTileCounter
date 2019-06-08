@@ -126,9 +126,7 @@
             // TODO: 24 is not right, just guess until I can test 
             builder.North(24);
 
-            builder.Tiles()
-                   .First()
-                   .West = GlueFactory.PostWarp(bits, index, carry);
+            builder.Tiles().First().West = GlueFactory.PostWarp(bits, index, carry);
 
             return builder.Tiles()
                           .ToList();
@@ -139,12 +137,10 @@
         {
             var b = new GadgetBuilder().Start();
 
-            b.East();
-
-            b.North(4)
-             .Down();
-
-            b.North(16)
+            b.East()
+             .North(4)
+             .Down()
+             .North(16)
              .West()
              .North();
 
@@ -166,23 +162,20 @@
                 {
                     var b = new GadgetBuilder().Start();
 
-                    b.East();
-                    b.North(4)
-                     .Down();
-
-                    b.North(9)
-                     .East();
-
-                    b.North(3)
-                     .East();
-
-                    b.North(4)
+                    b.East()
+                     .North(4)
+                     .Down()
+                     .North(9)
+                     .East()
+                     .North(3)
+                     .East()
+                     .North(4)
                      .West()
                      .North();
 
                     var tiles = b.Tiles().ToList();
-                    tiles.First()
-                         .Down = GlueFactory.PostWarp(bits, index, carry);
+
+                    tiles.First().Down = GlueFactory.PostWarp(bits, index, carry);
 
                     return tiles;
                 }
@@ -190,14 +183,14 @@
                 default:
                 {
                     var b = new GadgetBuilder();
-                    b.Start()
-                     .East();
-                    b.North(4)
-                     .Down();
 
-                    b.North(9)
-                     .East();
-                    b.North(8);
+                    b.Start()
+                     .East()
+                     .North(4)
+                     .Down()
+                     .North(9)
+                     .East()
+                     .North(8);
 
 
                     var tiles = b.Tiles().ToList();

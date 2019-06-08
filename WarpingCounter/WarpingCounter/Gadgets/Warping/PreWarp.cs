@@ -94,15 +94,15 @@
         {
             var b = new GadgetBuilder().Start();
 
-            b.North(17);
-            b.West();
-            b.North(3)
+            b.North(17)
+             .West()
+             .North(3)
              .Up()
              .North()
              .West()
              .North()
-             .Down();
-            b.North(7);
+             .Down()
+             .North(7);
 
             return b.Tiles().ToList();
         }
@@ -112,9 +112,9 @@
         {
             var b = new GadgetBuilder().Start();
 
-            b.North(17);
-            b.West();
-            b.North(12);
+            b.North(17)
+             .West()
+             .North(12);
 
             return b.Tiles().ToList();
         }

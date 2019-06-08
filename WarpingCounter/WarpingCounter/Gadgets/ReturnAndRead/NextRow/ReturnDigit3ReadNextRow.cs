@@ -19,17 +19,17 @@
 
         private const int NextDigitRead = 1;
 
-        private readonly int bitsPerDigit;
+        private readonly int tilesPerDigit;
 
         private readonly int rectangleWidth;
 
         public readonly List<Tile> Tiles;
 
 
-        public ReturnDigit3ReadNextRow(bool carry, int bitsPerDigit, int numberOfRegions)
+        public ReturnDigit3ReadNextRow(bool carry, int bits, int numberOfRegions)
         {
-            this.bitsPerDigit = bitsPerDigit;
-            rectangleWidth    = numberOfRegions * 6 - 1;
+            tilesPerDigit  = bits * 4;
+            rectangleWidth = numberOfRegions * 6 - 1;
 
             Tiles = Create();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit3ReadNextRow)} {carry}");
@@ -55,41 +55,26 @@
         {
             var build = new GadgetBuilder().Start();
 
-            build.South(12);
-
-            build.West();
-
-            build.South(3)
-                 .Down();
-
-            build.South(14);
-
-            build.SouthLine(bitsPerDigit);
-
-            build.South(11);
-
-            build.South()
+            build.South(12)
+                 .West()
+                 .South(3)
+                 .Down()
+                 .South(14)
+                 .South(tilesPerDigit)
+                 .South(12)
                  .Up()
                  .West()
-                 .South()
-                 .South()
-                 .East();
-
-            build.South(16);
-
-            build.SouthLine(bitsPerDigit);
-
-            build.South()
-                 .South()
+                 .South(2)
+                 .East()
+                 .South(16)
+                 .South(tilesPerDigit)
+                 .South(2)
                  .West()
                  .Down()
-                 .South()
-                 .South()
-                 .Up();
-
-            build.East(rectangleWidth);
-
-            build.North(3)
+                 .South(2)
+                 .Up()
+                 .East(rectangleWidth)
+                 .North(3)
                  .Down();
 
             return build.Tiles()

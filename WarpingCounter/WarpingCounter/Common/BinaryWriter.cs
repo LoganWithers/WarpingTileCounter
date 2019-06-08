@@ -24,7 +24,7 @@
         {
             this.originalBits = originalBits;
             Tiles             = CreateTiles();
-            Tiles.PrependNamesWith($"Write {originalBits} {carry} {index}");
+            Tiles.PrependNamesWith($"Counter_Write {originalBits} {carry} {index}");
             Input       = Tiles.First();
             Input.South = GlueFactory.DigitWriter(originalBits, carry, index);
 
