@@ -19,7 +19,7 @@
 
         private const int NextDigitRead = 1;
 
-        private readonly int tilesPerDigit;
+        private readonly int L;
 
         private readonly int rectangleWidth;
 
@@ -28,7 +28,7 @@
 
         public ReturnDigit3ReadNextRow(bool carry, int bits, int numberOfRegions)
         {
-            tilesPerDigit  = bits * 4;
+            L  = bits * 4;
             rectangleWidth = numberOfRegions * 6 - 1;
 
             Tiles = Create();
@@ -60,14 +60,14 @@
                  .South(3)
                  .Down()
                  .South(14)
-                 .South(tilesPerDigit)
+                 .South(L)
                  .South(12)
                  .Up()
                  .West()
                  .South(2)
                  .East()
                  .South(16)
-                 .South(tilesPerDigit)
+                 .South(L)
                  .South(2)
                  .West()
                  .Down()

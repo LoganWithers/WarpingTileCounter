@@ -1,6 +1,7 @@
 ﻿namespace WarpingCounter.Gadgets.DigitTop
 {
 
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -27,23 +28,23 @@
     public class DigitTopDigit2Case2 : IHaveOutput, IHaveInput
     {
 
-        private readonly int tilesPerDigit;
+        private readonly int L;
 
         public readonly List<Tile> Tiles;
 
 
-        public DigitTopDigit2Case2(bool carry, int bits)
+        public DigitTopDigit2Case2(int L, Glue input, Glue output)
         {
-            this.tilesPerDigit = bits * 4;
+            this.L = L;
 
             Tiles = Create();
-            Tiles.PrependNamesWith($"DigitTopDigit2Case2 {carry}");
+            Tiles.PrependNamesWith(nameof(DigitTopDigit1Case2));
 
-            Input       = Tiles.First();
-            Input.South = GlueFactory.DigitTopDigit2Case2(carry);
+            Input        = Tiles.First();
+            Input.South  = input;
 
             Output       = Tiles.Last();
-            Output.South = GlueFactory.ReturnDigit2ReadNextRow(carry);
+            Output.South = output;
         }
 
 
@@ -58,7 +59,7 @@
             var builder = new GadgetBuilder().Start();
 
             builder.North(29)
-                   .North(tilesPerDigit)
+                   .North(4 * L)
                    .North(5)
                    .Up()
                    .North(2)
@@ -68,7 +69,7 @@
                    .Up()
                    .East(3)
                    .South(7)
-                   .South(tilesPerDigit);
+                   .South(4 * L);
 
             return builder.Tiles().ToList();
         }

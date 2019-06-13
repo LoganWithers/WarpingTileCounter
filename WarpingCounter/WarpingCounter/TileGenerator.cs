@@ -96,32 +96,45 @@
         /// </summary>
         private void AddDigitTops()
         {
-            
-            tiles.AddRange(new DigitTop(true,  1, bits: L).Tiles);
-            tiles.AddRange(new DigitTop(false, 1, bits: L).Tiles);
-
-            tiles.AddRange(new DigitTop(true,  2, bits: L).Tiles);
-            tiles.AddRange(new DigitTop(false, 2, bits: L).Tiles);
-
-            tiles.AddRange(new DigitTop(true,  3, bits: L).Tiles);
-            tiles.AddRange(new DigitTop(false, 3, bits: L).Tiles);
-
-            switch (digitsInMSR)
+            foreach (var op in new []{true, false})
             {
-                case 1:
-                    break;
-    
-                case 2:
-                    tiles.AddRange(new DigitTopDigit2Case2(carry: true,  bits: L).Tiles);
-                    tiles.AddRange(new DigitTopDigit2Case2(carry: false, bits: L).Tiles);
-                    tiles.AddRange(new DigitTopDigit1Case2(carry: true,  bits: L).Tiles);
-                    tiles.AddRange(new DigitTopDigit1Case2(carry: false, bits: L).Tiles);
-                    break;
-    
-                case 3:
-                    tiles.AddRange(new DigitTopDigit3Case3(true,  bits: L).Tiles);
-                    tiles.AddRange(new DigitTopDigit3Case3(false, bits: L).Tiles);
-                    break;
+                tiles.AddRange(new DigitTop(L,
+                                            GlueFactory.Create(Names.DigitTop,   1, op),
+                                            GlueFactory.Create(Names.ReturnPath, 1, op)).Tiles);
+
+                tiles.AddRange(new DigitTop(L, 
+                                            GlueFactory.Create(Names.DigitTop,   2, op), 
+                                            GlueFactory.Create(Names.ReturnPath, 2, op)).Tiles);
+
+                tiles.AddRange(new DigitTop(L,
+                                            GlueFactory.Create(Names.DigitTop,   3, op),
+                                            GlueFactory.Create(Names.ReturnPath, 3, op)).Tiles);
+
+
+                switch (digitsInMSR)
+                {
+                    case 1:
+                        tiles.AddRange(new DigitTopDigit1Case1(L,
+                                                               GlueFactory.Create(Names.DigitTop,   1, op, msr: true, msd: true),
+                                                               GlueFactory.Create(Names.ReturnPath, 1, op, msr: true, msd: true)).Tiles);
+                        break;
+        
+                    case 2:
+                        tiles.AddRange(new DigitTopDigit1Case2(L, 
+                                                               GlueFactory.Create(Names.DigitTop,   1, op,  msr: true), 
+                                                               GlueFactory.Create(Names.ReturnPath, 1, op,  msr: true)).Tiles);
+
+                        tiles.AddRange(new DigitTopDigit2Case2(L, 
+                                                               GlueFactory.Create(Names.DigitTop,   2, op, msr: true, msd: true),
+                                                               GlueFactory.Create(Names.ReturnPath, 2, op, msr: true, msd: true)).Tiles);
+                        break;
+                    case 3:
+                        tiles.AddRange(new DigitTop(L,
+                                                    GlueFactory.Create(Names.DigitTop,   3, op, msr: true, msd: true),
+                                                    GlueFactory.Create(Names.ReturnPath, 3, op, msr: true, msd: true)).Tiles);
+                        break;
+                }
+
             }
         
         }

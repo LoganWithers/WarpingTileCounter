@@ -43,7 +43,7 @@
         {
             switch (digitsInMSR)
             {
-                case 1 when bits.EndsWith("11"): return GlueFactory.ReturnDigit1ReadNextRow(carry);
+                case 1 when bits.EndsWith("11"): return GlueFactory.DigitTopDigit1Case1(carry);
 
                 case 2 when bits.EndsWith("01"): return GlueFactory.DigitTopDigit1Case2(carry);
 

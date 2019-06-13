@@ -9,6 +9,12 @@
     public static class GlueFactory
     {
 
+        public static Glue Create(string uniqueIdentifier, int i, bool op = false, bool msd = false, bool msr = false) => new Glue($"{uniqueIdentifier} {i} {op} {msr} {msd}");
+
+        public static Glue Create(string uniqueIdentifier, int i, string bits = "", bool op = false) => new Glue($"{uniqueIdentifier} {i} '{bits}' {op}");
+
+        public static Glue Create(string uniqueIdentifier, int i, string bits, bool op, bool msr, bool msd) => new Glue($"{uniqueIdentifier} {i} '{bits}' {op} {msr} {msd}");
+
         #region Warp units
 
 
@@ -32,7 +38,6 @@
 
         #region Digit Tops
 
-
         public static Glue DigitTop(bool carry, int index) => new Glue($"DigitTopStart {carry} {index}");
 
 
@@ -43,6 +48,7 @@
 
 
         public static Glue DigitTopDigit1Case2(bool carry) => new Glue($"DigitTopDigit1Case2 {carry} 1");
+        public static Glue DigitTopDigit1Case1(bool carry) => new Glue($"DigitTopDigit1Case1 {carry} 1");
 
 
         #endregion

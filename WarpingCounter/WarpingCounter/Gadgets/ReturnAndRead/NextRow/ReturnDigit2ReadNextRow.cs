@@ -19,7 +19,7 @@
 
         private const int NextDigitRead = 1;
 
-        private readonly int tilesPerDigit;
+        private readonly int L;
 
         private readonly int rectangleWidth;
 
@@ -28,7 +28,7 @@
 
         public ReturnDigit2ReadNextRow(bool carry, int bits, int numberOfRegions)
         {
-            tilesPerDigit  = bits * 4;
+            L  = bits * 4;
             rectangleWidth = (numberOfRegions - 1) * 6;
 
             Tiles = Create();
@@ -53,13 +53,13 @@
             var build = new GadgetBuilder().Start();
 
             build.South(29)
-                 .South(tilesPerDigit)
+                 .South(L)
                  .South(11)
                  .West()
                  .South(4)
                  .East()
                  .South(15)
-                 .South(tilesPerDigit)
+                 .South(L)
                  .South(1)
                  .West()
                  .South(3)

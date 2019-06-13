@@ -22,14 +22,14 @@
 
         private const int NextDigitRead = 2;
 
-        private readonly int tilesPerDigit;
+        private readonly int L;
         
         public readonly List<Tile> Tiles;
 
 
         public ReturnDigit1ReadDigit2(bool carry, int bits)
         {
-            tilesPerDigit = bits * 4;
+            L = bits * 4;
 
             Tiles = Create();
             Tiles.PrependNamesWith($"{nameof(ReturnDigit1ReadDigit2)} {carry}");
@@ -68,7 +68,7 @@
                    .South(3)
                    .Down()
                    .South(14)
-                   .South(tilesPerDigit)
+                   .South(L)
                    .South(15)
                    .East()
                    .Up()
@@ -77,7 +77,7 @@
                    .South()
                    .West(2)
                    .South(3)
-                   .South(tilesPerDigit)
+                   .South(L)
                    .South()
                    .East(2)
                    .Down();

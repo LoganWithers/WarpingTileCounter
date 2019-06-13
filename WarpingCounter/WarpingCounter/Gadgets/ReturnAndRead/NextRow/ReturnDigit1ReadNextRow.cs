@@ -22,7 +22,7 @@
         /// <summary>
         ///    Ceil( log M ) + 2
         /// </summary>
-        private readonly int tilesPerDigit;
+        private readonly int L;
 
         private readonly int rectangleWidth;
 
@@ -31,7 +31,7 @@
 
         public ReturnDigit1ReadNextRow(bool carry, int bits, int numberOfRegions)
         {
-            tilesPerDigit  = bits * 4;
+            L  = bits * 4;
             rectangleWidth = 6 * (numberOfRegions - 1);
 
             Tiles = Create();
@@ -55,35 +55,14 @@
         {
             var builder = new GadgetBuilder().Start();
 
-            builder.North(16)
-                   .Up()
-                   .North(13)
-                   .North(tilesPerDigit)
-                   .North(30)
-                   .North(tilesPerDigit)
-                   .North(8)
-                   .East()
-                   .South()
-                   .Down()
-                   .North(3)
-                   .West()
-                   .North()
-                   .East()
-                   .North()
-                   .West()
-                   .North(3)
-                   .Up()
-                   .East(2)
-                   .South(14)
-                   .South(tilesPerDigit)
-                   .South(30)
-                   .South(tilesPerDigit)
+            builder.South(30)
+                   .South(L)
                    .South(11)
                    .West()
                    .South(4)
                    .East()
                    .South(15)
-                   .South(tilesPerDigit)
+                   .South(L)
                    .South()
                    .West()
                    .South(3)
