@@ -208,7 +208,7 @@ can write the next value in the correct locations.
 
         \item {\postwarp}:
         \begin{itemize}
-           \item For each $i = 1,2,3$: Create \\
+           \item For each $i = 1,2,3$: create\\
             $\begin{aligned}[t]
                 \postwarp(& \left \langle {\tt PostWarp}, i, u, \inc \right\rangle,    % Down
                             \left \langle {\tt Write},    i, u, \inc \right\rangle \;) % North
@@ -226,8 +226,7 @@ can write the next value in the correct locations.
             from the general gadget in Figure~\ref{fig:post_warp_case2_digit1_msr}.
             \vspace{.5cm}
 
-            \item if $i=1,2,3$ ends with 11:\\
-            create
+            \item For each $i=1,2,3$: create\\
             $\begin{aligned}[t]
                 \postwarp(& \left \langle {\tt PostWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle,    % Down if i=1 or i=3, West if i=2
                             \left \langle {\tt Write},    i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;) % North
