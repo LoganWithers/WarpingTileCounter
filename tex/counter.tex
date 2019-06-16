@@ -4,30 +4,36 @@
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.2\textwidth}
+    \begin{subfigure}[t]{0.43\textwidth}
         \centering
-        \includegraphics[width=.6in]{counter_read_start_general_case3_middle_level}
+        \includegraphics[width=0.43\textwidth]{counter_read_start_general_case3_middle_level}
         \caption{\label{fig:counter_read_start_case3_middle_level} A ``clean'' counter row, before any reading has started.}
     \end{subfigure}%
     ~
-    \begin{subfigure}[t]{0.2\textwidth}
+    \begin{subfigure}[t]{0.43\textwidth}
         \centering
-        \includegraphics[width=.6in]{counter_read_digit1_return_read_digit2_general_case3_middle_level}
+        \includegraphics[width=0.43\textwidth]{counter_read_digit1_return_read_digit2_general_case3_middle_level}
         \caption{\label{fig:counter_read_digit1_general_case3_middle_level} Read digit 1 in the current row, write digit 1 in the next row.}
     \end{subfigure}%
     ~
-    \begin{subfigure}[t]{0.2\textwidth}
+\end{figure}
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}[t]{0.43\textwidth}
         \centering
-        \includegraphics[width=.6in]{counter_read_digit2_return_read_digit3_general_case3_middle_level}
+        \includegraphics[width=0.43\textwidth]{counter_read_digit2_return_read_digit3_general_case3_middle_level}
         \caption{\label{fig:counter_read_digit2_general_case3_middle_level} Read digit 2 in the current row, write digit 2 in the next row.}
     \end{subfigure}%
     ~
-    \begin{subfigure}[t]{0.2\textwidth}
+    \begin{subfigure}[t]{0.43\textwidth}
         \centering
-        \includegraphics[width=.6in]{counter_read_digit3_return_read_digit1_general_case3_middle_level}
+        \includegraphics[width=0.43\textwidth]{counter_read_digit3_return_read_digit1_general_case3_middle_level}
         \caption{\label{fig:counter_read_digit3_general_case3_middle_level} Read digit 3 in the current row, write digit 3 in the next row.}
     \end{subfigure}%
     ~
+
+\end{figure}
+\begin{figure}[H]\ContinuedFloat
     \caption{\label{fig:counter_read_digit_return_read_digit_general_case3}
     This illustrates how a counter reads and writes a digit region, in a general sense.
     The counter starts in the rightmost digit region by reading the bottommost digit within
@@ -39,7 +45,6 @@
     next digit region, cross back all the way to the right of the rectangle and start reading
     the next row, or halt.}
 \end{figure}
-
 
 \subsection{ Digit region explanation (in progress) }
 
@@ -54,13 +59,13 @@ until it detects the final digit, in the most signifcant digit region (MSR).
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.48\textwidth}
+    \begin{subfigure}[t]{0.43\textwidth}
         \centering
         \includegraphics[width=2in]{digits_normal_counter}
         \caption{\label{fig:digits_normal_counter} Digits in a typical counter}
     \end{subfigure}%
     ~
-    \begin{subfigure}[t]{0.48\textwidth}
+    \begin{subfigure}[t]{0.43\textwidth}
         \centering
         \includegraphics[width=2in]{digits_digit_region_counter}
         \caption{\label{fig:digits_digit_region_counter} Digits in two digit regions, stacked vertically, minimizing the width. }

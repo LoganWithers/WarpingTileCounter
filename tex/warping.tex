@@ -1,21 +1,24 @@
 \subsubsection{ Warping }
 
-We now explain the Warp units. A warp unit generally consists of the following 5 gadgets: \prewarp,
+We now explain the {\warpunit}. A warp unit generally consists of the following 5 gadgets: \prewarp,
 \firstwarp, \warpbridge, \secondwarp, \postwarp. The job of these 5 gadgets is to transport the value
-read by the {\tt Counter\_Read} all the way to the next digit region, so that the {\cwrite} gadgets
-can write the next value in the correct locations.
-
-
+read by the {\tt Counter\_Read} all the way to the digit region in the next row, so that the {\cwrite} gadgets
+can write the next value in the correct locations. The {\firstwarp} and {\secondwarp} gadgets are single
+tile gadgets that have north and south glues with identical labels. This allows the gadgets to continuously
+assemble until stopped by earlier parts of the assembly. These single tile gadgets also have one additional glue
+that will allow the next piece in the warp unit to assemble, however the assembly will also block this side of the tile
+all the way until the gadget can no longer continue assembling in the north direction.
 
     \begin{itemize}
-        \item {\prewarp}: These gadgets take the bits read from the {\cread} gadgets and convert it into
-                          a signal used until the {\dtop} gadgets are attached after writing the current digit.
-                          The signal started by this gadget is used to tell the counter whether to begin reading
+        \item {\prewarp}: These gadgets use the bits read from the {\cread} gadgets to translate them into
+                          a signal used to tell the counter whether to begin reading
                           another digit in the current row, or cut across the rectangle and begin reading the
-                          first digit in the next row.
+                          first digit in the next row. This signal is used from the {\prewarp} gadgets through
+                          the {\dtop} gadgets are attached after writing the current digit.
 
             For each $i = 1,2,3, u \in \{0, 1\}^l$, and each $\inc \in \{ {\tt increment, copy } \}$:
             \begin{itemize}
+
 
             \item if $u$ ends with 00:
             create
@@ -31,6 +34,16 @@ can write the next value in the correct locations.
                            \left\langle {\tt FirstWarp}, i, u, \inc, {\tt msr} \right\rangle \;)
             \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:pre_warp_case2_digit1_msr}.
 
+
+            \item if $u$ ends with 11 and $dec(u >> 2) >= m$:\\
+            create
+            $\begin{aligned}[t]
+                \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
+                \left\langle {\tt FirstWarp}, i, u, \inc, {\tt halt},  \right\rangle \;)
+            \end{aligned}$ from the general gadget in Figure~\ref{fig:pre_warp_case1_digit1_msr} if $i = 1$ (case 1),
+            or Figure~\ref{fig:pre_warp_case2_digit2_msr} if $i = 2$ (case 2), or Figure~\ref{fig:pre_warp_general} if $i = 3$ (case 3).
+
+
             \item if $u$ ends with 11:
             create
             $\begin{aligned}[t]
@@ -43,31 +56,35 @@ can write the next value in the correct locations.
 
         \begin{figure}[H]
             \centering
-            \begin{subfigure}[t]{0.24\textwidth}
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.15\textwidth]{warping_pre_warp_general}
+                \includegraphics[width=0.32\textwidth]{warping_pre_warp_general}
                 \caption{\label{fig:pre_warp_general} General }
             \end{subfigure}%
             ~
-            \begin{subfigure}[t]{0.24\textwidth}
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.15\textwidth]{warping_pre_warp_case1_digit1_msr}
+                \includegraphics[width=0.32\textwidth]{warping_pre_warp_case1_digit1_msr}
                 \caption{\label{fig:pre_warp_case1_digit1_msr} Digit 1 -- Case 1}
             \end{subfigure}%
             ~
-            \begin{subfigure}[t]{0.24\textwidth}
+        \end{figure}
+
+        \begin{figure}[H]\ContinuedFloat
+            \centering
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.15\textwidth]{warping_pre_warp_case2_digit1_msr}
+                \includegraphics[width=0.32\textwidth]{warping_pre_warp_case2_digit1_msr}
                 \caption{\label{fig:pre_warp_case2_digit1_msr} Digit 1 -- Case 2}
             \end{subfigure}%
             ~
-            \begin{subfigure}[t]{0.24\textwidth}
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.15\textwidth]{warping_pre_warp_case2_digit2_msr}
+                \includegraphics[width=0.32\textwidth]{warping_pre_warp_case2_digit2_msr}
                 \caption{\label{fig:pre_warp_case2_digit2_msr} Digit 2 -- Case 2}
             \end{subfigure}%
             ~
-            \caption{\label{fig:pre_warp_gadgets} {\prewarp} gadgets }
+            \caption{\label{fig:pre_warp_gadgets} The {\prewarp} gadgets }
         \end{figure}
 
 
@@ -152,15 +169,15 @@ can write the next value in the correct locations.
 
         \begin{figure}[H]
             \centering
-            \begin{subfigure}[t]{0.2\textwidth}
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.2\textwidth]{warping_warp_bridge_general}
+                \includegraphics[width=0.32\textwidth]{warping_warp_bridge_general}
                 \caption{\label{fig:warp_bridge_general} General}
             \end{subfigure}%
             ~
-            \begin{subfigure}[t]{0.2\textwidth}
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.2\textwidth]{warping_warp_bridge_case2_digit2_msr}
+                \includegraphics[width=0.32\textwidth]{warping_warp_bridge_case2_digit2_msr}
                 \caption{\label{fig:warp_bridge_case2_digit2_msr} Digit 2 -- Case 2}
             \end{subfigure}%
             ~\caption{\label{fig:warp_bridge} The {\warpbridge} gadgets.}
@@ -240,33 +257,34 @@ can write the next value in the correct locations.
 
         \begin{figure}[H]
             \centering
-            \begin{subfigure}[t]{0.17\textwidth}
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.17\textwidth]{warping_post_warp_general_digit1}
+                \includegraphics[width=0.32\textwidth]{warping_post_warp_general_digit1}
                 \caption{\label{fig:post_warp_general_digit1} General Digit 1}
             \end{subfigure}%
             ~
-            \begin{subfigure}[t]{0.17\textwidth}
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.17\textwidth]{warping_post_warp_general_digit2and3}
+                \includegraphics[width=0.32\textwidth]{warping_post_warp_general_digit2and3}
                 \caption{\label{fig:post_warp_general_digit2and3} General Digits 2 and 3 }
             \end{subfigure}%
             ~
-            \begin{subfigure}[t]{0.17\textwidth}
+
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.17\textwidth]{warping_post_warp_case1_digit1_msr}
+                \includegraphics[width=0.32\textwidth]{warping_post_warp_case1_digit1_msr}
                 \caption{\label{fig:post_warp_case1_digit1_msr} Digit 1 -- Case 1}
             \end{subfigure}%
             ~
-            \begin{subfigure}[t]{0.17\textwidth}
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.17\textwidth]{warping_post_warp_case2_digit1_msr}
+                \includegraphics[width=0.32\textwidth]{warping_post_warp_case2_digit1_msr}
                 \caption{\label{fig:post_warp_case2_digit1_msr} Digit 1 -- Case 2}
             \end{subfigure}%
             ~
-            \begin{subfigure}[t]{0.17\textwidth}
+            \begin{subfigure}[t]{0.32\textwidth}
                 \centering
-                \includegraphics[width=0.17\textwidth]{warping_post_warp_case2_digit2_msr}
+                \includegraphics[width=0.32\textwidth]{warping_post_warp_case2_digit2_msr}
                 \caption{\label{fig:post_warp_case2_digit2_msr} Digit 2 -- Case 2}
             \end{subfigure}%
             ~

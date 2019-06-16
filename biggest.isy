@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!DOCTYPE ipestyle SYSTEM "ipe.dtd">
+<ipestyle name="biggest">
+<layout paper="16384 32768" origin="0 0" frame="16384 32768"/>
+</ipestyle>

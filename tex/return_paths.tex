@@ -11,35 +11,39 @@ the second being a {\readnext} micro-gadget.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.24\textwidth}
+    \begin{subfigure}[t]{0.32\textwidth}
         \centering
-        \includegraphics[width=0.2\textwidth]{return_paths_return_from_digit_2_op-or-seed}
-        \caption{\label{fig:return_from_digit2_oporseed}}
+        \includegraphics[width=0.32\textwidth]{return_paths_return_from_digit_2_op-or-seed}
+        \caption{\label{fig:return_from_digit2_oporseed} General and initial value digit 2}
     \end{subfigure}%
     ~
-    \begin{subfigure}[t]{0.24\textwidth}
+    \begin{subfigure}[t]{0.32\textwidth}
         \centering
-        \includegraphics[width=0.2\textwidth]{return_paths_return_from_digit_1_op}
-        \caption{\label{fig:return_from_digit_1_op}}
+        \includegraphics[width=0.32\textwidth]{return_paths_return_from_digit_1_op}
+        \caption{\label{fig:return_from_digit_1_op} General digit 1}
     \end{subfigure}%
     ~
-    \begin{subfigure}[t]{0.24\textwidth}
+\end{figure}
+
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \begin{subfigure}[t]{0.32\textwidth}
         \centering
-        \includegraphics[width=0.2\textwidth]{return_paths_return_from_digit_1_op_msr}
-        \caption{\label{fig:return_from_digit_1_op_msr}}
+        \includegraphics[width=0.32\textwidth]{return_paths_return_from_digit_1_op_msr}
+        \caption{\label{fig:return_from_digit_1_op_msr} Digit 1 - case 2}
     \end{subfigure}%
     ~
-    \begin{subfigure}[t]{0.24\textwidth}
+    \begin{subfigure}[t]{0.32\textwidth}
         \centering
-        \includegraphics[width=0.2\textwidth]{return_paths_return_from_digit_1-or-2_op_msr_msd}
-        \caption{\label{fig:return_from_digit_1or2_op_msr_msd}}
+        \includegraphics[width=0.32\textwidth]{return_paths_return_from_digit_1-or-2_op_msr_msd}
+        \caption{\label{fig:return_from_digit_1or2_op_msr_msd} MSD - Digit 1 and 2 }
     \end{subfigure}%
-    \caption{\label{fig:return_from_digits} The return paths for digits 1 and 2}
+    \caption{\label{fig:return_from_digits} The {\returnfromdigit} gadgets for digits 1 and 2}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.2in]{return_paths_return_from_digit_3}
+    \includegraphics[width=0.08\textwidth]{return_paths_return_from_digit_3}
     \caption{\label{fig:return_from_digit_3} The {\returnfromdigit} gadget for digit 3.}
 \end{figure}
 
@@ -53,25 +57,25 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     % DIGIT 1
     \item Create
     $\begin{aligned}[t]
-        \returnfromdigit(& \left\langle \returnpath, 1, \inc \right\rangle,
-                           \left\langle {\tt NextRead},        1, \inc \right\rangle \;)
+        \returnfromdigit(& \left\langle \returnpath,    1, \inc \right\rangle,
+                           \left\langle {\tt NextRead}, 1, \inc \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1_op}.
 
     \item Create
     $\begin{aligned}[t]
-        \returnfromdigit(& \left\langle \returnpath, 1, \inc, {\tt msr} \right\rangle,
-                           \left\langle {\tt NextRead},        1, \inc, {\tt msr} \right\rangle \;)
+        \returnfromdigit(& \left\langle \returnpath,    1, \inc, {\tt msr} \right\rangle,
+                           \left\langle {\tt NextRead}, 1, \inc, {\tt msr} \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1_op_msr}
 
     \item Create
     $\begin{aligned}[t]
-        \returnfromdigit(& \left\langle \returnpath, 1, \inc, {\tt msr}, {\tt msd} \right\rangle,
-                           \left\langle {\tt NextRead},        1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+        \returnfromdigit(& \left\langle \returnpath,    1, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                           \left\langle {\tt NextRead}, 1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1or2_op_msr_msd}.
 
+
+
     % DIGIT 2
-
-
     \item Create
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    2, \inc \right\rangle,
@@ -85,8 +89,8 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1or2_op_msr_msd}.
 
 
-    % DIGIT 3
 
+    % DIGIT 3
     \item Create
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    3, \inc \right\rangle,
@@ -105,44 +109,106 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
 The second part of the return gadgets is the {\readnext} micro-gadget. These gadgets output a blank {\cwrite}
 signal if the counter should read the preceding digit in the current row.
 
+% \begin{figure}[H]
+%     \centering
+%     \begin{subfigure}[t]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=0.3\textwidth]{return_paths_read_next_1-or-2_op}
+%         \caption{\label{fig:read_next_1or2_op}}
+%     \end{subfigure}%
+%     ~
+%     \begin{subfigure}[t]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=0.3\textwidth]{return_paths_read_next_1_op_msr}
+%         \caption{\label{fig:read_next_1_op_msr}}
+%     \end{subfigure}%
+%     ~
+
+%     \begin{subfigure}[t]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=0.3\textwidth]{return_paths_read_next_1-or-2_op_msr_msd}
+%         \caption{\label{fig:read_next_1or2_op_msr_msd}}
+%     \end{subfigure}%
+%     ~
+%     \begin{subfigure}[t]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=0.3\textwidth]{return_paths_read_next_3_op-or-seed_msr_msd}
+%         \caption{\label{fig:read_next_3_oporseed_msr_msd}}
+%     \end{subfigure}%
+%     ~
+
+%     \begin{subfigure}[t]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=0.3\textwidth]{return_paths_read_next_3_seed}
+%         \caption{\label{fig:read_next_3_seed}}
+%     \end{subfigure}%
+%     ~
+%     \begin{subfigure}[t]{0.3\textwidth}
+%         \centering
+%         \includegraphics[width=0.3\textwidth]{return_paths_read_next_2_seed}
+%         \caption{\label{fig:read_next_2_seed}}
+%     \end{subfigure}%
+%     ~
+
+%     \begin{subfigure}[t]{0.2\textwidth}
+%         \centering
+%         \includegraphics[width=0.2\textwidth]{return_paths_read_next_3_op}
+%         \caption{\label{fig:read_next_3_op}}
+%     \end{subfigure}%
+%     \caption{\label{fig:readnext} The {\readnext} gadgets}
+% \end{figure}
+
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.3\textwidth}
+    \begin{minipage}[b]{.64\textwidth}
         \centering
-        \includegraphics[width=0.3\textwidth]{return_paths_read_next_1-or-2_op}
-        \caption{\label{fig:read_next_1or2_op}}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.3\textwidth]{return_paths_read_next_1_op_msr}
-        \caption{\label{fig:read_next_1_op_msr}}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.3\textwidth]{return_paths_read_next_1-or-2_op_msr_msd}
-        \caption{\label{fig:read_next_1or2_op_msr_msd}}
-    \end{subfigure}%
-    ~
+        \begin{subfigure}[t]{0.3\textwidth}
+            \centering
+            \includegraphics[width=.3\textwidth]{return_paths_read_next_1-or-2_op}
+            \caption{\label{fig:read_next_1or2_op}}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[t]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.3\textwidth]{return_paths_read_next_1_op_msr}
+            \caption{\label{fig:read_next_1_op_msr}}
+        \end{subfigure}%
+        ~
 
-    \begin{subfigure}[t]{0.3\textwidth}
+        \begin{subfigure}[t]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.3\textwidth]{return_paths_read_next_1-or-2_op_msr_msd}
+            \caption{\label{fig:read_next_1or2_op_msr_msd}}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[t]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.3\textwidth]{return_paths_read_next_3_op-or-seed_msr_msd}
+            \caption{\label{fig:read_next_3_oporseed_msr_msd}}
+        \end{subfigure}%
+        ~
+
+        \begin{subfigure}[t]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.3\textwidth]{return_paths_read_next_3_seed}
+            \caption{\label{fig:read_next_3_seed}}
+        \end{subfigure}%
+        ~
+        \begin{subfigure}[t]{0.3\textwidth}
+            \centering
+            \includegraphics[width=0.3\textwidth]{return_paths_read_next_2_seed}
+            \caption{\label{fig:read_next_2_seed}}
+        \end{subfigure}%
+        ~
+    \end{minipage}%
+    \begin{minipage}[b]{.35\textwidth}
+      \centering
+      \begin{subfigure}[t]{\textwidth}
         \centering
-        \includegraphics[width=0.3\textwidth]{return_paths_read_next_3_op-or-seed_msr_msd}
-        \caption{\label{fig:read_next_3_oporseed_msr_msd}}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.3\textwidth]{return_paths_read_next_3_seed}
-        \caption{\label{fig:read_next_3_seed}}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.3\textwidth}
-        \centering
-        \includegraphics[width=0.3\textwidth]{return_paths_read_next_2_seed}
-        \caption{\label{fig:read_next_2_seed}}
-    \end{subfigure}%
+        \includegraphics[width=.205\textwidth]{return_paths_read_next_3_op}
+        \caption{\label{fig:read_next_3_op}}
+      \end{subfigure}%
+    \end{minipage}
     \caption{\label{fig:readnext} The {\readnext} gadgets}
 \end{figure}
 
@@ -186,12 +252,11 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
 
 
     % DIGIT 3
-
     \item Create
     $\begin{aligned}[t]
         \readnext(& \left\langle {\tt NextRead}, 3,          \inc \right\rangle,
                     \left\langle {\tt Read},     1, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_3_op}.
 
     \item Create
     $\begin{aligned}[t]
@@ -202,9 +267,9 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
 
 \end{itemize}
 
-\subsubsection{Crosser gadget thingy}
+\subsubsection{Cross over gadget}
 
-The idea behind this gadget is to assemble after reading the MSD, and route the
+The idea this gadget is to assemble after reading the MSD, and route the
 counter to back to the start of the next row, in position for the counter to
 begin reading the first digit. The number of tiles shaded in darker grey is
 $6 \cdot \floor*{\frac{d}{3}}$.

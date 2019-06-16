@@ -28,11 +28,14 @@ if $d \mod 3 \not= 0$, otherwise it has 3 digits.
         \includegraphics[width=0.24\textwidth]{initial_value_general}
         \caption{\label{fig:initial_general} Two general regions. Seed tile is the red tile in the bottom right}
     \end{subfigure}%
-    \caption{\label{fig:initial_value_assemblies} Overviews of the initial assemble}
+    \caption{\label{fig:initial_value_assemblies} These figures show an example construction of the initial value,
+    with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assemble.}
 \end{figure}
 
 
-Let $i = 0$, be the index of a digit in $\counterstart$,
+Note that we use $i$ as the index of a digit in $\counterstart$ and $j$ as the index of a bit
+in a encoded digit.
+
 \begin{itemize}
     \item Create
     $\begin{aligned}[t]
@@ -41,9 +44,9 @@ Let $i = 0$, be the index of a digit in $\counterstart$,
 \end{itemize}
 
 
-General non-MSR digit region shown in Figure~\ref{fig:initial_general}.
+The idea here is to repeat these steps from $i = 0$ until $i$ is the index of the first digit in the MSR. These
+steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_general}.
 
-While $i$ is not a digit in the MSR:
 
 \begin{itemize}
     \item {\tt Start}:
@@ -93,12 +96,18 @@ While $i$ is not a digit in the MSR:
         \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
     \end{itemize}
 
+    \item Create
+    $\begin{aligned}[t]
+            \returnfromdigit(&\left\langle \returnpath,    1, {\tt seed}, i \right\rangle,
+                              \left\langle {\tt NextRead}, 1, {\tt seed}, i \right\rangle \;)
+    \end{aligned}$\\ (single-tile)
+
     \item $i \gets i + 1$
 
     \item Create
     $\begin{aligned}[t]
-            \returnfromdigit(&\left\langle \returnpath,      1, {\tt seed}, i - 1\right\rangle,
-                              \left\langle {\tt SecondWarp}, 2, {\tt seed}, i    \right\rangle \;)
+            \readnext(&\left\langle {\tt NextRead},   1, {\tt seed}, i - 1\right\rangle,
+                       \left\langle {\tt SecondWarp}, 2, {\tt seed}, i    \right\rangle \;)
     \end{aligned}$\\ (single-tile)
 
     \item Create
@@ -262,9 +271,14 @@ While $i$ is not a digit in the MSR:
 
 \vspace{1cm}
 
+
+
+
 \Huge{MSR}\normalsize
 
-Case 1: if $d - i = 1$.
+
+
+Case 1 -- if $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_msr}.
 \begin{itemize}
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
@@ -352,7 +366,9 @@ Case 1: if $d - i = 1$.
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op_msr_msd}.
 \end{itemize}
 
-Case 2: if $d - i = 2$.
+
+
+Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_msr}.
 \begin{itemize}
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
@@ -483,7 +499,9 @@ Case 2: if $d - i = 2$.
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op_msr_msd}.
 \end{itemize}
 
-Case 3: if $d - i = 3$.
+
+
+Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_msr}.
 \begin{itemize}
 
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.9">
-<info created="D:20190503213227" modified="D:20190527202942"/>
+<info created="D:20190503213227" modified="D:20190615103554"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -255,7 +255,210 @@ h
 <page>
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
-<group layer="alpha" matrix="1 0 0 1 -232 -1620">
+<group layer="alpha" matrix="1 0 0 1 -12 128">
+<group matrix="1 0 0 1 300 -3556">
+<group matrix="1 0 0 1 4 36">
+<group matrix="1 0 0 1 -708 540">
+<path matrix="1 0 0 1 2176 4400" stroke="white" fill="white">
+320 392 m
+320 360 l
+352 360 l
+352 392 l
+h
+</path>
+<path matrix="0.5 0 0 1 2336 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+<path matrix="0.5 0 0 1 2372 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+</group>
+<group>
+<group matrix="1 0 0 1 -788 540">
+<path matrix="1 0 0 1 2176 4400" stroke="white" fill="white">
+320 392 m
+320 360 l
+352 360 l
+352 392 l
+h
+</path>
+<path matrix="0.5 0 0 1 2336 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+<path matrix="0.5 0 0 1 2372 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+</group>
+<group matrix="1 0 0 1 -748 540">
+<path matrix="1 0 0 1 2176 4400" stroke="white" fill="white">
+320 392 m
+320 360 l
+352 360 l
+352 392 l
+h
+</path>
+<path matrix="0.5 0 0 1 2336 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+<path matrix="0.5 0 0 1 2372 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+</group>
+<group matrix="1 0 0 1 -828 540">
+<path matrix="1 0 0 1 2176 4400" stroke="white" fill="white">
+320 392 m
+320 360 l
+352 360 l
+352 392 l
+h
+</path>
+<path matrix="0.5 0 0 1 2336 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+<path matrix="0.5 0 0 1 2372 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+</group>
+</group>
+</group>
+<group matrix="1 0 0 1 -864 576">
+<path matrix="1 0 0 1 2176 4400" stroke="white" fill="white">
+320 392 m
+320 360 l
+352 360 l
+352 392 l
+h
+</path>
+<path matrix="0.5 0 0 1 2336 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+<path matrix="0.5 0 0 1 2372 4360" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+</group>
+</group>
+<group matrix="1 0 0 1 12 -128">
+<group matrix="1 0 0 1 328 512">
+<group matrix="1 0 0 1 40 0">
+<path matrix="1 0 0 1 1272 1036" stroke="white" fill="white">
+320 392 m
+320 360 l
+352 360 l
+352 392 l
+h
+</path>
+<path matrix="0.5 0 0 1 1468 996" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+<path matrix="0.5 0 0 1 1432 996" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+</group>
+<path matrix="2 0 0 0.25 1016 1290" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+<path matrix="2 0 0 0.25 1016 1326" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+</group>
+<group matrix="1 0 0 1 328 472">
+<group matrix="1 0 0 1 40 0">
+<path matrix="1 0 0 1 1272 1036" stroke="white" fill="white">
+320 392 m
+320 360 l
+352 360 l
+352 392 l
+h
+</path>
+<path matrix="0.5 0 0 1 1468 996" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+<path matrix="0.5 0 0 1 1432 996" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+</group>
+<path matrix="2 0 0 0.25 1016 1290" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+<path matrix="2 0 0 0.25 1016 1326" stroke="white" fill="white">
+320 424 m
+320 408 l
+312 408 l
+312 424 l
+h
+</path>
+</group>
+</group>
+</group>
+<group matrix="1 0 0 1 -232 -1620">
 <group matrix="1 0 0 1 -224 -1280">
 <path matrix="1 0 0 1 2176 4448" stroke="black" fill="white">
 320 392 m
@@ -946,52 +1149,6 @@ h
 h
 </path>
 </group>
-</group>
-<group matrix="1 0 0 1 -496 -2852">
-<path matrix="1 0 0 1 2176 4400" stroke="white" fill="white">
-320 392 m
-320 360 l
-352 360 l
-352 392 l
-h
-</path>
-<path matrix="0.5 0 0 1 2336 4360" stroke="white" fill="white">
-320 424 m
-320 408 l
-312 408 l
-312 424 l
-h
-</path>
-<path matrix="0.5 0 0 1 2372 4360" stroke="white" fill="white">
-320 424 m
-320 408 l
-312 408 l
-312 424 l
-h
-</path>
-</group>
-<group matrix="1 0 0 1 -536 -2852">
-<path matrix="1 0 0 1 2176 4400" stroke="white" fill="white">
-320 392 m
-320 360 l
-352 360 l
-352 392 l
-h
-</path>
-<path matrix="0.5 0 0 1 2336 4360" stroke="white" fill="white">
-320 424 m
-320 408 l
-312 408 l
-312 424 l
-h
-</path>
-<path matrix="0.5 0 0 1 2372 4360" stroke="white" fill="white">
-320 424 m
-320 408 l
-312 408 l
-312 424 l
-h
-</path>
 </group>
 <path matrix="1 0 0 1 616 188" stroke="black" fill="black">
 1436 1688 m
