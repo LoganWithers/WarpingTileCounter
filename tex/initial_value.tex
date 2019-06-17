@@ -3,35 +3,16 @@ We begin by encoding $\counterstart$ with the Seed unit. It has $\ceil*{\frac{d}
 Each digit region has three digits, except for the most significant digit region (MSR) which has $d \mod 3$
 if $d \mod 3 \not= 0$, otherwise it has 3 digits.
 
+
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.24\textwidth}
-        \centering
-        \includegraphics[width=0.24\textwidth]{initial_value_case1_msr}
-        \caption{\label{fig:initial_case1_msr} MSR case 1}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.24\textwidth}
-        \centering
-        \includegraphics[width=0.24\textwidth]{initial_value_case2_msr}
-        \caption{\label{fig:initial_case2_msr} MSR case 2}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.24\textwidth}
-        \centering
-        \includegraphics[width=0.24\textwidth]{initial_value_case3_msr}
-        \caption{\label{fig:initial_case3_msr} MSR case 3}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.24\textwidth}
-        \centering
-        \includegraphics[width=0.24\textwidth]{initial_value_general}
-        \caption{\label{fig:initial_general} Two general regions. Seed tile is the red tile in the bottom right}
-    \end{subfigure}%
+    \subcaptionbox{MSR case 1\label{fig:initial_case1_msr}}{\includegraphics[width=0.95in]{initial_value_case1_msr}}\hfill%
+    \subcaptionbox{MSR case 2\label{fig:initial_case2_msr}}{\includegraphics[width=0.95in]{initial_value_case2_msr}}\hfill%
+    \subcaptionbox{MSR case 3\label{fig:initial_case3_msr}}{\includegraphics[width=0.95in]{initial_value_case3_msr}}\hfill%
+    \subcaptionbox{General digit regions\label{fig:initial_general}}{\includegraphics[width=0.95in]{initial_value_general}}%
     \caption{\label{fig:initial_value_assemblies} These figures show an example construction of the initial value,
     with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assemble.}
 \end{figure}
-
 
 Note that we use $i$ as the index of a digit in $\counterstart$ and $j$ as the index of a bit
 in a encoded digit.
