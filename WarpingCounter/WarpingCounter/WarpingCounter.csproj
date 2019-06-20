@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Builders\Interfaces\" />
+    <Folder Include="Gadgets\ReturnPaths\" />
     <Folder Include="Output\" />
   </ItemGroup>
 

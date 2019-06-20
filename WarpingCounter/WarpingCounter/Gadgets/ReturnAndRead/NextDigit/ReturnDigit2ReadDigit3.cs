@@ -47,7 +47,7 @@
                  .West()
                  .Down()
                  .South(17)
-                 .South(L)
+                 .South(4 * L)
                  .South(15)
                  .East()
                  .Up()
@@ -56,7 +56,7 @@
                  .South()
                  .West(2)
                  .South(3)
-                 .South(L)
+                 .South(4 * L)
                  .South()
                  .East(2)
                  .Down();
