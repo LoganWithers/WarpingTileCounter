@@ -89,16 +89,23 @@ zeroes and propagates the {\tt increment} signal to the next digit.
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.2\textwidth}
-        \centering
-        \includegraphics[width=0.2\textwidth]{counter_read_0}
-        \caption{\label{fig:counter_read_0} {\tt Counter\_Read\_0}}
-    \end{subfigure}%
+    \subcaptionbox{{\tt Counter\_Read\_0} \label{fig:counter_read_0}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{counter_read_0}}}%
     ~
-    \begin{subfigure}[t]{0.2\textwidth}
-        \centering
-        \includegraphics[width=0.2\textwidth]{counter_read_1}
-        \caption{\label{fig:counter_read_1} {\tt Counter\_Read\_1}}
-    \end{subfigure}%
+    \subcaptionbox{{\tt Counter\_Read\_1} \label{fig:counter_read_1}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{counter_read_1}}}%
+    ~
+    \subcaptionbox{Digits in a general digit region \label{fig:counter_read_general}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/counter_read}}}%
+    ~
+\end{figure}
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \subcaptionbox{Digit 2 in a case 2 digit region \label{fig:counter_read_case1}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case1/counter_read_1_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 2 in a case 2 digit region \label{fig:counter_read_case2}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/counter_read}}}%
+    ~
     \caption{\label{fig:counter_read} The {\tt Counter\_Read} gadgets}
 \end{figure}

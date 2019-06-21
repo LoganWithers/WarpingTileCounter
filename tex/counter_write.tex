@@ -18,32 +18,32 @@
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write}, i,  u1, \inc \right\rangle,
-                       \left\langle {\tt Write}, i,  u,  \inc \right\rangle \;)
+                      \left\langle {\tt Write}, i,  u,  \inc \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
 
 
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write}, 1, u0, \inc, {\tt msr} \right\rangle,
-                       \left\langle {\tt Write}, 1, u,  \inc, {\tt msr} \right\rangle \;)
+                      \left\langle {\tt Write}, 1, u,  \inc, {\tt msr} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write}, 1,  u1, \inc, {\tt msr} \right\rangle,
-                       \left\langle {\tt Write}, 1,  u,  \inc, {\tt msr} \right\rangle \;)
+                      \left\langle {\tt Write}, 1,  u,  \inc, {\tt msr} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
 
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write}, i, u0, \inc, {\tt msr}, {\tt msd} \right\rangle,
-                       \left\langle {\tt Write}, i, u,  \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+                      \left\langle {\tt Write}, i, u,  \inc, {\tt msr}, {\tt msd} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write}, i,  u1, \inc, {\tt msr}, {\tt msd}\right\rangle,
-                       \left\langle {\tt Write}, i,  u,  \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+                      \left\langle {\tt Write}, i,  u,  \inc, {\tt msr}, {\tt msd}\right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
         \end{itemize}
 
@@ -52,37 +52,37 @@
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write},    i, 0, \inc \right\rangle,
-                       \left\langle {\tt DigitTop}, i,    \inc \right\rangle \;)
+                      \left\langle {\tt DigitTop}, i,    \inc \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write},    i, 1, \inc \right\rangle,
-                       \left\langle {\tt DigitTop}, i,    \inc \right\rangle \;)
+                      \left\langle {\tt DigitTop}, i,    \inc \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
 
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write},    1, 0, \inc, {\tt msr} \right\rangle,
-                       \left\langle {\tt DigitTop}, 1,    \inc, {\tt msr} \right\rangle \;)
+                      \left\langle {\tt DigitTop}, 1,    \inc, {\tt msr} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write},    1, 1, \inc, {\tt msr} \right\rangle,
-                       \left\langle {\tt DigitTop}, 1,    \inc, {\tt msr} \right\rangle \;)
+                      \left\langle {\tt DigitTop}, 1,    \inc, {\tt msr} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
 
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write},    i, 0, \inc, {\tt msr}, {\tt msd}\right\rangle,
-                       \left\langle {\tt DigitTop}, i,    \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+                      \left\langle {\tt DigitTop}, i,    \inc, {\tt msr}, {\tt msd}\right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
             \cwrite(& \left\langle {\tt Write},    i, 1, \inc, {\tt msr}, {\tt msd}\right\rangle,
-                       \left\langle {\tt DigitTop}, i,    \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+                      \left\langle {\tt DigitTop}, i,    \inc, {\tt msr}, {\tt msd}\right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
     \end{itemize}
 
@@ -92,16 +92,43 @@
 
 \begin{figure}[H]
     \centering
-    \begin{subfigure}[t]{0.2\textwidth}
-        \centering
-        \includegraphics[width=0.2\textwidth]{counter_write_0}
-        \caption{\label{fig:counter_write_0} {\tt Counter\_Write\_0}}
-    \end{subfigure}%
+    \subcaptionbox{{\tt Counter\_Write\_0} \label{fig:counter_write_0}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{counter_write_0}}}%
     ~
-    \begin{subfigure}[t]{0.2\textwidth}
-        \centering
-        \includegraphics[width=0.2\textwidth]{counter_write_1}
-        \caption{\label{fig:counter_write_1} {\tt Counter\_Write\_1}}
-    \end{subfigure}%
+    \subcaptionbox{{\tt Counter\_Write\_1} \label{fig:counter_write_1}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{counter_write_1}}}%
+    ~
+    \subcaptionbox{Digits in a general digit region \label{fig:counter_write_i_op}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/counter_write_i_op}}}%
+    ~
+    \subcaptionbox{Digits in a general (seed) digit region \label{fig:counter_write_i_seed_op}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/counter_write_i_seed_op}}}%
+    ~
+\end{figure}
+
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \subcaptionbox{Digit 1 in a case 1 digit region \label{fig:counter_write_1_op_msr_msd}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case1/counter_write_1_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 1 in a case 1 (seed) digit region \label{fig:counter_write_1_op_seed_msr_msd}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case1/counter_write_1_seed_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 1 in a case 2 digit region \label{fig:counter_write_1_op_msr}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/counter_write_1_op_msr}}}%
+    ~
+    \subcaptionbox{Digit 1 in a case 2 (seed) digit region \label{fig:counter_write_1_op_seed_msr}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/counter_write_1_seed_op_msr}}}%
+    ~
+\end{figure}
+
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \subcaptionbox{Digit 2 in a case 2 digit region \label{fig:counter_write_2_op_msr_msd}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/counter_write_2_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 2 in a case 2 (seed) digit region \label{fig:counter_write_2_op_seed_msr_msd}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/counter_write_2_seed_op_msr_msd}}}%
+    ~
     \caption{\label{fig:counter_write} The {\tt Counter\_Write} gadgets}
 \end{figure}
