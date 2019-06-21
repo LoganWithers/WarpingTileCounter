@@ -10,6 +10,7 @@ that will allow the next piece in the warp unit to assemble, however the assembl
 all the way until the gadget can no longer continue assembling in the north direction.
 
     \begin{itemize}
+
         \item {\prewarp}: These gadgets use the bits read from the {\cread} gadgets to translate them into
                           a signal used to tell the counter whether to begin reading
                           another digit in the current row, or cut across the rectangle and begin reading the
@@ -32,7 +33,7 @@ all the way until the gadget can no longer continue assembling in the north dire
             $\begin{aligned}[t]
                 \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
                            \left\langle {\tt FirstWarp}, i, u, \inc, {\tt msr} \right\rangle \;)
-            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:pre_warp_case2_digit1_msr}.
+            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:pre_warp_1_op_msr_msd}.
 
 
             \item if $u$ ends with 11 and $dec(u >> 2) >= m$:\\
@@ -70,53 +71,33 @@ all the way until the gadget can no longer continue assembling in the north dire
             ~
         \end{figure}
 
+
         \begin{figure}[H]\ContinuedFloat
             \centering
-            \begin{subfigure}[t]{0.33\textwidth}
-                \centering
-                \includegraphics[width=0.33\textwidth]{warping_pre_warp_case1_digit1_msr}
-                \caption{\label{fig:pre_warp_case2_digit1_msr} Digit 1 -- Case 1}
-            \end{subfigure}%
+            \subcaptionbox{Digit 1 -- Case 1 \label{fig:pre_warp_1_op_msr_msd}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{warping_pre_warp_case1_digit1_msr}}}%
             ~
-            \begin{subfigure}[t]{0.2\textwidth}
-                \centering
-                \includegraphics[width=0.1\textwidth]{overviews/case1/pre_warp_1_op_msr_msd}
-                \caption{\label{fig:pre_warp_1_op_msr_msd_overview} Digit 1 -- Case 1 overview}
-            \end{subfigure}%
+            \subcaptionbox{Digit 1 - Case 1 overview \label{fig:pre_warp_1_op_msr_msd_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case1/pre_warp_1_op_msr_msd}}}%
             ~
         \end{figure}
 
         \begin{figure}[H]\ContinuedFloat
             \centering
-            \begin{subfigure}[t]{0.33\textwidth}
-                \centering
-                \includegraphics[width=0.33\textwidth]{warping_pre_warp_case2_digit1_msr}
-                \caption{\label{fig:pre_warp_1_op_msr} Digit 1 -- Case 2}
-            \end{subfigure}%
+            \subcaptionbox{Digit 1 -- Case 2 \label{fig:pre_warp_1_op_msr}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{warping_pre_warp_case2_digit1_msr}}}%
             ~
-            \begin{subfigure}[t]{0.2\textwidth}
-                \centering
-                \includegraphics[width=0.1\textwidth]{overviews/case2/pre_warp_1_op_msr}
-                \caption{\label{fig:pre_warp_1_op_msr_overview} Digit 1 -- Case 2 overview}
-            \end{subfigure}%
+            \subcaptionbox{Digit 1 - Case 2 overview \label{fig:pre_warp_1_op_msr_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/pre_warp_1_op_msr}}}%
             ~
+            \subcaptionbox{Digit 2 -- Case 2\label{fig:pre_warp_2_op_msr_msd}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{warping_pre_warp_case2_digit2_msr}}}%
+            ~
+            \subcaptionbox{Digit 2 - Case 2 overview \label{fig:pre_warp_2_op_msr_msd_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/pre_warp_2_op_msr_msd}}}%
+            \caption{\label{fig:pre_warp_gadgets} The {\prewarp} gadgets. }
         \end{figure}
 
-        \begin{figure}[H]\ContinuedFloat
-            \centering
-            \begin{subfigure}[t]{0.33\textwidth}
-                \centering
-                \includegraphics[width=0.33\textwidth]{warping_pre_warp_case2_digit2_msr}
-                \caption{\label{fig:pre_warp_2_op_msr_msd} Digit 2 -- Case 2}
-            \end{subfigure}%
-            ~
-            \begin{subfigure}[t]{0.2\textwidth}
-                \centering
-                \includegraphics[width=0.1\textwidth]{overviews/case2/pre_warp_2_op_msr_msd}
-                \caption{\label{fig:pre_warp_2_op_msr_msd_overview} Digit 2 -- Case 2 overview}
-            \end{subfigure}%
-            \caption{\label{fig:pre_warp_gadgets} The {\prewarp} gadgets }
-        \end{figure}
 
         \item {\firstwarp}: A {\firstwarp} connects to a {\warpbridge} gadget in all cases except when it's assembling
               in the MSR and it is digit 1 in case 1 or 2, in which the {\firstwarp} gadget attaches directly
@@ -166,7 +147,26 @@ all the way until the gadget can no longer continue assembling in the north dire
                 \vspace{.5cm}
 
             \end{itemize}
-        \vspace{.5cm}
+            \vspace{.5cm}
+
+        \begin{figure}[H]
+            \centering
+            \subcaptionbox{Digit 1 overview \label{fig:first_warp_1_op_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/first_warp_1_op}}}%
+            ~
+            \subcaptionbox{Digit 2 overview \label{fig:first_warp_2_op_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/first_warp_2_op}}}%
+            ~
+            \subcaptionbox{Digit 3 overview \label{fig:first_warp_3_op_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/first_warp_3_op}}}%
+            ~
+            \subcaptionbox{Digit 3 (seed) overview \label{fig:first_warp_3_seed_op_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/first_warp_3_seed_op}}}%
+            ~
+            \caption{\label{fig:first_warp_gadgets_overviews} The {\firstwarp} gadgets overviews.}
+        \end{figure}
+
+
 
         \item {\warpbridge}: a {\warpbridge} gadget binds the last tile of the {\firstwarp} gadgets to the
              first tile of the {\secondwarp} gadgets. For digit 1 in cases 1 and 2, the
@@ -186,7 +186,7 @@ all the way until the gadget can no longer continue assembling in the north dire
             $\begin{aligned}[t]
                 \warpbridge(& \left\langle {\tt WarpBridge}, 2, u, \inc, {\tt msr}, {\tt msd} \right\rangle,
                               \left\langle {\tt SecondWarp}, 2, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:warp_bridge_case2_digit2_msr}.
+            \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:warp_bridge_2_op_msr_msd}.
             \vspace{.5cm}
 
             \item Create
@@ -197,22 +197,40 @@ all the way until the gadget can no longer continue assembling in the north dire
             \vspace{.5cm}
         \end{itemize}
 
+
         \begin{figure}[H]
             \centering
-            \begin{subfigure}[t]{0.32\textwidth}
-                \centering
-                \includegraphics[width=0.32\textwidth]{warping_warp_bridge_general}
-                \caption{\label{fig:warp_bridge_general} General}
-            \end{subfigure}%
+            \subcaptionbox{General \label{fig:warp_bridge_general}}
+            {\makebox[0.11\textwidth][c]{\includegraphics[width=0.33in]{warping_warp_bridge_general}}}%
             ~
-            \begin{subfigure}[t]{0.32\textwidth}
-                \centering
-                \includegraphics[width=0.32\textwidth]{warping_warp_bridge_case2_digit2_msr}
-                \caption{\label{fig:warp_bridge_case2_digit2_msr} Digit 2 -- Case 2}
-            \end{subfigure}%
-            ~\caption{\label{fig:warp_bridge} The {\warpbridge} gadgets.}
+            \subcaptionbox{Digit 1 - general overview\label{fig:warp_bridge_1_op_overview}}
+            {\makebox[0.19\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_1_op}}}%
+            ~
+            \subcaptionbox{Digit 2 - general overview\label{fig:warp_bridge_2_op_overview}}
+            {\makebox[0.19\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_2_op}}}%
+            ~
+            \subcaptionbox{Digit 3 - general overview\label{fig:warp_bridge_3_op_overview}}
+            {\makebox[0.19\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_3_op}}}%
+            ~
         \end{figure}
 
+        \begin{figure}[H]\ContinuedFloat
+            \centering
+            ~
+            \subcaptionbox{Digit 2 - general (seed) overview\label{fig:warp_bridge_2_seed_op_overview}}
+            {\makebox[0.19\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_2_seed_op}}}%
+            ~
+            \subcaptionbox{Digit 3 - general (seed) overview\label{fig:warp_bridge_3_seed_op_overview}}
+            {\makebox[0.19\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_3_seed_op}}}%
+            ~
+            \subcaptionbox{Digit 2 \label{fig:warp_bridge_2_op_msr_msd}}
+            {\makebox[0.11\textwidth][c]{\includegraphics[width=0.33in]{warping_warp_bridge_case2_digit2_msr}}}%
+            ~
+            \subcaptionbox{Digit 2 - case 2 overview \label{fig:warp_bridge_2_op_msr_msd_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/warp_bridge_2_op_msr_msd}}}%
+            ~
+            \caption{\label{fig:warp_bridge_gadgets_overviews} The {\warpbridge} gadgets.}
+        \end{figure}
 
         \item {\secondwarp}:
         % The idea of the Second_Warp gadget is to transport the information read by the Counter_Read
