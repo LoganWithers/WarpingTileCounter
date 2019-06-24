@@ -9,43 +9,9 @@ In general, a {\tt Return\_Path} gadget is comprised of two micro-gadgets, the f
 the second being a {\readnext} micro-gadget.
 
 
-\begin{figure}[H]
-    \centering
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=0.32\textwidth]{return_paths_return_from_digit_2_op-or-seed}
-        \caption{\label{fig:return_from_digit2_oporseed} General and initial value digit 2}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=0.32\textwidth]{return_paths_return_from_digit_1_op}
-        \caption{\label{fig:return_from_digit_1_op} General digit 1}
-    \end{subfigure}%
-    ~
-\end{figure}
 
-\begin{figure}[H]\ContinuedFloat
-    \centering
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=0.32\textwidth]{return_paths_return_from_digit_1_op_msr}
-        \caption{\label{fig:return_from_digit_1_op_msr} Digit 1 - case 2}
-    \end{subfigure}%
-    ~
-    \begin{subfigure}[t]{0.32\textwidth}
-        \centering
-        \includegraphics[width=0.32\textwidth]{return_paths_return_from_digit_1-or-2_op_msr_msd}
-        \caption{\label{fig:return_from_digit_1or2_op_msr_msd} MSD - Digit 1 and 2 }
-    \end{subfigure}%
-    \caption{\label{fig:return_from_digits} The {\returnfromdigit} gadgets for digits 1 and 2}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.08\textwidth]{return_paths_return_from_digit_3}
-    \caption{\label{fig:return_from_digit_3} The {\returnfromdigit} gadget for digit 3.}
-\end{figure}
+% \subcaptionbox{\label{fig:}}
+% {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_return_from_digit_1_op_msr}}}
 
 
 The first part of the return paths is the {\returnfromdigit} micro-gadget.
@@ -59,20 +25,19 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    1, \inc \right\rangle,
                            \left\langle {\tt NextRead}, 1, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1_op}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_1_op}.
 
     \item Create
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    1, \inc, {\tt msr} \right\rangle,
                            \left\langle {\tt NextRead}, 1, \inc, {\tt msr} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1_op_msr}
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_1_op_msr}
 
     \item Create
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    1, \inc, {\tt msr}, {\tt msd} \right\rangle,
                            \left\langle {\tt NextRead}, 1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1or2_op_msr_msd}.
-
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_1-or-2_op_msr_msd}.
 
 
     % DIGIT 2
@@ -80,13 +45,13 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    2, \inc \right\rangle,
                            \left\langle {\tt NextRead}, 2, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit2_oporseed}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_2_op-or-seed}.
 
     \item Create
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    2, \inc, {\tt msr}, {\tt msd} \right\rangle,
                            \left\langle {\tt NextRead}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1or2_op_msr_msd}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_1-or-2_op_msr_msd}.
 
 
 
@@ -95,74 +60,84 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    3, \inc \right\rangle,
                            \left\langle {\tt NextRead}, 3, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_3}.
+
 
     \item Create
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    3, \inc, {\tt msr}, {\tt msd} \right\rangle,
                            \left\langle {\tt NextRead}, 3, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_3}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_3}.
 
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \subcaptionbox{Digit 1 - general \label{fig:return_from_1_op}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_return_from_digit_1_op}}}%
+    ~
+    \subcaptionbox{Digit 1 - general\\overview\label{fig:return_from_1_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/return_from_1_op}}}%
+    ~
+    \subcaptionbox{Digit 1 - general (seed) overview\label{fig:return_from_1_seed_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/return_from_1_seed_op}}}%
+    ~
+    \subcaptionbox{Digit 2 - general \label{fig:return_from_2_op-or-seed}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_return_from_digit_2_op-or-seed}}}%
+    ~
+\end{figure}
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \subcaptionbox{Digit 2 - general\\overview\label{fig:return_from_2_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/return_from_2_op}}}%
+    ~
+    \subcaptionbox{Digit 2 - general (seed) overview\label{fig:return_from_2_seed_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/return_from_2_seed_op}}}%
+    ~
+    \subcaptionbox{Digit 3 - general \label{fig:return_from_3}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{return_paths_return_from_digit_3}}}%
+    ~
+    \subcaptionbox{Digit 3 - general\\overview\label{fig:return_from_3_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/return_from_3_op}}}%
+    ~
+\end{figure}
+
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \subcaptionbox{Digit 3 - general (seed) overview\label{fig:return_from_3_seed_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/return_from_3_seed_op}}}%
+    ~
+    \subcaptionbox{Digit 1 - case 2 \label{fig:return_from_1_op_msr}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_return_from_digit_1_op_msr}}}%
+    ~
+    \subcaptionbox{Digit 1 - case 2 overview\label{fig:return_from_1_op_msr_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/return_from_1_op_msr}}}%
+    ~
+    \subcaptionbox{Digit 1 - case 2 (seed) overview (single tile)\label{fig:return_from_1_seed_op_msr_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/return_from_1_seed_op_msr}}}%
+    ~
+\end{figure}
+
+\begin{figure}[H]\ContinuedFloat
+    \subcaptionbox{Digit 1 - case 1, Digit 2 case 2\label{fig:return_from_1-or-2_op_msr_msd}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{return_paths_return_from_digit_1-or-2_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 1 - case 1 overview\label{fig:return_from_1_op_msr_msd_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case1/return_from_1_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 1 - case 1 (seed) overview\label{fig:return_from_1_seed_op_msr_msd_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case1/return_from_1_seed_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 2 - case 2 overview\label{fig:return_from_2_op_msr_msd_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/return_from_2_op_msr_msd}}}%
+    ~
+    \caption{\label{fig:return_from_gadgets} The {\tt Return\_From} gadgets.}
+\end{figure}
 
 
 The second part of the return gadgets is the {\readnext} micro-gadget. These gadgets output a blank {\cwrite}
 signal if the counter should read the preceding digit in the current row.
 
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[b]{.64\textwidth}
-        \centering
-        \begin{subfigure}[t]{0.3\textwidth}
-            \centering
-            \includegraphics[width=.3\textwidth]{return_paths_read_next_1-or-2_op}
-            \caption{\label{fig:read_next_1or2_op}}
-        \end{subfigure}%
-        ~
-        \begin{subfigure}[t]{0.3\textwidth}
-            \centering
-            \includegraphics[width=0.3\textwidth]{return_paths_read_next_1_op_msr}
-            \caption{\label{fig:read_next_1_op_msr}}
-        \end{subfigure}%
-        ~
-
-        \begin{subfigure}[t]{0.3\textwidth}
-            \centering
-            \includegraphics[width=0.3\textwidth]{return_paths_read_next_1-or-2_op_msr_msd}
-            \caption{\label{fig:read_next_1or2_op_msr_msd}}
-        \end{subfigure}%
-        ~
-        \begin{subfigure}[t]{0.3\textwidth}
-            \centering
-            \includegraphics[width=0.3\textwidth]{return_paths_read_next_3_op-or-seed_msr_msd}
-            \caption{\label{fig:read_next_3_oporseed_msr_msd}}
-        \end{subfigure}%
-        ~
-
-        \begin{subfigure}[t]{0.3\textwidth}
-            \centering
-            \includegraphics[width=0.3\textwidth]{return_paths_read_next_3_seed}
-            \caption{\label{fig:read_next_3_seed}}
-        \end{subfigure}%
-        ~
-        \begin{subfigure}[t]{0.3\textwidth}
-            \centering
-            \includegraphics[width=0.3\textwidth]{return_paths_read_next_2_seed}
-            \caption{\label{fig:read_next_2_seed}}
-        \end{subfigure}%
-        ~
-    \end{minipage}%
-    \begin{minipage}[b]{.35\textwidth}
-      \centering
-      \begin{subfigure}[t]{\textwidth}
-        \centering
-        \includegraphics[width=.205\textwidth]{return_paths_read_next_3_op}
-        \caption{\label{fig:read_next_3_op}}
-      \end{subfigure}%
-    \end{minipage}
-    \caption{\label{fig:readnext} The {\readnext} gadgets}
-\end{figure}
 
 For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
 \begin{itemize}
@@ -172,35 +147,33 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \readnext(& \left\langle {\tt NextRead}, 1,          \inc \right\rangle,
                     \left\langle {\tt Read},     2, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
 
     \item Create
     $\begin{aligned}[t]
         \readnext(& \left\langle {\tt NextRead}, 1,          \inc, {\tt msr} \right\rangle,
                     \left\langle {\tt Read},     2, \lambda, \inc            \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1_op_msr}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1_op_msr}.
 
     \item Create
     $\begin{aligned}[t]
         \readnext(& \left\langle {\tt NextRead}, 1,      \inc, {\tt msr}, {\tt msd} \right\rangle,
                     \left\langle {\tt Cross\_Next\_Row}, \inc                       \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op_msr_msd}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
 
 
     % DIGIT 2
-
-
     \item Create
     $\begin{aligned}[t]
         \readnext(& \left\langle {\tt NextRead}, 2,          \inc \right\rangle,
                     \left\langle {\tt Read},     3, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
 
     \item Create
     $\begin{aligned}[t]
         \readnext(& \left\langle {\tt NextRead}, 2,      \inc, {\tt msr}, {\tt msd} \right\rangle,
                     \left\langle {\tt Cross\_Next\_Row}, \inc                       \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op_msr_msd}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
 
 
     % DIGIT 3
@@ -208,23 +181,101 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \readnext(& \left\langle {\tt NextRead}, 3,          \inc \right\rangle,
                     \left\langle {\tt Read},     1, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_3_op}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_3_op}.
 
     \item Create
     $\begin{aligned}[t]
         \readnext(& \left\langle {\tt NextRead}, 3,      \inc, {\tt msr}, {\tt msd} \right\rangle,
                     \left\langle {\tt Cross\_Next\_Row}, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_3_oporseed_msr_msd}.
-
-
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_3_op-or-seed_msr_msd}.
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \subcaptionbox{Digit 1 \& 2 - general\label{fig:next_read_1-or-2_op}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_read_next_1-or-2_op}}}%
+    ~
+    \subcaptionbox{Digit 1 - general\\overview\label{fig:next_read_1_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/next_read_1_op}}}%
+    ~
+    \subcaptionbox{Digit 2 - general\\overview\label{fig:next_read_2_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/next_read_2_op}}}%
+    ~
+    \subcaptionbox{Digit 1 - general (seed) overview\label{fig:next_read_1_seed_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/next_read_1_seed_op}}}%
+    ~
+\end{figure}
+
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \subcaptionbox{Digit 2 - seed\label{fig:next_read_2_seed_op}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_read_next_2_seed}}}%
+    ~
+    \subcaptionbox{Digit 2 - general\\(seed) overview\label{fig:next_read_2_seed_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/next_read_2_seed_op}}}%
+    ~
+    \subcaptionbox{Digit 3 - general\label{fig:next_read_3_op}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_read_next_3_op}}}%
+    ~
+    \subcaptionbox{Digit 3 - general\\ overview\label{fig:next_read_3_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/next_read_3_op}}}%
+    ~
+\end{figure}
+
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \subcaptionbox{Digit 3 - seed\label{fig:next_read_3_seed_op}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_read_next_3_seed}}}%
+    ~
+    \subcaptionbox{Digit 3 - general\\(seed) overview\label{fig:next_read_3_seed_op_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/next_read_3_seed_op}}}%
+    ~
+    \subcaptionbox{Digit 1 - case 1, Digit 2 - case 2\label{fig:next_read_1-or-2_op_msr_msd}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_read_next_1-or-2_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 1 - case 1 overview\label{fig:next_read_1_op_msr_msd_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case1/next_read_1_op_msr_msd}}}%
+    ~
+\end{figure}
+
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \subcaptionbox{Digit 2 - case 2 overview\label{fig:next_read_2_op_msr_msd_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/next_read_2_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 2 - case 2 (seed) overview\label{fig:next_read_2_seed_op_msr_msd_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/next_read_2_seed_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 1 - case 2\label{fig:next_read_1_op_msr}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_read_next_1_op_msr}}}%
+    ~
+    \subcaptionbox{Digit 1 - case 2 overview\label{fig:next_read_1_op_msr_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/next_read_1_op_msr}}}%
+    ~
+\end{figure}
+
+\begin{figure}[H]\ContinuedFloat
+    \centering
+    \subcaptionbox{Digit 3 - case 3\label{fig:next_read_3_op-or-seed_msr_msd}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{return_paths_read_next_3_op-or-seed_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 3 - case 3 overview\label{fig:next_read_3_op_msr_msd_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/next_read_3_op_msr_msd}}}%
+    ~
+    \subcaptionbox{Digit 3 - case 3 (seed) overview\label{fig:next_read_3_seed_op_msr_msd_overview}}
+    {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/next_read_3_seed_op_msr_msd}}}%
+    ~
+    \caption{\label{fig:readnext} The {\readnext} gadgets}
+\end{figure}
+
+
+
 
 \subsubsection{Cross over gadget}
 
-The idea this gadget is to assemble after reading the MSD, and route the
-counter to back to the start of the next row, in position for the counter to
-begin reading the first digit. The number of tiles shaded in darker grey is
-$6 \cdot \floor*{\frac{d}{3}}$.
+The idea this gadget is to assemble after reading the MSD, routing the counter back to the start of the
+next row, in position for the counter to begin reading the first digit.
+The number of tiles shaded in darker grey is $6 \cdot \floor*{\frac{d}{3}}$.
 
 \vspace{.5cm}
 For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:

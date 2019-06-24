@@ -153,7 +153,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     $\begin{aligned}[t]
         \returnfromdigit(&\left\langle \returnpath,    2, {\tt seed}, i \right\rangle,
                           \left\langle {\tt NextRead}, 2, {\tt seed}, i \right\rangle \;)
-    \end{aligned}$\\ from the gadget in Figure~\ref{fig:return_from_digit2_oporseed}.
+    \end{aligned}$\\ from the gadget in Figure~\ref{fig:return_from_2_op-or-seed}.
 
 
     \item $i \gets i + 1$
@@ -162,7 +162,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     $\begin{aligned}[t]
         \readnext(&\left\langle {\tt NextRead},  2, {\tt seed}, i - 1 \right\rangle,
                    \left\langle {\tt FirstWarp}, 3, {\tt seed}, i     \right\rangle \;)
-    \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:read_next_2_seed}.
+    \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:next_read_2_seed_op}.
 
     \item Create
     $\begin{aligned}[t]
@@ -237,7 +237,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     $\begin{aligned}[t]
         \returnfromdigit(&\left\langle {\tt ReturnPath}, 3, {\tt seed}, i  \right\rangle,
                           \left\langle {\tt NextRead},   3, {\tt seed}, i, \right\rangle \;)
-    \end{aligned}$\\from the gadget in Figure~\ref{fig:return_from_digit_3}.
+    \end{aligned}$\\from the gadget in Figure~\ref{fig:return_from_3}.
 
     \item $i \gets i + 1$
 
@@ -245,7 +245,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     $\begin{aligned}[t]
         \readnext(&\left\langle {\tt NextRead},  3, {\tt seed}, i - 1 \right\rangle,
                    \left\langle {\tt Write},     1, {\tt seed}, i     \right\rangle \;)
-    \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:read_next_3_seed}.
+    \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:next_read_3_seed_op}.
 
     \item if $i$ is not an index in the MSR, go to {\tt start}, else go to MSR.
 \end{itemize}
@@ -337,14 +337,14 @@ Case 1 -- if $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_
     $\begin{aligned}[t]
             \returnfromdigit(&\left\langle \returnpath,    1, {\tt seed}, i \right\rangle,
                               \left\langle {\tt NextRead}, 1, {\tt seed}, i \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_from_digit_1or2_op_msr_msd}
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_from_1-or-2_op_msr_msd}
 
 
     \item Create
     $\begin{aligned}[t]
         \readnext(& \left\langle {\tt NextRead}, 1,      {\tt seed}, i  \right\rangle,
                     \left\langle {\tt Cross\_Next\_Row}, {\tt increment}\right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op_msr_msd}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
 \end{itemize}
 
 
@@ -471,13 +471,13 @@ Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_
     $\begin{aligned}[t]
         \returnfromdigit(& \left\langle \returnpath,    2, {\tt seed}, i \right\rangle,
                            \left\langle {\tt NextRead}, 2, {\tt seed}, i \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_digit_1or2_op_msr_msd}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_from_1-or-2_op_msr_msd}.
 
     \item Create
     $\begin{aligned}[t]
         \readnext(& \left\langle {\tt NextRead}, 2,      {\tt seed}      \right\rangle,
                     \left\langle {\tt Cross\_Next\_Row}, {\tt increment} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:read_next_1or2_op_msr_msd}.
+    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
 \end{itemize}
 
 
@@ -600,7 +600,7 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
     $\begin{aligned}[t]
         \returnfromdigit(&\left\langle \returnpath,    2, {\tt seed}, i \right\rangle,
                           \left\langle {\tt NextRead}, 2, {\tt seed}, i \right\rangle \;)
-    \end{aligned}$\\ from the gadget in Figure~\ref{fig:return_from_digit2_oporseed}.
+    \end{aligned}$\\ from the gadget in Figure~\ref{fig:return_from_2_op-or-seed}.
 
     \item $i \gets i + 1$
 
@@ -608,7 +608,7 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
     $\begin{aligned}[t]
         \readnext(&\left\langle {\tt NextRead},  2, {\tt seed}, i - 1 \right\rangle,
                    \left\langle {\tt FirstWarp}, 3, {\tt seed}, i     \right\rangle \;)
-    \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:read_next_2_seed}.
+    \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:next_read_2_seed_op}.
 
     \item Create
     $\begin{aligned}[t]
@@ -684,7 +684,7 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
     $\begin{aligned}[t]
         \returnfromdigit(&\left\langle {\tt ReturnPath}, 3, {\tt seed}, i                        \right\rangle,
                           \left\langle {\tt NextRead},   3, {\tt increment}, {\tt msr}, {\tt msd}\right\rangle \;)
-    \end{aligned}$\\from the gadget in Figure~\ref{fig:return_from_digit_3}.
+    \end{aligned}$\\from the gadget in Figure~\ref{fig:return_from_3}.
 \end{itemize}
 
 
