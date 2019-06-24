@@ -36,16 +36,16 @@ all the way until the gadget can no longer continue assembling in the north dire
             \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:pre_warp_1_op_msr_msd}.
 
 
-            \item if $u$ ends with 11 and $dec(u >> 2) >= m$:\\
+            \item if $u$ ends with 11 and $op$ is {\tt increment}:\\
             create
             $\begin{aligned}[t]
-                \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
-                \left\langle {\tt FirstWarp}, i, u, \inc, {\tt halt},  \right\rangle \;)
+                \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc             \right\rangle,
+                \left\langle {\tt FirstWarp},            i, u, \inc, {\tt halt} \right\rangle \;)
             \end{aligned}$ from the general gadget in Figure~\ref{fig:pre_warp_1_op_msr} if $i = 1$ (case 1),
             or Figure~\ref{fig:pre_warp_2_op_msr_msd} if $i = 2$ (case 2), or Figure~\ref{fig:pre_warp_general} if $i = 3$ (case 3).
 
 
-            \item if $u$ ends with 11:
+            \item else if $u$ ends with 11:
             create
             $\begin{aligned}[t]
                 \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
@@ -363,6 +363,7 @@ all the way until the gadget can no longer continue assembling in the north dire
             ~
         \end{figure}
         \begin{figure}[H]\ContinuedFloat
+            \centering
             \subcaptionbox{Digit 2 - general (seed) overview \label{fig:post_warp_2_seed_op_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/post_warp_2_seed_op}}}%
             ~
@@ -378,6 +379,7 @@ all the way until the gadget can no longer continue assembling in the north dire
         \end{figure}
 
         \begin{figure}[H]\ContinuedFloat
+            \centering
             \subcaptionbox{Digit 1 - case 2 \label{fig:post_warp_1_op_msr}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{warping_post_warp_case2_digit1_msr}}}%
             ~
@@ -386,6 +388,7 @@ all the way until the gadget can no longer continue assembling in the north dire
             ~
         \end{figure}
         \begin{figure}[H]\ContinuedFloat
+            \centering
             \subcaptionbox{Digit 2 - case 2\label{fig:post_warp_2_op_msr_msd}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{warping_post_warp_case2_digit2_msr}}}%
             ~

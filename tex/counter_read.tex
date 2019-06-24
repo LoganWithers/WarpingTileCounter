@@ -44,12 +44,33 @@
 Since the counter must only increment the current value if the result will be less than $m$,
 the \\{\cread} gadgets that have both an {\tt increment} signal and input size of $l - 2$ must
 first right shift the bits 2 spots, and then for each possible value after reading one more bit,
-check whether that value is less than $m - 1$. Basically, if the next bit read is a 0, we check
-if the current value + 1 is less than $m$. If the next bit read is a 1, we check if current value +
-$2m + 1$ is less than $m$. For both cases, if the counter can increment the current value, then
+check whether that value is less than $m - 1$. % counting in base-M implies that each digit must be less than M %.
+%
+Basically, if the next bit read is a 0, we check if the current value + 1 is less than $m$.
+%
+%
+%
+% If the counter is counting in base 8, (m is 8), then each digit has 3 (value) + 2 (indicator) bits.
+% The max digit value is "111"
+% Here we'd be on the last/most significant bit, so we've read "0100", and now let's pretend the next
+% bit is a "1", so the output would be "10100" IF this was a copy row.
+%
+% But we're incrementing, so focusing only on the digit value of "101"...
+%
+% Since the next bit is in the log(M) - 1's index, this means we must add 2^ log(M) - 1 to
+% "01" (the current value). We call this the final value of the digit.
+%
+% So adding 2^log2(M) - 1 to the final value, we get "101". Then, once we know the final value,
+% we check to see if the final value + 1 is less than M. If it is, the digit can be incremented
+% and we change the increment signal to a copy signal and pass along the final value + 1 as the next digit
+% to write, otherwise we output all zeroes and keep the increment signal.
+%
+If the next bit read is a 1, we check if current value + $2^{\log (m) - 1}$ + 1 is less than $m$.
+%
+For both cases, if the counter can increment the current value, then
 the {\cread} gadgets output the incremented value to the {\prewarp} gadgets and propagate a {\tt copy}
-signal. Otherwise, if the counter is unable to increment the value, it outputs a digits with all
-zeroes and propagates the {\tt increment} signal to the next digit.
+signal. Otherwise, if the counter is unable to increment the value, it outputs signal in which the bits
+of the digit is all zeroes and it will propagate the {\tt increment} signal to the next digit.
 
 \begin{itemize}
 

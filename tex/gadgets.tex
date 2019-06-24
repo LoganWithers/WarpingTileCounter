@@ -23,9 +23,8 @@
 
 \newcommand{\gadgetref}{from the general gadget shown in Figure~}
 \newcommand{\mgadgetref}{from the micro-gadget shown in Figure~}
-\newcommand{\returnpath}{{\tt ReturnPath}}
-\newcommand{\returnfromdigit}{{\tt Return\_From\_Digit}}
-\newcommand{\readnext}{{\tt Next\_Read}}
+\newcommand{\returnpath}{{\tt Return\_Path}}
+\newcommand{\nextread}{{\tt Next\_Read}}
 
 % todo: fix wording
 When describing a special case, i.e. ``digit $x$ -- case $y$'', whatever follows
@@ -51,19 +50,18 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 \end{figure}
 
 We will use the notation {\tt NorthN\_Line} and {\tt SouthN\_Line} where {\tt N} corresponds to the length of a specific line gadget.
+\input{initial_value}
 
-
-    \input{initial_value}
 \subsection{ Counter Unit }
-
-    \input{counter_read}
-    \input{warping}
-    \input{counter_write}
-    \input{digit_tops}
-    \input{return_paths}
+\input{counter_read}
+\input{warping}
+\input{counter_write}
+\input{digit_tops}
+\input{return_path}
+\input{next_read}
+\input{cross_next_row}
 
 \subsection{Overviews}
-
 
 \begin{figure}[H]
     \centering
