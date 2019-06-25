@@ -39,8 +39,8 @@ all the way until the gadget can no longer continue assembling in the north dire
             \item if $u$ ends with 11 and $op$ is {\tt increment}:\\
             create
             $\begin{aligned}[t]
-                \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc             \right\rangle,
-                \left\langle {\tt FirstWarp},            i, u, \inc, {\tt halt} \right\rangle \;)
+                \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
+                           \left\langle {\tt halt}                  \right\rangle \;)
             \end{aligned}$ from the general gadget in Figure~\ref{fig:pre_warp_1_op_msr} if $i = 1$ (case 1),
             or Figure~\ref{fig:pre_warp_2_op_msr_msd} if $i = 2$ (case 2), or Figure~\ref{fig:pre_warp_general} if $i = 3$ (case 3).
 
@@ -57,44 +57,44 @@ all the way until the gadget can no longer continue assembling in the north dire
 
         \begin{figure}[H]
             \centering
-            \subcaptionbox{General \label{fig:pre_warp_general}}
-            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.11\textwidth]{warping_pre_warp_general}}}%
+            \subcaptionbox{Digits 1, 2, \& 3 - general \label{fig:pre_warp_general}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{warping_pre_warp_general}}}%
             ~
-            \subcaptionbox{Digit 1 \label{fig:pre_warp_1_op_overview}}
+            \subcaptionbox{Digit 1 - general\\overview\label{fig:pre_warp_1_op_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/pre_warp_1_op}}}%
             ~
-            \subcaptionbox{Digit 2 \label{fig:pre_warp_2_op_overview}}
+            \subcaptionbox{Digit 2 - general\\overview\label{fig:pre_warp_2_op_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/pre_warp_2_op}}}%
             ~
-            \subcaptionbox{Digit 3 \label{fig:pre_warp_3_op_overview}}
+            \subcaptionbox{Digit 3 - general\\overview\label{fig:pre_warp_3_op_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/pre_warp_3_op}}}%
             ~
         \end{figure}
 
-
         \begin{figure}[H]\ContinuedFloat
             \centering
-            \subcaptionbox{Digit 1 -- Case 1 \label{fig:pre_warp_1_op_msr_msd}}
-            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{warping_pre_warp_case1_digit1_msr}}}%
+            \subcaptionbox{Digit 1 - case 1 \label{fig:pre_warp_1_op_msr_msd}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{warping_pre_warp_case1_digit1_msr}}}%
             ~
-            \subcaptionbox{Digit 1 - Case 1 overview \label{fig:pre_warp_1_op_msr_msd_overview}}
+            \subcaptionbox{Digit 1 - case 1 overview \label{fig:pre_warp_1_op_msr_msd_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case1/pre_warp_1_op_msr_msd}}}%
+            ~
+            \subcaptionbox{Digit 1 - case 2 \label{fig:pre_warp_1_op_msr}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{warping_pre_warp_case2_digit1_msr}}}%
+            ~
+            \subcaptionbox{Digit 1 - case 2 overview \label{fig:pre_warp_1_op_msr_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/pre_warp_1_op_msr}}}%
             ~
         \end{figure}
 
         \begin{figure}[H]\ContinuedFloat
             \centering
-            \subcaptionbox{Digit 1 -- Case 2 \label{fig:pre_warp_1_op_msr}}
-            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{warping_pre_warp_case2_digit1_msr}}}%
+            \subcaptionbox{Digit 2 - case 2\label{fig:pre_warp_2_op_msr_msd}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{warping_pre_warp_case2_digit2_msr}}}%
             ~
-            \subcaptionbox{Digit 1 - Case 2 overview \label{fig:pre_warp_1_op_msr_overview}}
-            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/pre_warp_1_op_msr}}}%
-            ~
-            \subcaptionbox{Digit 2 -- Case 2\label{fig:pre_warp_2_op_msr_msd}}
-            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.33in]{warping_pre_warp_case2_digit2_msr}}}%
-            ~
-            \subcaptionbox{Digit 2 - Case 2 overview \label{fig:pre_warp_2_op_msr_msd_overview}}
+            \subcaptionbox{Digit 2 - case 2 overview \label{fig:pre_warp_2_op_msr_msd_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/pre_warp_2_op_msr_msd}}}%
+            ~
             \caption{\label{fig:pre_warp_gadgets} The {\prewarp} gadgets. }
         \end{figure}
 
@@ -106,12 +106,14 @@ all the way until the gadget can no longer continue assembling in the north dire
               For each $u \in \{0, 1\}^l$, and each $\inc \in \{ {\tt increment, copy } \}$:
               \begin{itemize}
 
-                \item For each $i = 1,2,3$: create \\
+                \item For each $i = 1,2,3$: create
                 $\begin{aligned}[t]
-                    \firstwarp(& \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle,    % South
-                                 \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle,    % North
-                                 \left\langle {\tt WarpBridge}, i, u, \inc \right\rangle \;) % East
-                \end{aligned}$
+                    \firstwarp(& \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle,\\    % South
+                               & \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle,\\    % North
+                               & \left\langle {\tt WarpBridge}, i, u, \inc \right\rangle \;) % East
+                \end{aligned}$\\ from the single tile gadget, shown in Figure~\ref{fig:first_warp_1_op_overview}
+                                 if $i = 1$ or Figure~\ref{fig:first_warp_2_op_overview} if $i = 2$, otherwise from
+                                 Figure~\ref{fig:first_warp_3_op_overview} if $i = 3$.
                 \vspace{.5cm}
 
                 \item Create
@@ -119,7 +121,7 @@ all the way until the gadget can no longer continue assembling in the north dire
                     \firstwarp(& \left\langle {\tt FirstWarp}, 1, u, \inc, {\tt msr} \right\rangle, \\ % South
                                & \left\langle {\tt FirstWarp}, 1, u, \inc, {\tt msr} \right\rangle, \\ % North
                                & \left\langle {\tt PostWarp},  1, u, \inc, {\tt msr} \right\rangle \;) % East
-                \end{aligned}$
+                \end{aligned}$\\ from the single tile gadget shown in Figure~\ref{fig:first_warp_1_op_msr_overview}.
                 \vspace{.5cm}
 
                 \item Create
@@ -127,7 +129,7 @@ all the way until the gadget can no longer continue assembling in the north dire
                     \firstwarp(& \left\langle {\tt FirstWarp}, 1, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\ % South
                                & \left\langle {\tt FirstWarp}, 1, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\ % North
                                & \left\langle {\tt PostWarp},  1, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;) % Up
-                \end{aligned}$
+                \end{aligned}$\\ from the single tile gadget shown in Figure~\ref{fig:first_warp_1_op_msr_msd_overview}.
                 \vspace{.5cm}
 
                 \item Create
@@ -135,7 +137,7 @@ all the way until the gadget can no longer continue assembling in the north dire
                     \firstwarp(& \left\langle {\tt FirstWarp},  2, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\ % South
                                & \left\langle {\tt FirstWarp},  2, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\ % North
                                & \left\langle {\tt WarpBridge}, 2, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;) % West
-                \end{aligned}$
+                \end{aligned}$\\ from the single tile gadget shown in Figure~\ref{fig:first_warp_2_op_msr_msd_overview}.
                 \vspace{.5cm}
 
                 \item Create
@@ -143,7 +145,7 @@ all the way until the gadget can no longer continue assembling in the north dire
                     \firstwarp(& \left\langle {\tt FirstWarp},  3, u, \inc, {\tt msr}, {\tt msd} \right\rangle,\\  % South
                                & \left\langle {\tt FirstWarp},  3, u, \inc, {\tt msr}, {\tt msd} \right\rangle,\\  % North
                                & \left\langle {\tt WarpBridge}, 3, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;) % East
-                \end{aligned}$
+                \end{aligned}$\\ from the single tile gadget shown in Figure~\ref{fig:first_warp_3_op_msr_msd_overview}.
                 \vspace{.5cm}
 
             \end{itemize}
@@ -151,16 +153,16 @@ all the way until the gadget can no longer continue assembling in the north dire
 
         \begin{figure}[H]
             \centering
-            \subcaptionbox{Digit 1 overview \label{fig:first_warp_1_op_overview}}
+            \subcaptionbox{Digit 1 - general\\ overview \label{fig:first_warp_1_op_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/first_warp_1_op}}}%
             ~
-            \subcaptionbox{Digit 2 overview \label{fig:first_warp_2_op_overview}}
+            \subcaptionbox{Digit 2 - general\\ overview \label{fig:first_warp_2_op_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/first_warp_2_op}}}%
             ~
-            \subcaptionbox{Digit 3 overview \label{fig:first_warp_3_op_overview}}
+            \subcaptionbox{Digit 3 - general\\ overview \label{fig:first_warp_3_op_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/first_warp_3_op}}}%
             ~
-            \subcaptionbox{Digit 3 (seed) overview \label{fig:first_warp_3_seed_op_overview}}
+            \subcaptionbox{Digit 3 - general (seed) overview \label{fig:first_warp_3_seed_op_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/first_warp_3_seed_op}}}%
             ~
         \end{figure}
@@ -175,6 +177,9 @@ all the way until the gadget can no longer continue assembling in the north dire
             ~
             \subcaptionbox{Digit 2 - case 2 overview \label{fig:first_warp_2_op_msr_msd_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/first_warp_2_op_msr_msd}}}%
+            ~
+            \subcaptionbox{Digit 3 - case 3 overview \label{fig:first_warp_3_op_msr_msd_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/first_warp_3_op_msr_msd}}}%
             ~
             \caption{\label{fig:first_warp_gadgets_overviews} The {\firstwarp} gadget overviews.}
         \end{figure}
@@ -213,30 +218,29 @@ all the way until the gadget can no longer continue assembling in the north dire
         \begin{figure}[H]
             \centering
             \subcaptionbox{General \label{fig:warp_bridge_general}}
-            {\makebox[0.11\textwidth][c]{\includegraphics[width=0.33in]{warping_warp_bridge_general}}}%
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{warping_warp_bridge_general}}}%
             ~
-            \subcaptionbox{Digit 1 - general overview\label{fig:warp_bridge_1_op_overview}}
-            {\makebox[0.19\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_1_op}}}%
+            \subcaptionbox{Digit 1 - general\\ overview\label{fig:warp_bridge_1_op_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_1_op}}}%
             ~
-            \subcaptionbox{Digit 2 - general overview\label{fig:warp_bridge_2_op_overview}}
-            {\makebox[0.19\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_2_op}}}%
+            \subcaptionbox{Digit 2 - general\\ overview\label{fig:warp_bridge_2_op_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_2_op}}}%
             ~
-            \subcaptionbox{Digit 3 - general overview\label{fig:warp_bridge_3_op_overview}}
-            {\makebox[0.19\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_3_op}}}%
+            \subcaptionbox{Digit 3 - general\\ overview\label{fig:warp_bridge_3_op_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_3_op}}}%
             ~
         \end{figure}
 
         \begin{figure}[H]\ContinuedFloat
             \centering
-            ~
             \subcaptionbox{Digit 2 - general (seed) overview\label{fig:warp_bridge_2_seed_op_overview}}
-            {\makebox[0.19\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_2_seed_op}}}%
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_2_seed_op}}}%
             ~
             \subcaptionbox{Digit 3 - general (seed) overview\label{fig:warp_bridge_3_seed_op_overview}}
-            {\makebox[0.19\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_3_seed_op}}}%
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/warp_bridge_3_seed_op}}}%
             ~
             \subcaptionbox{Digit 2 \label{fig:warp_bridge_2_op_msr_msd}}
-            {\makebox[0.11\textwidth][c]{\includegraphics[width=0.33in]{warping_warp_bridge_case2_digit2_msr}}}%
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{warping_warp_bridge_case2_digit2_msr}}}%
             ~
             \subcaptionbox{Digit 2 - case 2 overview \label{fig:warp_bridge_2_op_msr_msd_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/warp_bridge_2_op_msr_msd}}}%
@@ -263,7 +267,9 @@ all the way until the gadget can no longer continue assembling in the north dire
                 \secondwarp(& \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,   \\ % South
                             & \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,   \\ % North
                             & \left\langle {\tt PostWarp},   i, u, \inc \right\rangle \;)   % Up
-            \end{aligned}$
+            \end{aligned}$\\ from the single tile gadget, shown in Figure~\ref{fig:second_warp_1_op_overview}
+                             if $i = 1$ or Figure~\ref{fig:second_warp_2_op_overview} if $i = 2$, otherwise from
+                             Figure~\ref{fig:second_warp_3_op_overview} if $i = 3$.
 
             \vspace{0.5cm}
 
@@ -272,7 +278,7 @@ all the way until the gadget can no longer continue assembling in the north dire
                 \secondwarp(& \left\langle {\tt SecondWarp}, 2, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\ % South
                             & \left\langle {\tt SecondWarp}, 2, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\ % North
                             & \left\langle {\tt PostWarp},   2, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;) % East
-            \end{aligned}$
+            \end{aligned}$\\ from the single tile gadget shown in Figure~\ref{fig:second_warp_2_op_msr_msd_overview}.
             \vspace{0.5cm}
 
             \item Create
@@ -280,7 +286,7 @@ all the way until the gadget can no longer continue assembling in the north dire
                 \secondwarp(& \left\langle {\tt SecondWarp}, 3, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\ % South
                             & \left\langle {\tt SecondWarp}, 3, u, \inc, {\tt msr}, {\tt msd} \right\rangle, \\ % North
                             & \left\langle {\tt PostWarp},   3, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;) % Up
-            \end{aligned}$
+            \end{aligned}$\\ from the single tile gadget shown in Figure~\ref{fig:second_warp_3_op_msr_msd_overview}.
         \end{itemize}
 
         \begin{figure}[H]
@@ -303,13 +309,16 @@ all the way until the gadget can no longer continue assembling in the north dire
             \subcaptionbox{Digit 3 - general (seed) overview \label{fig:second_warp_3_seed_op_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/second_warp_3_seed_op}}}%
             ~
-            \subcaptionbox{Digit 2 - case 2 overview \label{fig:second_warp_2_op_msr_msd}}
+            \subcaptionbox{Digit 2 - case 2 overview \label{fig:second_warp_2_op_msr_msd_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/second_warp_2_op_msr_msd}}}%
             ~
             \subcaptionbox{Digit 2 - case 2 (seed) overview \label{fig:second_warp_2_seed_op_msr_msd_overview}}
             {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/second_warp_2_seed_op_msr_msd}}}%
             ~
-            \caption{\label{fig:second_warp_gadgets_overviews} The {\secondwarp} gadgets overviews.}
+            \subcaptionbox{Digit 3 - case 3 overview \label{fig:second_warp_3_op_msr_msd_overview}}
+            {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/second_warp_3_op_msr_msd}}}%
+            ~
+            \caption{\label{fig:second_warp_gadgets_overviews} The {\secondwarp} gadget overviews.}
         \end{figure}
 
 

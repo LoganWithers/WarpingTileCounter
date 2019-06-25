@@ -11,7 +11,7 @@ if $d \mod 3 \not= 0$, otherwise it has 3 digits.
     \subcaptionbox{MSR case 3\label{fig:initial_case3_msr}}{\includegraphics[width=0.95in]{initial_value_case3_msr}}\hfill%
     \subcaptionbox{General digit regions\label{fig:initial_general}}{\includegraphics[width=0.95in]{initial_value_general}}%
     \caption{\label{fig:initial_value_assemblies} These figures show an example construction of the initial value,
-    with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assemble.}
+    with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assembly.}
 \end{figure}
 
 Note that we use $i$ as the index of a digit in $\counterstart$ and $j$ as the index of a bit
@@ -25,7 +25,7 @@ in a encoded digit.
 \end{itemize}
 
 
-The idea here is to repeat these steps from $i = 0$ until $i$ is the index of the first digit in the MSR. These
+The idea here is to repeat these steps starting from $i = 0$ and repeating until $i$ is the index of the first digit in the MSR. These
 steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_general}.
 
 
@@ -72,16 +72,16 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
 
         \item Create
         $\begin{aligned}[t]
-            {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopB}, 1, {\tt seed}, i\right\rangle,
-                                           \left\langle \returnpath,     1, {\tt seed}, i\right\rangle \;)
+            {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopB},  1, {\tt seed}, i\right\rangle,
+                                           \left\langle {\tt ReturnPath}, 1, {\tt seed}, i\right\rangle \;)
         \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
     \end{itemize}
 
     \item Create
     $\begin{aligned}[t]
-            \returnpath(&\left\langle \returnpath,    1, {\tt seed}, i \right\rangle,
-                              \left\langle {\tt NextRead}, 1, {\tt seed}, i \right\rangle \;)
-    \end{aligned}$\\ (single-tile)
+            \returnpath(&\left\langle {\tt ReturnPath},    1, {\tt seed}, i \right\rangle,
+                         \left\langle {\tt NextRead}, 1, {\tt seed}, i \right\rangle \;)
+    \end{aligned}$\\ (single tile).
 
     \item $i \gets i + 1$
 
@@ -89,13 +89,13 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     $\begin{aligned}[t]
             \nextread(&\left\langle {\tt NextRead},   1, {\tt seed}, i - 1\right\rangle,
                        \left\langle {\tt SecondWarp}, 2, {\tt seed}, i    \right\rangle \;)
-    \end{aligned}$\\ (single-tile)
+    \end{aligned}$\\ (single tile).
 
     \item Create
     $\begin{aligned}[t]
         \secondwarp(&\left\langle {\tt SecondWarp}, 2, {\tt seed}, i \right\rangle,
                      \left\langle {\tt PostWarp},   2, {\tt seed}, i \right\rangle \;)
-    \end{aligned}$
+    \end{aligned}$ (single tile).
 
     \item Create
     $\begin{aligned}[t]
@@ -131,8 +131,8 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
-            {\tt North\_Line5}(& \left \langle {\tt DigitTop},  2, {\tt seed} , i \right\rangle,
-                                 \left \langle {\tt DigitTopA}, 2, {\tt seed} , i \right\rangle \;)
+            {\tt North\_Line5}(& \left \langle {\tt DigitTop},  2, {\tt seed}, i \right\rangle,
+                                 \left \langle {\tt DigitTopA}, 2, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:north_line}.
 
         \item Create
@@ -143,16 +143,16 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
 
         \item Create
         $\begin{aligned}[t]
-            {\tt South\_Line4\textit{l}}(&\left\langle {\tt DigitTopB}, 2, {\tt seed}, i \right\rangle,
-                                          \left\langle \returnpath,     2, {\tt seed}, i \right\rangle \;)
+            {\tt South\_Line4\textit{l}}(&\left\langle {\tt DigitTopB},  2, {\tt seed}, i \right\rangle,
+                                          \left\langle {\tt ReturnPath}, 2, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
     \end{itemize}
 
 
     \item Create
     $\begin{aligned}[t]
-        \returnpath(&\left\langle \returnpath,    2, {\tt seed}, i \right\rangle,
-                          \left\langle {\tt NextRead}, 2, {\tt seed}, i \right\rangle \;)
+        \returnpath(&\left\langle {\tt ReturnPath}, 2, {\tt seed}, i \right\rangle,
+                     \left\langle {\tt NextRead},   2, {\tt seed}, i \right\rangle \;)
     \end{aligned}$\\ from the gadget in Figure~\ref{fig:return_path_2_op-or-seed}.
 
 
@@ -236,7 +236,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     \item Create
     $\begin{aligned}[t]
         \returnpath(&\left\langle {\tt ReturnPath}, 3, {\tt seed}, i  \right\rangle,
-                          \left\langle {\tt NextRead},   3, {\tt seed}, i, \right\rangle \;)
+                     \left\langle {\tt NextRead},   3, {\tt seed}, i, \right\rangle \;)
     \end{aligned}$\\from the gadget in Figure~\ref{fig:return_path_3}.
 
     \item $i \gets i + 1$
@@ -273,7 +273,7 @@ Case 1 -- if $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_
             \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_1}.
 
-        \item if $0 \leqslant j \leqslant l$: create
+        \item if $0 \leqslant j < l - 1$: create
         $\begin{aligned}[t]
             \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
@@ -329,14 +329,14 @@ Case 1 -- if $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_
         \item Create
         $\begin{aligned}[t]
             {\tt South\_Line17}(& \left\langle {\tt DigitTopG}, 1, {\tt seed}, i \right\rangle,
-                                  \left\langle \returnpath,     1, {\tt seed}, i  \right\rangle \;)
+                                  \left\langle {\tt ReturnPath}, 1, {\tt seed}, i  \right\rangle \;)
         \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
     \end{itemize}
 
     \item Create
     $\begin{aligned}[t]
-            \returnpath(&\left\langle \returnpath,    1, {\tt seed}, i \right\rangle,
-                              \left\langle {\tt NextRead}, 1, {\tt seed}, i \right\rangle \;)
+            \returnpath(&\left\langle {\tt ReturnPath}, 1, {\tt seed}, i \right\rangle,
+                         \left\langle {\tt NextRead},   1, {\tt seed}, i \right\rangle \;)
     \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}
 
 
@@ -383,15 +383,15 @@ Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_
         \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:topper_case1}
         \item Create
         $\begin{aligned}[t]
-            {\tt South\_Line4\textit{l}}(&\left\langle {\tt DigitTopA}, 1, \inc, {\tt msr}\right\rangle,
-                                          \left\langle \returnpath,     1, \inc, {\tt msr}\right\rangle \;)
+            {\tt South\_Line4\textit{l}}(&\left\langle {\tt DigitTopA},  1, \inc, {\tt msr}\right\rangle,
+                                          \left\langle {\tt ReturnPath}, 1, \inc, {\tt msr}\right\rangle \;)
         \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}
     \end{itemize}
 
     \item Create
     $\begin{aligned}[t]
-            \returnpath(&\left\langle \returnpath,    1, {\tt seed}, i \right\rangle,
-                              \left\langle {\tt NextRead}, 1, {\tt seed}, i \right\rangle \;)
+            \returnpath(&\left\langle {\tt ReturnPath}, 1, {\tt seed}, i \right\rangle,
+                         \left\langle {\tt NextRead},   1, {\tt seed}, i \right\rangle \;)
     \end{aligned}$\\ (single tile)
 
     \item $i \gets i + 1$
@@ -461,16 +461,16 @@ Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_
 
             \item Create
             $\begin{aligned}[t]
-                {\tt South\_Line30}(& \left\langle {\tt DigitTopC}, 2, {\tt seed}, i \right\rangle,
-                                      \left\langle \returnpath,     2, {\tt seed}, i \right\rangle \;)
+                {\tt South\_Line30}(& \left\langle {\tt DigitTopC},  2, {\tt seed}, i \right\rangle,
+                                      \left\langle {\tt ReturnPath}, 2, {\tt seed}, i \right\rangle \;)
             \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
 
 
     \item Create
     $\begin{aligned}[t]
-        \returnpath(& \left\langle \returnpath,    2, {\tt seed}, i \right\rangle,
-                           \left\langle {\tt NextRead}, 2, {\tt seed}, i \right\rangle \;)
+        \returnpath(& \left\langle {\tt ReturnPath}, 2, {\tt seed}, i \right\rangle,
+                      \left\langle {\tt NextRead},   2, {\tt seed}, i \right\rangle \;)
     \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}.
 
     \item Create
@@ -525,8 +525,8 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
 
         \item Create
         $\begin{aligned}[t]
-            {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopB}, 1, {\tt seed}, i\right\rangle,
-                                           \left\langle \returnpath,     1, {\tt seed}, i\right\rangle \;)
+            {\tt South\_Line4\textit{l}}(& \left\langle {\tt DigitTopB},  1, {\tt seed}, i\right\rangle,
+                                           \left\langle {\tt ReturnPath}, 1, {\tt seed}, i\right\rangle \;)
         \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
     \end{itemize}
 
@@ -534,15 +534,15 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
 
     \item Create
     $\begin{aligned}[t]
-            \returnpath(&\left\langle \returnpath,      1, {\tt seed}, i - 1\right\rangle,
-                              \left\langle {\tt SecondWarp}, 2, {\tt seed}, i    \right\rangle \;)
-    \end{aligned}$\\ (single tile)
+            \returnpath(&\left\langle {\tt ReturnPath}, 1, {\tt seed}, i - 1\right\rangle,
+                         \left\langle {\tt SecondWarp}, 2, {\tt seed}, i    \right\rangle \;)
+    \end{aligned}$\\ (single tile).
 
     \item Create
     $\begin{aligned}[t]
         \secondwarp(&\left\langle {\tt SecondWarp}, 2, {\tt seed}, i \right\rangle,
                      \left\langle {\tt PostWarp},   2, {\tt seed}, i \right\rangle \;)
-    \end{aligned}$
+    \end{aligned}$ (single tile).
 
     \item Create
     $\begin{aligned}[t]
@@ -590,16 +590,16 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
 
         \item Create
         $\begin{aligned}[t]
-            {\tt South\_Line4\textit{l}}(&\left\langle {\tt DigitTopB}, 2, {\tt seed}, i \right\rangle,
-                                          \left\langle \returnpath,     2, {\tt seed}, i \right\rangle \;)
+            {\tt South\_Line4\textit{l}}(&\left\langle {\tt DigitTopB},  2, {\tt seed}, i \right\rangle,
+                                          \left\langle {\tt ReturnPath}, 2, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
     \end{itemize}
 
 
     \item Create
     $\begin{aligned}[t]
-        \returnpath(&\left\langle \returnpath,    2, {\tt seed}, i \right\rangle,
-                          \left\langle {\tt NextRead}, 2, {\tt seed}, i \right\rangle \;)
+        \returnpath(&\left\langle {\tt ReturnPath}, 2, {\tt seed}, i \right\rangle,
+                     \left\langle {\tt NextRead},   2, {\tt seed}, i \right\rangle \;)
     \end{aligned}$\\ from the gadget in Figure~\ref{fig:return_path_2_op-or-seed}.
 
     \item $i \gets i + 1$
@@ -683,7 +683,7 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
     \item Create
     $\begin{aligned}[t]
         \returnpath(&\left\langle {\tt ReturnPath}, 3, {\tt seed}, i                        \right\rangle,
-                          \left\langle {\tt NextRead},   3, {\tt increment}, {\tt msr}, {\tt msd}\right\rangle \;)
+                     \left\langle {\tt NextRead},   3, {\tt increment}, {\tt msr}, {\tt msd}\right\rangle \;)
     \end{aligned}$\\from the gadget in Figure~\ref{fig:return_path_3}.
 \end{itemize}
 
