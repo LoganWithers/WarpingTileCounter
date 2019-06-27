@@ -1,7 +1,17 @@
 \subsubsection{ The Next Read gadgets }
 
-The second part of the return gadgets is the {\nextread} gadget. This type of gadget attaches to the last tile of a {\returnpath} gadget,
-and (except in the initial value), outputs either an empty {\cread} signal or a {\tt Cross\_Next\_Row} signal.
+Once the {\returnpath} gadget has assembled, the counter has
+a few options to choose from. The gadget that controls what happens after a digit is
+written is the {\nextread} gadget. If there is a {\tt msr} and {\tt msd} signal in
+the input, this gadget knows that the most significant digit was just read and will output a
+glue for the {\tt Cross\_Next\_Row} gadget to assemble so that the counter crosses
+back to the right and begins reading the first digit in the next row. Otherwise
+(for regular digits -- not in the MSR), this gadget will assemble the second half of
+the return path, terminating at the next digit in the current row. When this happens,
+the gadget increments the digit index (unless it is already digit 3, in which case it
+resets to 1) and outputs an empty {\cread} signal to force the counter to begin reading
+the next digit.
+
 
 
 For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
@@ -12,19 +22,19 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead}, 1,          \inc \right\rangle,
                     \left\langle {\tt Read},     2, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
 
     \item Create
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead}, 1,          \inc, {\tt msr} \right\rangle,
                     \left\langle {\tt Read},     2, \lambda, \inc            \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1_op_msr}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1_op_msr}.
 
     \item Create
     $\begin{aligned}[t]
-        \nextread(& \left\langle {\tt NextRead}, 1,      \inc, {\tt msr}, {\tt msd} \right\rangle,
-                    \left\langle {\tt Cross\_Next\_Row}, \inc                       \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
+        \nextread(& \left\langle {\tt NextRead}, 1,  \inc, {\tt msr}, {\tt msd} \right\rangle,
+                    \left\langle {\tt CrossNextRow}, \inc                       \right\rangle \;)
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
 
 
     % DIGIT 2
@@ -32,13 +42,13 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead}, 2,          \inc \right\rangle,
                     \left\langle {\tt Read},     3, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
 
     \item Create
     $\begin{aligned}[t]
-        \nextread(& \left\langle {\tt NextRead}, 2,      \inc, {\tt msr}, {\tt msd} \right\rangle,
-                    \left\langle {\tt Cross\_Next\_Row}, \inc                       \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
+        \nextread(& \left\langle {\tt NextRead}, 2,  \inc, {\tt msr}, {\tt msd} \right\rangle,
+                    \left\langle {\tt CrossNextRow}, \inc                       \right\rangle \;)
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
 
 
     % DIGIT 3
@@ -46,13 +56,13 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead}, 3,          \inc \right\rangle,
                     \left\langle {\tt Read},     1, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_3_op}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_3_op}.
 
     \item Create
     $\begin{aligned}[t]
-        \nextread(& \left\langle {\tt NextRead}, 3,      \inc, {\tt msr}, {\tt msd} \right\rangle,
-                    \left\langle {\tt Cross\_Next\_Row}, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:next_read_3_op-or-seed_msr_msd}.
+        \nextread(& \left\langle {\tt NextRead}, 3,  \inc, {\tt msr}, {\tt msd} \right\rangle,
+                    \left\langle {\tt CrossNextRow}, \inc \right\rangle \;)
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_3_op-or-seed_msr_msd}.
 \end{itemize}
 
 \begin{figure}[H]

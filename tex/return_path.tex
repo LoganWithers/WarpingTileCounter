@@ -1,9 +1,13 @@
 
 
 \subsubsection{ Return paths}
-In this section, we explain the gadgets used after a digit and its {\dtop} gadget have assembled. These
-are the return paths, the purpose of these gadgets is to route the counter to the next place it needs to be, which
-could be the next digit, a new row, etc.
+After a {\dtop} has assembled, we know that the geometry the allows for the {\warpunit} to
+work has been placed, therfore the counter is free to return back near where it started
+reading the previous digit. The next gadget that assembles is the {\returnpath} gadget.
+The basic idea of this gadget is simply to provide a path from the end of {\dtop} to some
+general area closer to where the most recently read digit is located. Once the {\returnpath} has
+completely assembled, it output's a glue for the {\nextread} gadgets to determine
+where the counter needs to assemble next.
 
 
 For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
@@ -13,51 +17,51 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     % DIGIT 1
     \item Create
     $\begin{aligned}[t]
-        \returnpath(& \left\langle {\tt ReturnPath},    1, \inc \right\rangle,
-                           \left\langle {\tt NextRead}, 1, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_path_1_op}.
+        \returnpath(& \left\langle {\tt ReturnPath}, 1, \inc \right\rangle,
+                      \left\langle {\tt NextRead},   1, \inc \right\rangle \;)
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1_op}.
 
     \item Create
     $\begin{aligned}[t]
-        \returnpath(& \left\langle {\tt ReturnPath},    1, \inc, {\tt msr} \right\rangle,
-                           \left\langle {\tt NextRead}, 1, \inc, {\tt msr} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_path_1_op_msr}
+        \returnpath(& \left\langle {\tt ReturnPath}, 1, \inc, {\tt msr} \right\rangle,
+                      \left\langle {\tt NextRead},   1, \inc, {\tt msr} \right\rangle \;)
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1_op_msr}
 
     \item Create
     $\begin{aligned}[t]
-        \returnpath(& \left\langle {\tt ReturnPath},    1, \inc, {\tt msr}, {\tt msd} \right\rangle,
-                           \left\langle {\tt NextRead}, 1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}.
+        \returnpath(& \left\langle {\tt ReturnPath}, 1, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                      \left\langle {\tt NextRead},   1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}.
 
 
     % DIGIT 2
     \item Create
     $\begin{aligned}[t]
-        \returnpath(& \left\langle {\tt ReturnPath},    2, \inc \right\rangle,
-                           \left\langle {\tt NextRead}, 2, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_path_2_op-or-seed}.
+        \returnpath(& \left\langle {\tt ReturnPath}, 2, \inc \right\rangle,
+                      \left\langle {\tt NextRead},   2, \inc \right\rangle \;)
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_2_op-or-seed}.
 
     \item Create
     $\begin{aligned}[t]
-        \returnpath(& \left\langle {\tt ReturnPath},    2, \inc, {\tt msr}, {\tt msd} \right\rangle,
-                           \left\langle {\tt NextRead}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}.
+        \returnpath(& \left\langle {\tt ReturnPath}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                      \left\langle {\tt NextRead},   2, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}.
 
 
 
     % DIGIT 3
     \item Create
     $\begin{aligned}[t]
-        \returnpath(& \left\langle {\tt ReturnPath},    3, \inc \right\rangle,
-                           \left\langle {\tt NextRead}, 3, \inc \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_path_3}.
+        \returnpath(& \left\langle {\tt ReturnPath},  3, \inc \right\rangle,
+                      \left\langle {\tt NextRead},    3, \inc \right\rangle \;)
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_3}.
 
 
     \item Create
     $\begin{aligned}[t]
-        \returnpath(& \left\langle {\tt ReturnPath},    3, \inc, {\tt msr}, {\tt msd} \right\rangle,
-                           \left\langle {\tt NextRead}, 3, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:return_path_3}.
+        \returnpath(& \left\langle {\tt ReturnPath}, 3, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                      \left\langle {\tt NextRead},   3, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_3}.
 
 \end{itemize}
 

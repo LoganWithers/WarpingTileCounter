@@ -99,9 +99,15 @@ all the way until the gadget can no longer continue assembling in the north dire
         \end{figure}
 
 
-        \item {\firstwarp}: A {\firstwarp} connects to a {\warpbridge} gadget in all cases except when it's assembling
-              in the MSR and it is digit 1 in case 1 or 2, in which the {\firstwarp} gadget attaches directly
-              to a {\postwarp} gadget.
+        \item {\firstwarp}: The idea of the {\firstwarp} gadget is to transport the information read\\
+            by the {\cread} gadgets, usually across a distance  $O(\log m)$. We do this using a single tile that
+            assembles an infinite line in the north direction, and has one unique glue either in the
+            east direction or west direction. This unique glue will at some point later in the assembly, that is
+            determined by earlier parts of the assembly, no longer be blocked. When this occurs, it can
+            finally attach to the {\warpbridge} gadget (except in a few special cases). This process signifies the ``waking up'' of the
+            {\firstwarp} gadgets. When this gadget wakes up, it must also be blocked in the north direction, which
+            prevents a truly infinite line from assembling. The geometry required for this process is guarenteed
+            to be in place by earlier-assembled {\dtop} gadgets.
 
               For each $u \in \{0, 1\}^l$, and each $\inc \in \{ {\tt increment, copy } \}$:
               \begin{itemize}
@@ -185,9 +191,10 @@ all the way until the gadget can no longer continue assembling in the north dire
         \end{figure}
 
 
-        \item {\warpbridge}: a {\warpbridge} gadget binds the last tile of the {\firstwarp} gadgets to the
-             first tile of the {\secondwarp} gadgets. For digit 1 in cases 1 and 2, the
-             {\warpbridge} is omitted from the {\warpunit}.
+        \item {\warpbridge}: a {\warpbridge} gadget is a gadget which assembles when the {\firstwarp} gadget makes it
+             to its final destination. The goal of the {\warpbridge} is to assemble a path from the end of the {\firstwarp}
+             gadgets to the start of the {\secondwarp} gadgets. For digit 1 in cases 1 and 2, the {\warpbridge} is omitted
+             from the {\warpunit}.
 
         For each $u \in \{0, 1\}^l$, and each $\inc \in \{ {\tt increment, copy } \}$:
         \begin{itemize}
@@ -249,24 +256,25 @@ all the way until the gadget can no longer continue assembling in the north dire
         \end{figure}
 
         \item {\secondwarp}:
-        % The idea of the Second_Warp gadget is to transport the information read by the Counter_Read
-        % gadgets, usually across a distance  O(log m). We do this using a single tile that
-        % assembles an infinite line in the north direction, and has one unique glue either on the
-        % east direction or up direction. This unique glue will at some point, in a unique location that is
-        % determined by earlier parts of the assembly, no longer be blocked and so that it can
-        % finally attach to the Post_Warp gadget. This process signifies the "waking up" of the
-        % Second_Warp gadgets. When this gadget wakes up, it must also be blocked in the north direction, to
-        % prevent a truly infinite line from assembling. The geometry required for this process is guarenteed
-        % to be in place by earlier-assembled Digit_Top gadgets.
+        Similar to the {\firstwarp} gadgets, the idea of the {\secondwarp} gadget is to
+        also to transport the information read by the {\cread} gadgets. We do this using a single tile that
+        assembles an infinite line in the north direction, and has one unique glue either in the
+        east direction or up direction. This unique glue will at some point later in the assembly, that is
+        determined by earlier parts of the assembly, no longer be blocked. When this occurs, it can
+        finally attach to the {\postwarp} gadget. This process signifies the ``waking up'' of the
+        {\secondwarp} gadgets. When this gadget wakes up, it must also be blocked in the north direction, which
+        prevent a truly infinite line from assembling. The geometry required for this process is guarenteed
+        to be in place by earlier-assembled {\dtop} gadgets.
 
 
         For each $u \in \{0, 1\}^l$, and each $\inc \in \{ {\tt increment, copy } \}$:
         \begin{itemize}
-            \item For each $i = 1, 2, 3$: Create
+            \item For each $i = 1, 2, 3$: \\
+            Create
             $\begin{aligned}[t]
-                \secondwarp(& \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,   \\ % South
-                            & \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,   \\ % North
-                            & \left\langle {\tt PostWarp},   i, u, \inc \right\rangle \;)   % Up
+                \secondwarp(& \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,     % South
+                             \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,      % North
+                             \left\langle {\tt PostWarp},   i, u, \inc \right\rangle \;)   % Up
             \end{aligned}$\\ from the single tile gadget, shown in Figure~\ref{fig:second_warp_1_op_overview}
                              if $i = 1$ or Figure~\ref{fig:second_warp_2_op_overview} if $i = 2$, otherwise from
                              Figure~\ref{fig:second_warp_3_op_overview} if $i = 3$.
