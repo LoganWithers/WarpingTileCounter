@@ -20,14 +20,14 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     % DIGIT 1
     \item Create
     $\begin{aligned}[t]
-        \nextread(& \left\langle {\tt NextRead}, 1,          \inc \right\rangle,
-                    \left\langle {\tt Read},     2, \lambda, \inc \right\rangle \;)
+        \nextread(& \left\langle {\tt NextRead},    1,          \inc \right\rangle,
+                    \left\langle {\tt CounterRead}, 2, \lambda, \inc \right\rangle \;)
     \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
 
     \item Create
     $\begin{aligned}[t]
-        \nextread(& \left\langle {\tt NextRead}, 1,          \inc, {\tt msr} \right\rangle,
-                    \left\langle {\tt Read},     2, \lambda, \inc            \right\rangle \;)
+        \nextread(& \left\langle {\tt NextRead},    1,          \inc, {\tt msr} \right\rangle,
+                    \left\langle {\tt CounterRead}, 2, \lambda, \inc            \right\rangle \;)
     \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1_op_msr}.
 
     \item Create
@@ -40,8 +40,8 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     % DIGIT 2
     \item Create
     $\begin{aligned}[t]
-        \nextread(& \left\langle {\tt NextRead}, 2,          \inc \right\rangle,
-                    \left\langle {\tt Read},     3, \lambda, \inc \right\rangle \;)
+        \nextread(& \left\langle {\tt NextRead},    2,          \inc \right\rangle,
+                    \left\langle {\tt CounterRead}, 3, \lambda, \inc \right\rangle \;)
     \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
 
     \item Create
@@ -54,8 +54,8 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     % DIGIT 3
     \item Create
     $\begin{aligned}[t]
-        \nextread(& \left\langle {\tt NextRead}, 3,          \inc \right\rangle,
-                    \left\langle {\tt Read},     1, \lambda, \inc \right\rangle \;)
+        \nextread(& \left\langle {\tt NextRead},    3,          \inc \right\rangle,
+                    \left\langle {\tt CounterRead}, 1, \lambda, \inc \right\rangle \;)
     \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_3_op}.
 
     \item Create
@@ -140,7 +140,7 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     \subcaptionbox{Digit 3 - case 3 (seed) overview\label{fig:next_read_3_seed_op_msr_msd_overview}}
     {\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/next_read_3_seed_op_msr_msd}}}%
     ~
-    \caption{\label{fig:next_read_gadgets} The {\nextread} gadgets}
+    \caption{\label{fig:next_read_gadgets} The {\nextread} gadgets.}
 \end{figure}
 
 

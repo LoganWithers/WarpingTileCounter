@@ -1,6 +1,4 @@
-% For each digit length L
 \subsubsection{ Counter write }
-% For each index in 1, 2, 3, and carry in 0,1
 
 \begin{itemize}
 
@@ -11,39 +9,39 @@
         \begin{itemize}
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write}, i, u0, \inc \right\rangle,
-                       \left\langle {\tt Write}, i, u,  \inc \right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, i, u0, \inc \right\rangle,
+                      \left\langle {\tt CounterWrite}, i, u,  \inc \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write}, i,  u1, \inc \right\rangle,
-                      \left\langle {\tt Write}, i,  u,  \inc \right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, i,  u1, \inc \right\rangle,
+                      \left\langle {\tt CounterWrite}, i,  u,  \inc \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
 
 
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write}, 1, u0, \inc, {\tt msr} \right\rangle,
-                      \left\langle {\tt Write}, 1, u,  \inc, {\tt msr} \right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, 1, u0, \inc, {\tt msr} \right\rangle,
+                      \left\langle {\tt CounterWrite}, 1, u,  \inc, {\tt msr} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write}, 1,  u1, \inc, {\tt msr} \right\rangle,
-                      \left\langle {\tt Write}, 1,  u,  \inc, {\tt msr} \right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, 1,  u1, \inc, {\tt msr} \right\rangle,
+                      \left\langle {\tt CounterWrite}, 1,  u,  \inc, {\tt msr} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
 
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write}, i, u0, \inc, {\tt msr}, {\tt msd} \right\rangle,
-                      \left\langle {\tt Write}, i, u,  \inc, {\tt msr}, {\tt msd} \right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, i, u0, \inc, {\tt msr}, {\tt msd} \right\rangle,
+                      \left\langle {\tt CounterWrite}, i, u,  \inc, {\tt msr}, {\tt msd} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write}, i,  u1, \inc, {\tt msr}, {\tt msd}\right\rangle,
-                      \left\langle {\tt Write}, i,  u,  \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, i,  u1, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                      \left\langle {\tt CounterWrite}, i,  u,  \inc, {\tt msr}, {\tt msd}\right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
         \end{itemize}
 
@@ -51,38 +49,38 @@
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write},    i, 0, \inc \right\rangle,
-                      \left\langle {\tt DigitTop}, i,    \inc \right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, i, 0, \inc \right\rangle,
+                      \left\langle {\tt DigitTop},     i,    \inc \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write},    i, 1, \inc \right\rangle,
-                      \left\langle {\tt DigitTop}, i,    \inc \right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, i, 1, \inc \right\rangle,
+                      \left\langle {\tt DigitTop},     i,    \inc \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
 
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write},    1, 0, \inc, {\tt msr} \right\rangle,
-                      \left\langle {\tt DigitTop}, 1,    \inc, {\tt msr} \right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, 1, 0, \inc, {\tt msr} \right\rangle,
+                      \left\langle {\tt DigitTop},     1,    \inc, {\tt msr} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write},    1, 1, \inc, {\tt msr} \right\rangle,
-                      \left\langle {\tt DigitTop}, 1,    \inc, {\tt msr} \right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, 1, 1, \inc, {\tt msr} \right\rangle,
+                      \left\langle {\tt DigitTop},     1,    \inc, {\tt msr} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
 
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write},    i, 0, \inc, {\tt msr}, {\tt msd}\right\rangle,
-                      \left\langle {\tt DigitTop}, i,    \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, i, 0, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                      \left\langle {\tt DigitTop},     i,    \inc, {\tt msr}, {\tt msd}\right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_0}
 
         \item Create
         $\begin{aligned}[t]
-            \cwrite(& \left\langle {\tt Write},    i, 1, \inc, {\tt msr}, {\tt msd}\right\rangle,
-                      \left\langle {\tt DigitTop}, i,    \inc, {\tt msr}, {\tt msd}\right\rangle \;)
+            \cwrite(& \left\langle {\tt CounterWrite}, i, 1, \inc, {\tt msr}, {\tt msd}\right\rangle,
+                      \left\langle {\tt DigitTop},     i,    \inc, {\tt msr}, {\tt msd}\right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}
     \end{itemize}
 

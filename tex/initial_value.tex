@@ -20,7 +20,7 @@ in a encoded digit.
 \begin{itemize}
     \item Create
     $\begin{aligned}[t]
-        {\tt Seed}(&\left\langle {\tt Write}, 1, {\tt seed}, 0, 0 \right\rangle \; )
+        {\tt Seed}(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, 0, 0 \right\rangle \; )
     \end{aligned}$
 \end{itemize}
 
@@ -34,24 +34,24 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
 
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
-        \item if $j = 0$: create
+        \item if $j = 0$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $j = 1$: create
+        \item if $j = 1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $1 < j < l-1$: create
+        \item if $1 < j < l-1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
 
         \item if $j = l-1$: create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 1, {\tt seed}, i \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 1, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
@@ -100,29 +100,29 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     \item Create
     $\begin{aligned}[t]
         \postwarp(&\left\langle {\tt PostWarp}, 2, {\tt seed}, i    \right\rangle,
-                   \left\langle {\tt Write},    2, {\tt seed}, i, 0 \right\rangle \;)
+                   \left\langle {\tt CounterWrite},    2, {\tt seed}, i, 0 \right\rangle \;)
     \end{aligned}$\\ from the general gadget show in Figure~\ref{fig:post_warp_2or3_op}.
 
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
-        \item if $j = 0$: create
+        \item if $j = 0$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $j = 1$: create
+        \item if $j = 1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $1 < j < l-1$: create
+        \item if $1 < j < l-1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
 
         \item if $j = l-1$: create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 2, {\tt seed}, i \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 2, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
@@ -185,30 +185,30 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     \item Create
     $\begin{aligned}[t]
         \postwarp(&\left\langle {\tt PostWarp}, 3, {\tt seed}, i    \right\rangle,
-                   \left\langle {\tt Write},    3, {\tt seed}, i, 0 \right\rangle \;)
+                   \left\langle {\tt CounterWrite},    3, {\tt seed}, i, 0 \right\rangle \;)
     \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:post_warp_2or3_op}.
 
 
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
-        \item if $j = 0$: create
+        \item if $j = 0$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $j = 1$: create
+        \item if $j = 1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $1 < j < l-1$: create
+        \item if $1 < j < l-1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
 
         \item if $j = l-1$: create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 3, {\tt seed}, i \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 3, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
@@ -244,7 +244,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     \item Create
     $\begin{aligned}[t]
         \nextread(&\left\langle {\tt NextRead},  3, {\tt seed}, i - 1 \right\rangle,
-                   \left\langle {\tt Write},     1, {\tt seed}, i     \right\rangle \;)
+                   \left\langle {\tt CounterWrite},     1, {\tt seed}, i     \right\rangle \;)
     \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:next_read_3_seed_op}.
 
     \item if $i$ is not an index in the MSR, go to {\tt start}, else go to MSR.
@@ -263,24 +263,24 @@ Case 1 -- if $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_
 \begin{itemize}
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
-        \item if $j = 0$: create
+        \item if $j = 0$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_1}.
 
-        \item if $j = 1$: create
+        \item if $j = 1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_1}.
 
-        \item if $0 \leqslant j < l - 1$: create
+        \item if $1 < j < l - 1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
 
         \item if $j = l-1$: create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 1, {\tt seed}, i \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 1, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
@@ -353,24 +353,24 @@ Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_
 \begin{itemize}
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
-        \item if $j = 0$: create
+        \item if $j = 0$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_1}.
 
-        \item if $j = 1$: create
+        \item if $j = 1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $1 < j < l-1$: create
+        \item if $1 < j < l-1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
 
         \item if $j = l-1$: create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 2, {\tt seed}, i \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 2, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
@@ -412,30 +412,30 @@ Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_
     \item Create
     $\begin{aligned}[t]
         \postwarp(&\left\langle {\tt PostWarp}, 2, {\tt seed}, i    \right\rangle,
-                   \left\langle {\tt Write},    2, {\tt seed}, i, 0 \right\rangle \;)
+                   \left\langle {\tt CounterWrite},    2, {\tt seed}, i, 0 \right\rangle \;)
     \end{aligned}$\\ from the general gadget show in Figure~\ref{fig:post_warp_2_op_msr_msd}.
 
 
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
-        \item if $j = 0$: create
+        \item if $j = 0$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_1}.
 
-        \item if $j = 1$: create
+        \item if $j = 1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_1}.
 
-        \item if $1 < j < l-1$: create
+        \item if $1 < j < l-1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
 
         \item if $j = l-1$: create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 2, {\tt seed}, i \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 2, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
@@ -487,24 +487,24 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
 
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
-        \item if $j = 0$: create
+        \item if $j = 0$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $j = 1$: create
+        \item if $j = 1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $1 < j < l-1$: create
+        \item if $1 < j < l-1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
 
         \item if $j = l-1$: create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 1, {\tt seed}, i \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 1, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
@@ -547,29 +547,29 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
     \item Create
     $\begin{aligned}[t]
         \postwarp(&\left\langle {\tt PostWarp}, 2, {\tt seed}, i    \right\rangle,
-                   \left\langle {\tt Write},    2, {\tt seed}, i, 0 \right\rangle \;)
+                   \left\langle {\tt CounterWrite},    2, {\tt seed}, i, 0 \right\rangle \;)
     \end{aligned}$\\ from the general gadget show in Figure~\ref{fig:post_warp_2or3_op}.
 
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
-        \item if $j = 0$: create
+        \item if $j = 0$\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $j = 1$: create
+        \item if $j = 1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0}.
 
-        \item if $1 < j < l-1$: create
+        \item if $1 < j < l-1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
 
         \item if $j = l-1$: create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 2, {\tt seed}, i \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 2, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 2, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
@@ -631,31 +631,31 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
     \item Create
     $\begin{aligned}[t]
         \postwarp(&\left\langle {\tt PostWarp}, 3, {\tt seed}, i    \right\rangle,
-                   \left\langle {\tt Write},    3, {\tt seed}, i, 0 \right\rangle \;)
+                   \left\langle {\tt CounterWrite},    3, {\tt seed}, i, 0 \right\rangle \;)
     \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:post_warp_2or3_op}.
 
 
 
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
-        \item if $j = 0$: create
+        \item if $j = 0$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_1}.
 
-        \item if $j = 1$: create
+        \item if $j = 1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_1}.
 
-        \item if $1 < j < l-1$: create
+        \item if $1 < j < l-1$:\\ create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt Write}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j + 1 \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
 
         \item if $j = l-1$: create
         $\begin{aligned}[t]
-            \cwrite(&\left\langle {\tt Write}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 3, {\tt seed}, i \right\rangle \;)
+            \cwrite(&\left\langle {\tt CounterWrite}, 3, {\tt seed}, i, j \right\rangle, \left\langle {\tt DigitTop}, 3, {\tt seed}, i \right\rangle \;)
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 

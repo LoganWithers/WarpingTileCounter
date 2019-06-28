@@ -3,6 +3,8 @@
 
 
 \usepackage[export]{adjustbox}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -14,24 +16,24 @@
 \usepackage{hyperref}
 \usepackage{ifthen}
 \usepackage{mathtools}
+\usepackage{multirow}
 \usepackage{stackrel}
 \usepackage{subcaption}
-\usepackage{algpseudocode}
-\usepackage{algorithm}
-\usepackage{multirow}
 \usepackage{wrapfig}
+
 \input{commands-tam.sty}
 
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
-
-
 
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 
 \begin{document}
 
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
 
 \input{definitions}
 

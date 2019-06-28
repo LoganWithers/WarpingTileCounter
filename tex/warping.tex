@@ -2,7 +2,7 @@
 
 We now explain the {\warpunit}. A warp unit generally consists of the following 5 gadgets: \prewarp,
 \firstwarp, \warpbridge, \secondwarp, \postwarp. The job of these 5 gadgets is to transport the value
-read by the {\tt Counter\_Read} all the way to the digit region in the next row, so that the {\cwrite} gadgets
+read by the {\cread} all the way to the digit region in the next row, so that the {\cwrite} gadgets
 can write the next value in the correct locations. The {\firstwarp} and {\secondwarp} gadgets are single
 tile gadgets that have north and south glues with identical labels. This allows the gadgets to continuously
 assemble until stopped by earlier parts of the assembly. These single tile gadgets also have one additional glue
@@ -36,16 +36,7 @@ all the way until the gadget can no longer continue assembling in the north dire
             \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:pre_warp_1_op_msr_msd}.
 
 
-            \item if $u$ ends with 11 and $op$ is {\tt increment}:\\
-            create
-            $\begin{aligned}[t]
-                \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
-                           \left\langle {\tt halt}                  \right\rangle \;)
-            \end{aligned}$ from the general gadget in Figure~\ref{fig:pre_warp_1_op_msr} if $i = 1$ (case 1),
-            or Figure~\ref{fig:pre_warp_2_op_msr_msd} if $i = 2$ (case 2), or Figure~\ref{fig:pre_warp_general} if $i = 3$ (case 3).
-
-
-            \item else if $u$ ends with 11:
+            \item if $u$ ends with 11:
             create
             $\begin{aligned}[t]
                 \prewarp(& \left\langle {\tt PreWarp},   i, u, \inc \right\rangle,
@@ -114,8 +105,8 @@ all the way until the gadget can no longer continue assembling in the north dire
 
                 \item For each $i = 1,2,3$: create
                 $\begin{aligned}[t]
-                    \firstwarp(& \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle,\\    % South
-                               & \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle,\\    % North
+                    \firstwarp(& \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle,\\  % South
+                               & \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle,\\  % North
                                & \left\langle {\tt WarpBridge}, i, u, \inc \right\rangle \;) % East
                 \end{aligned}$\\ from the single tile gadget, shown in Figure~\ref{fig:first_warp_1_op_overview}
                                  if $i = 1$ or Figure~\ref{fig:first_warp_2_op_overview} if $i = 2$, otherwise from
@@ -273,12 +264,11 @@ all the way until the gadget can no longer continue assembling in the north dire
             Create
             $\begin{aligned}[t]
                 \secondwarp(& \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,     % South
-                             \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,      % North
-                             \left\langle {\tt PostWarp},   i, u, \inc \right\rangle \;)   % Up
+                              \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,      % North
+                              \left\langle {\tt PostWarp},   i, u, \inc \right\rangle \;)   % Up
             \end{aligned}$\\ from the single tile gadget, shown in Figure~\ref{fig:second_warp_1_op_overview}
                              if $i = 1$ or Figure~\ref{fig:second_warp_2_op_overview} if $i = 2$, otherwise from
                              Figure~\ref{fig:second_warp_3_op_overview} if $i = 3$.
-
             \vspace{0.5cm}
 
             \item Create
@@ -330,12 +320,15 @@ all the way until the gadget can no longer continue assembling in the north dire
         \end{figure}
 
 
-        \item {\postwarp}:
+        \item {\postwarp}: The {\postwarp} gadget is final gadget to assemble in the {\warpunit}. The idea of this
+        gadget is to assemble from wherever the last warping tiles ``wake up'', forming a path that ends where the
+        next digit needs to start being written.
+
         \begin{itemize}
            \item For each $i = 1,2,3$: create\\
             $\begin{aligned}[t]
-                \postwarp(& \left \langle {\tt PostWarp}, i, u, \inc \right\rangle,    % Down
-                            \left \langle {\tt Write},    i, u, \inc \right\rangle \;) % North
+                \postwarp(& \left \langle {\tt PostWarp},     i, u, \inc \right\rangle,    % Down
+                            \left \langle {\tt CounterWrite}, i, u, \inc \right\rangle \;) % North
             \end{aligned}$ \\
             from the general gadget shown in Figure~\ref{fig:post_warp_1_op} if $i = 1$,
             or Figure~\ref{fig:post_warp_2or3_op} if $ i = 2$ or $i = 3$.
@@ -344,16 +337,16 @@ all the way until the gadget can no longer continue assembling in the north dire
 
             \item Create
             $\begin{aligned}[t]
-                \postwarp(& \left \langle {\tt PostWarp}, 1, u, \inc, {\tt msr} \right\rangle,    % West
-                            \left \langle {\tt Write},    1, u, \inc, {\tt msr} \right\rangle \;) % North
+                \postwarp(& \left \langle {\tt PostWarp},     1, u, \inc, {\tt msr} \right\rangle,    % West
+                            \left \langle {\tt CounterWrite}, 1, u, \inc, {\tt msr} \right\rangle \;) % North
             \end{aligned}$ \\
             from the general gadget in Figure~\ref{fig:post_warp_1_op_msr}.
             \vspace{.5cm}
 
             \item For each $i=1,2,3$: create\\
             $\begin{aligned}[t]
-                \postwarp(& \left \langle {\tt PostWarp}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle,    % Down if i=1 or i=3, West if i=2
-                            \left \langle {\tt Write},    i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;) % North
+                \postwarp(& \left \langle {\tt PostWarp},     i, u, \inc, {\tt msr}, {\tt msd} \right\rangle,    % Down if i=1 or i=3, West if i=2
+                            \left \langle {\tt CounterWrite}, i, u, \inc, {\tt msr}, {\tt msd} \right\rangle \;) % North
             \end{aligned}$ \\
             from the general gadget shown in Figure~\ref{fig:post_warp_1_op_msr_msd} if $i = 1$, or
             Figure~\ref{fig:post_warp_2_op_msr_msd} if $i = 2$, or Figure~\ref{fig:post_warp_2or3_op} if $i = 3$.
