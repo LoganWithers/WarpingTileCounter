@@ -89,15 +89,15 @@ of the digit is all zeroes and it will propagate the {\tt increment} signal to t
                 \Else
                     \State $guess0 \gets 0u >> 2$.
                     \State $guess1 \gets 1u >> 2$.
-                    \If{$convertToDecimal(guess0) + 1 \leq m - 1$}
+                    \If{$convertToDecimal(guess0) + 1 < m - 1$}
                         \State $out0 \gets \left\langle {\tt PreWarp}, i, convertToBinary(convertToDecimal(guess0) + 1) + u[1] + [0], {\tt copy} \right\rangle$.
                     \Else
-                        \State $out0 \gets \left\langle {\tt PreWarp}, i, repeat(``0'', l), {\tt increment} \right\rangle$.
+                        \State $out0 \gets \left\langle {\tt PreWarp}, i, repeat(``0'', m) + u[1] + u[0], {\tt increment} \right\rangle$.
                     \EndIf
-                    \If{$convertToDecimal(guess1) + 1 \leq m - 1$}
+                    \If{$convertToDecimal(guess1) + 1 < m - 1$}
                         \State $out1 \gets \left\langle {\tt PreWarp}, i, convertToBinary(convertToDecimal(guess1) + 1) + u[1] + [0], {\tt copy} \right\rangle$.
                     \Else
-                        \State $out1 \gets \left\langle {\tt PreWarp}, i, repeat(``0'', l), {\tt increment} \right\rangle$.
+                        \State $out1 \gets \left\langle {\tt PreWarp}, i, repeat(``0'', m) + u[1] + u[0], {\tt increment} \right\rangle$.
                     \EndIf
                 \EndIf
             \EndFunction
