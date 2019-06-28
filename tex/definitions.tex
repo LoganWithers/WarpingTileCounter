@@ -1,6 +1,6 @@
-\newcommand{\counterstart}{\mathcal{C}_0}
-\newcommand{\counterrows}{\floor*{\frac{N-12l-79}{12l + 90}}}
-\newcommand{\countersize}{\mathcal{C}_{\Delta}}
+\newcommand{\counterstart}{s}
+\newcommand{\counterrows}{\floor*{\frac{N-12l-94}{12l + 90}}}
+\newcommand{\countersize}{n}
 
 \section{Definitions}
 \label{sec:prelims}
@@ -11,44 +11,39 @@
 \begin{flalign*}
       \text{Let }  m & = \ceil*{\left( \frac{N}{102} \right)^{\frac{1}{d}} } \text{, base of the counter} & \\
                  MSR & = \text{ most signifcant digit region } \\
-       \mathcal{C}_0 & = \text{starting value of counter}  \\
-                   d & = \ceil*{\log_m {\mathcal{C}_0}} = \floor*{\frac{k}{2}},  \text{ number of digits per row }  \\
+                   s & = \text{starting value of counter}  \\
+                   d & = \ceil*{\log_m {s}} = \floor*{\frac{k}{2}},  \text{ number of digits per row }  \\
      \mathcal{C}_{f} & = m^{d},                          \text{ final value of the counter} \\
-\mathcal{C}_{\Delta} & = \mathcal{C}_f - \mathcal{C}_0,  \text{ number of rows/ times to count} \\
+\mathcal{C}_{\Delta} & = \mathcal{C}_f - s,  \text{ number of rows/ times to count} \\
                    l & = \ceil{\log m} + 2, \text{ bits needed to encode each digit in binary, plus 2 for MSR and MSD} & \\
 \end{flalign*}
 
 
-%  Last:   12L + 75
-%  Middle: 12L + 90
-%  First:  12L + 94
-%
 
 
 \subsection{Determining the starting value }
 
 ...therefore, let $d = \floor*{\frac{k}{2}}$, $m = \ceil*{\left(\frac{N}{102}\right)^{\frac{1}{d}}}$,
-$l = \ceil{\log m} + 2$, $\mathcal{C}_0 = m^d - \floor*{\frac{N-12l-79}{12l + 90}}$, where $d$ is the
+$l = \ceil{\log m} + 2$, $s = m^d - \floor*{\frac{N - 12l - 94}{12l + 90}}$, where $d$ is the
 number of digits per row of the counter, $m$ is the base of the counter, $l$ is the number of bits
 needed to encode each digit in binary plus 2 for indicating whether a digit is in the MSR and is the
-MSD in that region, and $\mathcal{C}_0$ is the start of the counter in decimal.
+MSD in that region, and $s$ is the start of the counter in decimal.
 
-In general, the height of a digit region is $12l + 90$. There are two cases when the height is different,
-namely in the first and last digit regions, where the height is $12l + 91$ and $12l + 75$, respectively.
+In general, the height of a digit region is $12l + 90$. There is one exception, being the seed row, which
+has a height of $12l + 94$.
 Let $h$ be the height of the construction before any filler/roof tiles are added. If we define
 $\countersize$ as the number of \texttt{Counter} unit rows, then
-$h = (\countersize - 1) (12l + 90) + (12l + 94) + (12l + 75)$, simplifying to $\countersize (12l + 90) + 12l + 79$.
-So then the maximum height of the counter is $m^d (12l + 90) + 12l + 79$. Since our goal is to end with a
-rectangle of height $N$, we need to pick a base such that the counter can increment so many times that
-when it stops, it is at least $N$.
+$h = \countersize (12l + 90) + (12l + 94)$. So then the maximum height of the counter is
+$m^d (12l + 90) + 12l + 94$. Since our goal is to end with a rectangle of height $N$, we need to pick a
+base such that the counter can increment so many times that when it stops, it is at least $N$.
 
-\begin{lemma} $N \leq m^d (12l + 90) + 12l + 79$.
+\begin{lemma} $N \leq m^d (12l + 90) + 12l + 94$.
     \begin{proof}
         \begin{flalign*}
             N & = 102 \left( \frac{N}{102} \right) = 102 \left(\left( \frac{N}{102} \right)^{\frac{1}{d}} \right)^d
-                \leq 102 \ceil*{\left( \frac{N}{102} \right)^{\frac{1}{d}} }^d \\
-            & = 102m^d \leq 12lm^d + 90m^d \leq 12lm^d + 90m^d + 12l + 79 \\
-            & = m^d (12l + 90) + 12l + 79
+                      \leq 102 \ceil*{\left( \frac{N}{102} \right)^{\frac{1}{d}} }^d \\
+              & = 102m^d \leq 12lm^d + 90m^d \leq 12lm^d + 90m^d + 12l + 94 \\
+              & = m^d (12l + 90) - 12l + 94
         \end{flalign*}
     \end{proof}
 \end{lemma}
@@ -56,13 +51,13 @@ when it stops, it is at least $N$.
 
 \subsection{Filling in the gaps}
 
-...this means that the number of \texttt{Counter} unit rows $\countersize$ is $m^d - \mathcal{C}_0$,
-where we have \mbox{defined} $\mathcal{C}_0$ as the starting value of the counter. To
+...this means that the number of \texttt{Counter} unit rows $\countersize$ is $m^d - s$,
+where we have \mbox{defined} $s$ as the starting value of the counter. To
 choose the best starting value, \mbox{ we find the value for $\countersize$ that gets $h$ as
-close to $N$} without exceeding $N$. It follows from the equation $h = \countersize (12l+90)+12l+79$,
-that $\countersize = \counterrows$. Thus, $\mathcal{C}_0 = m^d - \counterrows$. As a result of
+close to $N$} without exceeding $N$. It follows from the equation $h = \countersize (12l+90)+12l+94$,
+that $\countersize = \counterrows$. Thus, $s = m^d - \counterrows$. As a result of
 each digit requiring a width of 2 tiles, if $k$ is odd, one additional tile column must be added.
 The number of filler tiles needed for the width is $k \mod 2$, and the number of filler tiles for
-the height is $N - 12l - 79 \mod 12l + 90$.
+the height is $N - 12l - 94 \mod 12l + 90$.
 
 
