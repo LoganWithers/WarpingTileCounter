@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.9">
-<info created="D:20190526222059" modified="D:20190526223308"/>
+<info created="D:20190526222059" modified="D:20190629164310"/>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -557,8 +557,17 @@ h
 </path>
 </group>
 </group>
-<group matrix="1 0 0 1 -2752 7388">
-<group matrix="1 0 0 1 1188 -1292">
+<path matrix="1 0 0 1 -1424 6248" stroke="black" fill="black">
+1504 1708 m
+1504 1712 l
+1512 1704 l
+1504 1696 l
+1504 1700 l
+1496 1700 l
+1496 1708 l
+h
+</path>
+<group matrix="1 0 0 1 -1564 6096">
 <path matrix="1 0 0 1 1352 1680" stroke="black" fill="black">
 4 0 0 4 376 176 e
 </path>
@@ -569,49 +578,32 @@ h
 4 0 0 4 376 176 e
 </path>
 </group>
-<group>
-<group matrix="1 0 0 1 424 -496">
-<path matrix="1 0 0 1 2160 484" stroke="black" fill="darkgray">
+<path matrix="1 0 0 1 -64 7376" stroke="black" fill="white">
 288 584 m
 288 568 l
 304 568 l
 304 584 l
 h
 </path>
-<path matrix="0 1 -1 0 2632 684" stroke="black" fill="lightgray">
+<path matrix="0 1 -0.166667 0 254.67 7576" stroke="black" fill="lightgray">
 374 184 m
 374 208 l
 378 208 l
 378 184 l
 h
 </path>
-</group>
-<group>
-<path matrix="1 0 0 1 2688 -12" stroke="black" fill="darkgray">
+<path matrix="1 0 0 1 -168 7376" stroke="black" fill="white">
 288 584 m
 288 568 l
 304 568 l
 304 584 l
 h
 </path>
-<path matrix="0 1 -0.166667 0 3006.67 188" stroke="black" fill="lightgray">
+<path matrix="0 1 -1 0 304 7576" stroke="black" fill="lightgray">
 374 184 m
 374 208 l
 378 208 l
 378 184 l
-h
-</path>
-</group>
-</group>
-</group>
-<path matrix="1 0 0 1 -1424 6248" stroke="black" fill="black">
-1504 1708 m
-1504 1712 l
-1512 1704 l
-1504 1696 l
-1504 1700 l
-1496 1700 l
-1496 1708 l
 h
 </path>
 </page>

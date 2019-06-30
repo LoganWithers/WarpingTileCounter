@@ -13,8 +13,8 @@
                  MSR & = \text{ most signifcant digit region } \\
                    s & = \text{starting value of counter}  \\
                    d & = \ceil*{\log_m {s}} = \floor*{\frac{k}{2}},  \text{ number of digits per row }  \\
-     \mathcal{C}_{f} & = m^{d},                          \text{ final value of the counter} \\
-\mathcal{C}_{\Delta} & = \mathcal{C}_f - s,  \text{ number of rows/ times to count} \\
+               m^{d} & = \text{ final value of the counter} \\
+        \countersize & = m^{d} - s,  \text{ number of rows/ times to count} \\
                    l & = \ceil{\log m} + 2, \text{ bits needed to encode each digit in binary, plus 2 for MSR and MSD} & \\
 \end{flalign*}
 
@@ -27,7 +27,7 @@
 $l = \ceil{\log m} + 2$, $s = m^d - \floor*{\frac{N - 12l - 94}{12l + 90}}$, where $d$ is the
 number of digits per row of the counter, $m$ is the base of the counter, $l$ is the number of bits
 needed to encode each digit in binary plus 2 for indicating whether a digit is in the MSR and is the
-MSD in that region, and $s$ is the start of the counter in decimal.
+MSD in that region, and $s$ is the starting value of the counter in decimal.
 
 In general, the height of a digit region is $12l + 90$. There is one exception, being the seed row, which
 has a height of $12l + 94$.

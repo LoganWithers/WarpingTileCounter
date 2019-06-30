@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<!DOCTYPE ipestyle SYSTEM "ipe.dtd">
+<ipestyle name="digit_region_size">
+<layout paper="1024 10000" origin="0 0" frame="1024 10000"/>
+</ipestyle>
