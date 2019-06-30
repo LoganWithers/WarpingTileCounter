@@ -19,11 +19,11 @@
         public IEnumerable<Tile> Tiles { get; }
         public NextRead(int L, int i, bool op, bool msr, bool msd)
         {
-
+            this.L = L;
         }
 
 
-        private List<Tile> Create(int i, bool op)
+        private List<Tile> CreateMsrMsd(int i, bool op)
         {
             var builder = new GadgetBuilder().Start();
 
