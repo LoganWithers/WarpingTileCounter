@@ -1,5 +1,5 @@
 \newcommand{\counterstart}{s}
-\newcommand{\counterrows}{\floor*{\frac{N-12l-94}{12l + 90}}}
+\newcommand{\counterrows}{\floor*{\frac{N-4}{12l + 90}}}
 \newcommand{\countersize}{n}
 
 \section{Definitions}
@@ -21,29 +21,34 @@
 
 
 
-\subsection{Determining the starting value }
+\subsection{Parameters for the counter}
 
 ...therefore, let $d = \floor*{\frac{k}{2}}$, $m = \ceil*{\left(\frac{N}{102}\right)^{\frac{1}{d}}}$,
-$l = \ceil{\log m} + 2$, $s = m^d - \floor*{\frac{N - 12l - 94}{12l + 90}}$, where $d$ is the
+$l = \ceil{\log m} + 2$, $s = m^d - \floor*{\frac{N - 4}{12l + 90}}$, where $d$ is the
 number of digits per row of the counter, $m$ is the base of the counter, $l$ is the number of bits
 needed to encode each digit in binary plus 2 for indicating whether a digit is in the MSR and is the
 MSD in that region, and $s$ is the starting value of the counter in decimal.
-
+%
+%
 In general, the height of a digit region is $12l + 90$. There is one exception, being the seed row, which
 has a height of $12l + 94$.
-Let $h$ be the height of the construction before any filler/roof tiles are added. If we define
-$\countersize$ as the number of \texttt{Counter} unit rows, then
-$h = \countersize (12l + 90) + (12l + 94)$. So then the maximum height of the counter is
-$m^d (12l + 90) + 12l + 94$. Since our goal is to end with a rectangle of height $N$, we need to pick a
-base such that the counter can increment so many times that when it stops, it is at least $N$.
+%
+Let $h$ be the height of the construction without any additional ``roof'' tiles.
+%
+By inspection...we see that the height of the construction without additional tiles is $12l + 94$ for the {\tt Seed} unit, plus $12l + 90$ for each incrementation of the counter,
+adding a {\tt Counter} unit row each time.
+%
+If we define $\countersize$ as the number of {\tt Counter} unit rows, then $h = (\countersize - 1) (12l + 90) + (12l + 94)$, simplified to $\countersize (12l + 90) + 4$.
+So then the maximum height of the counter is $m^d (12l + 90) + 4$.
+Since our goal is to end with a rectangle of height $N$, we need to pick a base such that the counter can increment so many times that when it stops, it is at least $N$.
 
-\begin{lemma} $N \leq m^d (12l + 90) + 12l + 94$.
+\begin{lemma} $N \leq m^d (12l + 90) + 4$.
     \begin{proof}
         \begin{flalign*}
             N & = 102 \left( \frac{N}{102} \right) = 102 \left(\left( \frac{N}{102} \right)^{\frac{1}{d}} \right)^d
                       \leq 102 \ceil*{\left( \frac{N}{102} \right)^{\frac{1}{d}} }^d \\
-              & = 102m^d \leq 12lm^d + 90m^d \leq 12lm^d + 90m^d + 12l + 94 \\
-              & = m^d (12l + 90) - 12l + 94
+              & = 102m^d \leq 12lm^d + 90m^d \leq 12lm^d + 90m^d + 4 \\
+              & = m^d (12l + 90) + 4
         \end{flalign*}
     \end{proof}
 \end{lemma}
@@ -54,10 +59,10 @@ base such that the counter can increment so many times that when it stops, it is
 ...this means that the number of \texttt{Counter} unit rows $\countersize$ is $m^d - s$,
 where we have \mbox{defined} $s$ as the starting value of the counter. To
 choose the best starting value, \mbox{ we find the value for $\countersize$ that gets $h$ as
-close to $N$} without exceeding $N$. It follows from the equation $h = \countersize (12l+90)+12l+94$,
+close to $N$} without exceeding $N$. It follows from the equation $h = \countersize (12l + 90) + 4$,
 that $\countersize = \counterrows$. Thus, $s = m^d - \counterrows$. As a result of
 each digit requiring a width of 2 tiles, if $k$ is odd, one additional tile column must be added.
 The number of filler tiles needed for the width is $k \mod 2$, and the number of filler tiles for
-the height is $N - 12l - 94 \mod 12l + 90$.
+the height is $N - 4 \mod 12l + 90$.
 
 
