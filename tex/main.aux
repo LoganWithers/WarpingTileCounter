@@ -21,363 +21,362 @@
 \newlabel{sec:prelims}{{1}{1}{Definitions}{section.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Misc}{1}{subsection.1.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Parameters for the counter}{1}{subsection.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Filling in the gaps}{1}{subsection.1.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}General counter}{2}{section.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Tile }{3}{section.2}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:counter_read_start_case3_middle_level}{{1a}{2}{A ``clean'' counter row, before any reading has started.\relax }{figure.caption.1}{}}
-\newlabel{sub@fig:counter_read_start_case3_middle_level}{{a}{2}{A ``clean'' counter row, before any reading has started.\relax }{figure.caption.1}{}}
-\newlabel{fig:counter_read_digit1_general_case3_middle_level}{{1b}{2}{Read digit 1 in the current row, write digit 1 in the next row.\relax }{figure.caption.1}{}}
-\newlabel{sub@fig:counter_read_digit1_general_case3_middle_level}{{b}{2}{Read digit 1 in the current row, write digit 1 in the next row.\relax }{figure.caption.1}{}}
-\newlabel{fig:counter_read_digit2_general_case3_middle_level}{{1c}{3}{Read digit 2 in the current row, write digit 2 in the next row.\relax }{figure.caption.2}{}}
-\newlabel{sub@fig:counter_read_digit2_general_case3_middle_level}{{c}{3}{Read digit 2 in the current row, write digit 2 in the next row.\relax }{figure.caption.2}{}}
-\newlabel{fig:counter_read_digit3_general_case3_middle_level}{{1d}{3}{Read digit 3 in the current row, write digit 3 in the next row.\relax }{figure.caption.2}{}}
-\newlabel{sub@fig:counter_read_digit3_general_case3_middle_level}{{d}{3}{Read digit 3 in the current row, write digit 3 in the next row.\relax }{figure.caption.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  This illustrates how a counter reads and writes a digit region, in a general sense. The counter starts in the rightmost digit region by reading the bottommost digit within that region. After reading digit 1 in the current row, the corresponding digit region in the next row be started in the next row. The counter writes the first digit in the next row, and then returns to the second digit in the current digit region. Once all the digits in the current digit region are read and written into the next row, the counter can then do one of the following: continue reading digits by moving on to the next digit region, cross back all the way to the right of the rectangle and start reading the next row, or halt.\relax }}{4}{figure.caption.3}}
-\newlabel{fig:counter_read_digit_return_read_digit_general_case3}{{1}{4}{This illustrates how a counter reads and writes a digit region, in a general sense. The counter starts in the rightmost digit region by reading the bottommost digit within that region. After reading digit 1 in the current row, the corresponding digit region in the next row be started in the next row. The counter writes the first digit in the next row, and then returns to the second digit in the current digit region. Once all the digits in the current digit region are read and written into the next row, the counter can then do one of the following: continue reading digits by moving on to the next digit region, cross back all the way to the right of the rectangle and start reading the next row, or halt.\relax }{figure.caption.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1} Digit region explanation (in progress) }{4}{subsection.2.1}}
-\newlabel{fig:digits_normal_counter}{{2a}{4}{Digits in a typical counter\relax }{figure.caption.4}{}}
-\newlabel{sub@fig:digits_normal_counter}{{a}{4}{Digits in a typical counter\relax }{figure.caption.4}{}}
-\newlabel{fig:digits_digit_region_counter}{{2b}{4}{Digits in two digit regions, stacked vertically, minimizing the width. \relax }{figure.caption.4}{}}
-\newlabel{sub@fig:digits_digit_region_counter}{{b}{4}{Digits in two digit regions, stacked vertically, minimizing the width. \relax }{figure.caption.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2} Detecting the edges }{4}{subsection.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Tile set}{5}{subsection.2.3}}
-\newlabel{gadgets}{{2.3}{5}{Tile set}{subsection.2.3}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1} Line Gadgets }{5}{subsubsection.2.3.1}}
-\newlabel{fig:north_line}{{3a}{5}{{\tt North\_Line}\relax }{figure.caption.6}{}}
-\newlabel{sub@fig:north_line}{{a}{5}{{\tt North\_Line}\relax }{figure.caption.6}{}}
-\newlabel{fig:south_line}{{3b}{5}{{\tt South\_Line} \relax }{figure.caption.6}{}}
-\newlabel{sub@fig:south_line}{{b}{5}{{\tt South\_Line} \relax }{figure.caption.6}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  {\tt  Line} gadgets\relax }}{5}{figure.caption.6}}
-\newlabel{fig:line_gadgets}{{3}{5}{{\tt Line} gadgets\relax }{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.2}Initial Value (updated to assemble right to left like the other gadgets)}{5}{subsubsection.2.3.2}}
-\newlabel{fig:initial_case1_msr}{{4a}{6}{MSR case 1\relax }{figure.caption.7}{}}
-\newlabel{sub@fig:initial_case1_msr}{{a}{6}{MSR case 1\relax }{figure.caption.7}{}}
-\newlabel{fig:initial_case2_msr}{{4b}{6}{MSR case 2\relax }{figure.caption.7}{}}
-\newlabel{sub@fig:initial_case2_msr}{{b}{6}{MSR case 2\relax }{figure.caption.7}{}}
-\newlabel{fig:initial_case3_msr}{{4c}{6}{MSR case 3\relax }{figure.caption.7}{}}
-\newlabel{sub@fig:initial_case3_msr}{{c}{6}{MSR case 3\relax }{figure.caption.7}{}}
-\newlabel{fig:initial_general}{{4d}{6}{General digit regions\relax }{figure.caption.7}{}}
-\newlabel{sub@fig:initial_general}{{d}{6}{General digit regions\relax }{figure.caption.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  These figures show an example construction of the initial value, with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assembly.\relax }}{6}{figure.caption.7}}
-\newlabel{fig:initial_value_assemblies}{{4}{6}{These figures show an example construction of the initial value, with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assembly.\relax }{figure.caption.7}{}}
-\newlabel{fig:initial_value_case1}{{5a}{14}{Initial value case 1\relax }{figure.caption.8}{}}
-\newlabel{sub@fig:initial_value_case1}{{a}{14}{Initial value case 1\relax }{figure.caption.8}{}}
-\newlabel{fig:initial_value_case2}{{5b}{14}{Initial value case 2\relax }{figure.caption.8}{}}
-\newlabel{sub@fig:initial_value_case2}{{b}{14}{Initial value case 2\relax }{figure.caption.8}{}}
-\newlabel{fig:initial_value_case3}{{5c}{14}{Initial value case 3\relax }{figure.caption.8}{}}
-\newlabel{sub@fig:initial_value_case3}{{c}{14}{Initial value case 3\relax }{figure.caption.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  These figures show a full example of an initial value, with both general regions and the MSRs together, instead of separated as shown above.\relax }}{14}{figure.caption.8}}
-\newlabel{fig:initial_value_assemblies_full}{{5}{14}{These figures show a full example of an initial value, with both general regions and the MSRs together, instead of separated as shown above.\relax }{figure.caption.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.4} Counter Unit }{14}{subsection.2.4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.1} Digit readers }{14}{subsubsection.2.4.1}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Incrementing and halting\relax }}{15}{algorithm.1}}
-\newlabel{asda}{{1}{15}{Incrementing and halting\relax }{algorithm.1}{}}
-\newlabel{fig:counter_read_0}{{6a}{16}{{\tt Counter\_Read\_0}  \relax }{figure.caption.9}{}}
-\newlabel{sub@fig:counter_read_0}{{a}{16}{{\tt Counter\_Read\_0}  \relax }{figure.caption.9}{}}
-\newlabel{fig:counter_read_1}{{6b}{16}{{\tt Counter\_Read\_1}  \relax }{figure.caption.9}{}}
-\newlabel{sub@fig:counter_read_1}{{b}{16}{{\tt Counter\_Read\_1}  \relax }{figure.caption.9}{}}
-\newlabel{fig:counter_read_1_op}{{6c}{16}{Digit 1 - general\\ overview.  \relax }{figure.caption.9}{}}
-\newlabel{sub@fig:counter_read_1_op}{{c}{16}{Digit 1 - general\\ overview.  \relax }{figure.caption.9}{}}
-\newlabel{fig:counter_read_2_op}{{6d}{16}{Digit 2 - general\\ overview.  \relax }{figure.caption.9}{}}
-\newlabel{sub@fig:counter_read_2_op}{{d}{16}{Digit 2 - general\\ overview.  \relax }{figure.caption.9}{}}
-\newlabel{fig:counter_read_3_op}{{6e}{17}{Digit 3 - general\\ overview.  \relax }{figure.caption.10}{}}
-\newlabel{sub@fig:counter_read_3_op}{{e}{17}{Digit 3 - general\\ overview.  \relax }{figure.caption.10}{}}
-\newlabel{fig:counter_read_1_op_msr_msd}{{6f}{17}{Digit 1 - case 1 overview.  \relax }{figure.caption.10}{}}
-\newlabel{sub@fig:counter_read_1_op_msr_msd}{{f}{17}{Digit 1 - case 1 overview.  \relax }{figure.caption.10}{}}
-\newlabel{fig:counter_read_1_op_msr}{{6g}{17}{Digit 1 - case 2 overview.  \relax }{figure.caption.10}{}}
-\newlabel{sub@fig:counter_read_1_op_msr}{{g}{17}{Digit 1 - case 2 overview.  \relax }{figure.caption.10}{}}
-\newlabel{fig:counter_read_2_op_msr_msd}{{6h}{17}{Digit 2 - case 2 overview.  \relax }{figure.caption.10}{}}
-\newlabel{sub@fig:counter_read_2_op_msr_msd}{{h}{17}{Digit 2 - case 2 overview.  \relax }{figure.caption.10}{}}
-\newlabel{fig:counter_read_3_op_msr_msd}{{6i}{18}{Digit 3 - case 3\\ overview.  \relax }{figure.caption.11}{}}
-\newlabel{sub@fig:counter_read_3_op_msr_msd}{{i}{18}{Digit 3 - case 3\\ overview.  \relax }{figure.caption.11}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  The {{\tt  Counter\_Read}} gadgets.\relax }}{18}{figure.caption.11}}
-\newlabel{fig:counter_read}{{6}{18}{The {\cread } gadgets.\relax }{figure.caption.11}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.2} Warping }{19}{subsubsection.2.4.2}}
-\newlabel{fig:pre_warp_general}{{7a}{20}{Digits 1, 2, \& 3 - general.  \relax }{figure.caption.12}{}}
-\newlabel{sub@fig:pre_warp_general}{{a}{20}{Digits 1, 2, \& 3 - general.  \relax }{figure.caption.12}{}}
-\newlabel{fig:pre_warp_1_op_overview}{{7b}{20}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
-\newlabel{sub@fig:pre_warp_1_op_overview}{{b}{20}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
-\newlabel{fig:pre_warp_2_op_overview}{{7c}{20}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
-\newlabel{sub@fig:pre_warp_2_op_overview}{{c}{20}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
-\newlabel{fig:pre_warp_3_op_overview}{{7d}{20}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
-\newlabel{sub@fig:pre_warp_3_op_overview}{{d}{20}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
-\newlabel{fig:pre_warp_1_op_msr_msd}{{7e}{21}{Digit 1 - case 1.  \relax }{figure.caption.13}{}}
-\newlabel{sub@fig:pre_warp_1_op_msr_msd}{{e}{21}{Digit 1 - case 1.  \relax }{figure.caption.13}{}}
-\newlabel{fig:pre_warp_1_op_msr_msd_overview}{{7f}{21}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_1_op_msr_msd}.  \relax }{figure.caption.13}{}}
-\newlabel{sub@fig:pre_warp_1_op_msr_msd_overview}{{f}{21}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_1_op_msr_msd}.  \relax }{figure.caption.13}{}}
-\newlabel{fig:pre_warp_1_op_msr}{{7g}{21}{Digit 1 - case 2.  \relax }{figure.caption.13}{}}
-\newlabel{sub@fig:pre_warp_1_op_msr}{{g}{21}{Digit 1 - case 2.  \relax }{figure.caption.13}{}}
-\newlabel{fig:pre_warp_1_op_msr_overview}{{7h}{21}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_1_op_msr}.  \relax }{figure.caption.13}{}}
-\newlabel{sub@fig:pre_warp_1_op_msr_overview}{{h}{21}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_1_op_msr}.  \relax }{figure.caption.13}{}}
-\newlabel{fig:pre_warp_2_op_msr_msd}{{7i}{22}{Digit 2 - case 2.  \relax }{figure.caption.14}{}}
-\newlabel{sub@fig:pre_warp_2_op_msr_msd}{{i}{22}{Digit 2 - case 2.  \relax }{figure.caption.14}{}}
-\newlabel{fig:pre_warp_2_op_msr_msd_overview}{{7j}{22}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_2_op_msr_msd}.  \relax }{figure.caption.14}{}}
-\newlabel{sub@fig:pre_warp_2_op_msr_msd_overview}{{j}{22}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_2_op_msr_msd}.  \relax }{figure.caption.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  The {{\tt  Pre\_Warp}} gadgets. \relax }}{22}{figure.caption.14}}
-\newlabel{fig:pre_warp_gadgets}{{7}{22}{The {\prewarp } gadgets. \relax }{figure.caption.14}{}}
-\newlabel{fig:first_warp_1_op_overview}{{8a}{24}{Digit 1 - general\\ overview.  \relax }{figure.caption.15}{}}
-\newlabel{sub@fig:first_warp_1_op_overview}{{a}{24}{Digit 1 - general\\ overview.  \relax }{figure.caption.15}{}}
-\newlabel{fig:first_warp_2_op_overview}{{8b}{24}{Digit 2 - general\\ overview.  \relax }{figure.caption.15}{}}
-\newlabel{sub@fig:first_warp_2_op_overview}{{b}{24}{Digit 2 - general\\ overview.  \relax }{figure.caption.15}{}}
-\newlabel{fig:first_warp_3_op_overview}{{8c}{24}{Digit 3 - general\\ overview.  \relax }{figure.caption.15}{}}
-\newlabel{sub@fig:first_warp_3_op_overview}{{c}{24}{Digit 3 - general\\ overview.  \relax }{figure.caption.15}{}}
-\newlabel{fig:first_warp_3_seed_op_overview}{{8d}{24}{Digit 3 - general (seed) overview.  \relax }{figure.caption.15}{}}
-\newlabel{sub@fig:first_warp_3_seed_op_overview}{{d}{24}{Digit 3 - general (seed) overview.  \relax }{figure.caption.15}{}}
-\newlabel{fig:first_warp_1_op_msr_msd_overview}{{8e}{25}{Digit 1 - case 1 overview.  \relax }{figure.caption.16}{}}
-\newlabel{sub@fig:first_warp_1_op_msr_msd_overview}{{e}{25}{Digit 1 - case 1 overview.  \relax }{figure.caption.16}{}}
-\newlabel{fig:first_warp_1_op_msr_overview}{{8f}{25}{Digit 1 - case 2 overview.  \relax }{figure.caption.16}{}}
-\newlabel{sub@fig:first_warp_1_op_msr_overview}{{f}{25}{Digit 1 - case 2 overview.  \relax }{figure.caption.16}{}}
-\newlabel{fig:first_warp_2_op_msr_msd_overview}{{8g}{25}{Digit 2 - case 2 overview.  \relax }{figure.caption.16}{}}
-\newlabel{sub@fig:first_warp_2_op_msr_msd_overview}{{g}{25}{Digit 2 - case 2 overview.  \relax }{figure.caption.16}{}}
-\newlabel{fig:first_warp_3_op_msr_msd_overview}{{8h}{25}{Digit 3 - case 3 overview.  \relax }{figure.caption.16}{}}
-\newlabel{sub@fig:first_warp_3_op_msr_msd_overview}{{h}{25}{Digit 3 - case 3 overview.  \relax }{figure.caption.16}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  The {{\tt  First\_Warp}} gadget overviews.\relax }}{25}{figure.caption.16}}
-\newlabel{fig:first_warp_gadgets_overviews}{{8}{25}{The {\firstwarp } gadget overviews.\relax }{figure.caption.16}{}}
-\newlabel{fig:warp_bridge_general}{{9a}{27}{Digits 1, 2, \& 3 general.  \relax }{figure.caption.17}{}}
-\newlabel{sub@fig:warp_bridge_general}{{a}{27}{Digits 1, 2, \& 3 general.  \relax }{figure.caption.17}{}}
-\newlabel{fig:warp_bridge_1_op_overview}{{9b}{27}{Digit 1 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
-\newlabel{sub@fig:warp_bridge_1_op_overview}{{b}{27}{Digit 1 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
-\newlabel{fig:warp_bridge_2_op_overview}{{9c}{27}{Digit 2 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
-\newlabel{sub@fig:warp_bridge_2_op_overview}{{c}{27}{Digit 2 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
-\newlabel{fig:warp_bridge_2_seed_op_overview}{{9d}{27}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
-\newlabel{sub@fig:warp_bridge_2_seed_op_overview}{{d}{27}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
-\newlabel{fig:warp_bridge_3_op_overview}{{9e}{28}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.18}{}}
-\newlabel{sub@fig:warp_bridge_3_op_overview}{{e}{28}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.18}{}}
-\newlabel{fig:warp_bridge_3_seed_op_overview}{{9f}{28}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.18}{}}
-\newlabel{sub@fig:warp_bridge_3_seed_op_overview}{{f}{28}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.18}{}}
-\newlabel{fig:warp_bridge_2_op_msr_msd}{{9g}{28}{Digit 2 - case 2.  \relax }{figure.caption.18}{}}
-\newlabel{sub@fig:warp_bridge_2_op_msr_msd}{{g}{28}{Digit 2 - case 2.  \relax }{figure.caption.18}{}}
-\newlabel{fig:warp_bridge_2_op_msr_msd_overview}{{9h}{28}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_2_op_msr_msd}.  \relax }{figure.caption.18}{}}
-\newlabel{sub@fig:warp_bridge_2_op_msr_msd_overview}{{h}{28}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_2_op_msr_msd}.  \relax }{figure.caption.18}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  The {{\tt  Warp\_Bridge}} gadgets.\relax }}{28}{figure.caption.18}}
-\newlabel{fig:warp_bridge_gadgets_overviews}{{9}{28}{The {\warpbridge } gadgets.\relax }{figure.caption.18}{}}
-\newlabel{fig:second_warp_1_op_overview}{{10a}{30}{Digit 1 - general\\ overview.  \relax }{figure.caption.19}{}}
-\newlabel{sub@fig:second_warp_1_op_overview}{{a}{30}{Digit 1 - general\\ overview.  \relax }{figure.caption.19}{}}
-\newlabel{fig:second_warp_2_op_overview}{{10b}{30}{Digit 2 - general\\ overview.  \relax }{figure.caption.19}{}}
-\newlabel{sub@fig:second_warp_2_op_overview}{{b}{30}{Digit 2 - general\\ overview.  \relax }{figure.caption.19}{}}
-\newlabel{fig:second_warp_3_op_overview}{{10c}{30}{Digit 3 - general\\ overview.  \relax }{figure.caption.19}{}}
-\newlabel{sub@fig:second_warp_3_op_overview}{{c}{30}{Digit 3 - general\\ overview.  \relax }{figure.caption.19}{}}
-\newlabel{fig:second_warp_2_seed_op_overview}{{10d}{30}{Digit 2 - general (seed) overview.  \relax }{figure.caption.19}{}}
-\newlabel{sub@fig:second_warp_2_seed_op_overview}{{d}{30}{Digit 2 - general (seed) overview.  \relax }{figure.caption.19}{}}
-\newlabel{fig:second_warp_3_seed_op_overview}{{10e}{31}{Digit 3 - general (seed) overview.  \relax }{figure.caption.20}{}}
-\newlabel{sub@fig:second_warp_3_seed_op_overview}{{e}{31}{Digit 3 - general (seed) overview.  \relax }{figure.caption.20}{}}
-\newlabel{fig:second_warp_2_op_msr_msd_overview}{{10f}{31}{Digit 2 - case 2 overview.  \relax }{figure.caption.20}{}}
-\newlabel{sub@fig:second_warp_2_op_msr_msd_overview}{{f}{31}{Digit 2 - case 2 overview.  \relax }{figure.caption.20}{}}
-\newlabel{fig:second_warp_2_seed_op_msr_msd_overview}{{10g}{31}{Digit 2 - case 2 (seed) overview.  \relax }{figure.caption.20}{}}
-\newlabel{sub@fig:second_warp_2_seed_op_msr_msd_overview}{{g}{31}{Digit 2 - case 2 (seed) overview.  \relax }{figure.caption.20}{}}
-\newlabel{fig:second_warp_3_op_msr_msd_overview}{{10h}{31}{Digit 3 - case 3 overview.  \relax }{figure.caption.20}{}}
-\newlabel{sub@fig:second_warp_3_op_msr_msd_overview}{{h}{31}{Digit 3 - case 3 overview.  \relax }{figure.caption.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  The {{\tt  Second\_Warp}} gadget overviews.\relax }}{31}{figure.caption.20}}
-\newlabel{fig:second_warp_gadgets_overviews}{{10}{31}{The {\secondwarp } gadget overviews.\relax }{figure.caption.20}{}}
-\newlabel{fig:post_warp_1_op}{{11a}{33}{Digit 1 - general.  \relax }{figure.caption.21}{}}
-\newlabel{sub@fig:post_warp_1_op}{{a}{33}{Digit 1 - general.  \relax }{figure.caption.21}{}}
-\newlabel{fig:post_warp_1_op_overview}{{11b}{33}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op}.  \relax }{figure.caption.21}{}}
-\newlabel{sub@fig:post_warp_1_op_overview}{{b}{33}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op}.  \relax }{figure.caption.21}{}}
-\newlabel{fig:post_warp_2or3_op}{{11c}{33}{Digit 2 \& 3 - general.  \relax }{figure.caption.21}{}}
-\newlabel{sub@fig:post_warp_2or3_op}{{c}{33}{Digit 2 \& 3 - general.  \relax }{figure.caption.21}{}}
-\newlabel{fig:post_warp_2_op_overview}{{11d}{33}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.21}{}}
-\newlabel{sub@fig:post_warp_2_op_overview}{{d}{33}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.21}{}}
-\newlabel{fig:post_warp_2_seed_op_overview}{{11e}{34}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
-\newlabel{sub@fig:post_warp_2_seed_op_overview}{{e}{34}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
-\newlabel{fig:post_warp_3_op_overview}{{11f}{34}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
-\newlabel{sub@fig:post_warp_3_op_overview}{{f}{34}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
-\newlabel{fig:post_warp_3_seed_op_overview}{{11g}{34}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
-\newlabel{sub@fig:post_warp_3_seed_op_overview}{{g}{34}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
-\newlabel{fig:post_warp_1_op_msr_msd}{{11h}{34}{Digit 1 - case 1.  \relax }{figure.caption.22}{}}
-\newlabel{sub@fig:post_warp_1_op_msr_msd}{{h}{34}{Digit 1 - case 1.  \relax }{figure.caption.22}{}}
-\newlabel{fig:post_warp_1_op_msr_msd_overview}{{11i}{35}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op_msr_msd}.  \relax }{figure.caption.23}{}}
-\newlabel{sub@fig:post_warp_1_op_msr_msd_overview}{{i}{35}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op_msr_msd}.  \relax }{figure.caption.23}{}}
-\newlabel{fig:post_warp_1_op_msr}{{11j}{35}{Digit 1 - case 2.  \relax }{figure.caption.23}{}}
-\newlabel{sub@fig:post_warp_1_op_msr}{{j}{35}{Digit 1 - case 2.  \relax }{figure.caption.23}{}}
-\newlabel{fig:post_warp_1_op_msr_overview}{{11k}{35}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op_msr}.  \relax }{figure.caption.23}{}}
-\newlabel{sub@fig:post_warp_1_op_msr_overview}{{k}{35}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op_msr}.  \relax }{figure.caption.23}{}}
-\newlabel{fig:post_warp_2_op_msr_msd}{{11l}{35}{Digit 2 - case 2.  \relax }{figure.caption.23}{}}
-\newlabel{sub@fig:post_warp_2_op_msr_msd}{{l}{35}{Digit 2 - case 2.  \relax }{figure.caption.23}{}}
-\newlabel{fig:post_warp_2_op_msr_msd_overview}{{11m}{36}{Digit 2 - case 2\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2_op_msr_msd}.  \relax }{figure.caption.24}{}}
-\newlabel{sub@fig:post_warp_2_op_msr_msd_overview}{{m}{36}{Digit 2 - case 2\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2_op_msr_msd}.  \relax }{figure.caption.24}{}}
-\newlabel{fig:post_warp_2_seed_op_msr_msd_overview}{{11n}{36}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2_op_msr_msd}.  \relax }{figure.caption.24}{}}
-\newlabel{sub@fig:post_warp_2_seed_op_msr_msd_overview}{{n}{36}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2_op_msr_msd}.  \relax }{figure.caption.24}{}}
-\newlabel{fig:post_warp_3_op_msr_msd_overview}{{11o}{36}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.24}{}}
-\newlabel{sub@fig:post_warp_3_op_msr_msd_overview}{{o}{36}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.24}{}}
-\newlabel{fig:post_warp_3_seed_op_msr_msd_overview}{{11p}{36}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.24}{}}
-\newlabel{sub@fig:post_warp_3_seed_op_msr_msd_overview}{{p}{36}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.24}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  The {{\tt  Post\_Warp}} gadgets.\relax }}{36}{figure.caption.24}}
-\newlabel{fig:post_warp_gadgets}{{11}{36}{The {\postwarp } gadgets.\relax }{figure.caption.24}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.3} Counter write }{37}{subsubsection.2.4.3}}
-\newlabel{fig:counter_write_0}{{12a}{38}{{\tt Counter\_Write\_0}  \relax }{figure.caption.25}{}}
-\newlabel{sub@fig:counter_write_0}{{a}{38}{{\tt Counter\_Write\_0}  \relax }{figure.caption.25}{}}
-\newlabel{fig:counter_write_1}{{12b}{38}{{\tt Counter\_Write\_1}  \relax }{figure.caption.25}{}}
-\newlabel{sub@fig:counter_write_1}{{b}{38}{{\tt Counter\_Write\_1}  \relax }{figure.caption.25}{}}
-\newlabel{fig:counter_write_1_op}{{12c}{38}{Digit 1 - general\\ overview.  \relax }{figure.caption.25}{}}
-\newlabel{sub@fig:counter_write_1_op}{{c}{38}{Digit 1 - general\\ overview.  \relax }{figure.caption.25}{}}
-\newlabel{fig:counter_write_1_seed_op}{{12d}{38}{Digit 1 - general (seed) overview.  \relax }{figure.caption.25}{}}
-\newlabel{sub@fig:counter_write_1_seed_op}{{d}{38}{Digit 1 - general (seed) overview.  \relax }{figure.caption.25}{}}
-\newlabel{fig:counter_write_2_op}{{12e}{39}{Digit 2 - general\\ overview.  \relax }{figure.caption.26}{}}
-\newlabel{sub@fig:counter_write_2_op}{{e}{39}{Digit 2 - general\\ overview.  \relax }{figure.caption.26}{}}
-\newlabel{fig:counter_write_2_seed_op}{{12f}{39}{Digit 2 - general (seed) overview.  \relax }{figure.caption.26}{}}
-\newlabel{sub@fig:counter_write_2_seed_op}{{f}{39}{Digit 2 - general (seed) overview.  \relax }{figure.caption.26}{}}
-\newlabel{fig:counter_write_3_op}{{12g}{39}{Digit 3 - general\\ overview.  \relax }{figure.caption.26}{}}
-\newlabel{sub@fig:counter_write_3_op}{{g}{39}{Digit 3 - general\\ overview.  \relax }{figure.caption.26}{}}
-\newlabel{fig:counter_write_3_seed_op}{{12h}{39}{Digit 3 - general (seed) overview.  \relax }{figure.caption.26}{}}
-\newlabel{sub@fig:counter_write_3_seed_op}{{h}{39}{Digit 3 - general (seed) overview.  \relax }{figure.caption.26}{}}
-\newlabel{fig:counter_write_1_op_msr_msd}{{12i}{40}{Digit 1 - case 1.  \relax }{figure.caption.27}{}}
-\newlabel{sub@fig:counter_write_1_op_msr_msd}{{i}{40}{Digit 1 - case 1.  \relax }{figure.caption.27}{}}
-\newlabel{fig:counter_write_1_op_seed_msr_msd}{{12j}{40}{Digit 1 - case 1 (seed).  \relax }{figure.caption.27}{}}
-\newlabel{sub@fig:counter_write_1_op_seed_msr_msd}{{j}{40}{Digit 1 - case 1 (seed).  \relax }{figure.caption.27}{}}
-\newlabel{fig:counter_write_1_op_msr}{{12k}{40}{Digit 1 - case 2.  \relax }{figure.caption.27}{}}
-\newlabel{sub@fig:counter_write_1_op_msr}{{k}{40}{Digit 1 - case 2.  \relax }{figure.caption.27}{}}
-\newlabel{fig:counter_write_1_op_seed_msr}{{12l}{40}{Digit 1 - case 2 (seed).  \relax }{figure.caption.27}{}}
-\newlabel{sub@fig:counter_write_1_op_seed_msr}{{l}{40}{Digit 1 - case 2 (seed).  \relax }{figure.caption.27}{}}
-\newlabel{fig:counter_write_2_op_msr_msd}{{12m}{41}{Digit 2 - case 2.  \relax }{figure.caption.28}{}}
-\newlabel{sub@fig:counter_write_2_op_msr_msd}{{m}{41}{Digit 2 - case 2.  \relax }{figure.caption.28}{}}
-\newlabel{fig:counter_write_2_op_seed_msr_msd}{{12n}{41}{Digit 2 - case 2 (seed).  \relax }{figure.caption.28}{}}
-\newlabel{sub@fig:counter_write_2_op_seed_msr_msd}{{n}{41}{Digit 2 - case 2 (seed).  \relax }{figure.caption.28}{}}
-\newlabel{fig:counter_write_3_op_msr_msd}{{12o}{41}{Digit 3 - case 3.  \relax }{figure.caption.28}{}}
-\newlabel{sub@fig:counter_write_3_op_msr_msd}{{o}{41}{Digit 3 - case 3.  \relax }{figure.caption.28}{}}
-\newlabel{fig:counter_write_3_op_seed_msr_msd}{{12p}{41}{Digit 3 - case 3 (seed).  \relax }{figure.caption.28}{}}
-\newlabel{sub@fig:counter_write_3_op_seed_msr_msd}{{p}{41}{Digit 3 - case 3 (seed).  \relax }{figure.caption.28}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  The {{\tt  Counter\_Write}} gadgets.\relax }}{41}{figure.caption.28}}
-\newlabel{fig:counter_write}{{12}{41}{The {\cwrite } gadgets.\relax }{figure.caption.28}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.4}Digit tops}{42}{subsubsection.2.4.4}}
-\newlabel{fig:topper_gen}{{13a}{42}{General topper\relax }{figure.caption.29}{}}
-\newlabel{sub@fig:topper_gen}{{a}{42}{General topper\relax }{figure.caption.29}{}}
-\newlabel{fig:topper_case1}{{13b}{42}{Case 1 -- topper\relax }{figure.caption.29}{}}
-\newlabel{sub@fig:topper_case1}{{b}{42}{Case 1 -- topper\relax }{figure.caption.29}{}}
-\newlabel{fig:topper_case2}{{13c}{42}{Case 2 -- topper\relax }{figure.caption.29}{}}
-\newlabel{sub@fig:topper_case2}{{c}{42}{Case 2 -- topper\relax }{figure.caption.29}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  Topper micro-gadgets \relax }}{42}{figure.caption.29}}
-\newlabel{fig:topper_microgadgets}{{13}{42}{Topper micro-gadgets \relax }{figure.caption.29}{}}
-\newlabel{fig:digit_top_general}{{14a}{45}{Digits 1, 2, \& 3 - general.  \relax }{figure.caption.30}{}}
-\newlabel{sub@fig:digit_top_general}{{a}{45}{Digits 1, 2, \& 3 - general.  \relax }{figure.caption.30}{}}
-\newlabel{fig:digit_top_1_op_overview}{{14b}{45}{Digit 1 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
-\newlabel{sub@fig:digit_top_1_op_overview}{{b}{45}{Digit 1 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
-\newlabel{fig:digit_top_1_seed_op_overview}{{14c}{45}{Digit 1 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
-\newlabel{sub@fig:digit_top_1_seed_op_overview}{{c}{45}{Digit 1 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
-\newlabel{fig:digit_top_2_op_overview}{{14d}{45}{Digit 2 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
-\newlabel{sub@fig:digit_top_2_op_overview}{{d}{45}{Digit 2 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
-\newlabel{fig:digit_top_2_seed_op_overview}{{14e}{46}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
-\newlabel{sub@fig:digit_top_2_seed_op_overview}{{e}{46}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
-\newlabel{fig:digit_top_3_op_overview}{{14f}{46}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
-\newlabel{sub@fig:digit_top_3_op_overview}{{f}{46}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
-\newlabel{fig:digit_top_3_seed_op_overview}{{14g}{46}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
-\newlabel{sub@fig:digit_top_3_seed_op_overview}{{g}{46}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
-\newlabel{fig:digit_top_1_op_msr_msd}{{14h}{46}{Digit 1 - case 1.  \relax }{figure.caption.31}{}}
-\newlabel{sub@fig:digit_top_1_op_msr_msd}{{h}{46}{Digit 1 - case 1.  \relax }{figure.caption.31}{}}
-\newlabel{fig:digit_top_1_op_msr_msd_overview}{{14i}{47}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr_msd}.  \relax }{figure.caption.32}{}}
-\newlabel{sub@fig:digit_top_1_op_msr_msd_overview}{{i}{47}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr_msd}.  \relax }{figure.caption.32}{}}
-\newlabel{fig:digit_top_1_seed_op_msr_msd_overview}{{14j}{47}{Digit 1 - case 1 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr_msd}.  \relax }{figure.caption.32}{}}
-\newlabel{sub@fig:digit_top_1_seed_op_msr_msd_overview}{{j}{47}{Digit 1 - case 1 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr_msd}.  \relax }{figure.caption.32}{}}
-\newlabel{fig:digit_top_1_op_msr}{{14k}{47}{Digit 1 - case 2.  \relax }{figure.caption.32}{}}
-\newlabel{sub@fig:digit_top_1_op_msr}{{k}{47}{Digit 1 - case 2.  \relax }{figure.caption.32}{}}
-\newlabel{fig:digit_top_1_op_msr_overview}{{14l}{47}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr}.  \relax }{figure.caption.32}{}}
-\newlabel{sub@fig:digit_top_1_op_msr_overview}{{l}{47}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr}.  \relax }{figure.caption.32}{}}
-\newlabel{fig:digit_top_1_seed_op_msr_overview}{{14m}{48}{Digit 1 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr}.  \relax }{figure.caption.33}{}}
-\newlabel{sub@fig:digit_top_1_seed_op_msr_overview}{{m}{48}{Digit 1 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr}.  \relax }{figure.caption.33}{}}
-\newlabel{fig:digit_top_2_op_msr_msd}{{14n}{48}{Digit 2 - case 2.  \relax }{figure.caption.33}{}}
-\newlabel{sub@fig:digit_top_2_op_msr_msd}{{n}{48}{Digit 2 - case 2.  \relax }{figure.caption.33}{}}
-\newlabel{fig:digit_top_2_op_msr_msd_overview}{{14o}{48}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_2_op_msr_msd}.  \relax }{figure.caption.33}{}}
-\newlabel{sub@fig:digit_top_2_op_msr_msd_overview}{{o}{48}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_2_op_msr_msd}.  \relax }{figure.caption.33}{}}
-\newlabel{fig:digit_top_2_seed_op_msr_msd_overview}{{14p}{48}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_2_op_msr_msd}.  \relax }{figure.caption.33}{}}
-\newlabel{sub@fig:digit_top_2_seed_op_msr_msd_overview}{{p}{48}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_2_op_msr_msd}.  \relax }{figure.caption.33}{}}
-\newlabel{fig:digit_top_3_op_msr_msd}{{14q}{49}{Digit 3 - case 3.  \relax }{figure.caption.34}{}}
-\newlabel{sub@fig:digit_top_3_op_msr_msd}{{q}{49}{Digit 3 - case 3.  \relax }{figure.caption.34}{}}
-\newlabel{fig:digit_top_3_op_msr_msd_overview}{{14r}{49}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_3_op_msr_msd}.  \relax }{figure.caption.34}{}}
-\newlabel{sub@fig:digit_top_3_op_msr_msd_overview}{{r}{49}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_3_op_msr_msd}.  \relax }{figure.caption.34}{}}
-\newlabel{fig:digit_top_3_seed_op_msr_msd_overview}{{14s}{49}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_3_op_msr_msd}.  \relax }{figure.caption.34}{}}
-\newlabel{sub@fig:digit_top_3_seed_op_msr_msd_overview}{{s}{49}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_3_op_msr_msd}.  \relax }{figure.caption.34}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  The {\tt  Digit\_Top} gadgets.\relax }}{49}{figure.caption.34}}
-\newlabel{fig:digit_tops}{{14}{49}{The {\tt Digit\_Top} gadgets.\relax }{figure.caption.34}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.5} Return paths}{50}{subsubsection.2.4.5}}
-\newlabel{fig:return_path_1_op}{{15a}{51}{Digit 1 - general.  \relax }{figure.caption.35}{}}
-\newlabel{sub@fig:return_path_1_op}{{a}{51}{Digit 1 - general.  \relax }{figure.caption.35}{}}
-\newlabel{fig:return_path_1_op_overview}{{15b}{51}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1_op}.  \relax }{figure.caption.35}{}}
-\newlabel{sub@fig:return_path_1_op_overview}{{b}{51}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1_op}.  \relax }{figure.caption.35}{}}
-\newlabel{fig:return_path_1_seed_op_overview}{{15c}{51}{Digit 1 - general (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.35}{}}
-\newlabel{sub@fig:return_path_1_seed_op_overview}{{c}{51}{Digit 1 - general (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.35}{}}
-\newlabel{fig:return_path_2_op-or-seed}{{15d}{51}{Digit 2 - general.  \relax }{figure.caption.35}{}}
-\newlabel{sub@fig:return_path_2_op-or-seed}{{d}{51}{Digit 2 - general.  \relax }{figure.caption.35}{}}
-\newlabel{fig:return_path_2_op_overview}{{15e}{52}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_2_op-or-seed}.  \relax }{figure.caption.36}{}}
-\newlabel{sub@fig:return_path_2_op_overview}{{e}{52}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_2_op-or-seed}.  \relax }{figure.caption.36}{}}
-\newlabel{fig:return_path_2_seed_op_overview}{{15f}{52}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_2_op-or-seed}.  \relax }{figure.caption.36}{}}
-\newlabel{sub@fig:return_path_2_seed_op_overview}{{f}{52}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_2_op-or-seed}.  \relax }{figure.caption.36}{}}
-\newlabel{fig:return_path_3}{{15g}{52}{Digit 3 - general.  \relax }{figure.caption.36}{}}
-\newlabel{sub@fig:return_path_3}{{g}{52}{Digit 3 - general.  \relax }{figure.caption.36}{}}
-\newlabel{fig:return_path_3_op_overview}{{15h}{52}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.36}{}}
-\newlabel{sub@fig:return_path_3_op_overview}{{h}{52}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.36}{}}
-\newlabel{fig:return_path_3_seed_op_overview}{{15i}{53}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.37}{}}
-\newlabel{sub@fig:return_path_3_seed_op_overview}{{i}{53}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.37}{}}
-\newlabel{fig:return_path_1_op_msr}{{15j}{53}{Digit 1 - case 2.  \relax }{figure.caption.37}{}}
-\newlabel{sub@fig:return_path_1_op_msr}{{j}{53}{Digit 1 - case 2.  \relax }{figure.caption.37}{}}
-\newlabel{fig:return_path_1_op_msr_overview}{{15k}{53}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1_op_msr}.  \relax }{figure.caption.37}{}}
-\newlabel{sub@fig:return_path_1_op_msr_overview}{{k}{53}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1_op_msr}.  \relax }{figure.caption.37}{}}
-\newlabel{fig:return_path_1_seed_op_msr_overview}{{15l}{53}{Digit 1 - case 2 (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.37}{}}
-\newlabel{sub@fig:return_path_1_seed_op_msr_overview}{{l}{53}{Digit 1 - case 2 (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.37}{}}
-\newlabel{fig:return_path_1-or-2_op_msr_msd}{{15m}{54}{Digit 1 - case 1,\\Digit 2 case 2.  \relax }{figure.caption.38}{}}
-\newlabel{sub@fig:return_path_1-or-2_op_msr_msd}{{m}{54}{Digit 1 - case 1,\\Digit 2 case 2.  \relax }{figure.caption.38}{}}
-\newlabel{fig:return_path_1_op_msr_msd_overview}{{15n}{54}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
-\newlabel{sub@fig:return_path_1_op_msr_msd_overview}{{n}{54}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
-\newlabel{fig:return_path_1_seed_op_msr_msd_overview}{{15o}{54}{Digit 1 - case 1 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
-\newlabel{sub@fig:return_path_1_seed_op_msr_msd_overview}{{o}{54}{Digit 1 - case 1 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
-\newlabel{fig:return_path_2_op_msr_msd_overview}{{15p}{54}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
-\newlabel{sub@fig:return_path_2_op_msr_msd_overview}{{p}{54}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
-\newlabel{fig:return_path_3_op_msr_msd_overview}{{15q}{55}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.39}{}}
-\newlabel{sub@fig:return_path_3_op_msr_msd_overview}{{q}{55}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.39}{}}
-\newlabel{fig:return_path_3_seed_op_msr_msd_overview}{{15r}{55}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.39}{}}
-\newlabel{sub@fig:return_path_3_seed_op_msr_msd_overview}{{r}{55}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.39}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces  The {\tt  Return\_Path} gadgets.\relax }}{55}{figure.caption.39}}
-\newlabel{fig:return_path_gadgets}{{15}{55}{The {\tt Return\_Path} gadgets.\relax }{figure.caption.39}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.6} The Next Read gadgets }{56}{subsubsection.2.4.6}}
-\newlabel{fig:next_read_1-or-2_op}{{16a}{57}{Digit 1 \& 2 - general.  \relax }{figure.caption.40}{}}
-\newlabel{sub@fig:next_read_1-or-2_op}{{a}{57}{Digit 1 \& 2 - general.  \relax }{figure.caption.40}{}}
-\newlabel{fig:next_read_1_op_overview}{{16b}{57}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op}.  \relax }{figure.caption.40}{}}
-\newlabel{sub@fig:next_read_1_op_overview}{{b}{57}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op}.  \relax }{figure.caption.40}{}}
-\newlabel{fig:next_read_1_seed_op_overview}{{16c}{57}{Digit 1 - general (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.40}{}}
-\newlabel{sub@fig:next_read_1_seed_op_overview}{{c}{57}{Digit 1 - general (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.40}{}}
-\newlabel{fig:next_read_2_op_overview}{{16d}{57}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op}.  \relax }{figure.caption.40}{}}
-\newlabel{sub@fig:next_read_2_op_overview}{{d}{57}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op}.  \relax }{figure.caption.40}{}}
-\newlabel{fig:next_read_3_op}{{16e}{58}{Digit 3 - general.  \relax }{figure.caption.41}{}}
-\newlabel{sub@fig:next_read_3_op}{{e}{58}{Digit 3 - general.  \relax }{figure.caption.41}{}}
-\newlabel{fig:next_read_3_op_overview}{{16f}{58}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op}.  \relax }{figure.caption.41}{}}
-\newlabel{sub@fig:next_read_3_op_overview}{{f}{58}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op}.  \relax }{figure.caption.41}{}}
-\newlabel{fig:next_read_2_seed_op}{{16g}{58}{Digit 2 - seed.  \relax }{figure.caption.41}{}}
-\newlabel{sub@fig:next_read_2_seed_op}{{g}{58}{Digit 2 - seed.  \relax }{figure.caption.41}{}}
-\newlabel{fig:next_read_2_seed_op_overview}{{16h}{58}{Digit 2 - seed overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_2_seed_op}.  \relax }{figure.caption.41}{}}
-\newlabel{sub@fig:next_read_2_seed_op_overview}{{h}{58}{Digit 2 - seed overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_2_seed_op}.  \relax }{figure.caption.41}{}}
-\newlabel{fig:next_read_3_seed_op}{{16i}{59}{Digit 3 - seed.  \relax }{figure.caption.42}{}}
-\newlabel{sub@fig:next_read_3_seed_op}{{i}{59}{Digit 3 - seed.  \relax }{figure.caption.42}{}}
-\newlabel{fig:next_read_3_seed_op_overview}{{16j}{59}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_seed_op}.  \relax }{figure.caption.42}{}}
-\newlabel{sub@fig:next_read_3_seed_op_overview}{{j}{59}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_seed_op}.  \relax }{figure.caption.42}{}}
-\newlabel{fig:next_read_1-or-2_op_msr_msd}{{16k}{59}{Digit 1 - case 1,\\Digit 2 - case 2.  \relax }{figure.caption.42}{}}
-\newlabel{sub@fig:next_read_1-or-2_op_msr_msd}{{k}{59}{Digit 1 - case 1,\\Digit 2 - case 2.  \relax }{figure.caption.42}{}}
-\newlabel{fig:next_read_1_op_msr_msd_overview}{{16l}{59}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.42}{}}
-\newlabel{sub@fig:next_read_1_op_msr_msd_overview}{{l}{59}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.42}{}}
-\newlabel{fig:next_read_2_op_msr_msd_overview}{{16m}{60}{Digit 2 - case 2\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.43}{}}
-\newlabel{sub@fig:next_read_2_op_msr_msd_overview}{{m}{60}{Digit 2 - case 2\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.43}{}}
-\newlabel{fig:next_read_2_seed_op_msr_msd_overview}{{16n}{60}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.43}{}}
-\newlabel{sub@fig:next_read_2_seed_op_msr_msd_overview}{{n}{60}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.43}{}}
-\newlabel{fig:next_read_1_op_msr}{{16o}{60}{Digit 1 - case 2.  \relax }{figure.caption.43}{}}
-\newlabel{sub@fig:next_read_1_op_msr}{{o}{60}{Digit 1 - case 2.  \relax }{figure.caption.43}{}}
-\newlabel{fig:next_read_1_op_msr_overview}{{16p}{60}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1_op_msr}.  \relax }{figure.caption.43}{}}
-\newlabel{sub@fig:next_read_1_op_msr_overview}{{p}{60}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1_op_msr}.  \relax }{figure.caption.43}{}}
-\newlabel{fig:next_read_3_op-or-seed_msr_msd}{{16q}{61}{Digit 3 - case 3.  \relax }{figure.caption.44}{}}
-\newlabel{sub@fig:next_read_3_op-or-seed_msr_msd}{{q}{61}{Digit 3 - case 3.  \relax }{figure.caption.44}{}}
-\newlabel{fig:next_read_3_op_msr_msd_overview}{{16r}{61}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op-or-seed_msr_msd}.  \relax }{figure.caption.44}{}}
-\newlabel{sub@fig:next_read_3_op_msr_msd_overview}{{r}{61}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op-or-seed_msr_msd}.  \relax }{figure.caption.44}{}}
-\newlabel{fig:next_read_3_seed_op_msr_msd_overview}{{16s}{61}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op-or-seed_msr_msd}.  \relax }{figure.caption.44}{}}
-\newlabel{sub@fig:next_read_3_seed_op_msr_msd_overview}{{s}{61}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op-or-seed_msr_msd}.  \relax }{figure.caption.44}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces  The {{\tt  Next\_Read}} gadgets.\relax }}{61}{figure.caption.44}}
-\newlabel{fig:next_read_gadgets}{{16}{61}{The {\nextread } gadgets.\relax }{figure.caption.44}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.4.7}Cross over gadget}{62}{subsubsection.2.4.7}}
-\newlabel{fig:cross_next_row}{{17a}{63}{General.  \relax }{figure.caption.45}{}}
-\newlabel{sub@fig:cross_next_row}{{a}{63}{General.  \relax }{figure.caption.45}{}}
-\newlabel{fig:cross_next_row_overview}{{17b}{63}{General overview. The black tiles in this figure is the gadget shown in subfigure~\subref {fig:cross_next_row}.  \relax }{figure.caption.45}{}}
-\newlabel{sub@fig:cross_next_row_overview}{{b}{63}{General overview. The black tiles in this figure is the gadget shown in subfigure~\subref {fig:cross_next_row}.  \relax }{figure.caption.45}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces  The {\tt  Cross\_Next\_Row} gadget.\relax }}{63}{figure.caption.45}}
-\newlabel{fig:crosser_gadgets}{{17}{63}{The {\tt Cross\_Next\_Row} gadget.\relax }{figure.caption.45}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.5}Overviews}{64}{subsection.2.5}}
-\newlabel{fig:full_overview_case3_colored}{{18a}{64}{Full overview case 3\relax }{figure.caption.46}{}}
-\newlabel{sub@fig:full_overview_case3_colored}{{a}{64}{Full overview case 3\relax }{figure.caption.46}{}}
-\newlabel{fig:full_overview_case2_colored}{{18b}{64}{Full overview case 2\relax }{figure.caption.46}{}}
-\newlabel{sub@fig:full_overview_case2_colored}{{b}{64}{Full overview case 2\relax }{figure.caption.46}{}}
-\newlabel{fig:full_overview_case1_colored}{{18c}{64}{Full overview case 1\relax }{figure.caption.46}{}}
-\newlabel{sub@fig:full_overview_case1_colored}{{c}{64}{Full overview case 1\relax }{figure.caption.46}{}}
+\newlabel{fig:counter_read_start_case3_middle_level}{{1a}{3}{A ``clean'' counter row, before any reading has started.\relax }{figure.caption.1}{}}
+\newlabel{sub@fig:counter_read_start_case3_middle_level}{{a}{3}{A ``clean'' counter row, before any reading has started.\relax }{figure.caption.1}{}}
+\newlabel{fig:counter_read_digit1_general_case3_middle_level}{{1b}{3}{Read digit 1 in the current row, write digit 1 in the next row.\relax }{figure.caption.1}{}}
+\newlabel{sub@fig:counter_read_digit1_general_case3_middle_level}{{b}{3}{Read digit 1 in the current row, write digit 1 in the next row.\relax }{figure.caption.1}{}}
+\newlabel{fig:counter_read_digit2_general_case3_middle_level}{{1c}{4}{Read digit 2 in the current row, write digit 2 in the next row.\relax }{figure.caption.2}{}}
+\newlabel{sub@fig:counter_read_digit2_general_case3_middle_level}{{c}{4}{Read digit 2 in the current row, write digit 2 in the next row.\relax }{figure.caption.2}{}}
+\newlabel{fig:counter_read_digit3_general_case3_middle_level}{{1d}{4}{Read digit 3 in the current row, write digit 3 in the next row.\relax }{figure.caption.2}{}}
+\newlabel{sub@fig:counter_read_digit3_general_case3_middle_level}{{d}{4}{Read digit 3 in the current row, write digit 3 in the next row.\relax }{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  This illustrates how a counter reads and writes a digit region, in a general sense. The counter starts in the rightmost digit region by reading the bottommost digit within that region. After reading digit 1 in the current row, the corresponding digit region in the next row be started in the next row. The counter writes the first digit in the next row, and then returns to the second digit in the current digit region. Once all the digits in the current digit region are read and written into the next row, the counter can then do one of the following: continue reading digits by moving on to the next digit region, cross back all the way to the right of the rectangle and start reading the next row, or halt.\relax }}{5}{figure.caption.3}}
+\newlabel{fig:counter_read_digit_return_read_digit_general_case3}{{1}{5}{This illustrates how a counter reads and writes a digit region, in a general sense. The counter starts in the rightmost digit region by reading the bottommost digit within that region. After reading digit 1 in the current row, the corresponding digit region in the next row be started in the next row. The counter writes the first digit in the next row, and then returns to the second digit in the current digit region. Once all the digits in the current digit region are read and written into the next row, the counter can then do one of the following: continue reading digits by moving on to the next digit region, cross back all the way to the right of the rectangle and start reading the next row, or halt.\relax }{figure.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1} Digit region explanation (in progress) }{5}{subsection.2.1}}
+\newlabel{fig:digits_normal_counter}{{2a}{5}{Digits in a typical counter\relax }{figure.caption.4}{}}
+\newlabel{sub@fig:digits_normal_counter}{{a}{5}{Digits in a typical counter\relax }{figure.caption.4}{}}
+\newlabel{fig:digits_digit_region_counter}{{2b}{5}{Digits in two digit regions, stacked vertically, minimizing the width. \relax }{figure.caption.4}{}}
+\newlabel{sub@fig:digits_digit_region_counter}{{b}{5}{Digits in two digit regions, stacked vertically, minimizing the width. \relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2} Detecting the edges }{5}{subsection.2.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Tile set}{6}{subsection.2.3}}
+\newlabel{gadgets}{{2.3}{6}{Tile set}{subsection.2.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.3.1} Line Gadgets }{6}{subsubsection.2.3.1}}
+\newlabel{fig:north_line}{{3a}{6}{{\tt North\_Line}\relax }{figure.caption.6}{}}
+\newlabel{sub@fig:north_line}{{a}{6}{{\tt North\_Line}\relax }{figure.caption.6}{}}
+\newlabel{fig:south_line}{{3b}{6}{{\tt South\_Line} \relax }{figure.caption.6}{}}
+\newlabel{sub@fig:south_line}{{b}{6}{{\tt South\_Line} \relax }{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  {\tt  Line} gadgets\relax }}{6}{figure.caption.6}}
+\newlabel{fig:line_gadgets}{{3}{6}{{\tt Line} gadgets\relax }{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Initial value}{6}{subsection.2.4}}
+\newlabel{fig:initial_case1_msr}{{4a}{7}{MSR case 1\relax }{figure.caption.7}{}}
+\newlabel{sub@fig:initial_case1_msr}{{a}{7}{MSR case 1\relax }{figure.caption.7}{}}
+\newlabel{fig:initial_case2_msr}{{4b}{7}{MSR case 2\relax }{figure.caption.7}{}}
+\newlabel{sub@fig:initial_case2_msr}{{b}{7}{MSR case 2\relax }{figure.caption.7}{}}
+\newlabel{fig:initial_case3_msr}{{4c}{7}{MSR case 3\relax }{figure.caption.7}{}}
+\newlabel{sub@fig:initial_case3_msr}{{c}{7}{MSR case 3\relax }{figure.caption.7}{}}
+\newlabel{fig:initial_general}{{4d}{7}{General digit regions\relax }{figure.caption.7}{}}
+\newlabel{sub@fig:initial_general}{{d}{7}{General digit regions\relax }{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  These figures show an example construction of the initial value, with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assembly.\relax }}{7}{figure.caption.7}}
+\newlabel{fig:initial_value_assemblies}{{4}{7}{These figures show an example construction of the initial value, with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assembly.\relax }{figure.caption.7}{}}
+\newlabel{fig:initial_value_case1}{{5a}{15}{Initial value case 1\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:initial_value_case1}{{a}{15}{Initial value case 1\relax }{figure.caption.8}{}}
+\newlabel{fig:initial_value_case2}{{5b}{15}{Initial value case 2\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:initial_value_case2}{{b}{15}{Initial value case 2\relax }{figure.caption.8}{}}
+\newlabel{fig:initial_value_case3}{{5c}{15}{Initial value case 3\relax }{figure.caption.8}{}}
+\newlabel{sub@fig:initial_value_case3}{{c}{15}{Initial value case 3\relax }{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces  These figures show a full example of an initial value, with both general regions and the MSRs together, instead of separated as shown above.\relax }}{15}{figure.caption.8}}
+\newlabel{fig:initial_value_assemblies_full}{{5}{15}{These figures show a full example of an initial value, with both general regions and the MSRs together, instead of separated as shown above.\relax }{figure.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5} Tile set }{15}{subsection.2.5}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1} {\tt  Counter\_Read}}{15}{subsubsection.2.5.1}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Incrementing and halting\relax }}{16}{algorithm.1}}
+\newlabel{asda}{{1}{16}{Incrementing and halting\relax }{algorithm.1}{}}
+\newlabel{fig:counter_read_0}{{6a}{17}{{\tt Counter\_Read\_0}  \relax }{figure.caption.9}{}}
+\newlabel{sub@fig:counter_read_0}{{a}{17}{{\tt Counter\_Read\_0}  \relax }{figure.caption.9}{}}
+\newlabel{fig:counter_read_1}{{6b}{17}{{\tt Counter\_Read\_1}  \relax }{figure.caption.9}{}}
+\newlabel{sub@fig:counter_read_1}{{b}{17}{{\tt Counter\_Read\_1}  \relax }{figure.caption.9}{}}
+\newlabel{fig:counter_read_1_op}{{6c}{17}{Digit 1 - general\\ overview.  \relax }{figure.caption.9}{}}
+\newlabel{sub@fig:counter_read_1_op}{{c}{17}{Digit 1 - general\\ overview.  \relax }{figure.caption.9}{}}
+\newlabel{fig:counter_read_2_op}{{6d}{17}{Digit 2 - general\\ overview.  \relax }{figure.caption.9}{}}
+\newlabel{sub@fig:counter_read_2_op}{{d}{17}{Digit 2 - general\\ overview.  \relax }{figure.caption.9}{}}
+\newlabel{fig:counter_read_3_op}{{6e}{18}{Digit 3 - general\\ overview.  \relax }{figure.caption.10}{}}
+\newlabel{sub@fig:counter_read_3_op}{{e}{18}{Digit 3 - general\\ overview.  \relax }{figure.caption.10}{}}
+\newlabel{fig:counter_read_1_op_msr_msd}{{6f}{18}{Digit 1 - case 1 overview.  \relax }{figure.caption.10}{}}
+\newlabel{sub@fig:counter_read_1_op_msr_msd}{{f}{18}{Digit 1 - case 1 overview.  \relax }{figure.caption.10}{}}
+\newlabel{fig:counter_read_1_op_msr}{{6g}{18}{Digit 1 - case 2 overview.  \relax }{figure.caption.10}{}}
+\newlabel{sub@fig:counter_read_1_op_msr}{{g}{18}{Digit 1 - case 2 overview.  \relax }{figure.caption.10}{}}
+\newlabel{fig:counter_read_2_op_msr_msd}{{6h}{18}{Digit 2 - case 2 overview.  \relax }{figure.caption.10}{}}
+\newlabel{sub@fig:counter_read_2_op_msr_msd}{{h}{18}{Digit 2 - case 2 overview.  \relax }{figure.caption.10}{}}
+\newlabel{fig:counter_read_3_op_msr_msd}{{6i}{19}{Digit 3 - case 3\\ overview.  \relax }{figure.caption.11}{}}
+\newlabel{sub@fig:counter_read_3_op_msr_msd}{{i}{19}{Digit 3 - case 3\\ overview.  \relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces  The {{\tt  Counter\_Read}} gadgets.\relax }}{19}{figure.caption.11}}
+\newlabel{fig:counter_read}{{6}{19}{The {\cread } gadgets.\relax }{figure.caption.11}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.2} {\tt  Warp\_Unit}}{20}{subsubsection.2.5.2}}
+\newlabel{fig:pre_warp_general}{{7a}{21}{Digits 1, 2, \& 3 - general.  \relax }{figure.caption.12}{}}
+\newlabel{sub@fig:pre_warp_general}{{a}{21}{Digits 1, 2, \& 3 - general.  \relax }{figure.caption.12}{}}
+\newlabel{fig:pre_warp_1_op_overview}{{7b}{21}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
+\newlabel{sub@fig:pre_warp_1_op_overview}{{b}{21}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
+\newlabel{fig:pre_warp_2_op_overview}{{7c}{21}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
+\newlabel{sub@fig:pre_warp_2_op_overview}{{c}{21}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
+\newlabel{fig:pre_warp_3_op_overview}{{7d}{21}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
+\newlabel{sub@fig:pre_warp_3_op_overview}{{d}{21}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.12}{}}
+\newlabel{fig:pre_warp_1_op_msr_msd}{{7e}{22}{Digit 1 - case 1.  \relax }{figure.caption.13}{}}
+\newlabel{sub@fig:pre_warp_1_op_msr_msd}{{e}{22}{Digit 1 - case 1.  \relax }{figure.caption.13}{}}
+\newlabel{fig:pre_warp_1_op_msr_msd_overview}{{7f}{22}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_1_op_msr_msd}.  \relax }{figure.caption.13}{}}
+\newlabel{sub@fig:pre_warp_1_op_msr_msd_overview}{{f}{22}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_1_op_msr_msd}.  \relax }{figure.caption.13}{}}
+\newlabel{fig:pre_warp_1_op_msr}{{7g}{22}{Digit 1 - case 2.  \relax }{figure.caption.13}{}}
+\newlabel{sub@fig:pre_warp_1_op_msr}{{g}{22}{Digit 1 - case 2.  \relax }{figure.caption.13}{}}
+\newlabel{fig:pre_warp_1_op_msr_overview}{{7h}{22}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_1_op_msr}.  \relax }{figure.caption.13}{}}
+\newlabel{sub@fig:pre_warp_1_op_msr_overview}{{h}{22}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_1_op_msr}.  \relax }{figure.caption.13}{}}
+\newlabel{fig:pre_warp_2_op_msr_msd}{{7i}{23}{Digit 2 - case 2.  \relax }{figure.caption.14}{}}
+\newlabel{sub@fig:pre_warp_2_op_msr_msd}{{i}{23}{Digit 2 - case 2.  \relax }{figure.caption.14}{}}
+\newlabel{fig:pre_warp_2_op_msr_msd_overview}{{7j}{23}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_2_op_msr_msd}.  \relax }{figure.caption.14}{}}
+\newlabel{sub@fig:pre_warp_2_op_msr_msd_overview}{{j}{23}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_2_op_msr_msd}.  \relax }{figure.caption.14}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces  The {{\tt  Pre\_Warp}} gadgets. \relax }}{23}{figure.caption.14}}
+\newlabel{fig:pre_warp_gadgets}{{7}{23}{The {\prewarp } gadgets. \relax }{figure.caption.14}{}}
+\newlabel{fig:first_warp_1_op_overview}{{8a}{25}{Digit 1 - general\\ overview.  \relax }{figure.caption.15}{}}
+\newlabel{sub@fig:first_warp_1_op_overview}{{a}{25}{Digit 1 - general\\ overview.  \relax }{figure.caption.15}{}}
+\newlabel{fig:first_warp_2_op_overview}{{8b}{25}{Digit 2 - general\\ overview.  \relax }{figure.caption.15}{}}
+\newlabel{sub@fig:first_warp_2_op_overview}{{b}{25}{Digit 2 - general\\ overview.  \relax }{figure.caption.15}{}}
+\newlabel{fig:first_warp_3_op_overview}{{8c}{25}{Digit 3 - general\\ overview.  \relax }{figure.caption.15}{}}
+\newlabel{sub@fig:first_warp_3_op_overview}{{c}{25}{Digit 3 - general\\ overview.  \relax }{figure.caption.15}{}}
+\newlabel{fig:first_warp_3_seed_op_overview}{{8d}{25}{Digit 3 - general (seed) overview.  \relax }{figure.caption.15}{}}
+\newlabel{sub@fig:first_warp_3_seed_op_overview}{{d}{25}{Digit 3 - general (seed) overview.  \relax }{figure.caption.15}{}}
+\newlabel{fig:first_warp_1_op_msr_msd_overview}{{8e}{26}{Digit 1 - case 1 overview.  \relax }{figure.caption.16}{}}
+\newlabel{sub@fig:first_warp_1_op_msr_msd_overview}{{e}{26}{Digit 1 - case 1 overview.  \relax }{figure.caption.16}{}}
+\newlabel{fig:first_warp_1_op_msr_overview}{{8f}{26}{Digit 1 - case 2 overview.  \relax }{figure.caption.16}{}}
+\newlabel{sub@fig:first_warp_1_op_msr_overview}{{f}{26}{Digit 1 - case 2 overview.  \relax }{figure.caption.16}{}}
+\newlabel{fig:first_warp_2_op_msr_msd_overview}{{8g}{26}{Digit 2 - case 2 overview.  \relax }{figure.caption.16}{}}
+\newlabel{sub@fig:first_warp_2_op_msr_msd_overview}{{g}{26}{Digit 2 - case 2 overview.  \relax }{figure.caption.16}{}}
+\newlabel{fig:first_warp_3_op_msr_msd_overview}{{8h}{26}{Digit 3 - case 3 overview.  \relax }{figure.caption.16}{}}
+\newlabel{sub@fig:first_warp_3_op_msr_msd_overview}{{h}{26}{Digit 3 - case 3 overview.  \relax }{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces  The {{\tt  First\_Warp}} gadget overviews.\relax }}{26}{figure.caption.16}}
+\newlabel{fig:first_warp_gadgets_overviews}{{8}{26}{The {\firstwarp } gadget overviews.\relax }{figure.caption.16}{}}
+\newlabel{fig:warp_bridge_general}{{9a}{28}{Digits 1, 2, \& 3 general.  \relax }{figure.caption.17}{}}
+\newlabel{sub@fig:warp_bridge_general}{{a}{28}{Digits 1, 2, \& 3 general.  \relax }{figure.caption.17}{}}
+\newlabel{fig:warp_bridge_1_op_overview}{{9b}{28}{Digit 1 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
+\newlabel{sub@fig:warp_bridge_1_op_overview}{{b}{28}{Digit 1 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
+\newlabel{fig:warp_bridge_2_op_overview}{{9c}{28}{Digit 2 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
+\newlabel{sub@fig:warp_bridge_2_op_overview}{{c}{28}{Digit 2 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
+\newlabel{fig:warp_bridge_2_seed_op_overview}{{9d}{28}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
+\newlabel{sub@fig:warp_bridge_2_seed_op_overview}{{d}{28}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.17}{}}
+\newlabel{fig:warp_bridge_3_op_overview}{{9e}{29}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.18}{}}
+\newlabel{sub@fig:warp_bridge_3_op_overview}{{e}{29}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.18}{}}
+\newlabel{fig:warp_bridge_3_seed_op_overview}{{9f}{29}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.18}{}}
+\newlabel{sub@fig:warp_bridge_3_seed_op_overview}{{f}{29}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_general}.  \relax }{figure.caption.18}{}}
+\newlabel{fig:warp_bridge_2_op_msr_msd}{{9g}{29}{Digit 2 - case 2.  \relax }{figure.caption.18}{}}
+\newlabel{sub@fig:warp_bridge_2_op_msr_msd}{{g}{29}{Digit 2 - case 2.  \relax }{figure.caption.18}{}}
+\newlabel{fig:warp_bridge_2_op_msr_msd_overview}{{9h}{29}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_2_op_msr_msd}.  \relax }{figure.caption.18}{}}
+\newlabel{sub@fig:warp_bridge_2_op_msr_msd_overview}{{h}{29}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:warp_bridge_2_op_msr_msd}.  \relax }{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  The {{\tt  Warp\_Bridge}} gadgets.\relax }}{29}{figure.caption.18}}
+\newlabel{fig:warp_bridge_gadgets_overviews}{{9}{29}{The {\warpbridge } gadgets.\relax }{figure.caption.18}{}}
+\newlabel{fig:second_warp_1_op_overview}{{10a}{31}{Digit 1 - general\\ overview.  \relax }{figure.caption.19}{}}
+\newlabel{sub@fig:second_warp_1_op_overview}{{a}{31}{Digit 1 - general\\ overview.  \relax }{figure.caption.19}{}}
+\newlabel{fig:second_warp_2_op_overview}{{10b}{31}{Digit 2 - general\\ overview.  \relax }{figure.caption.19}{}}
+\newlabel{sub@fig:second_warp_2_op_overview}{{b}{31}{Digit 2 - general\\ overview.  \relax }{figure.caption.19}{}}
+\newlabel{fig:second_warp_3_op_overview}{{10c}{31}{Digit 3 - general\\ overview.  \relax }{figure.caption.19}{}}
+\newlabel{sub@fig:second_warp_3_op_overview}{{c}{31}{Digit 3 - general\\ overview.  \relax }{figure.caption.19}{}}
+\newlabel{fig:second_warp_2_seed_op_overview}{{10d}{31}{Digit 2 - general (seed) overview.  \relax }{figure.caption.19}{}}
+\newlabel{sub@fig:second_warp_2_seed_op_overview}{{d}{31}{Digit 2 - general (seed) overview.  \relax }{figure.caption.19}{}}
+\newlabel{fig:second_warp_3_seed_op_overview}{{10e}{32}{Digit 3 - general (seed) overview.  \relax }{figure.caption.20}{}}
+\newlabel{sub@fig:second_warp_3_seed_op_overview}{{e}{32}{Digit 3 - general (seed) overview.  \relax }{figure.caption.20}{}}
+\newlabel{fig:second_warp_2_op_msr_msd_overview}{{10f}{32}{Digit 2 - case 2 overview.  \relax }{figure.caption.20}{}}
+\newlabel{sub@fig:second_warp_2_op_msr_msd_overview}{{f}{32}{Digit 2 - case 2 overview.  \relax }{figure.caption.20}{}}
+\newlabel{fig:second_warp_2_seed_op_msr_msd_overview}{{10g}{32}{Digit 2 - case 2 (seed) overview.  \relax }{figure.caption.20}{}}
+\newlabel{sub@fig:second_warp_2_seed_op_msr_msd_overview}{{g}{32}{Digit 2 - case 2 (seed) overview.  \relax }{figure.caption.20}{}}
+\newlabel{fig:second_warp_3_op_msr_msd_overview}{{10h}{32}{Digit 3 - case 3 overview.  \relax }{figure.caption.20}{}}
+\newlabel{sub@fig:second_warp_3_op_msr_msd_overview}{{h}{32}{Digit 3 - case 3 overview.  \relax }{figure.caption.20}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  The {{\tt  Second\_Warp}} gadget overviews.\relax }}{32}{figure.caption.20}}
+\newlabel{fig:second_warp_gadgets_overviews}{{10}{32}{The {\secondwarp } gadget overviews.\relax }{figure.caption.20}{}}
+\newlabel{fig:post_warp_1_op}{{11a}{34}{Digit 1 - general.  \relax }{figure.caption.21}{}}
+\newlabel{sub@fig:post_warp_1_op}{{a}{34}{Digit 1 - general.  \relax }{figure.caption.21}{}}
+\newlabel{fig:post_warp_1_op_overview}{{11b}{34}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op}.  \relax }{figure.caption.21}{}}
+\newlabel{sub@fig:post_warp_1_op_overview}{{b}{34}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op}.  \relax }{figure.caption.21}{}}
+\newlabel{fig:post_warp_2or3_op}{{11c}{34}{Digit 2 \& 3 - general.  \relax }{figure.caption.21}{}}
+\newlabel{sub@fig:post_warp_2or3_op}{{c}{34}{Digit 2 \& 3 - general.  \relax }{figure.caption.21}{}}
+\newlabel{fig:post_warp_2_op_overview}{{11d}{34}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.21}{}}
+\newlabel{sub@fig:post_warp_2_op_overview}{{d}{34}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.21}{}}
+\newlabel{fig:post_warp_2_seed_op_overview}{{11e}{35}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
+\newlabel{sub@fig:post_warp_2_seed_op_overview}{{e}{35}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
+\newlabel{fig:post_warp_3_op_overview}{{11f}{35}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
+\newlabel{sub@fig:post_warp_3_op_overview}{{f}{35}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
+\newlabel{fig:post_warp_3_seed_op_overview}{{11g}{35}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
+\newlabel{sub@fig:post_warp_3_seed_op_overview}{{g}{35}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
+\newlabel{fig:post_warp_1_op_msr_msd}{{11h}{35}{Digit 1 - case 1.  \relax }{figure.caption.22}{}}
+\newlabel{sub@fig:post_warp_1_op_msr_msd}{{h}{35}{Digit 1 - case 1.  \relax }{figure.caption.22}{}}
+\newlabel{fig:post_warp_1_op_msr_msd_overview}{{11i}{36}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op_msr_msd}.  \relax }{figure.caption.23}{}}
+\newlabel{sub@fig:post_warp_1_op_msr_msd_overview}{{i}{36}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op_msr_msd}.  \relax }{figure.caption.23}{}}
+\newlabel{fig:post_warp_1_op_msr}{{11j}{36}{Digit 1 - case 2.  \relax }{figure.caption.23}{}}
+\newlabel{sub@fig:post_warp_1_op_msr}{{j}{36}{Digit 1 - case 2.  \relax }{figure.caption.23}{}}
+\newlabel{fig:post_warp_1_op_msr_overview}{{11k}{36}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op_msr}.  \relax }{figure.caption.23}{}}
+\newlabel{sub@fig:post_warp_1_op_msr_overview}{{k}{36}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_1_op_msr}.  \relax }{figure.caption.23}{}}
+\newlabel{fig:post_warp_2_op_msr_msd}{{11l}{36}{Digit 2 - case 2.  \relax }{figure.caption.23}{}}
+\newlabel{sub@fig:post_warp_2_op_msr_msd}{{l}{36}{Digit 2 - case 2.  \relax }{figure.caption.23}{}}
+\newlabel{fig:post_warp_2_op_msr_msd_overview}{{11m}{37}{Digit 2 - case 2\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2_op_msr_msd}.  \relax }{figure.caption.24}{}}
+\newlabel{sub@fig:post_warp_2_op_msr_msd_overview}{{m}{37}{Digit 2 - case 2\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2_op_msr_msd}.  \relax }{figure.caption.24}{}}
+\newlabel{fig:post_warp_2_seed_op_msr_msd_overview}{{11n}{37}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2_op_msr_msd}.  \relax }{figure.caption.24}{}}
+\newlabel{sub@fig:post_warp_2_seed_op_msr_msd_overview}{{n}{37}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2_op_msr_msd}.  \relax }{figure.caption.24}{}}
+\newlabel{fig:post_warp_3_op_msr_msd_overview}{{11o}{37}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.24}{}}
+\newlabel{sub@fig:post_warp_3_op_msr_msd_overview}{{o}{37}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.24}{}}
+\newlabel{fig:post_warp_3_seed_op_msr_msd_overview}{{11p}{37}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.24}{}}
+\newlabel{sub@fig:post_warp_3_seed_op_msr_msd_overview}{{p}{37}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  The {{\tt  Post\_Warp}} gadgets.\relax }}{37}{figure.caption.24}}
+\newlabel{fig:post_warp_gadgets}{{11}{37}{The {\postwarp } gadgets.\relax }{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.3} {\tt  Counter\_Write}}{38}{subsubsection.2.5.3}}
+\newlabel{fig:counter_write_0}{{12a}{39}{{\tt Counter\_Write\_0}  \relax }{figure.caption.25}{}}
+\newlabel{sub@fig:counter_write_0}{{a}{39}{{\tt Counter\_Write\_0}  \relax }{figure.caption.25}{}}
+\newlabel{fig:counter_write_1}{{12b}{39}{{\tt Counter\_Write\_1}  \relax }{figure.caption.25}{}}
+\newlabel{sub@fig:counter_write_1}{{b}{39}{{\tt Counter\_Write\_1}  \relax }{figure.caption.25}{}}
+\newlabel{fig:counter_write_1_op}{{12c}{39}{Digit 1 - general\\ overview.  \relax }{figure.caption.25}{}}
+\newlabel{sub@fig:counter_write_1_op}{{c}{39}{Digit 1 - general\\ overview.  \relax }{figure.caption.25}{}}
+\newlabel{fig:counter_write_1_seed_op}{{12d}{39}{Digit 1 - general (seed) overview.  \relax }{figure.caption.25}{}}
+\newlabel{sub@fig:counter_write_1_seed_op}{{d}{39}{Digit 1 - general (seed) overview.  \relax }{figure.caption.25}{}}
+\newlabel{fig:counter_write_2_op}{{12e}{40}{Digit 2 - general\\ overview.  \relax }{figure.caption.26}{}}
+\newlabel{sub@fig:counter_write_2_op}{{e}{40}{Digit 2 - general\\ overview.  \relax }{figure.caption.26}{}}
+\newlabel{fig:counter_write_2_seed_op}{{12f}{40}{Digit 2 - general (seed) overview.  \relax }{figure.caption.26}{}}
+\newlabel{sub@fig:counter_write_2_seed_op}{{f}{40}{Digit 2 - general (seed) overview.  \relax }{figure.caption.26}{}}
+\newlabel{fig:counter_write_3_op}{{12g}{40}{Digit 3 - general\\ overview.  \relax }{figure.caption.26}{}}
+\newlabel{sub@fig:counter_write_3_op}{{g}{40}{Digit 3 - general\\ overview.  \relax }{figure.caption.26}{}}
+\newlabel{fig:counter_write_3_seed_op}{{12h}{40}{Digit 3 - general (seed) overview.  \relax }{figure.caption.26}{}}
+\newlabel{sub@fig:counter_write_3_seed_op}{{h}{40}{Digit 3 - general (seed) overview.  \relax }{figure.caption.26}{}}
+\newlabel{fig:counter_write_1_op_msr_msd}{{12i}{41}{Digit 1 - case 1.  \relax }{figure.caption.27}{}}
+\newlabel{sub@fig:counter_write_1_op_msr_msd}{{i}{41}{Digit 1 - case 1.  \relax }{figure.caption.27}{}}
+\newlabel{fig:counter_write_1_op_seed_msr_msd}{{12j}{41}{Digit 1 - case 1 (seed).  \relax }{figure.caption.27}{}}
+\newlabel{sub@fig:counter_write_1_op_seed_msr_msd}{{j}{41}{Digit 1 - case 1 (seed).  \relax }{figure.caption.27}{}}
+\newlabel{fig:counter_write_1_op_msr}{{12k}{41}{Digit 1 - case 2.  \relax }{figure.caption.27}{}}
+\newlabel{sub@fig:counter_write_1_op_msr}{{k}{41}{Digit 1 - case 2.  \relax }{figure.caption.27}{}}
+\newlabel{fig:counter_write_1_op_seed_msr}{{12l}{41}{Digit 1 - case 2 (seed).  \relax }{figure.caption.27}{}}
+\newlabel{sub@fig:counter_write_1_op_seed_msr}{{l}{41}{Digit 1 - case 2 (seed).  \relax }{figure.caption.27}{}}
+\newlabel{fig:counter_write_2_op_msr_msd}{{12m}{42}{Digit 2 - case 2.  \relax }{figure.caption.28}{}}
+\newlabel{sub@fig:counter_write_2_op_msr_msd}{{m}{42}{Digit 2 - case 2.  \relax }{figure.caption.28}{}}
+\newlabel{fig:counter_write_2_op_seed_msr_msd}{{12n}{42}{Digit 2 - case 2 (seed).  \relax }{figure.caption.28}{}}
+\newlabel{sub@fig:counter_write_2_op_seed_msr_msd}{{n}{42}{Digit 2 - case 2 (seed).  \relax }{figure.caption.28}{}}
+\newlabel{fig:counter_write_3_op_msr_msd}{{12o}{42}{Digit 3 - case 3.  \relax }{figure.caption.28}{}}
+\newlabel{sub@fig:counter_write_3_op_msr_msd}{{o}{42}{Digit 3 - case 3.  \relax }{figure.caption.28}{}}
+\newlabel{fig:counter_write_3_op_seed_msr_msd}{{12p}{42}{Digit 3 - case 3 (seed).  \relax }{figure.caption.28}{}}
+\newlabel{sub@fig:counter_write_3_op_seed_msr_msd}{{p}{42}{Digit 3 - case 3 (seed).  \relax }{figure.caption.28}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  The {{\tt  Counter\_Write}} gadgets.\relax }}{42}{figure.caption.28}}
+\newlabel{fig:counter_write}{{12}{42}{The {\cwrite } gadgets.\relax }{figure.caption.28}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.4}{\tt  Digit\_Top}}{43}{subsubsection.2.5.4}}
+\newlabel{fig:topper_gen}{{13a}{43}{General topper\relax }{figure.caption.29}{}}
+\newlabel{sub@fig:topper_gen}{{a}{43}{General topper\relax }{figure.caption.29}{}}
+\newlabel{fig:topper_case1}{{13b}{43}{Case 1 -- topper\relax }{figure.caption.29}{}}
+\newlabel{sub@fig:topper_case1}{{b}{43}{Case 1 -- topper\relax }{figure.caption.29}{}}
+\newlabel{fig:topper_case2}{{13c}{43}{Case 2 -- topper\relax }{figure.caption.29}{}}
+\newlabel{sub@fig:topper_case2}{{c}{43}{Case 2 -- topper\relax }{figure.caption.29}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  Topper micro-gadgets \relax }}{43}{figure.caption.29}}
+\newlabel{fig:topper_microgadgets}{{13}{43}{Topper micro-gadgets \relax }{figure.caption.29}{}}
+\newlabel{fig:digit_top_general}{{14a}{46}{Digits 1, 2, \& 3 - general.  \relax }{figure.caption.30}{}}
+\newlabel{sub@fig:digit_top_general}{{a}{46}{Digits 1, 2, \& 3 - general.  \relax }{figure.caption.30}{}}
+\newlabel{fig:digit_top_1_op_overview}{{14b}{46}{Digit 1 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
+\newlabel{sub@fig:digit_top_1_op_overview}{{b}{46}{Digit 1 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
+\newlabel{fig:digit_top_1_seed_op_overview}{{14c}{46}{Digit 1 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
+\newlabel{sub@fig:digit_top_1_seed_op_overview}{{c}{46}{Digit 1 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
+\newlabel{fig:digit_top_2_op_overview}{{14d}{46}{Digit 2 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
+\newlabel{sub@fig:digit_top_2_op_overview}{{d}{46}{Digit 2 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.30}{}}
+\newlabel{fig:digit_top_2_seed_op_overview}{{14e}{47}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
+\newlabel{sub@fig:digit_top_2_seed_op_overview}{{e}{47}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
+\newlabel{fig:digit_top_3_op_overview}{{14f}{47}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
+\newlabel{sub@fig:digit_top_3_op_overview}{{f}{47}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
+\newlabel{fig:digit_top_3_seed_op_overview}{{14g}{47}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
+\newlabel{sub@fig:digit_top_3_seed_op_overview}{{g}{47}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_general}.  \relax }{figure.caption.31}{}}
+\newlabel{fig:digit_top_1_op_msr_msd}{{14h}{47}{Digit 1 - case 1.  \relax }{figure.caption.31}{}}
+\newlabel{sub@fig:digit_top_1_op_msr_msd}{{h}{47}{Digit 1 - case 1.  \relax }{figure.caption.31}{}}
+\newlabel{fig:digit_top_1_op_msr_msd_overview}{{14i}{48}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr_msd}.  \relax }{figure.caption.32}{}}
+\newlabel{sub@fig:digit_top_1_op_msr_msd_overview}{{i}{48}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr_msd}.  \relax }{figure.caption.32}{}}
+\newlabel{fig:digit_top_1_seed_op_msr_msd_overview}{{14j}{48}{Digit 1 - case 1 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr_msd}.  \relax }{figure.caption.32}{}}
+\newlabel{sub@fig:digit_top_1_seed_op_msr_msd_overview}{{j}{48}{Digit 1 - case 1 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr_msd}.  \relax }{figure.caption.32}{}}
+\newlabel{fig:digit_top_1_op_msr}{{14k}{48}{Digit 1 - case 2.  \relax }{figure.caption.32}{}}
+\newlabel{sub@fig:digit_top_1_op_msr}{{k}{48}{Digit 1 - case 2.  \relax }{figure.caption.32}{}}
+\newlabel{fig:digit_top_1_op_msr_overview}{{14l}{48}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr}.  \relax }{figure.caption.32}{}}
+\newlabel{sub@fig:digit_top_1_op_msr_overview}{{l}{48}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr}.  \relax }{figure.caption.32}{}}
+\newlabel{fig:digit_top_1_seed_op_msr_overview}{{14m}{49}{Digit 1 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr}.  \relax }{figure.caption.33}{}}
+\newlabel{sub@fig:digit_top_1_seed_op_msr_overview}{{m}{49}{Digit 1 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_1_op_msr}.  \relax }{figure.caption.33}{}}
+\newlabel{fig:digit_top_2_op_msr_msd}{{14n}{49}{Digit 2 - case 2.  \relax }{figure.caption.33}{}}
+\newlabel{sub@fig:digit_top_2_op_msr_msd}{{n}{49}{Digit 2 - case 2.  \relax }{figure.caption.33}{}}
+\newlabel{fig:digit_top_2_op_msr_msd_overview}{{14o}{49}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_2_op_msr_msd}.  \relax }{figure.caption.33}{}}
+\newlabel{sub@fig:digit_top_2_op_msr_msd_overview}{{o}{49}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_2_op_msr_msd}.  \relax }{figure.caption.33}{}}
+\newlabel{fig:digit_top_2_seed_op_msr_msd_overview}{{14p}{49}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_2_op_msr_msd}.  \relax }{figure.caption.33}{}}
+\newlabel{sub@fig:digit_top_2_seed_op_msr_msd_overview}{{p}{49}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_2_op_msr_msd}.  \relax }{figure.caption.33}{}}
+\newlabel{fig:digit_top_3_op_msr_msd}{{14q}{50}{Digit 3 - case 3.  \relax }{figure.caption.34}{}}
+\newlabel{sub@fig:digit_top_3_op_msr_msd}{{q}{50}{Digit 3 - case 3.  \relax }{figure.caption.34}{}}
+\newlabel{fig:digit_top_3_op_msr_msd_overview}{{14r}{50}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_3_op_msr_msd}.  \relax }{figure.caption.34}{}}
+\newlabel{sub@fig:digit_top_3_op_msr_msd_overview}{{r}{50}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_3_op_msr_msd}.  \relax }{figure.caption.34}{}}
+\newlabel{fig:digit_top_3_seed_op_msr_msd_overview}{{14s}{50}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_3_op_msr_msd}.  \relax }{figure.caption.34}{}}
+\newlabel{sub@fig:digit_top_3_seed_op_msr_msd_overview}{{s}{50}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_3_op_msr_msd}.  \relax }{figure.caption.34}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  The {\tt  Digit\_Top} gadgets.\relax }}{50}{figure.caption.34}}
+\newlabel{fig:digit_tops}{{14}{50}{The {\tt Digit\_Top} gadgets.\relax }{figure.caption.34}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.5} {\tt  Return\_Path}}{51}{subsubsection.2.5.5}}
+\newlabel{fig:return_path_1_op}{{15a}{52}{Digit 1 - general.  \relax }{figure.caption.35}{}}
+\newlabel{sub@fig:return_path_1_op}{{a}{52}{Digit 1 - general.  \relax }{figure.caption.35}{}}
+\newlabel{fig:return_path_1_op_overview}{{15b}{52}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1_op}.  \relax }{figure.caption.35}{}}
+\newlabel{sub@fig:return_path_1_op_overview}{{b}{52}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1_op}.  \relax }{figure.caption.35}{}}
+\newlabel{fig:return_path_1_seed_op_overview}{{15c}{52}{Digit 1 - general (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.35}{}}
+\newlabel{sub@fig:return_path_1_seed_op_overview}{{c}{52}{Digit 1 - general (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.35}{}}
+\newlabel{fig:return_path_2_op-or-seed}{{15d}{52}{Digit 2 - general.  \relax }{figure.caption.35}{}}
+\newlabel{sub@fig:return_path_2_op-or-seed}{{d}{52}{Digit 2 - general.  \relax }{figure.caption.35}{}}
+\newlabel{fig:return_path_2_op_overview}{{15e}{53}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_2_op-or-seed}.  \relax }{figure.caption.36}{}}
+\newlabel{sub@fig:return_path_2_op_overview}{{e}{53}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_2_op-or-seed}.  \relax }{figure.caption.36}{}}
+\newlabel{fig:return_path_2_seed_op_overview}{{15f}{53}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_2_op-or-seed}.  \relax }{figure.caption.36}{}}
+\newlabel{sub@fig:return_path_2_seed_op_overview}{{f}{53}{Digit 2 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_2_op-or-seed}.  \relax }{figure.caption.36}{}}
+\newlabel{fig:return_path_3}{{15g}{53}{Digit 3 - general.  \relax }{figure.caption.36}{}}
+\newlabel{sub@fig:return_path_3}{{g}{53}{Digit 3 - general.  \relax }{figure.caption.36}{}}
+\newlabel{fig:return_path_3_op_overview}{{15h}{53}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.36}{}}
+\newlabel{sub@fig:return_path_3_op_overview}{{h}{53}{Digit 3 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.36}{}}
+\newlabel{fig:return_path_3_seed_op_overview}{{15i}{54}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.37}{}}
+\newlabel{sub@fig:return_path_3_seed_op_overview}{{i}{54}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.37}{}}
+\newlabel{fig:return_path_1_op_msr}{{15j}{54}{Digit 1 - case 2.  \relax }{figure.caption.37}{}}
+\newlabel{sub@fig:return_path_1_op_msr}{{j}{54}{Digit 1 - case 2.  \relax }{figure.caption.37}{}}
+\newlabel{fig:return_path_1_op_msr_overview}{{15k}{54}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1_op_msr}.  \relax }{figure.caption.37}{}}
+\newlabel{sub@fig:return_path_1_op_msr_overview}{{k}{54}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1_op_msr}.  \relax }{figure.caption.37}{}}
+\newlabel{fig:return_path_1_seed_op_msr_overview}{{15l}{54}{Digit 1 - case 2 (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.37}{}}
+\newlabel{sub@fig:return_path_1_seed_op_msr_overview}{{l}{54}{Digit 1 - case 2 (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.37}{}}
+\newlabel{fig:return_path_1-or-2_op_msr_msd}{{15m}{55}{Digit 1 - case 1,\\Digit 2 case 2.  \relax }{figure.caption.38}{}}
+\newlabel{sub@fig:return_path_1-or-2_op_msr_msd}{{m}{55}{Digit 1 - case 1,\\Digit 2 case 2.  \relax }{figure.caption.38}{}}
+\newlabel{fig:return_path_1_op_msr_msd_overview}{{15n}{55}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
+\newlabel{sub@fig:return_path_1_op_msr_msd_overview}{{n}{55}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
+\newlabel{fig:return_path_1_seed_op_msr_msd_overview}{{15o}{55}{Digit 1 - case 1 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
+\newlabel{sub@fig:return_path_1_seed_op_msr_msd_overview}{{o}{55}{Digit 1 - case 1 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
+\newlabel{fig:return_path_2_op_msr_msd_overview}{{15p}{55}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
+\newlabel{sub@fig:return_path_2_op_msr_msd_overview}{{p}{55}{Digit 2 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1-or-2_op_msr_msd}.  \relax }{figure.caption.38}{}}
+\newlabel{fig:return_path_3_op_msr_msd_overview}{{15q}{56}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.39}{}}
+\newlabel{sub@fig:return_path_3_op_msr_msd_overview}{{q}{56}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.39}{}}
+\newlabel{fig:return_path_3_seed_op_msr_msd_overview}{{15r}{56}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.39}{}}
+\newlabel{sub@fig:return_path_3_seed_op_msr_msd_overview}{{r}{56}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.39}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces  The {\tt  Return\_Path} gadgets.\relax }}{56}{figure.caption.39}}
+\newlabel{fig:return_path_gadgets}{{15}{56}{The {\tt Return\_Path} gadgets.\relax }{figure.caption.39}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.6} {\tt  Next\_Read}}{57}{subsubsection.2.5.6}}
+\newlabel{fig:next_read_1-or-2_op}{{16a}{58}{Digit 1 \& 2 - general.  \relax }{figure.caption.40}{}}
+\newlabel{sub@fig:next_read_1-or-2_op}{{a}{58}{Digit 1 \& 2 - general.  \relax }{figure.caption.40}{}}
+\newlabel{fig:next_read_1_op_overview}{{16b}{58}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op}.  \relax }{figure.caption.40}{}}
+\newlabel{sub@fig:next_read_1_op_overview}{{b}{58}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op}.  \relax }{figure.caption.40}{}}
+\newlabel{fig:next_read_1_seed_op_overview}{{16c}{58}{Digit 1 - general (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.40}{}}
+\newlabel{sub@fig:next_read_1_seed_op_overview}{{c}{58}{Digit 1 - general (seed) overview. The black tile in this figure is a single tile gadget used only in the initial value.  \relax }{figure.caption.40}{}}
+\newlabel{fig:next_read_2_op_overview}{{16d}{58}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op}.  \relax }{figure.caption.40}{}}
+\newlabel{sub@fig:next_read_2_op_overview}{{d}{58}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op}.  \relax }{figure.caption.40}{}}
+\newlabel{fig:next_read_3_op}{{16e}{59}{Digit 3 - general.  \relax }{figure.caption.41}{}}
+\newlabel{sub@fig:next_read_3_op}{{e}{59}{Digit 3 - general.  \relax }{figure.caption.41}{}}
+\newlabel{fig:next_read_3_op_overview}{{16f}{59}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op}.  \relax }{figure.caption.41}{}}
+\newlabel{sub@fig:next_read_3_op_overview}{{f}{59}{Digit 3 - general\\ overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op}.  \relax }{figure.caption.41}{}}
+\newlabel{fig:next_read_2_seed_op}{{16g}{59}{Digit 2 - seed.  \relax }{figure.caption.41}{}}
+\newlabel{sub@fig:next_read_2_seed_op}{{g}{59}{Digit 2 - seed.  \relax }{figure.caption.41}{}}
+\newlabel{fig:next_read_2_seed_op_overview}{{16h}{59}{Digit 2 - seed overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_2_seed_op}.  \relax }{figure.caption.41}{}}
+\newlabel{sub@fig:next_read_2_seed_op_overview}{{h}{59}{Digit 2 - seed overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_2_seed_op}.  \relax }{figure.caption.41}{}}
+\newlabel{fig:next_read_3_seed_op}{{16i}{60}{Digit 3 - seed.  \relax }{figure.caption.42}{}}
+\newlabel{sub@fig:next_read_3_seed_op}{{i}{60}{Digit 3 - seed.  \relax }{figure.caption.42}{}}
+\newlabel{fig:next_read_3_seed_op_overview}{{16j}{60}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_seed_op}.  \relax }{figure.caption.42}{}}
+\newlabel{sub@fig:next_read_3_seed_op_overview}{{j}{60}{Digit 3 - general (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_seed_op}.  \relax }{figure.caption.42}{}}
+\newlabel{fig:next_read_1-or-2_op_msr_msd}{{16k}{60}{Digit 1 - case 1,\\Digit 2 - case 2.  \relax }{figure.caption.42}{}}
+\newlabel{sub@fig:next_read_1-or-2_op_msr_msd}{{k}{60}{Digit 1 - case 1,\\Digit 2 - case 2.  \relax }{figure.caption.42}{}}
+\newlabel{fig:next_read_1_op_msr_msd_overview}{{16l}{60}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.42}{}}
+\newlabel{sub@fig:next_read_1_op_msr_msd_overview}{{l}{60}{Digit 1 - case 1 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.42}{}}
+\newlabel{fig:next_read_2_op_msr_msd_overview}{{16m}{61}{Digit 2 - case 2\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.43}{}}
+\newlabel{sub@fig:next_read_2_op_msr_msd_overview}{{m}{61}{Digit 2 - case 2\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.43}{}}
+\newlabel{fig:next_read_2_seed_op_msr_msd_overview}{{16n}{61}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.43}{}}
+\newlabel{sub@fig:next_read_2_seed_op_msr_msd_overview}{{n}{61}{Digit 2 - case 2 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op_msr_msd}.  \relax }{figure.caption.43}{}}
+\newlabel{fig:next_read_1_op_msr}{{16o}{61}{Digit 1 - case 2.  \relax }{figure.caption.43}{}}
+\newlabel{sub@fig:next_read_1_op_msr}{{o}{61}{Digit 1 - case 2.  \relax }{figure.caption.43}{}}
+\newlabel{fig:next_read_1_op_msr_overview}{{16p}{61}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1_op_msr}.  \relax }{figure.caption.43}{}}
+\newlabel{sub@fig:next_read_1_op_msr_overview}{{p}{61}{Digit 1 - case 2 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1_op_msr}.  \relax }{figure.caption.43}{}}
+\newlabel{fig:next_read_3_op-or-seed_msr_msd}{{16q}{62}{Digit 3 - case 3.  \relax }{figure.caption.44}{}}
+\newlabel{sub@fig:next_read_3_op-or-seed_msr_msd}{{q}{62}{Digit 3 - case 3.  \relax }{figure.caption.44}{}}
+\newlabel{fig:next_read_3_op_msr_msd_overview}{{16r}{62}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op-or-seed_msr_msd}.  \relax }{figure.caption.44}{}}
+\newlabel{sub@fig:next_read_3_op_msr_msd_overview}{{r}{62}{Digit 3 - case 3 overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op-or-seed_msr_msd}.  \relax }{figure.caption.44}{}}
+\newlabel{fig:next_read_3_seed_op_msr_msd_overview}{{16s}{62}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op-or-seed_msr_msd}.  \relax }{figure.caption.44}{}}
+\newlabel{sub@fig:next_read_3_seed_op_msr_msd_overview}{{s}{62}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_3_op-or-seed_msr_msd}.  \relax }{figure.caption.44}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces  The {{\tt  Next\_Read}} gadgets.\relax }}{62}{figure.caption.44}}
+\newlabel{fig:next_read_gadgets}{{16}{62}{The {\nextread } gadgets.\relax }{figure.caption.44}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.7}{\tt  Cross\_Next\_Row}}{63}{subsubsection.2.5.7}}
+\newlabel{fig:cross_next_row}{{17a}{64}{General.  \relax }{figure.caption.45}{}}
+\newlabel{sub@fig:cross_next_row}{{a}{64}{General.  \relax }{figure.caption.45}{}}
+\newlabel{fig:cross_next_row_overview}{{17b}{64}{General overview. The black tiles in this figure is the gadget shown in subfigure~\subref {fig:cross_next_row}.  \relax }{figure.caption.45}{}}
+\newlabel{sub@fig:cross_next_row_overview}{{b}{64}{General overview. The black tiles in this figure is the gadget shown in subfigure~\subref {fig:cross_next_row}.  \relax }{figure.caption.45}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces  The {\tt  Cross\_Next\_Row} gadget.\relax }}{64}{figure.caption.45}}
+\newlabel{fig:crosser_gadgets}{{17}{64}{The {\tt Cross\_Next\_Row} gadget.\relax }{figure.caption.45}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Overviews}{65}{subsection.2.6}}
+\newlabel{fig:full_overview_case3_colored}{{18a}{65}{Full overview case 3\relax }{figure.caption.46}{}}
+\newlabel{sub@fig:full_overview_case3_colored}{{a}{65}{Full overview case 3\relax }{figure.caption.46}{}}
+\newlabel{fig:full_overview_case2_colored}{{18b}{65}{Full overview case 2\relax }{figure.caption.46}{}}
+\newlabel{sub@fig:full_overview_case2_colored}{{b}{65}{Full overview case 2\relax }{figure.caption.46}{}}
+\newlabel{fig:full_overview_case1_colored}{{18c}{65}{Full overview case 1\relax }{figure.caption.46}{}}
+\newlabel{sub@fig:full_overview_case1_colored}{{c}{65}{Full overview case 1\relax }{figure.caption.46}{}}

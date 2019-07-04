@@ -1,5 +1,5 @@
 
-\subsubsection{Cross over gadget}
+\subsubsection{\crossnextrow}
 
 The idea this gadget is to assemble after reading the MSD, routing the counter back to the start of the
 next row, in position for the counter to begin reading the first digit.
@@ -11,8 +11,8 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
 \begin{itemize}
     \item Create
     $\begin{aligned}[t]
-        {\tt Cross\_Next\_Row}(&\left\langle {\tt CrossNextRow},            \inc \right\rangle,
-                                \left\langle {\tt CounterRead},        1, \lambda, \inc \right\rangle \;)
+        \crossnextrow(&\left\langle {\tt CrossNextRow},            \inc \right\rangle,
+                       \left\langle {\tt CounterRead},        1, \lambda, \inc \right\rangle \;)
     \end{aligned}$\\from the gadget shown in Figure~\ref{fig:cross_next_row}.
 \end{itemize}
 

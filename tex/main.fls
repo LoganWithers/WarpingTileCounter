@@ -159,6 +159,7 @@ INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT c:/texlive/2018/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
+INPUT c:/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/counter.tex
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/counter.tex
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/counter_read_start_general_case3_middle_level.eps
@@ -198,7 +199,6 @@ INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/counter_rea
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/counter_read_digit3_return_read_digit1_general_case3_middle_level-eps-converted-to.pdf
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/counter_read_digit3_return_read_digit1_general_case3_middle_level-eps-converted-to.pdf
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/counter_read_digit3_return_read_digit1_general_case3_middle_level-eps-converted-to.pdf
-INPUT c:/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/digits_normal_counter.eps
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/digits_normal_counter.eps
 INPUT c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/digits_normal_counter.eps

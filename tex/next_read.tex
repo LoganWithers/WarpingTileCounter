@@ -1,14 +1,17 @@
-\subsubsection{ The Next Read gadgets }
+\subsubsection{ \nextread }
 
-Once the {\returnpath} gadget has assembled, the counter has
-a few options to choose from. The gadget that controls what happens after a digit is
-written is the {\nextread} gadget. If there is a {\tt msr} and {\tt msd} signal in
-the input, this gadget knows that the most significant digit was just read and will output a
+Once the {\returnpath} gadget has assembled, the counter has a few options to choose from.
+%
+The gadget that controls what happens after a digit is written is the {\nextread} gadget.
+%
+If there is a {\tt msr} and {\tt msd} signal in the input, this gadget knows that the most significant digit was just read and will output a
 glue for the {\tt Cross\_Next\_Row} gadget to assemble so that the counter crosses
-back to the right and begins reading the first digit in the next row. Otherwise
-(for regular digits -- not in the MSR), this gadget will assemble the second half of
-the return path, terminating at the next digit in the current row. When this happens,
-the gadget increments the digit index (unless it is already digit 3, in which case it
+back to the right and begins reading the first digit in the next row.
+%
+Otherwise (for regular digits not in the MSR), this gadget will assemble the second half of
+the return path, terminating at the next digit in the current row.
+%
+When this happens, the gadget increments the digit index (unless it is already digit 3, in which case it
 resets to 1) and outputs an empty {\cread} signal to force the counter to begin reading
 the next digit.
 
