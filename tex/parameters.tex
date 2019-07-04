@@ -1,0 +1,57 @@
+\section{Parameters for the counter}
+
+...therefore, let $d = \floor*{\frac{k}{2}}$, $m = \ceil*{\left(\frac{N}{102}\right)^{\frac{1}{d}}}$,
+$l = \ceil{\log m} + 2$, $s = m^d - \floor*{\frac{N - 12l - 94}{\rowheight}}$, where $d$ is the
+number of digits per row of the counter, $m$ is the base of the counter, $l$ is the number of bits
+needed to encode each digit in binary plus 2 for indicating whether a digit is in the MSR and is the
+MSD in that region, and $s$ is the starting value of the counter in decimal.
+%
+
+
+Let $h$ be the height of the construction without any additional ``roof'' tiles.
+%
+By inspection...we see that the height of the construction without additional tiles is $\seedheight$ for the {\tt Seed} unit, plus $\rowheight$ for each incrementation of the counter,
+adding a {\tt Counter} unit row each time.
+%
+If we define $n$ as the number of {\tt Counter} unit rows, then $h = n (\rowheight) + (\seedheight)$.
+%
+So then the maximum height of the counter is $m^d (\rowheight) + \seedheight$.
+%
+Since our goal is to end with a rectangle of height $N$, we need to pick a base such that the counter can increment so many times that when it stops, it is at least $N$.
+
+\begin{lemma} $N \leq m^d (\rowheight) + \seedheight$.
+    \begin{proof}
+        \begin{flalign*}
+            N & = 102 \left( \frac{N}{102} \right) = 102 \left(\left( \frac{N}{102} \right)^{\frac{1}{d}} \right)^d
+                      \leq 102 \ceil*{\left( \frac{N}{102} \right)^{\frac{1}{d}} }^d \\
+              & = 102m^d \leq 12lm^d + 90m^d \leq 12lm^d + 90m^d + \seedheight \\
+              & = m^d (\rowheight) + \seedheight
+        \end{flalign*}
+    \end{proof}
+\end{lemma}
+
+And the mininum height is $24l + 184$.
+
+\vspace{1cm}
+
+One row of the counter might result in a final assembly that will not be tall enough but ... says that having all possible rows of the counter might result in a final assembly that is too tall.
+%
+Therefore, we must start the counter at an appropriate value to get the correct height of the final assembly.
+
+%
+The counter can start at any whole number less than $m^d$ and ends when it reaches 0 by rolling over $m^d - 1$.
+%
+This means that the number of Counter unit rows $n$, is $m^d - s$, where we have defined $s$ as the starting value of the counter.
+%
+To choose the best starting value, we find the value for $n$ that gets $h$ close to $N$ without exceeding $N$.
+%
+It follows from the equation $h = n(\rowheight) + \seedheight$, that $n = \floor*{\frac{N - 12l - 94}{\rowheight}}$.
+%
+Thus, $s = m^d - \floor*{\frac{N - 12 - 94}{\rowheight}}$.
+
+%
+...as a result of each digit requiring a width of 2 tiles, if $k$ is odd, one additional tile column must be added.
+%
+The number of filler tiles needed for the width is $k \mod 2$, and the number of filler tiles for the height is $N - 4 \mod 12l + 90$.
+%
+

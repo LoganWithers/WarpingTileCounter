@@ -1,34 +1,31 @@
-\subsection{Tile set}
+\section{Tile set}
 \label{gadgets}
 
 
 \newcommand{\warpunit}{{\tt Warp\_Unit}}
+
+\newcommand{\cread}{{\tt Counter\_Read}}
 \newcommand{\prewarp}{{\tt Pre\_Warp}}
 \newcommand{\firstwarp}{{\tt First\_Warp}}
 \newcommand{\warpbridge}{{\tt Warp\_Bridge}}
 \newcommand{\secondwarp}{{\tt Second\_Warp}}
 \newcommand{\postwarp}{{\tt Post\_Warp}}
-
-\newcommand{\dtop}{{\tt Digit\_Top}}
 \newcommand{\cwrite}{{\tt Counter\_Write}}
-\newcommand{\cread}{{\tt Counter\_Read}}
-
-
-\newcommand{\inc}{ op}
-
-
-\newcommand{\gadgetref}{from the general gadget shown in Figure~}
-\newcommand{\mgadgetref}{from the micro-gadget shown in Figure~}
+\newcommand{\dtop}{{\tt Digit\_Top}}
 \newcommand{\returnpath}{{\tt Return\_Path}}
 \newcommand{\nextread}{{\tt Next\_Read}}
 \newcommand{\crossnextrow}{{\tt Cross\_Next\_Row}}
+
+
+
+\newcommand{\inc}{ op}
 
 % todo: fix wording
 When describing a special case, i.e. ``digit $x$ -- case $y$'', whatever follows
 will only apply to the MSR (due to each case only affecting the MSR.)
 
+\subsection{ Gadgets }
 \subsubsection{ Line Gadgets }
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}[t]{0.15\textwidth}
@@ -47,9 +44,7 @@ will only apply to the MSR (due to each case only affecting the MSR.)
 \end{figure}
 
 We will use the notation {\tt NorthN\_Line} and {\tt SouthN\_Line} where {\tt N} corresponds to the length of a specific line gadget.
-\input{initial_value}
 
-\subsection{ Tile set }
 \input{counter_read}
 \input{warping}
 \input{counter_write}
@@ -57,6 +52,8 @@ We will use the notation {\tt NorthN\_Line} and {\tt SouthN\_Line} where {\tt N}
 \input{return_path}
 \input{next_read}
 \input{cross_next_row}
+
+\input{initial_value}
 
 \subsection{Overviews}
 

@@ -1,0 +1,11 @@
+\section{Notation for gadgets and figures}
+
+\begin{flalign*}
+      \text{Let }  m & = \ceil*{\left( \frac{N}{102} \right)^{\frac{1}{d}} } \text{, base of the counter} & \\
+          \text{MSR} & = \text{ most signifcant digit region } \\
+                   s & = \text{starting value of counter}  \\
+                   d & = \ceil*{\log_m {s}} = \floor*{\frac{k}{2}},  \text{ number of digits per row }  \\
+               m^{d} & = \text{ final value of the counter} \\
+                   n & = m^{d} - s,  \text{ number of rows/ times to count} \\
+                   l & = \ceil{\log m} + 2, \text{ bits needed to encode each digit in binary, plus 2 for MSR and MSD} & \\
+\end{flalign*}
