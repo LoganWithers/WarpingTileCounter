@@ -33,45 +33,45 @@
         }
 
 
-        public IFromNorthGadgetBuilder North(string name = null) => new FromNorthGadgetBuilder(tiles, this, name);
+        public IFromNorthGadgetBuilder North(string color = "white", string name = null) => new FromNorthGadgetBuilder(tiles, this, color, name);
 
 
-        public IFromSouthGadgetBuilder South(string name = null) => new FromSouthGadgetBuilder(tiles, this, name);
+        public IFromSouthGadgetBuilder South(string color = "white", string name = null) => new FromSouthGadgetBuilder(tiles, this, color, name);
 
 
-        public IFromEastGadgetBuilder East(string name = null) => new FromEastGadgetBuilder(tiles, this, name);
+        public IFromEastGadgetBuilder East(string color = "white", string name = null) => new FromEastGadgetBuilder(tiles, this, color, name);
 
 
-        public IFromWestGadgetBuilder West(string name = null) => new FromWestGadgetBuilder(tiles, this, name);
+        public IFromWestGadgetBuilder West(string color = "white", string name = null) => new FromWestGadgetBuilder(tiles, this, color, name);
 
 
-        public IFromNorthGadgetBuilder North(int n)
+        public IFromNorthGadgetBuilder North(int n, string color = "white")
         {
             IFromNorthGadgetBuilder lastBuilder = null;
 
             for (var i = 0; i < n; i++)
             {
-                lastBuilder = North();
+                lastBuilder = North(color);
             }
 
             return lastBuilder;
         }
 
 
-        public IFromSouthGadgetBuilder South(int n)
+        public IFromSouthGadgetBuilder South(int n, string color = "white")
         {
             IFromSouthGadgetBuilder lastBuilder = null;
 
             for (var i = 0; i < n; i++)
             {
-                lastBuilder = South();
+                lastBuilder = South(color);
             }
 
             return lastBuilder;
         }
 
 
-        public IFromEastGadgetBuilder East(int n)
+        public IFromEastGadgetBuilder East(int n, string color = "white")
         {
             IFromEastGadgetBuilder lastBuilder = null;
 
@@ -84,13 +84,13 @@
         }
 
 
-        public IFromWestGadgetBuilder West(int n)
+        public IFromWestGadgetBuilder West(int n, string color = "white")
         {
             IFromWestGadgetBuilder lastBuilder = null;
 
             for (var i = 0; i < n; i++)
             {
-                lastBuilder = West();
+                lastBuilder = West(color);
             }
 
             return lastBuilder;

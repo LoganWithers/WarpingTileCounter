@@ -36,7 +36,7 @@
             while (true)
             {
                 Console.WriteLine("Enter a value for N");
-                var input = Console.ReadLine();
+                var input = "454541120";
                 bool IsExitCommand() => input == "-e" || string.IsNullOrEmpty(input);
 
                 if (int.TryParse(input, out var N))
@@ -62,7 +62,7 @@
                 }
                 if (IsExitCommand())
                 {
-                    break;
+                   break;
                 }
 
                 Error($"Error parsing {input}...");

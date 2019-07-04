@@ -10,6 +10,7 @@
 
     using Gadgets;
     using Gadgets.DigitTop;
+    using Gadgets.NextRead;
     using Gadgets.ReturnAndRead.NextDigit;
     using Gadgets.ReturnAndRead.NextRow;
     using Gadgets.Warping;
@@ -56,11 +57,12 @@
 
         public List<Tile> Generate()
         {
-            AddSeed();
-            AddCounter();
-            AddDigitTops();
-            AddReturnAndRead();
-
+            //    AddSeed();
+            //    AddCounter();
+            //    AddDigitTops();
+            //    AddReturnAndRead();
+            tiles.Add(new Tile("seed"){ South = GlueFactory.Create(Names.NextRead, 3, true)});
+            NextRead();
             return tiles;
         }
         
@@ -138,6 +140,42 @@
             }
         
         }
+
+
+        private void NextRead()
+        {
+            foreach (var op in new[] {true, false})
+            {
+                tiles.AddRange(new NextReadDigit1(L,
+                                                  GlueFactory.Create(Names.NextRead, 1, op), 
+                                                  GlueFactory.Create(Names.CounterRead, 2, op)).Tiles);
+
+                tiles.AddRange(new NextReadDigit1Case2(L,
+                                                       GlueFactory.Create(Names.NextRead, 1, op, msr: true),
+                                                       GlueFactory.Create(Names.CounterRead, 2, op)).Tiles);
+
+                tiles.AddRange(new NextReadDigit1Case1(L,
+                                                       GlueFactory.Create(Names.NextRead, 1, op, msr: true, msd: true),
+                                                       GlueFactory.Create(Names.CrossNextRow, 2, op)).Tiles);
+
+                tiles.AddRange(new NextReadDigit2(L,
+                                                  GlueFactory.Create(Names.NextRead, 2, op),
+                                                  GlueFactory.Create(Names.CounterRead, 3, op)).Tiles);
+
+                tiles.AddRange(new NextReadDigit2Case2(L,
+                                                       GlueFactory.Create(Names.NextRead, 2, op, msr: true, msd: true),
+                                                       GlueFactory.Create(Names.CrossNextRow, 3, op)).Tiles);
+
+                tiles.AddRange(new NextReadDigit3(L,
+                                                  GlueFactory.Create(Names.NextRead, 3, op),
+                                                  GlueFactory.Create(Names.CounterRead, 1, op)).Tiles);
+
+                tiles.AddRange(new NextReadDigit3Case3(L,
+                                                       GlueFactory.Create(Names.NextRead, 3, op, msr: true, msd: true),
+                                                       GlueFactory.Create(Names.CounterRead, 1, op)).Tiles);
+            }
+        }
+
 
         private void AddReturnAndRead()
         {

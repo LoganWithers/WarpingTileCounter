@@ -24,7 +24,7 @@
             Input.West = GlueFactory.Create(Names.CrossNextRow, op);
 
             Output       = Tiles.Last();
-            Output.North = GlueFactory.Create(Names.Read, 1, string.Empty, op);
+            Output.North = GlueFactory.Create(Names.CounterRead, 1, string.Empty, op);
         }
 
 

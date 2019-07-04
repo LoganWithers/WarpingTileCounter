@@ -3,31 +3,24 @@
 
     public interface IFromEastGadgetBuilder
     {
+        
+        IFromDownGadgetBuilder Down(string color = "white", string name = null);
 
-        IFromUpGadgetBuilder Up(string name = null);
+        IFromUpGadgetBuilder Up(string color = "white", string name = null);
 
+        IFromSouthGadgetBuilder South(string color = "white", string name = null);
 
-        IFromDownGadgetBuilder Down(string name = null);
+        IFromNorthGadgetBuilder North(string color = "white", string name = null);
 
-
-        IFromEastGadgetBuilder East(string name = null);
-
-
-        IFromNorthGadgetBuilder North(string name = null);
-
-
-        IFromSouthGadgetBuilder South(string name = null);
+        IFromEastGadgetBuilder East(string color = "white", string name = null);
 
 
+        IFromEastGadgetBuilder East(int n, string color = "white");
 
-        IFromEastGadgetBuilder East(int n);
+        IFromSouthGadgetBuilder South(int n, string color = "white");
 
-
-        IFromNorthGadgetBuilder North(int n);
-
-
-        IFromSouthGadgetBuilder South(int n);
-
+        IFromNorthGadgetBuilder North(int n, string color = "white");
+        
         IGadgetBuilder End();
 
     }

@@ -8,35 +8,34 @@
     public interface IGadgetBuilder
     {
 
-        IFromNorthGadgetBuilder North(string name = null);
+        IFromNorthGadgetBuilder North(string color = "white", string name = null);
 
 
-        IFromSouthGadgetBuilder South(string name = null);
+        IFromSouthGadgetBuilder South(string color = "white", string name = null);
 
 
-        IFromEastGadgetBuilder East(string name = null);
+        IFromEastGadgetBuilder East(string color = "white", string name = null);
 
 
-        IFromWestGadgetBuilder West(string name = null);
+        IFromWestGadgetBuilder West(string color = "white", string name = null);
 
 
-        IFromWestGadgetBuilder West(int numberOfTiles);
+        IFromWestGadgetBuilder West(int numberOfTiles, string color = "white");
 
 
-        IFromEastGadgetBuilder East(int numberOfTiles);
+        IFromEastGadgetBuilder East(int numberOfTiles, string color = "white");
 
 
-        IFromNorthGadgetBuilder North(int numberOfTiles);
+        IFromNorthGadgetBuilder North(int numberOfTiles, string color = "white");
 
 
-        IFromSouthGadgetBuilder South(int numberOfTiles);
+        IFromSouthGadgetBuilder South(int numberOfTiles, string color = "white");
 
 
         IGadgetBuilder StartWith(Tile tile);
 
 
         IGadgetBuilder Start();
-
 
         IGadgetBuilder SouthLine(int numberOfBits);
 
