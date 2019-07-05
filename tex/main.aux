@@ -33,23 +33,25 @@
 \newlabel{sub@fig:counter_read_digit3_general_case3_middle_level}{{d}{4}{Read digit 3 in the current row, write digit 3 in the next row.\relax }{figure.caption.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  This illustrates how a counter reads and writes a digit region, in a general sense. The counter starts in the rightmost digit region by reading the bottommost digit within that region. After reading digit 1 in the current row, the corresponding digit region in the next row be started in the next row. The counter writes the first digit in the next row, and then returns to the second digit in the current digit region. Once all the digits in the current digit region are read and written into the next row, the counter can then do one of the following: continue reading digits by moving on to the next digit region, cross back all the way to the right of the rectangle and start reading the next row, or halt.\relax }}{5}{figure.caption.3}}
 \newlabel{fig:counter_read_digit_return_read_digit_general_case3}{{1}{5}{This illustrates how a counter reads and writes a digit region, in a general sense. The counter starts in the rightmost digit region by reading the bottommost digit within that region. After reading digit 1 in the current row, the corresponding digit region in the next row be started in the next row. The counter writes the first digit in the next row, and then returns to the second digit in the current digit region. Once all the digits in the current digit region are read and written into the next row, the counter can then do one of the following: continue reading digits by moving on to the next digit region, cross back all the way to the right of the rectangle and start reading the next row, or halt.\relax }{figure.caption.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1} Digit region explanation (in progress) }{5}{subsection.3.1}}
-\newlabel{fig:digits_normal_counter}{{2a}{5}{Digits in a typical counter\relax }{figure.caption.4}{}}
-\newlabel{sub@fig:digits_normal_counter}{{a}{5}{Digits in a typical counter\relax }{figure.caption.4}{}}
-\newlabel{fig:digits_digit_region_counter}{{2b}{5}{Digits in two digit regions, stacked vertically, minimizing the width. \relax }{figure.caption.4}{}}
-\newlabel{sub@fig:digits_digit_region_counter}{{b}{5}{Digits in two digit regions, stacked vertically, minimizing the width. \relax }{figure.caption.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2} Detecting the edges }{5}{subsection.3.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Digit region explanation (in progress)}{5}{subsection.3.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Digits in a typical counter vs. digits separated into digit regions.\relax }}{5}{figure.caption.4}}
+\newlabel{fig:comparison_of_digits_in_different_counters}{{2}{5}{Digits in a typical counter vs. digits separated into digit regions.\relax }{figure.caption.4}{}}
+\newlabel{fig:digits_normal_counter}{{2a}{5}{Digits in a typical counter.\relax }{figure.caption.4}{}}
+\newlabel{sub@fig:digits_normal_counter}{{a}{5}{Digits in a typical counter.\relax }{figure.caption.4}{}}
+\newlabel{fig:digits_digit_region_counter}{{2b}{5}{Digits in two digit regions, stacked vertically. Digits 1-3 are in digit region 1, and digits 4-6 are in digit region 2.\relax }{figure.caption.4}{}}
+\newlabel{sub@fig:digits_digit_region_counter}{{b}{5}{Digits in two digit regions, stacked vertically. Digits 1-3 are in digit region 1, and digits 4-6 are in digit region 2.\relax }{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Detecting the edges}{6}{subsection.3.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}Tile set}{6}{section.4}}
 \newlabel{gadgets}{{4}{6}{Tile set}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1} Gadgets }{6}{subsection.4.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1} Line Gadgets }{6}{subsubsection.4.1.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Gadgets}{6}{subsection.4.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.1}Line Gadgets}{6}{subsubsection.4.1.1}}
 \newlabel{fig:north_line}{{3a}{6}{{\tt North\_Line}\relax }{figure.caption.6}{}}
 \newlabel{sub@fig:north_line}{{a}{6}{{\tt North\_Line}\relax }{figure.caption.6}{}}
 \newlabel{fig:south_line}{{3b}{6}{{\tt South\_Line} \relax }{figure.caption.6}{}}
 \newlabel{sub@fig:south_line}{{b}{6}{{\tt South\_Line} \relax }{figure.caption.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces  {\tt  Line} gadgets\relax }}{6}{figure.caption.6}}
 \newlabel{fig:line_gadgets}{{3}{6}{{\tt Line} gadgets\relax }{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2} {\tt  Counter\_Read}}{6}{subsubsection.4.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.2}{\tt  Counter\_Read}}{6}{subsubsection.4.1.2}}
 \@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Incrementing and halting\relax }}{7}{algorithm.1}}
 \newlabel{asda}{{1}{7}{Incrementing and halting\relax }{algorithm.1}{}}
 \newlabel{fig:counter_read_0}{{4a}{8}{{\tt Counter\_Read\_0}  \relax }{figure.caption.7}{}}
@@ -72,9 +74,9 @@
 \newlabel{sub@fig:counter_read_3_op_msr_msd}{{i}{10}{Digit 3 - case 3\\ overview.  \relax }{figure.caption.9}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces  The {{\tt  Counter\_Read}} gadgets.\relax }}{10}{figure.caption.9}}
 \newlabel{fig:counter_read}{{4}{10}{The {\cread } gadgets.\relax }{figure.caption.9}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3} {\tt  Warp\_Unit}}{11}{subsubsection.4.1.3}}
-\newlabel{fig:pre_warp_general}{{5a}{12}{Digits 1, 2, \& 3 - general.  \relax }{figure.caption.10}{}}
-\newlabel{sub@fig:pre_warp_general}{{a}{12}{Digits 1, 2, \& 3 - general.  \relax }{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3}{\tt  Warp\_Unit}}{11}{subsubsection.4.1.3}}
+\newlabel{fig:pre_warp_general}{{5a}{12}{Digits 1, 2, \& 3 - general, Digit 3 - case 3  \relax }{figure.caption.10}{}}
+\newlabel{sub@fig:pre_warp_general}{{a}{12}{Digits 1, 2, \& 3 - general, Digit 3 - case 3  \relax }{figure.caption.10}{}}
 \newlabel{fig:pre_warp_1_op_overview}{{5b}{12}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.10}{}}
 \newlabel{sub@fig:pre_warp_1_op_overview}{{b}{12}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.10}{}}
 \newlabel{fig:pre_warp_2_op_overview}{{5c}{12}{Digit 2 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:pre_warp_general}.  \relax }{figure.caption.10}{}}
@@ -183,7 +185,7 @@
 \newlabel{sub@fig:post_warp_3_seed_op_msr_msd_overview}{{p}{28}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:post_warp_2or3_op}.  \relax }{figure.caption.22}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces  The {{\tt  Post\_Warp}} gadgets.\relax }}{28}{figure.caption.22}}
 \newlabel{fig:post_warp_gadgets}{{9}{28}{The {\postwarp } gadgets.\relax }{figure.caption.22}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4} {\tt  Counter\_Write}}{29}{subsubsection.4.1.4}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.4}{\tt  Counter\_Write}}{29}{subsubsection.4.1.4}}
 \newlabel{fig:counter_write_0}{{10a}{30}{{\tt Counter\_Write\_0}  \relax }{figure.caption.23}{}}
 \newlabel{sub@fig:counter_write_0}{{a}{30}{{\tt Counter\_Write\_0}  \relax }{figure.caption.23}{}}
 \newlabel{fig:counter_write_1}{{10b}{30}{{\tt Counter\_Write\_1}  \relax }{figure.caption.23}{}}
@@ -267,7 +269,7 @@
 \newlabel{sub@fig:digit_top_3_seed_op_msr_msd_overview}{{s}{41}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:digit_top_3_op_msr_msd}.  \relax }{figure.caption.32}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  The {\tt  Digit\_Top} gadgets.\relax }}{41}{figure.caption.32}}
 \newlabel{fig:digit_tops}{{12}{41}{The {\tt Digit\_Top} gadgets.\relax }{figure.caption.32}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.6} {\tt  Return\_Path}}{42}{subsubsection.4.1.6}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.6}{\tt  Return\_Path}}{42}{subsubsection.4.1.6}}
 \newlabel{fig:return_path_1_op}{{13a}{43}{Digit 1 - general.  \relax }{figure.caption.33}{}}
 \newlabel{sub@fig:return_path_1_op}{{a}{43}{Digit 1 - general.  \relax }{figure.caption.33}{}}
 \newlabel{fig:return_path_1_op_overview}{{13b}{43}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_1_op}.  \relax }{figure.caption.33}{}}
@@ -306,7 +308,7 @@
 \newlabel{sub@fig:return_path_3_seed_op_msr_msd_overview}{{r}{47}{Digit 3 - case 3 (seed) overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:return_path_3}.  \relax }{figure.caption.37}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  The {\tt  Return\_Path} gadgets.\relax }}{47}{figure.caption.37}}
 \newlabel{fig:return_path_gadgets}{{13}{47}{The {\tt Return\_Path} gadgets.\relax }{figure.caption.37}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.7} {\tt  Next\_Read}}{48}{subsubsection.4.1.7}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.7}{\tt  Next\_Read}}{48}{subsubsection.4.1.7}}
 \newlabel{fig:next_read_1-or-2_op}{{14a}{49}{Digit 1 \& 2 - general.  \relax }{figure.caption.38}{}}
 \newlabel{sub@fig:next_read_1-or-2_op}{{a}{49}{Digit 1 \& 2 - general.  \relax }{figure.caption.38}{}}
 \newlabel{fig:next_read_1_op_overview}{{14b}{49}{Digit 1 - general\\overview. The black tiles in this figure correspond to the gadget shown in subfigure~\subref {fig:next_read_1-or-2_op}.  \relax }{figure.caption.38}{}}
@@ -354,6 +356,7 @@
 \newlabel{sub@fig:cross_next_row_overview}{{b}{55}{General overview. The black tiles in this figure is the gadget shown in subfigure~\subref {fig:cross_next_row}.  \relax }{figure.caption.43}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces  The {\tt  Cross\_Next\_Row} gadget.\relax }}{55}{figure.caption.43}}
 \newlabel{fig:crosser_gadgets}{{15}{55}{The {\tt Cross\_Next\_Row} gadget.\relax }{figure.caption.43}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.9}{\tt  Roof\_Unit}}{56}{subsubsection.4.1.9}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Initial value}{56}{subsection.4.2}}
 \newlabel{fig:initial_case1_msr}{{16a}{57}{MSR case 1\relax }{figure.caption.44}{}}
 \newlabel{sub@fig:initial_case1_msr}{{a}{57}{MSR case 1\relax }{figure.caption.44}{}}

@@ -10,8 +10,7 @@ MSD in that region, and $s$ is the starting value of the counter in decimal.
 
 Let $h$ be the height of the construction without any additional ``roof'' tiles.
 %
-By inspection...we see that the height of the construction without additional tiles is $\seedheight$ for the {\tt Seed} unit, plus $\rowheight$ for each incrementation of the counter,
-adding a {\tt Counter} unit row each time.
+By inspection...we see that the height of the construction without additional tiles is $\seedheight$ for the {\tt Seed} unit, plus $\rowheight$ for each incrementation of the counter, adding a {\tt Counter} unit row each time.
 %
 If we define $n$ as the number of {\tt Counter} unit rows, then $h = n (\rowheight) + (\seedheight)$.
 %
@@ -34,9 +33,12 @@ And the mininum height is $24l + 184$.
 
 \vspace{1cm}
 
+%
 One row of the counter might result in a final assembly that will not be tall enough but ... says that having all possible rows of the counter might result in a final assembly that is too tall.
 %
 Therefore, we must start the counter at an appropriate value to get the correct height of the final assembly.
+%
+
 
 %
 The counter can start at any whole number less than $m^d$ and ends when it reaches 0 by rolling over $m^d - 1$.
@@ -48,10 +50,17 @@ To choose the best starting value, we find the value for $n$ that gets $h$ close
 It follows from the equation $h = n(\rowheight) + \seedheight$, that $n = \floor*{\frac{N - 12l - 94}{\rowheight}}$.
 %
 Thus, $s = m^d - \floor*{\frac{N - 12 - 94}{\rowheight}}$.
+%
 
+%
+If $k$ is an even number, no filler tiles are needed.
+%
+We can assemble any rectangle that has a width $k$, provided that $k$ is some even number $\geq 6$.
+%
+If $k$ is any odd number $\geq 6$, we use one filler tiles.
 %
 ...as a result of each digit requiring a width of 2 tiles, if $k$ is odd, one additional tile column must be added.
 %
-The number of filler tiles needed for the width is $k \mod 2$, and the number of filler tiles for the height is $N - 4 \mod 12l + 90$.
+The number of filler tiles needed for the width is $k \mod 2$, and the number of filler tiles for the height is $N - 12l - 90 \mod 12l + 90$.
 %
 
