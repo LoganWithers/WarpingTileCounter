@@ -1,4 +1,4 @@
-﻿namespace WarpingCounter.Gadgets.NextRead
+﻿namespace WarpingCounter.Gadgets.ReturnPath
 {
 
     using System.Collections.Generic;
@@ -8,43 +8,43 @@
     using Common.Builders;
     using Common.Models;
 
-    public class NextReadDigit3Case3 : IHaveInput, IHaveOutput
+    public class ReturnPathDigit1Seed : IHaveInput, IHaveOutput
     {
 
         private readonly int L;
+
+
         public Tile Input { get; }
+
+
         public Tile Output { get; }
 
+
         public IEnumerable<Tile> Tiles { get; }
-        public NextReadDigit3Case3(int L, Glue input, Glue output)
+
+
+        public ReturnPathDigit1Seed(int L, Glue input, Glue output)
         {
             this.L = L;
 
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(NextReadDigit3Case3));
+            Tiles.PrependNamesWith(nameof(ReturnPathDigit1Seed));
 
             Input       = Tiles.First();
-            Input.North = input;
+            Input.Up    = input;
 
             Output       = Tiles.Last();
-            Output.East  = output;
+            Output.North = output;
         }
 
 
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
-
-            builder.South()
-                   .West()
-                   .Down()
-                   .South(2)
-                   .Up()
-                   .East(5);
-
+            
             return builder.Tiles().ToList();
         }
-    }
 
+    }
 
 }

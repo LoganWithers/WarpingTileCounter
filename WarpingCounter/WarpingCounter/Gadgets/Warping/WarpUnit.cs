@@ -47,18 +47,18 @@
 
         private List<Tile> Create()
         {
-            var preFirstWarp = new PreWarp(digitValueToWrite,      digitIndex, carry, digitsInMSR);
-            var firstWarp    = new FirstWarp(digitValueToWrite,    digitIndex, carry, digitsInMSR);
-            var warpBridge   = new WarpBridge(digitValueToWrite,   digitIndex, carry, digitsInMSR);
-            var secondWarp   = new SecondWarp(digitValueToWrite,   digitIndex, carry, digitsInMSR);
+            //var preFirstWarp = new PreWarp(digitValueToWrite,      digitIndex, carry, digitsInMSR);
+            // var firstWarp    = new FirstWarp(digitValueToWrite,    digitIndex, carry, digitsInMSR);
+            //var warpBridge   = new WarpBridge(digitValueToWrite,   digitIndex, carry, digitsInMSR);
+            //var secondWarp   = new SecondWarp(digitValueToWrite,   digitIndex, carry, digitsInMSR);
             var postWarp     = new PostWarp(digitValueToWrite,     digitIndex, carry, digitsInMSR);
 
             var tiles = new List<Tile>();
 
-            tiles.AddRange(preFirstWarp.Tiles);
-            tiles.Add(firstWarp.Tile);
-            tiles.AddRange(warpBridge.Tiles);
-            tiles.Add(secondWarp.Tile);
+            //tiles.AddRange(preFirstWarp.Tiles);
+            // tiles.Add(firstWarp.Tile);
+            //tiles.AddRange(warpBridge.Tiles);
+            //tiles.Add(secondWarp.Tile);
             tiles.AddRange(postWarp.Tiles);
 
             return tiles;

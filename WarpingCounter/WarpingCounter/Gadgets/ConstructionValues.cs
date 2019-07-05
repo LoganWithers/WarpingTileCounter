@@ -17,6 +17,7 @@
 
         public readonly List<string> EncodedDigits;
 
+        public readonly int d;
         private readonly BigInteger haltingValueBase10;
 
         private readonly List<string> haltingValueBaseM;
@@ -33,14 +34,15 @@
             this.initialValueBase10 = BigInteger.Parse(initialValueBase10);
             BaseM                   = baseM;
 
-            initialValueBaseM   = this.initialValueBase10.ToBase(BaseM);
-            power               = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
-            haltingValueBase10  = BigInteger.Pow(BaseM, Convert.ToInt32(power));
+            initialValueBaseM    = this.initialValueBase10.ToBase(BaseM);
+            power                = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
+            haltingValueBase10   = BigInteger.Pow(BaseM, Convert.ToInt32(power));
             BitsRequiredForBaseM = Convert.ToString(BaseM - 1, 2).Length;
+            d               = initialValueBaseM.Count;
 
             var leadingZeroes = BaseM.ToString().Length;
+            var digits = (double) d;
 
-            var digits    = (double) initialValueBaseM.Count;
             var remainder = digits % DigitsPerRegion;
 
             var remainderDigits = (int) remainder;

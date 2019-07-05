@@ -1,7 +1,6 @@
-﻿namespace WarpingCounter.Gadgets
+﻿namespace WarpingCounter.Gadgets.Warping.WarpBridge
 {
 
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -9,20 +8,18 @@
     using Common.Builders;
     using Common.Models;
 
-    public class CrossNextRow : IHaveInput, IHaveOutput
+    public class WarpBridgeDigit2 : IHaveInput, IHaveOutput
     {
-
-        private readonly int d;
-
         public Tile Input { get; }
 
         public Tile Output { get; }
 
-        public CrossNextRow(int d, Glue input, Glue output)
+        public readonly List<Tile> Tiles;
+
+        public WarpBridgeDigit2(Glue input, Glue output)
         {
-            this.d = d;
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(CrossNextRow));
+            Tiles.PrependNamesWith(nameof(WarpBridgeDigit2));
 
             Input      = Tiles.First();
             Input.West = input;
@@ -32,19 +29,21 @@
         }
 
 
-        private List<Tile> Create()
+        public List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
 
-            var width = (6 * (int) Math.Floor((decimal) d / 3)) - 1;
 
-            builder.East(width)
-                   .North(3)
-                   .Down();
+            builder.North(11)
+                   .Up()
+                   .West()
+                   .West()
+                   .Down()
+                   .North(13);
 
 
             return builder.Tiles().ToList();
         }
-        public IEnumerable<Tile> Tiles { get;  }
     }
+
 }

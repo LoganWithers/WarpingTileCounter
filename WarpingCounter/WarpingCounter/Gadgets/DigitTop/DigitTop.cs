@@ -58,7 +58,7 @@
                  .North()
                  .West()
                  .South(7)
-                 .South(4 * L);
+                 .South(4 * L, "blue");
 
             
             return build.Tiles().ToList();

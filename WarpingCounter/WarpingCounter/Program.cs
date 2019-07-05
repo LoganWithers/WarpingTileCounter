@@ -12,7 +12,7 @@
 
     internal static class Program
     {
-        
+
         private static void Main(string[] args)
         {
             RunCLI();
@@ -26,7 +26,7 @@
             var l = Math.Ceiling(Math.Log(m, 2)) + 2;
             var md = Math.Pow(m, d);
             var s = md - Math.Floor((N - 3*l - 76) / (3*l + 90));
-            
+
             return ((int) m, Convert.ToString((int) s, CultureInfo.InvariantCulture));
         }
 
@@ -36,7 +36,7 @@
             while (true)
             {
                 Console.WriteLine("Enter a value for N");
-                var input = "454541120";
+                var input = Console.ReadLine();
                 bool IsExitCommand() => input == "-e" || string.IsNullOrEmpty(input);
 
                 if (int.TryParse(input, out var N))
@@ -62,7 +62,7 @@
                 }
                 if (IsExitCommand())
                 {
-                   break;
+                    break;
                 }
 
                 Error($"Error parsing {input}...");

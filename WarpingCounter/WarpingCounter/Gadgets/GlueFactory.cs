@@ -9,11 +9,10 @@
     public static class GlueFactory
     {
 
-        public static Glue Create(string uniqueIdentifier, int i, bool op = false, bool msd = false, bool msr = false) => new Glue($"{uniqueIdentifier} {i} {op} {msr} {msd}");
+        public static Glue Create(string uniqueIdentifier, int i, bool op = false, bool msr = false, bool msd = false) => new Glue($"{uniqueIdentifier} {i} {op} {msr} {msd}");
 
-        public static Glue Create(string uniqueIdentifier, int i, string bits = "", bool op = false) => new Glue($"{uniqueIdentifier} {i} '{bits}' {op}");
+        public static Glue Create(string uniqueIdentifier, int i, string bits = "", bool op = false, bool msr = false, bool msd = false) => new Glue($"{uniqueIdentifier} {i} '{bits}' {op}");
 
-        public static Glue Create(string uniqueIdentifier, int i, string bits, bool op, bool msr, bool msd) => new Glue($"{uniqueIdentifier} {i} '{bits}' {op} {msr} {msd}");
         public static Glue Create(string uniqueIdentifier, bool op) => new Glue($"{uniqueIdentifier} {op}");
 
         #region Warp units

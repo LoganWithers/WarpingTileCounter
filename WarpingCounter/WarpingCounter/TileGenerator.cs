@@ -3,6 +3,7 @@
 
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
 
     using Common;
@@ -11,9 +12,12 @@
     using Gadgets;
     using Gadgets.DigitTop;
     using Gadgets.NextRead;
-    using Gadgets.ReturnAndRead.NextDigit;
-    using Gadgets.ReturnAndRead.NextRow;
+    using Gadgets.ReturnPath;
     using Gadgets.Warping;
+    using Gadgets.Warping.FirstWarp;
+    using Gadgets.Warping.PreWarp;
+    using Gadgets.Warping.SecondWarp;
+    using Gadgets.Warping.WarpBridge;
 
     using Seed;
 
@@ -26,6 +30,18 @@
     /// </summary>
     public class TileGenerator
     {
+        public const string CounterRead  = "CounterRead";
+        public const string PreWarp      = "PreWarp";
+        public const string FirstWarp    = "FirstWarp";
+        public const string WarpBridge   = "WarpBridge";
+        public const string SecondWarp   = "SecondWarp";
+        public const string PostWarp     = "PostWarp";
+        public const string CounterWrite = "CounterWrite";
+        public const string DigitTop     = "DigitTop";
+        public const string ReturnPath   = "ReturnPath";
+        public const string NextRead     = "NextRead";
+        public const string Seed         = "Seed";
+        public const string CrossNextRow = "CrossNextRow";
 
         private const int Digits = 3;
 
@@ -34,21 +50,21 @@
 
         private readonly int digitsInMSR;
         private readonly int L;
-        private readonly int bitsRequiredForBaseM;
+        private readonly int logM;
         private readonly int regions;
 
-        private readonly int baseM;
+        private readonly int M;
 
-        public TileGenerator(int baseM, string initialValueB10)
+        public TileGenerator(int m, string initialValueB10)
         {
-            this.baseM           = baseM;
-            construction         = new ConstructionValues(initialValueB10, baseM);
+            M           = m;
+            construction         = new ConstructionValues(initialValueB10, m);
             digitsInMSR          = construction.DigitsInMSR;
             L                    = construction.L;
-            bitsRequiredForBaseM = construction.BitsRequiredForBaseM;
+            logM = construction.BitsRequiredForBaseM;
             regions              = construction.DigitRegions;
 
-            Console.WriteLine($"Bits Per Counter Digit: {bitsRequiredForBaseM}");
+            Console.WriteLine($"Bits Per Counter Digit: {logM}");
             Console.WriteLine($"Actual Bits Per Digit:  {L}");
         }
 
@@ -57,29 +73,50 @@
 
         public List<Tile> Generate()
         {
-            //    AddSeed();
-            //    AddCounter();
-            //    AddDigitTops();
-            //    AddReturnAndRead();
-            tiles.Add(new Tile("seed"){ South = GlueFactory.Create(Names.NextRead, 3, true)});
-            NextRead();
+            //    CreateSeed();
+            //    CreateCounter();
+
+            tiles.Add(new Tile("seed"){ North = GlueFactory.Create(DigitTop, 1, true, true, true)});
+
+            var readerFactory = new ReaderFactory(L, logM, M);
+            tiles.AddRange(readerFactory.Readers.SelectMany(reader => reader.Tiles));
+
+            ReadOnlyCollection<string> digits = readerFactory.DigitsWithLengthL.AsReadOnly();
+
+            CreateCounterRead(readerFactory);
+
+            CreatePreWarp(digits);
+            CreateFirstWarp(digits);
+            CreateWarpBridge(digits);
+            CreateSecondWarp(digits);
+
+            CreateDigitTops();
+            CreateNextRead();
+            CreateReturnPaths();
+            CreateCrossNextRow();
             return tiles;
         }
         
-        private void AddSeed()
+        private void CreateSeed()
         {
             tiles.AddRange(new SeedCreator(construction).Tiles);
         }
 
 
-        private void AddCounter()
+        private void CreateCounterRead(ReaderFactory factory)
         {
-            var readerFactory = new ReaderFactory(L, bitsRequiredForBaseM, baseM);
+            tiles.AddRange(factory.Readers.SelectMany(counterReadGadget => counterReadGadget.Tiles));
+        }
+
+        private void CreateCounter()
+        {
+            var readerFactory = new ReaderFactory(L, logM, M);
             tiles.AddRange(readerFactory.Readers.SelectMany(reader => reader.Tiles));
 
             List<string> fullSizeDigits = readerFactory.DigitsWithLengthL;
-            
-            
+
+            CreatePreWarp(fullSizeDigits);
+
             Console.WriteLine($"Full Digits: {fullSizeDigits.Count}");
 
             // Foreach digit in {0, 1}^l
@@ -90,50 +127,223 @@
             }
         }
 
-        /// <summary>
-        /// Adds the top of the digits, (constant 3 for each digit index in a standard region)
-        ///
-        /// If it's case 2 or case 3, special digit tops are required due to
-        /// paths being slightly different. 
-        /// </summary>
-        private void AddDigitTops()
+
+        private void CreatePreWarp(IEnumerable<string> digits)
+        {
+            foreach (var u in digits)
+            {
+                foreach (var op in new[] { true, false })
+                {
+                    switch (u.GetLast(2))
+                    {
+                        case "00":
+                            tiles.AddRange(new PreWarpDigit1(GlueFactory.Create(PreWarp,   1, u, op), 
+                                                             GlueFactory.Create(FirstWarp, 1, u, op)).Tiles);
+
+                            tiles.AddRange(new PreWarpDigit2(GlueFactory.Create(PreWarp,   2, u, op),
+                                                             GlueFactory.Create(FirstWarp, 2, u, op)).Tiles);
+
+                            tiles.AddRange(new PreWarpDigit3(GlueFactory.Create(PreWarp,   3, u, op),
+                                                             GlueFactory.Create(FirstWarp, 3, u, op)).Tiles);
+                            break;
+
+                        case "01" when digitsInMSR == 2:
+                            tiles.AddRange(new PreWarpDigit1Case2(GlueFactory.Create(PreWarp,   1, u, op), 
+                                                                  GlueFactory.Create(FirstWarp, 1, u, op, msr: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 1:
+                            tiles.AddRange(new PreWarpDigit1Case1(GlueFactory.Create(PreWarp,   1, u, op), 
+                                                                  GlueFactory.Create(FirstWarp, 1, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 2:
+                            tiles.AddRange(new PreWarpDigit2Case2(GlueFactory.Create(PreWarp,   2, u, op),
+                                                                  GlueFactory.Create(FirstWarp, 2, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 3:
+                            tiles.AddRange(new PreWarpDigit3Case3(GlueFactory.Create(PreWarp,   3, u, op),
+                                                                  GlueFactory.Create(FirstWarp, 3, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        default: throw new ArgumentOutOfRangeException(u);
+                    }   
+                }
+            }
+            
+        }
+
+
+        private void CreateFirstWarp(IEnumerable<string> digits)
+        {
+            foreach (var u in digits)
+            {
+                foreach (var op in new[] {true, false})
+                {
+                    switch (u.GetLast(2))
+                    {
+                        case "00":
+                            tiles.AddRange(new FirstWarpDigit1(GlueFactory.Create(FirstWarp,  1, u, op),
+                                                               GlueFactory.Create(FirstWarp,  1, u, op),
+                                                               GlueFactory.Create(WarpBridge, 1, u, op)).Tiles);
+
+
+                            tiles.AddRange(new FirstWarpDigit2(GlueFactory.Create(FirstWarp,  2, u, op),
+                                                               GlueFactory.Create(FirstWarp,  2, u, op),
+                                                               GlueFactory.Create(WarpBridge, 2, u, op)).Tiles);
+
+
+                            tiles.AddRange(new FirstWarpDigit3(GlueFactory.Create(FirstWarp,  3, u, op),
+                                                               GlueFactory.Create(FirstWarp,  3, u, op),
+                                                               GlueFactory.Create(WarpBridge, 3, u, op)).Tiles);
+                            break;
+
+                        case "01" when digitsInMSR == 2:
+                            tiles.AddRange(new FirstWarpDigit1Case2(GlueFactory.Create(FirstWarp, 1, u, op, msr: true),
+                                                                    GlueFactory.Create(FirstWarp, 1, u, op, msr: true),
+                                                                    GlueFactory.Create(PostWarp,  1, u, op, msr: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 1:
+                            tiles.AddRange(new FirstWarpDigit1Case1(GlueFactory.Create(FirstWarp, 1, u, op, msr: true, msd: true),
+                                                                    GlueFactory.Create(FirstWarp, 1, u, op, msr: true, msd: true),
+                                                                    GlueFactory.Create(PostWarp,  1, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 2:
+                            tiles.AddRange(new FirstWarpDigit2Case2(GlueFactory.Create(FirstWarp,  2, u, op, msr: true, msd: true),
+                                                                    GlueFactory.Create(FirstWarp,  2, u, op, msr: true, msd: true),
+                                                                    GlueFactory.Create(WarpBridge, 2, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 3:
+                            tiles.AddRange(new FirstWarpDigit3Case3(GlueFactory.Create(FirstWarp,  3, u, op, msr: true, msd: true),
+                                                                    GlueFactory.Create(FirstWarp,  3, u, op, msr: true, msd: true),
+                                                                    GlueFactory.Create(WarpBridge, 3, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        default: throw new ArgumentOutOfRangeException(u);
+                    }
+                }
+            }
+        }
+
+
+        private void CreateWarpBridge(IEnumerable<string> digits)
+        {
+            foreach (var u in digits)
+            {
+                foreach (var op in new[] { true, false })
+                {
+                    switch (u.GetLast(2))
+                    {
+                        case "00":
+                            tiles.AddRange(new WarpBridgeDigit1(GlueFactory.Create(WarpBridge, 1, u, op),
+                                                                GlueFactory.Create(SecondWarp, 1, u, op)).Tiles);
+
+                            tiles.AddRange(new WarpBridgeDigit2(GlueFactory.Create(WarpBridge, 2, u, op),
+                                                                GlueFactory.Create(SecondWarp, 2, u, op)).Tiles);
+
+                            tiles.AddRange(new WarpBridgeDigit3(GlueFactory.Create(WarpBridge, 3, u, op),
+                                                                GlueFactory.Create(SecondWarp, 3, u, op)).Tiles);
+                            break;
+                        
+                        case "11" when digitsInMSR == 2:
+                            tiles.AddRange(new WarpBridgeDigit2Case2(GlueFactory.Create(WarpBridge, 2, u, op, msr: true, msd: true),
+                                                                     GlueFactory.Create(SecondWarp, 2, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 3:
+                            tiles.AddRange(new WarpBridgeDigit3Case3(GlueFactory.Create(WarpBridge, 3, u, op, msr: true, msd: true),
+                                                                     GlueFactory.Create(SecondWarp, 3, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        default: throw new ArgumentOutOfRangeException(u);
+                    }
+                }
+            }
+        }
+
+        private void CreateSecondWarp(IEnumerable<string> digits)
+        {
+            foreach (var u in digits)
+            {
+                foreach (var op in new[] { true, false })
+                {
+                    switch (u.GetLast(2))
+                    {
+                        case "00":
+                            tiles.AddRange(new SecondWarpDigit1(GlueFactory.Create(SecondWarp, 1, u, op),
+                                                                GlueFactory.Create(SecondWarp, 1, u, op),
+                                                                GlueFactory.Create(PostWarp,   1, u, op)).Tiles);
+
+
+                            tiles.AddRange(new SecondWarpDigit2(GlueFactory.Create(SecondWarp, 2, u, op),
+                                                                GlueFactory.Create(SecondWarp, 2, u, op),
+                                                                GlueFactory.Create(PostWarp,   2, u, op)).Tiles);
+
+
+                            tiles.AddRange(new SecondWarpDigit3(GlueFactory.Create(SecondWarp, 3, u, op),
+                                                                GlueFactory.Create(SecondWarp, 3, u, op),
+                                                                GlueFactory.Create(PostWarp,   3, u, op)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 2:
+                            tiles.AddRange(new SecondWarpDigit2Case2(GlueFactory.Create(SecondWarp, 2, u, op, msr: true, msd: true),
+                                                                     GlueFactory.Create(SecondWarp, 2, u, op, msr: true, msd: true),
+                                                                     GlueFactory.Create(PostWarp,   2, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 3:
+                            tiles.AddRange(new SecondWarpDigit3Case3(GlueFactory.Create(SecondWarp, 3, u, op, msr: true, msd: true),
+                                                                     GlueFactory.Create(SecondWarp, 3, u, op, msr: true, msd: true),
+                                                                     GlueFactory.Create(PostWarp,   3, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        default: throw new ArgumentOutOfRangeException(u);
+                    }
+                }
+            }
+        }
+        private void CreateDigitTops()
         {
             foreach (var op in new []{true, false})
             {
                 tiles.AddRange(new DigitTop(L,
-                                            GlueFactory.Create(Names.DigitTop,   1, op),
-                                            GlueFactory.Create(Names.ReturnPath, 1, op)).Tiles);
+                                            GlueFactory.Create(DigitTop,   1, op),
+                                            GlueFactory.Create(ReturnPath, 1, op)).Tiles);
 
                 tiles.AddRange(new DigitTop(L, 
-                                            GlueFactory.Create(Names.DigitTop,   2, op), 
-                                            GlueFactory.Create(Names.ReturnPath, 2, op)).Tiles);
+                                            GlueFactory.Create(DigitTop,   2, op), 
+                                            GlueFactory.Create(ReturnPath, 2, op)).Tiles);
 
                 tiles.AddRange(new DigitTop(L,
-                                            GlueFactory.Create(Names.DigitTop,   3, op),
-                                            GlueFactory.Create(Names.ReturnPath, 3, op)).Tiles);
+                                            GlueFactory.Create(DigitTop,   3, op),
+                                            GlueFactory.Create(ReturnPath, 3, op)).Tiles);
 
 
                 switch (digitsInMSR)
                 {
                     case 1:
                         tiles.AddRange(new DigitTopDigit1Case1(L,
-                                                               GlueFactory.Create(Names.DigitTop,   1, op, msr: true, msd: true),
-                                                               GlueFactory.Create(Names.ReturnPath, 1, op, msr: true, msd: true)).Tiles);
+                                                               GlueFactory.Create(DigitTop,   1, op, msr: true, msd: true),
+                                                               GlueFactory.Create(ReturnPath, 1, op, msr: true, msd: true)).Tiles);
                         break;
-        
+
                     case 2:
                         tiles.AddRange(new DigitTopDigit1Case2(L, 
-                                                               GlueFactory.Create(Names.DigitTop,   1, op,  msr: true), 
-                                                               GlueFactory.Create(Names.ReturnPath, 1, op,  msr: true)).Tiles);
+                                                               GlueFactory.Create(DigitTop,   1, op,  msr: true), 
+                                                               GlueFactory.Create(ReturnPath, 1, op,  msr: true)).Tiles);
 
                         tiles.AddRange(new DigitTopDigit2Case2(L, 
-                                                               GlueFactory.Create(Names.DigitTop,   2, op, msr: true, msd: true),
-                                                               GlueFactory.Create(Names.ReturnPath, 2, op, msr: true, msd: true)).Tiles);
+                                                               GlueFactory.Create(DigitTop,   2, op, msr: true, msd: true),
+                                                               GlueFactory.Create(ReturnPath, 2, op, msr: true, msd: true)).Tiles);
                         break;
                     case 3:
                         tiles.AddRange(new DigitTop(L,
-                                                    GlueFactory.Create(Names.DigitTop,   3, op, msr: true, msd: true),
-                                                    GlueFactory.Create(Names.ReturnPath, 3, op, msr: true, msd: true)).Tiles);
+                                                    GlueFactory.Create(DigitTop,   3, op, msr: true, msd: true),
+                                                    GlueFactory.Create(ReturnPath, 3, op, msr: true, msd: true)).Tiles);
                         break;
                 }
 
@@ -141,93 +351,84 @@
         
         }
 
+        private void CreateReturnPaths()
+        {
+            foreach (var op in new[] { true, false })
+            {
+                tiles.AddRange(new ReturnPathDigit1(L,
+                                                    GlueFactory.Create(ReturnPath, 1, op),
+                                                    GlueFactory.Create(NextRead,   1, op)).Tiles);
 
-        private void NextRead()
+                tiles.AddRange(new ReturnPathDigit1Case2(L,
+                                                         GlueFactory.Create(ReturnPath, 1, op, msr: true),
+                                                         GlueFactory.Create(NextRead,   1, op, msr: true)).Tiles);
+
+                tiles.AddRange(new ReturnPathDigit1Case1(L,
+                                                         GlueFactory.Create(ReturnPath, 1, op, msr: true, msd: true),
+                                                         GlueFactory.Create(NextRead,   1, op, msr: true, msd: true)).Tiles);
+
+                tiles.AddRange(new ReturnPathDigit2(L,
+                                                    GlueFactory.Create(ReturnPath, 2, op),
+                                                    GlueFactory.Create(NextRead,   2, op)).Tiles);
+
+                tiles.AddRange(new ReturnPathDigit2Case2(L,
+                                                         GlueFactory.Create(ReturnPath, 2, op),
+                                                         GlueFactory.Create(NextRead,   2, op)).Tiles);
+
+                tiles.AddRange(new ReturnPathDigit3(L,
+                                                    GlueFactory.Create(ReturnPath, 3, op),
+                                                    GlueFactory.Create(NextRead,   3, op)).Tiles);
+
+                tiles.AddRange(new ReturnPathDigit3Case3(L,
+                                                         GlueFactory.Create(ReturnPath, 3, op, msr: true, msd: true),
+                                                         GlueFactory.Create(NextRead,   3, op, msr: true, msd: true)).Tiles);
+            }
+        }
+
+        private void CreateNextRead()
         {
             foreach (var op in new[] {true, false})
             {
                 tiles.AddRange(new NextReadDigit1(L,
-                                                  GlueFactory.Create(Names.NextRead, 1, op), 
-                                                  GlueFactory.Create(Names.CounterRead, 2, op)).Tiles);
+                                                  GlueFactory.Create(NextRead,    1, op), 
+                                                  GlueFactory.Create(CounterRead, 2, op)).Tiles);
 
                 tiles.AddRange(new NextReadDigit1Case2(L,
-                                                       GlueFactory.Create(Names.NextRead, 1, op, msr: true),
-                                                       GlueFactory.Create(Names.CounterRead, 2, op)).Tiles);
+                                                       GlueFactory.Create(NextRead,    1, op, msr: true),
+                                                       GlueFactory.Create(CounterRead, 2, op)).Tiles);
 
                 tiles.AddRange(new NextReadDigit1Case1(L,
-                                                       GlueFactory.Create(Names.NextRead, 1, op, msr: true, msd: true),
-                                                       GlueFactory.Create(Names.CrossNextRow, 2, op)).Tiles);
+                                                       GlueFactory.Create(NextRead,     1, op, msr: true, msd: true),
+                                                       GlueFactory.Create(CrossNextRow,    op)).Tiles);
 
                 tiles.AddRange(new NextReadDigit2(L,
-                                                  GlueFactory.Create(Names.NextRead, 2, op),
-                                                  GlueFactory.Create(Names.CounterRead, 3, op)).Tiles);
+                                                  GlueFactory.Create(NextRead,    2, op),
+                                                  GlueFactory.Create(CounterRead, 3, op)).Tiles);
 
                 tiles.AddRange(new NextReadDigit2Case2(L,
-                                                       GlueFactory.Create(Names.NextRead, 2, op, msr: true, msd: true),
-                                                       GlueFactory.Create(Names.CrossNextRow, 3, op)).Tiles);
+                                                       GlueFactory.Create(NextRead,     2, op, msr: true, msd: true),
+                                                       GlueFactory.Create(CrossNextRow,    op)).Tiles);
 
                 tiles.AddRange(new NextReadDigit3(L,
-                                                  GlueFactory.Create(Names.NextRead, 3, op),
-                                                  GlueFactory.Create(Names.CounterRead, 1, op)).Tiles);
+                                                  GlueFactory.Create(NextRead,    3, op),
+                                                  GlueFactory.Create(CounterRead, 1, op)).Tiles);
 
                 tiles.AddRange(new NextReadDigit3Case3(L,
-                                                       GlueFactory.Create(Names.NextRead, 3, op, msr: true, msd: true),
-                                                       GlueFactory.Create(Names.CounterRead, 1, op)).Tiles);
+                                                       GlueFactory.Create(NextRead,    3, op, msr: true, msd: true),
+                                                       GlueFactory.Create(CrossNextRow,   op)).Tiles);
             }
         }
 
 
-        private void AddReturnAndRead()
+        private void CreateCrossNextRow()
         {
-           
-            var returnD1ReadD2Carry = new ReturnDigit1ReadDigit2(carry: true, bits: L);
-            var returnD2ReadD3Carry = new ReturnDigit2ReadDigit3(carry: true, bits: L);
-            var returnD3ReadD1Carry = new ReturnDigit3ReadDigit1(carry: true, bits: L);
-
-            tiles.AddRange(returnD3ReadD1Carry.Tiles);
-            tiles.AddRange(returnD1ReadD2Carry.Tiles);
-            tiles.AddRange(returnD2ReadD3Carry.Tiles);
-
-
-            var returnD1ReadD2NoCarry = new ReturnDigit1ReadDigit2(carry: false, bits: L);
-            var returnD2ReadD3NoCarry = new ReturnDigit2ReadDigit3(carry: false, bits: L);
-            var returnD3ReadD1NoCarry = new ReturnDigit3ReadDigit1(carry: false, bits: L);
-
-            tiles.AddRange(returnD3ReadD1NoCarry.Tiles);
-            tiles.AddRange(returnD1ReadD2NoCarry.Tiles);
-            tiles.AddRange(returnD2ReadD3NoCarry.Tiles);
-
-            switch (digitsInMSR)
+            foreach (var op in new[] {true, false})
             {
-                case 1:
-                    var returnDigit1ReadNextRowCarry   = new ReturnDigit1ReadNextRow(carry: true,  bits: L, numberOfRegions: regions);
-                    var returnDigit1ReadNextRowNoCarry = new ReturnDigit1ReadNextRow(carry: false, bits: L, numberOfRegions: regions);
-                    tiles.AddRange(returnDigit1ReadNextRowCarry.Tiles);                            
-                    tiles.AddRange(returnDigit1ReadNextRowNoCarry.Tiles);
-                    break;
-
-                case 2:
-                    var returnDigit2ReadNextRowCarry   = new ReturnDigit2ReadNextRow(carry: true,  bits: L, numberOfRegions: regions);
-                    var returnDigit2ReadNextRowNoCarry = new ReturnDigit2ReadNextRow(carry: false, bits: L, numberOfRegions: regions);
-                    tiles.AddRange(returnDigit2ReadNextRowCarry.Tiles);
-                    tiles.AddRange(returnDigit2ReadNextRowNoCarry.Tiles);
-
-                    var returnDigit1ReadDigit2Case2Carry   = new ReturnDigit1ReadDigit2Case2(carry: true,  bits: L);
-                    var returnDigit1ReadDigit2Case2NoCarry = new ReturnDigit1ReadDigit2Case2(carry: false, bits: L);
-                    tiles.AddRange(returnDigit1ReadDigit2Case2Carry.Tiles);
-                    tiles.AddRange(returnDigit1ReadDigit2Case2NoCarry.Tiles);
-                    break;
-
-                case 3:
-                    var returnDigit3ReadNextRowCarry   = new ReturnDigit3ReadNextRow(carry: true,  bits: L, regions);
-                    var returnDigit3ReadNextRowNoCarry = new ReturnDigit3ReadNextRow(carry: false, bits: L, regions);
-                    tiles.AddRange(returnDigit3ReadNextRowCarry.Tiles);
-                    tiles.AddRange(returnDigit3ReadNextRowNoCarry.Tiles);
-                    break;
+                tiles.AddRange(new CrossNextRow(construction.d,
+                                                GlueFactory.Create(CrossNextRow, op), 
+                                                GlueFactory.Create(CounterRead,  1, string.Empty, op)).Tiles);
             }
-            
         }
-
 
         /// <summary>
         /// 

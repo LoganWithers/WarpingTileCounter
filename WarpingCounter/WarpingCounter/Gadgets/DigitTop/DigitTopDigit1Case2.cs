@@ -8,7 +8,7 @@
     using Common.Builders;
     using Common.Models;
 
-    using ReturnAndRead.NextDigit;
+    using ReturnPath;
 
 
     /// <summary>
@@ -18,7 +18,7 @@
     ///   contrary to a standard digit top.
     /// 
     ///   <br />
-    ///   The last tile of this gadget connects to <see cref="ReturnDigit1ReadDigit2Case2" />
+    ///   The last tile of this gadget connects to <see cref="ReturnPathDigit1Case2" />
     /// </summary>
     /// <seealso cref="IHaveOutput" />
     /// <seealso cref="IHaveInput" />
@@ -60,7 +60,7 @@
                    .North()
                    .West()
                    .South(7)
-                   .South(4 * L);
+                   .South(4 * L, "blue");
 
             return builder.Tiles().ToList();
         }

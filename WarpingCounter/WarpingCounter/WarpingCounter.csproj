@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Common\Builders\Interfaces\" />
-    <Folder Include="Gadgets\ReturnPaths\" />
+    <Folder Include="Gadgets\Warping\PostWarp\" />
     <Folder Include="Output\" />
   </ItemGroup>
 

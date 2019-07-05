@@ -1,7 +1,6 @@
 ﻿namespace WarpingCounter.Gadgets.DigitTop
 {
 
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -9,7 +8,7 @@
     using Common.Builders;
     using Common.Models;
 
-    using ReturnAndRead.NextRow;
+    using ReturnPath;
 
     /// <summary>
     ///   A gadget that is used only for the second digit (MSD) in a MSR when it's case 2.
@@ -21,7 +20,7 @@
     ///   The first tile connects to a digit that ends with "11" and is
     ///   in a region with one other digit.
     ///   <br />
-    ///   The last tile of this gadget connects to <see cref="ReturnDigit2ReadNextRow" />
+    ///   The last tile of this gadget connects to <see cref="ReturnPathDigit2Case2" />
     /// </summary>
     /// <seealso cref="IHaveOutput" />
     /// <seealso cref="IHaveInput" />
@@ -59,7 +58,7 @@
             var builder = new GadgetBuilder().Start();
 
             builder.North(29)
-                   .North(4 * L)
+                   .North(4 * L, "blue")
                    .North(5)
                    .Up()
                    .North(2)
@@ -69,7 +68,7 @@
                    .Up()
                    .East(3)
                    .South(7)
-                   .South(4 * L);
+                   .South(4 * L, "blue");
 
             return builder.Tiles().ToList();
         }
