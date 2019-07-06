@@ -33,7 +33,7 @@
 \newlabel{sub@fig:counter_read_digit3_general_case3_middle_level}{{d}{4}{Read digit 3 in the current row, write digit 3 in the next row.\relax }{figure.caption.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces  This illustrates how a counter reads and writes a digit region, in a general sense. The counter starts in the rightmost digit region by reading the bottommost digit within that region. After reading digit 1 in the current row, the corresponding digit region in the next row be started in the next row. The counter writes the first digit in the next row, and then returns to the second digit in the current digit region. Once all the digits in the current digit region are read and written into the next row, the counter can then do one of the following: continue reading digits by moving on to the next digit region, cross back all the way to the right of the rectangle and start reading the next row, or halt.\relax }}{5}{figure.caption.3}}
 \newlabel{fig:counter_read_digit_return_read_digit_general_case3}{{1}{5}{This illustrates how a counter reads and writes a digit region, in a general sense. The counter starts in the rightmost digit region by reading the bottommost digit within that region. After reading digit 1 in the current row, the corresponding digit region in the next row be started in the next row. The counter writes the first digit in the next row, and then returns to the second digit in the current digit region. Once all the digits in the current digit region are read and written into the next row, the counter can then do one of the following: continue reading digits by moving on to the next digit region, cross back all the way to the right of the rectangle and start reading the next row, or halt.\relax }{figure.caption.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Digit region explanation (in progress)}{5}{subsection.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Digit regions}{5}{subsection.3.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Digits in a typical counter vs. digits separated into digit regions.\relax }}{5}{figure.caption.4}}
 \newlabel{fig:comparison_of_digits_in_different_counters}{{2}{5}{Digits in a typical counter vs. digits separated into digit regions.\relax }{figure.caption.4}{}}
 \newlabel{fig:digits_normal_counter}{{2a}{5}{Digits in a typical counter.\relax }{figure.caption.4}{}}
@@ -357,29 +357,37 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces  The {\tt  Cross\_Next\_Row} gadget.\relax }}{55}{figure.caption.43}}
 \newlabel{fig:crosser_gadgets}{{15}{55}{The {\tt Cross\_Next\_Row} gadget.\relax }{figure.caption.43}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.9}{\tt  Roof\_Unit}}{56}{subsubsection.4.1.9}}
+\newlabel{fig:roof_unit_1}{{16a}{56}{Case 1.  \relax }{figure.caption.44}{}}
+\newlabel{sub@fig:roof_unit_1}{{a}{56}{Case 1.  \relax }{figure.caption.44}{}}
+\newlabel{fig:roof_unit_2}{{16b}{56}{Case 2.  \relax }{figure.caption.44}{}}
+\newlabel{sub@fig:roof_unit_2}{{b}{56}{Case 2.  \relax }{figure.caption.44}{}}
+\newlabel{fig:roof_unit_3}{{16c}{56}{Case 3.  \relax }{figure.caption.44}{}}
+\newlabel{sub@fig:roof_unit_3}{{c}{56}{Case 3.  \relax }{figure.caption.44}{}}
+\newlabel{fig:roof_unit_right_shingles}{{16d}{56}{Right shingles.  \relax }{figure.caption.44}{}}
+\newlabel{sub@fig:roof_unit_right_shingles}{{d}{56}{Right shingles.  \relax }{figure.caption.44}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Initial value}{56}{subsection.4.2}}
-\newlabel{fig:initial_case1_msr}{{16a}{57}{MSR case 1\relax }{figure.caption.44}{}}
-\newlabel{sub@fig:initial_case1_msr}{{a}{57}{MSR case 1\relax }{figure.caption.44}{}}
-\newlabel{fig:initial_case2_msr}{{16b}{57}{MSR case 2\relax }{figure.caption.44}{}}
-\newlabel{sub@fig:initial_case2_msr}{{b}{57}{MSR case 2\relax }{figure.caption.44}{}}
-\newlabel{fig:initial_case3_msr}{{16c}{57}{MSR case 3\relax }{figure.caption.44}{}}
-\newlabel{sub@fig:initial_case3_msr}{{c}{57}{MSR case 3\relax }{figure.caption.44}{}}
-\newlabel{fig:initial_general}{{16d}{57}{General digit regions\relax }{figure.caption.44}{}}
-\newlabel{sub@fig:initial_general}{{d}{57}{General digit regions\relax }{figure.caption.44}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces  These figures show an example construction of the initial value, with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assembly.\relax }}{57}{figure.caption.44}}
-\newlabel{fig:initial_value_assemblies}{{16}{57}{These figures show an example construction of the initial value, with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assembly.\relax }{figure.caption.44}{}}
-\newlabel{fig:initial_value_case1}{{17a}{65}{Initial value case 1\relax }{figure.caption.45}{}}
-\newlabel{sub@fig:initial_value_case1}{{a}{65}{Initial value case 1\relax }{figure.caption.45}{}}
-\newlabel{fig:initial_value_case2}{{17b}{65}{Initial value case 2\relax }{figure.caption.45}{}}
-\newlabel{sub@fig:initial_value_case2}{{b}{65}{Initial value case 2\relax }{figure.caption.45}{}}
-\newlabel{fig:initial_value_case3}{{17c}{65}{Initial value case 3\relax }{figure.caption.45}{}}
-\newlabel{sub@fig:initial_value_case3}{{c}{65}{Initial value case 3\relax }{figure.caption.45}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces  These figures show a full example of an initial value, with both general regions and the MSRs together, instead of separated as shown above.\relax }}{65}{figure.caption.45}}
-\newlabel{fig:initial_value_assemblies_full}{{17}{65}{These figures show a full example of an initial value, with both general regions and the MSRs together, instead of separated as shown above.\relax }{figure.caption.45}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Overviews}{66}{subsection.4.3}}
-\newlabel{fig:full_overview_case3_colored}{{18a}{66}{Full overview case 3\relax }{figure.caption.46}{}}
-\newlabel{sub@fig:full_overview_case3_colored}{{a}{66}{Full overview case 3\relax }{figure.caption.46}{}}
-\newlabel{fig:full_overview_case2_colored}{{18b}{66}{Full overview case 2\relax }{figure.caption.46}{}}
-\newlabel{sub@fig:full_overview_case2_colored}{{b}{66}{Full overview case 2\relax }{figure.caption.46}{}}
-\newlabel{fig:full_overview_case1_colored}{{18c}{66}{Full overview case 1\relax }{figure.caption.46}{}}
-\newlabel{sub@fig:full_overview_case1_colored}{{c}{66}{Full overview case 1\relax }{figure.caption.46}{}}
+\newlabel{fig:initial_case1_msr}{{17a}{58}{MSR case 1\relax }{figure.caption.45}{}}
+\newlabel{sub@fig:initial_case1_msr}{{a}{58}{MSR case 1\relax }{figure.caption.45}{}}
+\newlabel{fig:initial_case2_msr}{{17b}{58}{MSR case 2\relax }{figure.caption.45}{}}
+\newlabel{sub@fig:initial_case2_msr}{{b}{58}{MSR case 2\relax }{figure.caption.45}{}}
+\newlabel{fig:initial_case3_msr}{{17c}{58}{MSR case 3\relax }{figure.caption.45}{}}
+\newlabel{sub@fig:initial_case3_msr}{{c}{58}{MSR case 3\relax }{figure.caption.45}{}}
+\newlabel{fig:initial_general}{{17d}{58}{General digit regions\relax }{figure.caption.45}{}}
+\newlabel{sub@fig:initial_general}{{d}{58}{General digit regions\relax }{figure.caption.45}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces  These figures show an example construction of the initial value, with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assembly.\relax }}{58}{figure.caption.45}}
+\newlabel{fig:initial_value_assemblies}{{17}{58}{These figures show an example construction of the initial value, with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assembly.\relax }{figure.caption.45}{}}
+\newlabel{fig:initial_value_case1}{{18a}{66}{Initial value case 1\relax }{figure.caption.46}{}}
+\newlabel{sub@fig:initial_value_case1}{{a}{66}{Initial value case 1\relax }{figure.caption.46}{}}
+\newlabel{fig:initial_value_case2}{{18b}{66}{Initial value case 2\relax }{figure.caption.46}{}}
+\newlabel{sub@fig:initial_value_case2}{{b}{66}{Initial value case 2\relax }{figure.caption.46}{}}
+\newlabel{fig:initial_value_case3}{{18c}{66}{Initial value case 3\relax }{figure.caption.46}{}}
+\newlabel{sub@fig:initial_value_case3}{{c}{66}{Initial value case 3\relax }{figure.caption.46}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces  These figures show a full example of an initial value, with both general regions and the MSRs together, instead of separated as shown above.\relax }}{66}{figure.caption.46}}
+\newlabel{fig:initial_value_assemblies_full}{{18}{66}{These figures show a full example of an initial value, with both general regions and the MSRs together, instead of separated as shown above.\relax }{figure.caption.46}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Overviews}{67}{subsection.4.3}}
+\newlabel{fig:full_overview_case3_colored}{{19a}{67}{Full overview case 3\relax }{figure.caption.47}{}}
+\newlabel{sub@fig:full_overview_case3_colored}{{a}{67}{Full overview case 3\relax }{figure.caption.47}{}}
+\newlabel{fig:full_overview_case2_colored}{{19b}{67}{Full overview case 2\relax }{figure.caption.47}{}}
+\newlabel{sub@fig:full_overview_case2_colored}{{b}{67}{Full overview case 2\relax }{figure.caption.47}{}}
+\newlabel{fig:full_overview_case1_colored}{{19c}{67}{Full overview case 1\relax }{figure.caption.47}{}}
+\newlabel{sub@fig:full_overview_case1_colored}{{c}{67}{Full overview case 1\relax }{figure.caption.47}{}}
