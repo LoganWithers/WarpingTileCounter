@@ -11,13 +11,14 @@ all the way until the gadget can no longer continue assembling in the north dire
 
 \begin{itemize}
 
-    \item {\prewarp}: These gadgets use the bits read from the {\cread} gadgets to translate them into
-                      a signal used to tell the counter whether to begin reading
-                      another digit in the current row, or cut across the rectangle and begin reading the
-                      first digit in the next row. This signal is used from the {\prewarp} gadgets through
-                      the {\dtop} gadgets are attached after writing the current digit.
+    \item {\prewarp}: These gadgets decode the least significant two bits passed in from
+                      the read from the {\cread} gadgets, into a special signal that indicates whether a gadget
+                      is currently in the MSR and if it is the MSD. Here is how the signal is decoded: if the least
+                      significant bit is 1, add a marker to indicate the current gadgets are in the MSR; if the second least
+                      significant bit is also 1, add a marker on the glues to indicate that the gadget is also part
+                      of the MSD.
 
-    For each $i = 1,2,3, u \in \{0, 1\}^l$, and each $\inc \in \{ {\tt increment, copy } \}$:
+    For each $i = 1,2,3, u \in \{0, 1\}^l$, and each $\inc \in \ops$:
     \begin{itemize}
 
         \item if $u$ ends with 00:
@@ -124,10 +125,10 @@ all the way until the gadget can no longer continue assembling in the north dire
         prevents a truly infinite line from assembling. The geometry required for this process is guarenteed
         to be in place by earlier-assembled {\dtop} gadgets.
 
-        For each $u \in \{0, 1\}^l$, and each $\inc \in \{ {\tt increment, copy } \}$:
+        For each $u \in \{0, 1\}^l$, and each $\inc \in \ops$:
         \begin{itemize}
 
-            \item For each $i = 1,2,3$: create
+            \item Create
             $\begin{aligned}[t]
                 \firstwarp(& \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle,\\  % South
                            & \left\langle {\tt FirstWarp},  i, u, \inc \right\rangle,\\  % North
@@ -227,10 +228,10 @@ all the way until the gadget can no longer continue assembling in the north dire
          gadgets to the start of the {\secondwarp} gadgets. For digit 1 in cases 1 and 2, the {\warpbridge} is omitted
          from the {\warpunit}.
 
-    For each $u \in \{0, 1\}^l$, and each $\inc \in \{ {\tt increment, copy } \}$:
+    For each $i = 1,2,3, u \in \{0, 1\}^l$, and each $\inc \in \ops$:
     \begin{itemize}
 
-        \item For each $i = 1,2,3$: create
+        \item Create
         $\begin{aligned}[t]
             \warpbridge(& \left\langle {\tt WarpBridge}, i, u, \inc \right\rangle,
                           \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle \;)
@@ -319,10 +320,9 @@ all the way until the gadget can no longer continue assembling in the north dire
     to be in place by earlier-assembled {\dtop} gadgets.
 
 
-    For each $u \in \{0, 1\}^l$, and each $\inc \in \{ {\tt increment, copy } \}$:
+    For each $i = 1,2,3, u \in \{0, 1\}^l$, and each $\inc \in \ops$:
     \begin{itemize}
-        \item For each $i = 1, 2, 3$: \\
-        Create
+        \item Create
         $\begin{aligned}[t]
             \secondwarp(& \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,     % South
                           \left\langle {\tt SecondWarp}, i, u, \inc \right\rangle,     % North
@@ -401,8 +401,9 @@ all the way until the gadget can no longer continue assembling in the north dire
     gadget is to assemble from wherever the last warping tiles ``wake up'', forming a path that ends where the
     next digit needs to start being written.
 
+    For each $i = 1,2,3, u \in \{0, 1\}^l$, and each $\inc \in \ops$:
     \begin{itemize}
-       \item For each $i = 1,2,3$: create\\
+       \item Create\\
         $\begin{aligned}[t]
             \postwarp(& \left \langle {\tt PostWarp},     i, u, \inc \right\rangle,    % Down
                         \left \langle {\tt CounterWrite}, i, u, \inc \right\rangle \;) % North

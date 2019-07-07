@@ -33,9 +33,9 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
 
 
 \begin{itemize}
-    \item {\tt Start}:
+    \item {\tt Start}.
 
-    \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -59,7 +59,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     \end{itemize}
 
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
+    \item {\dtop}, the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
@@ -86,7 +86,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
                          \left\langle {\tt NextRead}, 1, {\tt seed}, i \right\rangle \;)
     \end{aligned}$\\ (single tile).
 
-    \item $i \gets i + 1$
+    \item $i \gets i + 1$.
 
     \item Create
     $\begin{aligned}[t]
@@ -102,8 +102,8 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
 
     \item Create
     $\begin{aligned}[t]
-        \postwarp(&\left\langle {\tt PostWarp}, 2, {\tt seed}, i    \right\rangle,
-                   \left\langle {\tt CounterWrite},    2, {\tt seed}, i, 0 \right\rangle \;)
+        \postwarp(&\left\langle {\tt PostWarp},     2, {\tt seed}, i    \right\rangle,
+                   \left\langle {\tt CounterWrite}, 2, {\tt seed}, i, 0 \right\rangle \;)
     \end{aligned}$\\ from the general gadget show in Figure~\ref{fig:post_warp_2or3_op}.
 
     \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
@@ -159,7 +159,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
     \end{aligned}$\\ from the gadget in Figure~\ref{fig:return_path_2_op-or-seed}.
 
 
-    \item $i \gets i + 1$
+    \item $i \gets i + 1$.
 
     \item Create
     $\begin{aligned}[t]
@@ -187,8 +187,8 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
 
     \item Create
     $\begin{aligned}[t]
-        \postwarp(&\left\langle {\tt PostWarp}, 3, {\tt seed}, i    \right\rangle,
-                   \left\langle {\tt CounterWrite},    3, {\tt seed}, i, 0 \right\rangle \;)
+        \postwarp(&\left\langle {\tt PostWarp},     3, {\tt seed}, i    \right\rangle,
+                   \left\langle {\tt CounterWrite}, 3, {\tt seed}, i, 0 \right\rangle \;)
     \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:post_warp_2or3_op}.
 
 
@@ -215,7 +215,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
+    \item {\dtop}, the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
@@ -242,12 +242,12 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
                      \left\langle {\tt NextRead},   3, {\tt seed}, i, \right\rangle \;)
     \end{aligned}$\\from the gadget in Figure~\ref{fig:return_path_3}.
 
-    \item $i \gets i + 1$
+    \item $i \gets i + 1$.
 
     \item Create
     $\begin{aligned}[t]
-        \nextread(&\left\langle {\tt NextRead},  3, {\tt seed}, i - 1 \right\rangle,
-                   \left\langle {\tt CounterWrite},     1, {\tt seed}, i     \right\rangle \;)
+        \nextread(&\left\langle {\tt NextRead},     3, {\tt seed}, i - 1 \right\rangle,
+                   \left\langle {\tt CounterWrite}, 1, {\tt seed}, i     \right\rangle \;)
     \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:next_read_3_seed_op}.
 
     \item if $i$ is not an index in the MSR, go to {\tt start}, else go to MSR.
@@ -264,7 +264,7 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
 
 Case 1 -- if $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_msr}.
 \begin{itemize}
-    \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -287,7 +287,7 @@ Case 1 -- if $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_1_op_msr_msd}
+    \item {\dtop}, the following statements create the gadget shown in Figure~\ref{fig:digit_top_1_op_msr_msd}
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
@@ -354,7 +354,7 @@ Case 1 -- if $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_
 
 Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_msr}.
 \begin{itemize}
-    \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -377,7 +377,7 @@ Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_1_op_msr}
+    \item {\dtop}, the following statements create the gadget shown in Figure~\ref{fig:digit_top_1_op_msr}.
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
@@ -419,7 +419,7 @@ Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_
     \end{aligned}$\\ from the general gadget show in Figure~\ref{fig:post_warp_2_op_msr_msd}.
 
 
-    \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -442,7 +442,7 @@ Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_2_op_msr_msd}
+    \item {\dtop}, the following statements create the gadget shown in Figure~\ref{fig:digit_top_2_op_msr_msd}.
         \begin{itemize}
             \item Create
             $\begin{aligned}[t]
@@ -488,7 +488,7 @@ Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_
 Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_msr}.
 \begin{itemize}
 
-    \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -512,7 +512,7 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
     \end{itemize}
 
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
+    \item {\dtop}, the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
@@ -533,7 +533,7 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
         \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
     \end{itemize}
 
-    \item $i \gets i + 1$
+    \item $i \gets i + 1$.
 
     \item Create
     $\begin{aligned}[t]
@@ -553,7 +553,7 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
                    \left\langle {\tt CounterWrite},    2, {\tt seed}, i, 0 \right\rangle \;)
     \end{aligned}$\\ from the general gadget show in Figure~\ref{fig:post_warp_2or3_op}.
 
-    \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
         \item if $j = 0$\\ create
         $\begin{aligned}[t]
@@ -577,7 +577,7 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
     \end{itemize}
 
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
+    \item {\dtop}, the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
@@ -639,7 +639,7 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
 
 
 
-    \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -662,7 +662,7 @@ Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_
         \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:counter_write_0} if $b = 0$ or Figure~\ref{fig:counter_write_1} if $b = 1$.
     \end{itemize}
 
-    \item {\dtop}: the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
+    \item {\dtop}, the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
     \begin{itemize}
         \item Create
         $\begin{aligned}[t]
