@@ -31,7 +31,7 @@ in a encoded digit.
 The idea here is to repeat these steps starting from $i = 0$ and repeating until $i$ is the index of the first digit in the MSR. These
 steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_general}.
 
-
+\subsubsection{General}
 \begin{itemize}
     \item {\tt Start}.
 
@@ -250,19 +250,12 @@ steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_gener
                    \left\langle {\tt CounterWrite}, 1, {\tt seed}, i     \right\rangle \;)
     \end{aligned}$\\ from the general gadget shown in Figure~\ref{fig:next_read_3_seed_op}.
 
-    \item if $i$ is not an index in the MSR, go to {\tt start}, else go to MSR.
+    \item if $i$ is not an index in the MSR, go to {\tt start}, else break.
 \end{itemize}
 
-\vspace{1cm}
 
-
-
-
-\Huge{MSR}\normalsize
-
-
-
-Case 1 -- if $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_msr}.
+\subsubsection{Case 1}
+If $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_msr}.
 \begin{itemize}
     \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
@@ -351,8 +344,8 @@ Case 1 -- if $d - i = 1$ to create the assembly shown in~\ref{fig:initial_case1_
 \end{itemize}
 
 
-
-Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_msr}.
+\subsubsection{Case 2}
+If $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_msr}.
 \begin{itemize}
     \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:
     \begin{itemize}
@@ -484,8 +477,8 @@ Case 2 -- if $d - i = 2$ to create the assembly shown in~\ref{fig:initial_case2_
 \end{itemize}
 
 
-
-Case 3 -- if $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_msr}.
+\subsubsection{Case 3}
+If $d - i = 3$ to create the assembly shown in~\ref{fig:initial_case3_msr}.
 \begin{itemize}
 
     \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(C_0[i])[j]$:

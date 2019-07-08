@@ -10,7 +10,7 @@
         {
             SimpleTileSetName = tdsFileName;
             SeedName          = seedName;
-            Coordinates       = new Coordinates();
+            Coordinates       = new Coordinates(1, 1, 1);
         }
 
 

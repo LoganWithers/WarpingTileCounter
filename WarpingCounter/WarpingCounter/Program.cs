@@ -33,16 +33,17 @@
         private static void RunCLI()
         {
 
-            while (true)
-            {
+            //while (true)
+            //{
                 Console.WriteLine("Enter a value for N");
-                var input = Console.ReadLine();
+                var input = "12341424";
+                //Console.ReadLine();
                 bool IsExitCommand() => input == "-e" || string.IsNullOrEmpty(input);
 
                 if (int.TryParse(input, out var N))
                 {
                     Console.WriteLine("Enter a value for k");
-                    input = Console.ReadLine();
+                    input = "12";//Console.ReadLine();
 
                     if (int.TryParse(input, out var k))
                     {
@@ -53,20 +54,20 @@
                         if (generator.IsStartingValueTooSmall())
                         {
                             Error("Starting value must be result in >= 2 digit regions");
-                            continue;
+                          //  continue;
                         }
 
                         Write($"ThinRectangle_{N}x{k}_b={baseM}_c0={startingValue}", generator.Generate());
-                        continue;
+                        //continue;
                     }
                 }
-                if (IsExitCommand())
-                {
-                    break;
-                }
+                //if (IsExitCommand())
+                //{
+                //    break;
+                //}
 
-                Error($"Error parsing {input}...");
-            }
+                //Error($"Error parsing {input}...");
+            //}
         }
 
 

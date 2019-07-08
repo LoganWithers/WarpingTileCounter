@@ -57,7 +57,7 @@
 
         public TileGenerator(int m, string initialValueB10)
         {
-            M           = m;
+            M                     = m;
             construction         = new ConstructionValues(initialValueB10, m);
             digitsInMSR          = construction.DigitsInMSR;
             L                    = construction.L;
@@ -76,7 +76,7 @@
             //    CreateSeed();
             //    CreateCounter();
 
-            tiles.Add(new Tile("seed"){ North = GlueFactory.Create(DigitTop, 1, true, true, true)});
+            tiles.Add(new Tile("seed"){ North = GlueFactory.Create(DigitTop, 3, true, true, true)});
 
             var readerFactory = new ReaderFactory(L, logM, M);
             tiles.AddRange(readerFactory.Readers.SelectMany(reader => reader.Tiles));
@@ -94,7 +94,10 @@
             CreateNextRead();
             CreateReturnPaths();
             CreateCrossNextRow();
-            return tiles;
+            var before = tiles.Count;
+            var after = tiles.DistinctBy(t => t.Name);
+            Console.Write($"Found {before - after.Count()} duplicate tiles");
+            return after.ToList();
         }
         
         private void CreateSeed()
@@ -134,6 +137,8 @@
             {
                 foreach (var op in new[] { true, false })
                 {
+
+                    var t = u.GetLast(2);
                     switch (u.GetLast(2))
                     {
                         case "00":
@@ -167,7 +172,7 @@
                                                                   GlueFactory.Create(FirstWarp, 3, u, op, msr: true, msd: true)).Tiles);
                             break;
 
-                        default: throw new ArgumentOutOfRangeException(u);
+                        default: continue;
                     }   
                 }
             }
@@ -223,7 +228,7 @@
                                                                     GlueFactory.Create(WarpBridge, 3, u, op, msr: true, msd: true)).Tiles);
                             break;
 
-                        default: throw new ArgumentOutOfRangeException(u);
+                        default: continue;
                     }
                 }
             }
@@ -259,7 +264,7 @@
                                                                      GlueFactory.Create(SecondWarp, 3, u, op, msr: true, msd: true)).Tiles);
                             break;
 
-                        default: throw new ArgumentOutOfRangeException(u);
+                        default: continue;
                     }
                 }
             }
@@ -301,7 +306,7 @@
                                                                      GlueFactory.Create(PostWarp,   3, u, op, msr: true, msd: true)).Tiles);
                             break;
 
-                        default: throw new ArgumentOutOfRangeException(u);
+                        default: continue;;
                     }
                 }
             }

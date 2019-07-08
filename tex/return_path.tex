@@ -1,15 +1,15 @@
 \subsubsection{\returnpath}
-After a {\dtop} has assembled, we know that the geometry the allows for the {\warpunit} to
-work has been placed, therfore the counter is free to return back near where it started
-reading the previous digit. The next gadget that assembles is the {\returnpath} gadget.
-The basic idea of this gadget is simply to provide a path from the end of {\dtop} to some
-general area closer to where the most recently read digit is located. Once the {\returnpath} has
-completely assembled, it output's a glue for the {\nextread} gadgets to determine
-where the counter needs to assemble next.
-
+%
+After a {\dtop} has assembled, we know that the geometry that allows for the {\warpunit} to work has been placed, therefore the counter is free to return back near where it started reading the previous digit.
+%
+The next gadget that assembles is the {\returnpath} gadget.
+%
+The basic idea of this gadget is simply to provide a path from the end of {\dtop} to some general area closer to where the most recently read digit is located.
+%
+Once the {\returnpath} has completely assembled, it output's a glue for the {\nextread} gadgets to determine where the counter needs to assemble next.
+%
 
 For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
-
 \begin{itemize}
 
     % DIGIT 1
@@ -178,6 +178,6 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
         \label{fig:return_path_3_seed_op_msr_msd_overview}
     }{\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/return_path_3_seed_op_msr_msd}}}%
     ~
-    \caption{\label{fig:return_path_gadgets} The {\tt Return\_Path} gadgets.}
+    \caption{\label{fig:return_path_gadgets} The {\returnpath} gadgets.}
 \end{figure}
 
