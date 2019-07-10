@@ -8,8 +8,8 @@
 
   <ItemGroup>
     <Folder Include="Common\Builders\Interfaces\" />
-    <Folder Include="Gadgets\Warping\PostWarp\" />
     <Folder Include="Output\" />
+    <Folder Include="Seed\Regions\" />
   </ItemGroup>
 
   <ItemGroup>

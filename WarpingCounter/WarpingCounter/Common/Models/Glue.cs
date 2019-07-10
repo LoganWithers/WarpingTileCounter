@@ -24,7 +24,7 @@
         public string Label
         {
             get => label;
-            set => label = Regex.Replace(value, @"\s+", "");
+            set => label = value;//Regex.Replace(value, @"\s+", "");
         }
     }
 

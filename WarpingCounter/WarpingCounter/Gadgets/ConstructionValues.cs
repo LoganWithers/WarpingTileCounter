@@ -18,10 +18,10 @@
         public readonly List<string> EncodedDigits;
 
         public readonly int d;
+
         private readonly BigInteger haltingValueBase10;
 
         private readonly List<string> haltingValueBaseM;
-
 
         private readonly BigInteger initialValueBase10;
 

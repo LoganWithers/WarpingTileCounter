@@ -9,10 +9,11 @@
 
     using Gadgets;
 
-    using Regions;
+    using InitialValue;
+
 
     /// <summary>
-    /// Takes the contruction
+    /// Takes the construction
     /// </summary>
     public class SeedCreator
     {
@@ -25,7 +26,7 @@
             Tiles        = new List<Tile>();
             this.construction = construction;
 
-            CreateTilesForCreateialValue();
+            CreateTilesForInitialValue();
         }
 
 
@@ -38,7 +39,7 @@
         /// 
         /// </summary>
         /// <exception cref="ArgumentOutOfRangeException">DigitsInMSR</exception>
-        private void CreateTilesForCreateialValue()
+        private void CreateTilesForInitialValue()
         {
             List<IEnumerable<string>> regions = construction.SplitIntoDigitRegions()
                                                             .ToList();
@@ -47,31 +48,38 @@
 
             var isMsrLeastSignificant = regions.Count == 1;
 
-            switch (construction.DigitsInMSR)
+            //switch (construction.DigitsInMSR)
+            //{
+            //    case 1:
+            //        CreateMsr(msr[0]);
+
+            //        break;
+            //    case 2:
+            //        CreateMsr(msr[0], msr[1]);
+
+            //        break;
+            //    case 3:
+            //        CreateMsr(msr[0], msr[1], msr[2], isMsrLeastSignificant);
+
+            //        break;
+            //    default:
+
+            //        throw new ArgumentOutOfRangeException(nameof(construction.DigitsInMSR));
+            //}
+
+            for (var i = 0; i < regions.Count; i++)
             {
-                case 1:
-                    CreateMsr(msr[0]);
+                List<string> region = regions[i].ToList();
 
-                    break;
-                case 2:
-                    CreateMsr(msr[0], msr[1]);
+                if (i == regions.Count - 1)
+                {
+                    CreateMsr(region[0], region[1], region[2], i, i == 0);
+                } else
+                {
+                    CreateStandardRegion(region[0], region[1], region[2], i, i == 0);
+                }
 
-                    break;
-                case 3:
-                    CreateMsr(msr[0], msr[1], msr[2], isMsrLeastSignificant);
-
-                    break;
-                default:
-
-                    throw new ArgumentOutOfRangeException(nameof(construction.DigitsInMSR));
-            }
-
-            for (var regionIndex = 1; regionIndex < regions.Count; regionIndex++)
-            {
-                List<string> region = regions[regionIndex]
-               .ToList();
-
-                CreateStandardRegion(region[0], region[1], region[2], regionIndex, regionIndex + 1 == regions.Count);
+                
             }
         }
 
@@ -85,8 +93,8 @@
             var digit1 = $"{ToBinary(digit1BaseM)}11";
             Console.WriteLine($"Region 0 (MSR):\n    D1: {digit1}\n\n");
 
-            var region = new OneDigitRegion(construction.L, digit1);
-            Tiles.AddRange(region.Tiles);
+           // var region = new OneDigitRegion(construction.L, digit1);
+           // Tiles.AddRange(region.Tiles);
         }
 
 
@@ -98,8 +106,8 @@
             var digit1 = $"{ToBinary(digit1BaseM)}01";
             Console.WriteLine($"Region 0 (MSR):\n    D2: {digit2}\n    D1: {digit1}\n\n");
 
-            var region = new TwoDigitRegion(construction.L, (digit2, digit1));
-            Tiles.AddRange(region.Tiles);
+           // var region = new TwoDigitRegion(construction.L, (digit2, digit1));
+           // Tiles.AddRange(region.Tiles);
         }
 
 
@@ -110,19 +118,19 @@
         private void CreateMsr(string digit3BaseM,
                                string digit2BaseM,
                                string digit1BaseM,
+                               int    regionIndex,
                                bool   isLeastSignificant)
         {
             var digit3 = $"{ToBinary(digit3BaseM)}11";
             var digit2 = $"{ToBinary(digit2BaseM)}00";
             var digit1 = $"{ToBinary(digit1BaseM)}00";
-            Console.WriteLine($"Region 0 (MSR):\n    D3: {digit3}\n    D2: {digit2}\n    D1: {digit1}\n\n");
+            Console.WriteLine($"MSR:\n    D3: {digit3}\n    D2: {digit2}\n    D1: {digit1}\n\n");
+           // var region = new ThreeDigitRegion(construction.L,
+//                                              (digit3, digit2, digit1),
+//                                              0,
+//                                              isLeastSignificant);
 
-            var region = new ThreeDigitRegion(construction.L,
-                                              (digit3, digit2, digit1),
-                                              0,
-                                              isLeastSignificant);
-
-            Tiles.AddRange(region.Tiles);
+//            Tiles.AddRange(region.Tiles);
         }
 
 
@@ -136,11 +144,7 @@
             var digit2 = $"{ToBinary(digit2BaseM)}00";
             var digit1 = $"{ToBinary(digit1BaseM)}00";
             Console.WriteLine($"Region {regionIndex}:\n    D3: {digit3}\n    D2: {digit2}\n    D1: {digit1}\n\n");
-
-            var region = new ThreeDigitRegion(construction.L,
-                                              (digit3, digit2, digit1),
-                                              regionIndex,
-                                              isLeastSignificant);
+            var region = new GeneralDigitRegion((digit1, digit2, digit3), regionIndex, digit1.Length);
 
             Tiles.AddRange(region.Tiles);
         }

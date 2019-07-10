@@ -10,16 +10,14 @@
 
     public class NextReadDigit3Seed : IHaveInput, IHaveOutput
     {
-        private readonly int L;
         public Tile Input { get; }
 
         public Tile Output { get; }
 
         public IEnumerable<Tile> Tiles { get; }
 
-        public NextReadDigit3Seed(int L, Glue input, Glue output)
+        public NextReadDigit3Seed(Glue input, Glue output)
         {
-            this.L = L;
 
             Tiles = Create();
             Tiles.PrependNamesWith(nameof(NextReadDigit3Seed));

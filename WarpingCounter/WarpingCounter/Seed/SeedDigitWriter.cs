@@ -7,7 +7,6 @@
 
     using Common;
     using Common.Builders;
-    using Common.Enums;
     using Common.Models;
 
     /// <summary>
@@ -19,26 +18,26 @@
     /// Used only in the construction of the seed.
     /// </remarks>
     /// </summary>
-    public class CreateialDigitWriter : IHaveInput, IHaveOutput
+    public class DigitWriter : IHaveInput, IHaveOutput
     {
 
         private readonly string bits;
-
-        private readonly WriteDirection direction;
-
-
+        
         public readonly List<Tile> Tiles;
 
 
-        public CreateialDigitWriter(string bits, WriteDirection direction = WriteDirection.SouthToNorth)
+        public DigitWriter(string bits, Glue input, Glue output)
         {
             this.bits      = bits;
-            this.direction = direction;
 
             Tiles = CreateTiles();
+            Tiles.PrependNamesWith($"Digit {Guid.NewGuid()}");
 
-            Input = Tiles.First();
-            Output  = Tiles.Last();
+            Input       = Tiles.First();
+            Input.South = input;
+
+            Output       = Tiles.Last();
+            Output.North = output;
         }
 
 
@@ -50,85 +49,41 @@
 
         private List<Tile> CreateTiles()
         {
-            var b = new GadgetBuilder().Start();
+            var builder = new GadgetBuilder().Start();
 
-            if (direction == WriteDirection.NorthToSouth)
+            foreach (var bit in bits)
             {
-                foreach (var bit in bits)
+                switch (bit)
                 {
-                    switch (bit)
-                    {
-                        case '0':
+                    case '0':
+                        builder.North(2)
+                               .East()
+                               .North()
+                               .West()
+                               .North();
 
-                            b.South()
-                             .South()
-                             .East()
-                             .South()
-                             .West()
-                             .South();
+                        break;
 
-                            break;
-                        case '1':
+                    case '1':
 
-                            b.South()
-                             .South()
-                             .Up()
-                             .East()
-                             .South()
-                             .West()
-                             .Down()
-                             .South();
+                        builder.North(2)
+                               .Up()
+                               .East()
+                               .North()
+                               .West()
+                               .Down()
+                               .North();
 
-                            break;
-                        default:
+                        break;
 
-                            throw new ArgumentOutOfRangeException(nameof(bit));
-                    }
-                }
-            } else
-            {
-                foreach (var bit in bits)
-                {
-                    switch (bit)
-                    {
-                        case '0':
+                    default:
 
-                            b.North()
-                             .North()
-                             .East()
-                             .North()
-                             .West()
-                             .North();
-
-                            break;
-
-                        case '1':
-
-                            b.North()
-                             .North()
-                             .Up()
-                             .East()
-                             .North()
-                             .West()
-                             .Down()
-                             .North();
-
-                            break;
-
-                        default:
-
-                            throw new ArgumentOutOfRangeException(nameof(bit));
-                    }
+                        throw new ArgumentOutOfRangeException(nameof(bit));
                 }
             }
-
-            List<Tile> tiles = b.Tiles()
-                                .ToList();
-
-            tiles.PrependNamesWith($"Createial Digit: {bits}");
-
-            return tiles.Skip(1)
-                        .ToList();
+            
+            // Skip 1 since the first tile is not apart of the encoded digits. 
+            return builder.Tiles().Skip(1).ToList();
         }
 
     }

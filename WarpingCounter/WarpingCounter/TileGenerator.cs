@@ -15,6 +15,7 @@
     using Gadgets.ReturnPath;
     using Gadgets.Warping;
     using Gadgets.Warping.FirstWarp;
+    using Gadgets.Warping.PostWarp;
     using Gadgets.Warping.PreWarp;
     using Gadgets.Warping.SecondWarp;
     using Gadgets.Warping.WarpBridge;
@@ -71,33 +72,39 @@
         public bool IsStartingValueTooSmall() => construction.DigitRegions < 2;
 
 
-        public List<Tile> Generate()
+        public (string name, List<Tile> tileset) Generate()
         {
-            //    CreateSeed();
-            //    CreateCounter();
+            const string gadget = PostWarp;
+            const int   i  = 3;
+            const bool op  = true;
+            const bool msr = true;
+            const bool msd = true;
+            string name = $"{gadget} {i} {op} {msr} {msd}";
 
-            tiles.Add(new Tile("seed"){ North = GlueFactory.Create(DigitTop, 3, true, true, true)});
-
+            tiles.Add(new Tile("seed"){ North = new Glue($"{CounterWrite} {1} {Seed} 0 {1} ")});
+            //GlueFactory.Create(gadget, i, "00000", op, msr, msd)});
+            
             var readerFactory = new ReaderFactory(L, logM, M);
             tiles.AddRange(readerFactory.Readers.SelectMany(reader => reader.Tiles));
 
             ReadOnlyCollection<string> digits = readerFactory.DigitsWithLengthL.AsReadOnly();
-
+ CreateSeed();
             CreateCounterRead(readerFactory);
-
+           
             CreatePreWarp(digits);
             CreateFirstWarp(digits);
             CreateWarpBridge(digits);
             CreateSecondWarp(digits);
+            CreatePostWarp(digits);
 
             CreateDigitTops();
             CreateNextRead();
             CreateReturnPaths();
             CreateCrossNextRow();
             var before = tiles.Count;
-            var after = tiles.DistinctBy(t => t.Name);
-            Console.Write($"Found {before - after.Count()} duplicate tiles");
-            return after.ToList();
+            var after = tiles.DistinctBy(t => t.Name).ToList();
+            Console.Write($"Found {before - after.Count} duplicate tiles");
+            return (name.Replace(" ", "_").ToLower(), after);
         }
         
         private void CreateSeed()
@@ -137,8 +144,6 @@
             {
                 foreach (var op in new[] { true, false })
                 {
-
-                    var t = u.GetLast(2);
                     switch (u.GetLast(2))
                     {
                         case "00":
@@ -311,6 +316,52 @@
                 }
             }
         }
+
+        private void CreatePostWarp(IEnumerable<string> digits)
+        {
+            foreach (var u in digits)
+            {
+                foreach (var op in new[] { true, false })
+                {
+                    switch (u.GetLast(2))
+                    {
+                        case "00":
+                            tiles.AddRange(new PostWarpDigit1(GlueFactory.Create(PostWarp,     1, u, op),
+                                                              GlueFactory.Create(CounterWrite, 1, u, op)).Tiles);
+                             
+                            tiles.AddRange(new PostWarpDigit2(GlueFactory.Create(PostWarp,     2, u, op),
+                                                              GlueFactory.Create(CounterWrite, 2, u, op)).Tiles);
+
+                            tiles.AddRange(new PostWarpDigit3(GlueFactory.Create(PostWarp,     3, u, op),
+                                                              GlueFactory.Create(CounterWrite, 3, u, op)).Tiles);
+                            break;
+
+                        case "01" when digitsInMSR == 2:
+                            tiles.AddRange(new PostWarpDigit1Case2(GlueFactory.Create(PostWarp,     1, u, op),
+                                                                   GlueFactory.Create(CounterWrite, 1, u, op, msr: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 1:
+                            tiles.AddRange(new PostWarpDigit1Case1(GlueFactory.Create(PostWarp,     1, u, op),
+                                                                   GlueFactory.Create(CounterWrite, 1, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 2:
+                            tiles.AddRange(new PostWarpDigit2Case2(GlueFactory.Create(PostWarp,     2, u, op),
+                                                                   GlueFactory.Create(CounterWrite, 2, u, op, msr: true, msd: true)).Tiles);
+                            break;
+
+                        case "11" when digitsInMSR == 3:
+                            tiles.AddRange(new PostWarpDigit3Case3(GlueFactory.Create(PostWarp,     3, u, op),
+                                                                   GlueFactory.Create(CounterWrite, 3, u, op, msr: true, msd: true)).Tiles);
+                            break; 
+
+                        default: continue;
+                    }
+                }
+            }
+        }
+
         private void CreateDigitTops()
         {
             foreach (var op in new []{true, false})
@@ -468,11 +519,6 @@
         {
             var results = new List<Tile>();
 
-            for (var i = 1; i <= Digits; i++)
-            {
-                results.AddRange(new WarpUnit(digitValueToWrite: bits, digitIndex: i, carry: true,  digitsInMSR).Tiles);
-                results.AddRange(new WarpUnit(digitValueToWrite: bits, digitIndex: i, carry: false, digitsInMSR).Tiles);
-            }
 
             return results;
         }

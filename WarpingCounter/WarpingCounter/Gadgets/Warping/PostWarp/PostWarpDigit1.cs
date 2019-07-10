@@ -1,6 +1,7 @@
-﻿namespace WarpingCounter.Gadgets.Warping.PreWarp
+﻿namespace WarpingCounter.Gadgets.Warping.PostWarp
 {
 
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -8,7 +9,7 @@
     using Common.Builders;
     using Common.Models;
 
-    public class PreWarpDigit1Case2 : IHaveInput, IHaveOutput
+    public class PostWarpDigit1 : IHaveInput, IHaveOutput
     {
         public Tile Input { get; }
 
@@ -16,13 +17,13 @@
 
         public readonly List<Tile> Tiles;
 
-        public PreWarpDigit1Case2(Glue input, Glue output)
+        public PostWarpDigit1(Glue input, Glue output)
         {
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(PreWarpDigit1Case2));
+            Tiles.PrependNamesWith($"{nameof(PostWarpDigit1)} {Guid.NewGuid()}");
 
             Input       = Tiles.First();
-            Input.South = input;
+            Input.Down  = input;
 
             Output       = Tiles.Last();
             Output.North = output;
@@ -33,14 +34,16 @@
         {
             var builder = new GadgetBuilder().Start();
 
-            builder.North(7)
-                   .Up()
-                   .North(2)
+            builder.East()
+                   .North(4)
                    .Down()
+                   .North(9)
                    .East()
-                   .North()
+                   .North(3)
+                   .East()
+                   .North(4)
                    .West()
-                   .North(11);
+                   .North();
 
             return builder.Tiles().ToList();
         }

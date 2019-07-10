@@ -57,7 +57,8 @@
                           //  continue;
                         }
 
-                        Write($"ThinRectangle_{N}x{k}_b={baseM}_c0={startingValue}", generator.Generate());
+                        var (name, tileset) = generator.Generate();
+                        Write(name, tileset);
                         //continue;
                     }
                 }
