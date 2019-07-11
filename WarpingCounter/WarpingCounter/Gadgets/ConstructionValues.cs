@@ -122,6 +122,8 @@
             Console.WriteLine($"B{BaseM}:");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"    Start: {string.Join(" ", initialValueBaseM.Select(digit => digit.PadLeft(length, '0')))}");
+
+            
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"    Halt:  {string.Join(" ", haltingValueBaseM.Select(digit => digit.PadLeft(length, '0')))}");
             Console.ResetColor();
@@ -146,7 +148,7 @@
                     var first  = initialValueBaseM[0];
                     var second = initialValueBaseM[1];
                     initialValueBaseM.RemoveAt(0);
-                    initialValueBaseM.RemoveAt(1);
+                    initialValueBaseM.RemoveAt(0);
 
                     List<IEnumerable<string>> chunks = initialValueBaseM.SplitEvery(3)
                                                                         .ToList();

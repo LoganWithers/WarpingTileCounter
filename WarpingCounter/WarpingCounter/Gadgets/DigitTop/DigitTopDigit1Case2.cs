@@ -52,15 +52,20 @@
         {
             var builder = new GadgetBuilder().Start();
 
-            builder.North(4)
+            builder.North(7)
                    .Up()
-                   .North(2)
+                   .North(6)
                    .West()
                    .Down()
-                   .North()
+                   .South(4)
+                   .Up()
+                   .North(3)
                    .West()
-                   .South(7)
+                   .North(2)
+                   .Down()
+                   .South(14)
                    .South(4 * L, "blue");
+
 
             return builder.Tiles().ToList();
         }

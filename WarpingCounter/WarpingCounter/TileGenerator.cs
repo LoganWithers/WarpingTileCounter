@@ -88,7 +88,7 @@
             tiles.AddRange(readerFactory.Readers.SelectMany(reader => reader.Tiles));
 
             ReadOnlyCollection<string> digits = readerFactory.DigitsWithLengthL.AsReadOnly();
- CreateSeed();
+            CreateSeed();
             CreateCounterRead(readerFactory);
            
             CreatePreWarp(digits);

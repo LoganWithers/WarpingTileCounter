@@ -34,7 +34,7 @@
         {
             var builder = new GadgetBuilder().Start();
 
-            builder.North(22);
+            builder.North(21);
 
             return builder.Tiles().ToList();
         }

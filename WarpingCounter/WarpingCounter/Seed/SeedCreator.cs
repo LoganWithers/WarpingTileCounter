@@ -43,37 +43,32 @@
         {
             List<IEnumerable<string>> regions = construction.SplitIntoDigitRegions()
                                                             .ToList();
-
-            List<string> msr = regions[0].ToList();
-
-            var isMsrLeastSignificant = regions.Count == 1;
-
-            //switch (construction.DigitsInMSR)
-            //{
-            //    case 1:
-            //        CreateMsr(msr[0]);
-
-            //        break;
-            //    case 2:
-            //        CreateMsr(msr[0], msr[1]);
-
-            //        break;
-            //    case 3:
-            //        CreateMsr(msr[0], msr[1], msr[2], isMsrLeastSignificant);
-
-            //        break;
-            //    default:
-
-            //        throw new ArgumentOutOfRangeException(nameof(construction.DigitsInMSR));
-            //}
+            regions.Reverse();
 
             for (var i = 0; i < regions.Count; i++)
             {
                 List<string> region = regions[i].ToList();
-
                 if (i == regions.Count - 1)
                 {
-                    CreateMsr(region[0], region[1], region[2], i, i == 0);
+                    switch (construction.DigitsInMSR)
+                    {
+                        case 1:
+                            CreateMsr(region[0], i);
+
+                            break;
+                        case 2:
+                            CreateMsr(region[0], region[1], i);
+
+                            break;
+                        case 3:
+                            CreateMsr(region[0], region[1], region[2], i);
+
+                            break;
+                        default:
+
+                            throw new ArgumentOutOfRangeException(nameof(construction.DigitsInMSR));
+                    }
+
                 } else
                 {
                     CreateStandardRegion(region[0], region[1], region[2], i, i == 0);
@@ -88,7 +83,7 @@
         ///   Creates the MSR when it has only 1 digit encoded in it.
         /// </summary>
         /// <param name="digit1BaseM">The most significant digit in a region (the only one).</param>
-        private void CreateMsr(string digit1BaseM)
+        private void CreateMsr(string digit1BaseM, int regionIndex)
         {
             var digit1 = $"{ToBinary(digit1BaseM)}11";
             Console.WriteLine($"Region 0 (MSR):\n    D1: {digit1}\n\n");
@@ -100,14 +95,14 @@
 
         /// <param name="digit2BaseM">The most significant digit.</param>
         /// <param name="digit1BaseM">The second-most significant digit.</param>
-        private void CreateMsr(string digit2BaseM, string digit1BaseM)
+        private void CreateMsr(string digit2BaseM, string digit1BaseM, int regionIndex)
         {
             var digit2 = $"{ToBinary(digit2BaseM)}11";
             var digit1 = $"{ToBinary(digit1BaseM)}01";
             Console.WriteLine($"Region 0 (MSR):\n    D2: {digit2}\n    D1: {digit1}\n\n");
 
-           // var region = new TwoDigitRegion(construction.L, (digit2, digit1));
-           // Tiles.AddRange(region.Tiles);
+           var region = new Case2DigitRegion((digit2, digit1), regionIndex, digit1.Length);
+           Tiles.AddRange(region.Tiles);
         }
 
 
@@ -118,8 +113,7 @@
         private void CreateMsr(string digit3BaseM,
                                string digit2BaseM,
                                string digit1BaseM,
-                               int    regionIndex,
-                               bool   isLeastSignificant)
+                               int    regionIndex)
         {
             var digit3 = $"{ToBinary(digit3BaseM)}11";
             var digit2 = $"{ToBinary(digit2BaseM)}00";

@@ -36,14 +36,14 @@
             //while (true)
             //{
                 Console.WriteLine("Enter a value for N");
-                var input = "12341424";
+                var input = "12121212";
                 //Console.ReadLine();
                 bool IsExitCommand() => input == "-e" || string.IsNullOrEmpty(input);
 
                 if (int.TryParse(input, out var N))
                 {
                     Console.WriteLine("Enter a value for k");
-                    input = "12";//Console.ReadLine();
+                    input = "16";//Console.ReadLine();
 
                     if (int.TryParse(input, out var k))
                     {
