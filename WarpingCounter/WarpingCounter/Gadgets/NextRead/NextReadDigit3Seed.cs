@@ -16,11 +16,11 @@
 
         public IEnumerable<Tile> Tiles { get; }
 
-        public NextReadDigit3Seed(Glue input, Glue output)
+        public NextReadDigit3Seed(string name, Glue input, Glue output)
         {
 
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(NextReadDigit3Seed));
+            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.North = input;

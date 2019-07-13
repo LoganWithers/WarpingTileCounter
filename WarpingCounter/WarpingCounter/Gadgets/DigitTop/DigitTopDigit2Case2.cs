@@ -32,12 +32,12 @@
         public readonly List<Tile> Tiles;
 
 
-        public DigitTopDigit2Case2(int L, Glue input, Glue output)
+        public DigitTopDigit2Case2(string name, int L, Glue input, Glue output)
         {
             this.L = L;
 
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(DigitTopDigit1Case2));
+            Tiles.RenameWithIndex(name);
 
             Input        = Tiles.First();
             Input.South  = input;

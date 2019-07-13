@@ -107,16 +107,22 @@
         public static void PrependNamesWith(this IEnumerable<Tile> tiles, string name)
         {
             IEnumerable<Tile> enumerable = tiles.ToList();
-            var               first      = enumerable.First();
-            var               last       = enumerable.Last();
 
             foreach (var tile in enumerable)
             {
                 tile.Prepend(name);
             }
+        }
 
-            first.Prepend("First");
-            last.Prepend("Last");
+        public static void RenameWithIndex(this IEnumerable<Tile> enumerable, string name)
+        {
+            IList<Tile> tiles = enumerable.ToList();
+
+            for (var i = 0; i < tiles.Count; i++)
+            {
+                var tile = tiles[i];
+                tile.Rename($"{name} {i}");
+            }
         }
 
 
@@ -146,6 +152,9 @@
                 if (seenKeys.Add(keySelector(element)))
                 {
                     yield return element;
+                } else
+                {
+                    Console.WriteLine(keySelector(element));
                 }
             }
         }

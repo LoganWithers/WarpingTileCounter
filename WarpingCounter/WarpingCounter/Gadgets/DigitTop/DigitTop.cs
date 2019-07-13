@@ -18,13 +18,13 @@
 
         private readonly int L;
 
-        public DigitTop(int L, Glue input, Glue output)
+        public DigitTop(string name, int L, Glue input, Glue output)
         {
             this.L = L;
             Tiles = Create();
-            Tiles.PrependNamesWith($"{nameof(DigitTop)} {Guid.NewGuid()}");
+            Tiles.RenameWithIndex(name);
 
-            Input        = Tiles.First();
+            Input       = Tiles.First();
             Input.South = input;
 
             Output       = Tiles.Last();

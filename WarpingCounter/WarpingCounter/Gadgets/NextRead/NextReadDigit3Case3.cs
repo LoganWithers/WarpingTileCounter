@@ -16,12 +16,11 @@
         public Tile Output { get; }
 
         public IEnumerable<Tile> Tiles { get; }
-        public NextReadDigit3Case3(int L, Glue input, Glue output)
+        public NextReadDigit3Case3(string name, int L, Glue input, Glue output)
         {
             this.L = L;
 
-            Tiles = Create();
-            Tiles.PrependNamesWith(nameof(NextReadDigit3Case3));
+            Tiles = Create();            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.North = input;

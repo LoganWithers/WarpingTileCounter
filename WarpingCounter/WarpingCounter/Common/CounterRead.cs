@@ -19,9 +19,8 @@
         private readonly GuessZero guessZero;
 
 
-        public CounterRead(Glue input, Glue outputOne, Glue outputZero)
+        public CounterRead(string name, Glue input, Glue outputOne, Glue outputZero)
         {
-
             guessOne  = new GuessOne(outputOne);
             guessZero = new GuessZero(outputZero);
 
@@ -31,6 +30,7 @@
             Tiles = new List<Tile>();
             Tiles.AddRange(guessOne.Tiles);
             Tiles.AddRange(guessZero.Tiles);
+            Tiles.PrependNamesWith(name);
         }
 
 

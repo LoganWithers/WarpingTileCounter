@@ -18,11 +18,11 @@
 
         public Tile Output { get; }
 
-        public CrossNextRow(int digits, Glue input, Glue output)
+        public CrossNextRow(string name, int digits, Glue input, Glue output)
         {
             this.digits = digits;
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(CrossNextRow));
+            Tiles.RenameWithIndex(name);
 
             Input      = Tiles.First();
             Input.West = input;

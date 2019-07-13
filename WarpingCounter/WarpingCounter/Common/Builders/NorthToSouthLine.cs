@@ -13,7 +13,7 @@
         public readonly List<Tile> Tiles;
 
 
-        public NorthToSouthLine(int count, bool? carry = null)
+        public NorthToSouthLine(int count, bool? op = null)
         {
             var builder = new GadgetBuilder();
 
@@ -32,8 +32,7 @@
 
             Tiles = builder.Tiles()
                            .ToList();
-
-            Tiles.PrependNamesWith($"{nameof(NorthToSouthLine)} carry={carry}");
+            Tiles.PrependNamesWith($"{nameof(NorthToSouthLine)} {op}");
             Input = Tiles.First();
             Output  = Tiles.Last();
 

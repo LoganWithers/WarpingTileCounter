@@ -10,10 +10,7 @@
 
     public class ReturnPathDigit1Seed : IHaveInput, IHaveOutput
     {
-
-        private readonly int L;
-
-
+        
         public Tile Input { get; }
 
 
@@ -23,12 +20,11 @@
         public IEnumerable<Tile> Tiles { get; }
 
 
-        public ReturnPathDigit1Seed(int L, Glue input, Glue output)
+        public ReturnPathDigit1Seed(string name, Glue input, Glue output)
         {
-            this.L = L;
 
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(ReturnPathDigit1Seed));
+            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.Up    = input;

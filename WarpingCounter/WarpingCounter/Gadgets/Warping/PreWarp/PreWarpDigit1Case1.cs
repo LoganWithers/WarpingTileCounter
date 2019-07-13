@@ -17,10 +17,9 @@
 
         public readonly List<Tile> Tiles;
 
-        public PreWarpDigit1Case1(Glue input, Glue output)
+        public PreWarpDigit1Case1(string name, Glue input, Glue output)
         {
-            Tiles = Create();
-            Tiles.PrependNamesWith($"{nameof(PreWarpDigit1Case1)} {Guid.NewGuid()}");
+            Tiles = Create();            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.South = input;

@@ -17,10 +17,10 @@
 
         public readonly List<Tile> Tiles;
 
-        public PostWarpDigit1(Glue input, Glue output)
+        public PostWarpDigit1(string name, Glue input, Glue output)
         {
             Tiles = Create();
-            Tiles.PrependNamesWith($"{nameof(PostWarpDigit1)} {Guid.NewGuid()}");
+            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.Down  = input;

@@ -17,10 +17,9 @@
 
         public readonly List<Tile> Tiles;
 
-        public PostWarpDigit2Case2(Glue input, Glue output)
+        public PostWarpDigit2Case2(string name, Glue input, Glue output)
         {
-            Tiles = Create();
-            Tiles.PrependNamesWith($"{nameof(PostWarpDigit2Case2)} {Guid.NewGuid()}");
+            Tiles = Create();            Tiles.RenameWithIndex(name);
 
             Input      = Tiles.First();
             Input.West = input;

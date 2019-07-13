@@ -16,12 +16,11 @@
         public Tile Output { get; }
 
         public IEnumerable<Tile> Tiles { get; }
-        public NextReadDigit2Case2(int L, Glue input, Glue output)
+        public NextReadDigit2Case2(string name, int L, Glue input, Glue output)
         {
             this.L = L;
 
-            Tiles = Create();
-            Tiles.PrependNamesWith(nameof(NextReadDigit2Case2));
+            Tiles = Create();            Tiles.RenameWithIndex(name);
 
             Input        = Tiles.First();
             Input.North  = input;

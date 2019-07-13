@@ -17,10 +17,9 @@
 
         public readonly List<Tile> Tiles;
 
-        public PreWarpDigit3(Glue input, Glue output)
+        public PreWarpDigit3(string name, Glue input, Glue output)
         {
-            Tiles = Create();
-            Tiles.PrependNamesWith($"{nameof(PreWarpDigit3)} {Guid.NewGuid()}");
+            Tiles = Create();            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.South = input;

@@ -29,11 +29,11 @@
         private readonly int L;
 
         public readonly List<Tile> Tiles;
-        public DigitTopDigit1Case1(int L, Glue input, Glue output)
+        public DigitTopDigit1Case1(string name, int L, Glue input, Glue output)
         {
             this.L = L;
             Tiles         = Create();
-            Tiles.PrependNamesWith($"{nameof(DigitTopDigit1Case1)} {Guid.NewGuid()}");
+            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.South = input;

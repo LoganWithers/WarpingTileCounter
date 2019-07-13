@@ -18,7 +18,7 @@
         
         public readonly List<Tile> Tiles;
 
-        public FirstWarpDigit2(Glue input, Glue outputNorth, Glue outputEast)
+        public FirstWarpDigit2(string name, Glue input, Glue outputNorth, Glue outputEast)
         {
             Tiles = Create();
             Tiles.PrependNamesWith($"{nameof(FirstWarpDigit2)} {Guid.NewGuid()}");

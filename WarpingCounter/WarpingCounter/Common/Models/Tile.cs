@@ -66,6 +66,15 @@
         }
 
 
+        public void Rename(string name)
+        {
+            if (Name != "seed")
+            {
+                Name = $"{name}".Replace("True", "true")
+                                .Replace("False", "false");
+            }
+        }
+
         /// <summary>
         ///   Attaches a tile north of the tile this is called on.
         ///   <br />

@@ -17,12 +17,11 @@
 
         public IEnumerable<Tile> Tiles { get; }
 
-        public NextReadDigit3(int L, Glue input, Glue output)
+        public NextReadDigit3(string name, int L, Glue input, Glue output)
         {
             this.L = L;
 
-            Tiles = Create();
-            Tiles.PrependNamesWith(nameof(NextReadDigit3));
+            Tiles = Create();            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.North = input;
@@ -39,7 +38,7 @@
             builder.South(2)
                    .West()
                    .Down()
-                   .South(28)
+                   .South(27)
                    .South(4 * L, "blue")
                    .South(30)
                    .South(4 * L, "blue")

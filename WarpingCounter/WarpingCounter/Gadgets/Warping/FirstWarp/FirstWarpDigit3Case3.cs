@@ -16,10 +16,10 @@
         
         public readonly List<Tile> Tiles;
 
-        public FirstWarpDigit3Case3(Glue input, Glue outputNorth, Glue outputEast)
+        public FirstWarpDigit3Case3(string name, Glue input, Glue outputNorth, Glue outputEast)
         {
             Tiles = Create();
-            Tiles.PrependNamesWith($"{nameof(FirstWarpDigit3Case3)} {Guid.NewGuid()}");
+            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.South = input;

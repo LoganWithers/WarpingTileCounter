@@ -3,7 +3,11 @@
 
     using System;
     using System.Collections.Generic;
-
+    // CounterWrite 1 '00100' + 1 
+    // CounterWrite 1 '01000' false            
+    // CounterWrite 1 '1000'  false           
+    //           
+    //           
     public class BinaryStringPermutations
     {
 
@@ -36,6 +40,7 @@
                 DigitsWithLengthL.Add($"{value}00");
                 DigitsWithLengthL.Add($"{value}01");
                 DigitsWithLengthL.Add($"{value}11");
+                DigitsWithLengthL.Add($"{value}10");
             }
 
             // for u ∈ {0, 1}^L

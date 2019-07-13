@@ -19,10 +19,9 @@
 
         public readonly List<Tile> Tiles;
 
-        public WarpBridgeDigit3Case3(Glue input, Glue output)
+        public WarpBridgeDigit3Case3(string name, Glue input, Glue output)
         {
-            Tiles = Create();
-            Tiles.PrependNamesWith($"{nameof(WarpBridgeDigit3Case3)} {Guid.NewGuid()}");
+            Tiles = Create();            Tiles.RenameWithIndex(name);
 
             Input      = Tiles.First();
             Input.West = input;

@@ -14,9 +14,10 @@
 
         public Tile Input { get; }
         public Tile Output { get; }
-        public CounterWrite0(Glue input, Glue output)
+        public CounterWrite0(string name, Glue input, Glue output)
         {
-            Tiles = Create();
+            Tiles       = Create();
+            Tiles.RenameWithIndex(name);
             Input       = Tiles.First();
             Input.South = input;
 
@@ -44,10 +45,10 @@
         public Tile Input { get; }
         public Tile Output { get; }
 
-        public CounterWrite1(Glue input, Glue output)
+        public CounterWrite1(string name, Glue input, Glue output)
         {
-            Tiles = Create();
-
+            Tiles       = Create();
+            Tiles.RenameWithIndex(name);
             Input       = Tiles.First();
             Input.South = input;
 

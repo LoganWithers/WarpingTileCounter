@@ -23,12 +23,12 @@
         public IEnumerable<Tile> Tiles { get; }
 
 
-        public ReturnPathDigit1Case2(int L, Glue input, Glue output)
+        public ReturnPathDigit1Case2(string name, int L, Glue input, Glue output)
         {
             this.L = L;
 
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(ReturnPathDigit1Case2));
+            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.North = input;

@@ -30,10 +30,9 @@
                 }
             }
 
-            Tiles = builder.Tiles()
-                           .ToList();
+            Tiles = builder.Tiles().ToList();
 
-            Tiles.PrependNamesWith($"{nameof(SouthToNorthLine)} %seed%");
+            Tiles.PrependNamesWith(nameof(SouthToNorthLine));
             Input  = Tiles.First();
             Output = Tiles.Last();
 

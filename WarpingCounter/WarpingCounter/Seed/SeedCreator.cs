@@ -101,7 +101,7 @@
             var digit1 = $"{ToBinary(digit1BaseM)}01";
             Console.WriteLine($"Region 0 (MSR):\n    D2: {digit2}\n    D1: {digit1}\n\n");
 
-           var region = new Case2DigitRegion((digit2, digit1), regionIndex, digit1.Length);
+           var region = new Case2DigitRegion((digit1, digit2), regionIndex, digit1.Length);
            Tiles.AddRange(region.Tiles);
         }
 
@@ -119,7 +119,7 @@
             var digit2 = $"{ToBinary(digit2BaseM)}00";
             var digit1 = $"{ToBinary(digit1BaseM)}00";
             Console.WriteLine($"MSR:\n    D3: {digit3}\n    D2: {digit2}\n    D1: {digit1}\n\n");
-            var region = new Case3DigitRegion((digit3, digit2, digit1),
+            var region = new Case3DigitRegion((digit1, digit2, digit3),
                                               regionIndex,
                                               construction.L);
 

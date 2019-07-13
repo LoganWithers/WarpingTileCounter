@@ -26,12 +26,12 @@
         public readonly List<Tile> Tiles;
 
 
-        public DigitWriter(string originalBits, Glue input, Glue output)
+        public DigitWriter(string name, string originalBits, Glue input, Glue output)
         {
             reversedBits = StringUtils.Reverse(originalBits);
 
             Tiles = CreateTiles();
-            Tiles.PrependNamesWith($"Digit {Guid.NewGuid()}");
+            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.South = input;

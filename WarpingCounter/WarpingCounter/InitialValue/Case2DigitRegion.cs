@@ -6,7 +6,6 @@
 
     using Common.Models;
 
-    using Gadgets;
     using Gadgets.DigitTop;
     using Gadgets.NextRead;
     using Gadgets.ReturnPath;
@@ -15,7 +14,7 @@
 
     using Seed;
 
-    public class Case2DigitRegion
+    public class Case2DigitRegion : AbstractTileNamer
     {
 
         private readonly int L;
@@ -35,30 +34,29 @@
 
         private void CreateDigit1(string digit)
         {
-            var digit1 = new DigitWriter(digit,
-                                         new Glue($"{Names.CounterWrite} {1} {Names.Seed} {region} {1}"),
-                                         new Glue($"{Names.DigitTop} {1} {Names.Seed} {region} {1}"));
+            var digit1 = new DigitWriter(Name(CounterWrite, 1, region, true),
+                                         digit,
+                                         new Glue($"{CounterWrite} {1} {Seed} {region} {1}"),
+                                         new Glue($"{DigitTop} {1} {Seed} {region} {1}"));
             Tiles.AddRange(digit1.Tiles);
-            digit1.Tiles.PrependNamesWith($"Digit1Seed {region}");
 
-
-            var digitTop1 = new DigitTopDigit1Case2(L,
-                                                    new Glue($"{Names.DigitTop} {1} {Names.Seed} {region} {1}"),
-                                                    new Glue($"{Names.ReturnPath} {1} {Names.Seed} {region} {1}"));
+            var digitTop1 = new DigitTopDigit1Case2(Name(DigitTop + Seed, 1, op: true, msr: true), 
+                                                    L,
+                                                    new Glue($"{DigitTop} {1} {Seed} {region} {1}"),
+                                                    new Glue($"{ReturnPath} {1} {Seed} {region} {1}"));
 
             Tiles.AddRange(digitTop1.Tiles);
-            digitTop1.Tiles.PrependNamesWith($"DigitTop1Seed {region}");
 
             var returnPathDigit1Seed = new Tile($"ReturnPath1Seed {region} {Guid.NewGuid().ToString()}") {
-                North = new Glue($"{Names.ReturnPath} {1} {Names.Seed} {region} {1}"),
-                East  = new Glue($"{Names.NextRead} {1} {Names.Seed} {region} {1}")
+                North = new Glue($"{ReturnPath} {1} {Seed} {region} {1}"),
+                East  = new Glue($"{NextRead} {1} {Seed} {region} {1}")
             };
             Tiles.Add(returnPathDigit1Seed);
 
 
             var nextReadDigit1Seed = new Tile($"NextRead1Seed {region} {Guid.NewGuid().ToString()}") {
-                West = new Glue($"{Names.NextRead} {1} {Names.Seed} {region} {1}"),
-                North = new Glue($"{Names.SecondWarp} {2} {Names.Seed} {region} {2}"),
+                West = new Glue($"{NextRead} {1} {Seed} {region} {1}"),
+                North = new Glue($"{SecondWarp} {2} {Seed} {region} {2}"),
             };
             Tiles.Add(nextReadDigit1Seed);
         }
@@ -66,41 +64,41 @@
 
         private void CreateDigit2(string digit)
         {
-            var secondWarpDigit2 = new SecondWarpDigit2Case2(new Glue($"{Names.SecondWarp} {2} {Names.Seed} {region} {2}"),
-                                                             new Glue($"{Names.SecondWarp} {2} {Names.Seed} {region} {2}"),
-                                                             new Glue($"{Names.PostWarp} {2} {Names.Seed} {region} {2}"));
+            var secondWarpDigit2 = new SecondWarpDigit2Case2(Name(DigitTop + Seed, 1, op: true, msr: true), 
+                                                             new Glue($"{SecondWarp} {2} {Seed} {region} {2}"),
+                                                             new Glue($"{SecondWarp} {2} {Seed} {region} {2}"),
+                                                             new Glue($"{PostWarp} {2} {Seed} {region} {2}"));
             Tiles.AddRange(secondWarpDigit2.Tiles);
-            secondWarpDigit2.Tiles.PrependNamesWith($"SecondWarp2Seed {region}");
 
-            var postWarpDigit2 = new PostWarpDigit2Case2(new Glue($"{Names.PostWarp} {2} {Names.Seed} {region} {2}"),
-                                                         new Glue($"{Names.CounterWrite} {2} {Names.Seed} {region} {2}"));
+            var postWarpDigit2 = new PostWarpDigit2Case2(Name(DigitTop + Seed, 1, op: true, msr: true), 
+                                                         new Glue($"{PostWarp} {2} {Seed} {region} {2}"),
+                                                         new Glue($"{CounterWrite} {2} {Seed} {region} {2}"));
 
             Tiles.AddRange(postWarpDigit2.Tiles);
-            postWarpDigit2.Tiles.PrependNamesWith($"PostWarp2Seed {region}");
 
-            var digit2 = new DigitWriter(digit,
-                                         new Glue($"{Names.CounterWrite} {2} {Names.Seed} {region} {2}"),
-                                         new Glue($"{Names.DigitTop} {2} {Names.Seed} {region} {2}"));
+            var digit2 = new DigitWriter(Name(CounterWrite, 2, region, true),
+                                         digit,
+                                         new Glue($"{CounterWrite} {2} {Seed} {region} {2}"),
+                                         new Glue($"{DigitTop} {2} {Seed} {region} {2}"));
             Tiles.AddRange(digit2.Tiles);
-            digit2.Tiles.PrependNamesWith($"Digit2Seed {region}");
 
-            var digitTop2 = new DigitTopDigit2Case2(L,
-                                                    new Glue($"{Names.DigitTop} {2} {Names.Seed} {region} {2}"),
-                                                    new Glue($"{Names.ReturnPath} {2} {Names.Seed} {region} {2}"));
+            var digitTop2 = new DigitTopDigit2Case2(Name(DigitTop + Seed, 1, op: true, msr: true), 
+                                                    L,
+                                                    new Glue($"{DigitTop} {2} {Seed} {region} {2}"),
+                                                    new Glue($"{ReturnPath} {2} {Seed} {region} {2}"));
             Tiles.AddRange(digitTop2.Tiles);
-            digitTop2.Tiles.PrependNamesWith($"DigitTop2Seed {region}");
 
-            var returnPath2 = new ReturnPathDigit2Case2(L,
-                                                        new Glue($"{Names.ReturnPath} {2} {Names.Seed} {region} {2}"),
-                                                        new Glue($"{Names.NextRead} {2} {Names.Seed} {region} {2}"));
+            var returnPath2 = new ReturnPathDigit2Case2(Name(DigitTop + Seed, 1, op: true, msr: true), 
+                                                        L,
+                                                        new Glue($"{ReturnPath} {2} {Seed} {region} {2}"),
+                                                        new Glue($"{NextRead} {2} {Seed} {region} {2}"));
             Tiles.AddRange(returnPath2.Tiles);
-            returnPath2.Tiles.PrependNamesWith($"ReturnPath2Seed {region}");
 
-            var nextRead2 = new NextReadDigit2Case2(L,
-                                                    new Glue($"{Names.NextRead} {2} {Names.Seed} {region} {2}"),
-                                                    new Glue($"{Names.CrossNextRow} {true}"));
+            var nextRead2 = new NextReadDigit2Case2(Name(DigitTop + Seed, 1, op: true, msr: true), 
+                                                    L,
+                                                    new Glue($"{NextRead} {2} {Seed} {region} {2}"),
+                                                    new Glue($"{CrossNextRow} {true}"));
             Tiles.AddRange(nextRead2.Tiles);
-            returnPath2.Tiles.PrependNamesWith($"NextRead2Seed {region}");
         }
 
 

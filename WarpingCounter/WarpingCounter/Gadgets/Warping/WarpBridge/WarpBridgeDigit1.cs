@@ -19,10 +19,9 @@
 
         public readonly List<Tile> Tiles;
 
-        public WarpBridgeDigit1(Glue input, Glue output)
+        public WarpBridgeDigit1(string name, Glue input, Glue output)
         {
-            Tiles = Create();
-            Tiles.PrependNamesWith($"{nameof(WarpBridgeDigit1)} {Guid.NewGuid()}");
+            Tiles = Create();            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.West  = input;
