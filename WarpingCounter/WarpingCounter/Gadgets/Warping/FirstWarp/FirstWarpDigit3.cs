@@ -8,6 +8,8 @@
     using Common;
     using Common.Models;
 
+    using PreWarp;
+
     public class FirstWarpDigit3 : IHaveInput, IHaveOutput
     {
         public Tile Input { get; }
@@ -19,7 +21,7 @@
         public FirstWarpDigit3(Glue input, Glue outputNorth, Glue outputEast)
         {
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(FirstWarpDigit3));
+            Tiles.PrependNamesWith($"{nameof(FirstWarpDigit3)} {Guid.NewGuid()}");
 
             Input       = Tiles.First();
             Input.South = input;

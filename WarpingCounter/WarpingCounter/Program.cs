@@ -32,18 +32,16 @@
 
         private static void RunCLI()
         {
-
-            //while (true)
-            //{
+            while (true)
+            {
                 Console.WriteLine("Enter a value for N");
-                var input = "12121212";
-                //Console.ReadLine();
+                var input = Console.ReadLine();
                 bool IsExitCommand() => input == "-e" || string.IsNullOrEmpty(input);
 
                 if (int.TryParse(input, out var N))
                 {
                     Console.WriteLine("Enter a value for k");
-                    input = "16";//Console.ReadLine();
+                    input = Console.ReadLine();
 
                     if (int.TryParse(input, out var k))
                     {
@@ -54,21 +52,21 @@
                         if (generator.IsStartingValueTooSmall())
                         {
                             Error("Starting value must be result in >= 2 digit regions");
-                          //  continue;
+                            continue;
                         }
 
-                        var (name, tileset) = generator.Generate();
-                        Write(name, tileset);
-                        //continue;
+                        var (name, tileSet) = generator.Generate();
+                        Write(name, tileSet);
+                        continue;
                     }
                 }
-                //if (IsExitCommand())
-                //{
-                //    break;
-                //}
+                if (IsExitCommand())
+                {
+                    break;
+                }
 
-                //Error($"Error parsing {input}...");
-            //}
+                Error($"Error parsing {input}...");
+            }
         }
 
 

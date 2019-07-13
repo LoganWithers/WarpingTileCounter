@@ -8,6 +8,8 @@
     using Common;
     using Common.Models;
 
+    using PreWarp;
+
     public class FirstWarpDigit2Case2 : IHaveInput, IHaveOutput
     {
         public Tile Input { get; }
@@ -19,7 +21,7 @@
         public FirstWarpDigit2Case2(Glue input, Glue outputNorth, Glue outputWest)
         {
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(FirstWarpDigit2Case2));
+            Tiles.PrependNamesWith($"{nameof(FirstWarpDigit2Case2)} {Guid.NewGuid()}");
 
             Input       = Tiles.First();
             Input.South = input;

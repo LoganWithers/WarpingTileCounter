@@ -21,14 +21,14 @@
     public class DigitWriter : IHaveInput, IHaveOutput
     {
 
-        private readonly string bits;
+        private readonly string reversedBits;
         
         public readonly List<Tile> Tiles;
 
 
-        public DigitWriter(string bits, Glue input, Glue output)
+        public DigitWriter(string originalBits, Glue input, Glue output)
         {
-            this.bits      = bits;
+            reversedBits = StringUtils.Reverse(originalBits);
 
             Tiles = CreateTiles();
             Tiles.PrependNamesWith($"Digit {Guid.NewGuid()}");
@@ -51,7 +51,7 @@
         {
             var builder = new GadgetBuilder().Start();
 
-            foreach (var bit in bits)
+            foreach (var bit in reversedBits)
             {
                 switch (bit)
                 {

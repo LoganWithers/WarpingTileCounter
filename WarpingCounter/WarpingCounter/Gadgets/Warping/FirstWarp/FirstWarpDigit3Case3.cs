@@ -19,7 +19,7 @@
         public FirstWarpDigit3Case3(Glue input, Glue outputNorth, Glue outputEast)
         {
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(FirstWarpDigit3Case3));
+            Tiles.PrependNamesWith($"{nameof(FirstWarpDigit3Case3)} {Guid.NewGuid()}");
 
             Input       = Tiles.First();
             Input.South = input;

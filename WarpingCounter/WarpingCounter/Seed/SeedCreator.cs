@@ -71,7 +71,7 @@
 
                 } else
                 {
-                    CreateStandardRegion(region[0], region[1], region[2], i, i == 0);
+                    CreateStandardRegion(region[0], region[1], region[2], i);
                 }
 
                 
@@ -88,8 +88,8 @@
             var digit1 = $"{ToBinary(digit1BaseM)}11";
             Console.WriteLine($"Region 0 (MSR):\n    D1: {digit1}\n\n");
 
-           // var region = new OneDigitRegion(construction.L, digit1);
-           // Tiles.AddRange(region.Tiles);
+            var region = new Case1DigitRegion(digit1, regionIndex, construction.L);
+            Tiles.AddRange(region.Tiles);
         }
 
 
@@ -109,7 +109,7 @@
         /// <param name="digit3BaseM">The most-significant digit</param>
         /// <param name="digit2BaseM">The second-most significant digit</param>
         /// <param name="digit1BaseM">The third-most significant digit</param>
-        /// <param name="isLeastSignificant"></param>
+        /// <param name="regionIndex"></param>
         private void CreateMsr(string digit3BaseM,
                                string digit2BaseM,
                                string digit1BaseM,
@@ -119,20 +119,18 @@
             var digit2 = $"{ToBinary(digit2BaseM)}00";
             var digit1 = $"{ToBinary(digit1BaseM)}00";
             Console.WriteLine($"MSR:\n    D3: {digit3}\n    D2: {digit2}\n    D1: {digit1}\n\n");
-           // var region = new ThreeDigitRegion(construction.L,
-//                                              (digit3, digit2, digit1),
-//                                              0,
-//                                              isLeastSignificant);
+            var region = new Case3DigitRegion((digit3, digit2, digit1),
+                                              regionIndex,
+                                              construction.L);
 
-//            Tiles.AddRange(region.Tiles);
+            Tiles.AddRange(region.Tiles);
         }
 
 
         private void CreateStandardRegion(string digit3BaseM,
                                           string digit2BaseM,
                                           string digit1BaseM,
-                                          int    regionIndex,
-                                          bool   isLeastSignificant)
+                                          int    regionIndex)
         {
             var digit3 = $"{ToBinary(digit3BaseM)}00";
             var digit2 = $"{ToBinary(digit2BaseM)}00";

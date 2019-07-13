@@ -1,12 +1,15 @@
 ﻿namespace WarpingCounter.Gadgets.Warping.WarpBridge
 {
 
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
     using Common;
     using Common.Builders;
     using Common.Models;
+
+    using PreWarp;
 
     public class WarpBridgeDigit2Case2 : IHaveInput, IHaveOutput
     {
@@ -19,7 +22,7 @@
         public WarpBridgeDigit2Case2(Glue input, Glue output)
         {
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(WarpBridgeDigit2Case2));
+            Tiles.PrependNamesWith($"{nameof(WarpBridgeDigit2Case2)} {Guid.NewGuid()}");
 
             Input       = Tiles.First();
             Input.East  = input;

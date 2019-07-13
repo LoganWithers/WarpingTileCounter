@@ -19,7 +19,7 @@
         public FirstWarpDigit1Case1(Glue input, Glue outputNorth, Glue outputUp)
         {
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(FirstWarpDigit1Case1));
+            Tiles.PrependNamesWith($"{nameof(FirstWarpDigit1Case1)} {Guid.NewGuid()}");
 
             Input       = Tiles.First();
             Input.South = input;

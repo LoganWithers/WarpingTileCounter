@@ -13,7 +13,7 @@
     using Gadgets.DigitTop;
     using Gadgets.NextRead;
     using Gadgets.ReturnPath;
-    using Gadgets.Warping;
+
     using Gadgets.Warping.FirstWarp;
     using Gadgets.Warping.PostWarp;
     using Gadgets.Warping.PreWarp;
@@ -58,7 +58,7 @@
 
         public TileGenerator(int m, string initialValueB10)
         {
-            M                     = m;
+            M                    = m;
             construction         = new ConstructionValues(initialValueB10, m);
             digitsInMSR          = construction.DigitsInMSR;
             L                    = construction.L;
@@ -82,20 +82,28 @@
             string name = $"{gadget} {i} {op} {msr} {msd}";
 
             tiles.Add(new Tile("seed"){ North = new Glue($"{CounterWrite} {1} {Seed} 0 {1} ")});
-            //GlueFactory.Create(gadget, i, "00000", op, msr, msd)});
             
             var readerFactory = new ReaderFactory(L, logM, M);
-            tiles.AddRange(readerFactory.Readers.SelectMany(reader => reader.Tiles));
+            var digits = new BinaryStringPermutations(L, logM, M).Permutations.ToList();
 
-            ReadOnlyCollection<string> digits = readerFactory.DigitsWithLengthL.AsReadOnly();
             CreateSeed();
-            CreateCounterRead(readerFactory);
-           
-            CreatePreWarp(digits);
-            CreateFirstWarp(digits);
-            CreateWarpBridge(digits);
-            CreateSecondWarp(digits);
-            CreatePostWarp(digits);
+            CreateCounterRead(digits);
+            
+            var fullDigits = new HashSet<string>();
+
+            foreach (var digit in digits)
+            {
+                fullDigits.Add($"0{digit}");
+                fullDigits.Add($"1{digit}");
+            }
+
+            CreatePreWarp(fullDigits);
+            CreateFirstWarp(fullDigits);
+            CreateWarpBridge(fullDigits);
+            CreateSecondWarp(fullDigits);
+            CreatePostWarp(fullDigits);
+
+            CreateCounterWrite(fullDigits);
 
             CreateDigitTops();
             CreateNextRead();
@@ -113,9 +121,136 @@
         }
 
 
-        private void CreateCounterRead(ReaderFactory factory)
+        private void CreateCounterWrite(IReadOnlyCollection<string> digits)
         {
-            tiles.AddRange(factory.Readers.SelectMany(counterReadGadget => counterReadGadget.Tiles));
+            for (var i = 1; i <= Digits; i++)
+            {
+                var digitsBeforeMSB = digits.Where(digit => 1 <= digit.Length && digit.Length <= L - 1)
+                                            .OrderBy(s => s.Length)
+                                            .ThenBy(s => s)
+                                            .ToList();
+
+                foreach (var op in new[] {true, false})
+                {
+                    foreach (var U in digitsBeforeMSB)
+                    {
+                        tiles.AddRange(new CounterWrite0(GlueFactory.Create(CounterWrite, i, $"0{U}", op), 
+                                                         GlueFactory.Create(CounterWrite, i,     U,   op)).Tiles);
+
+                        tiles.AddRange(new CounterWrite1(GlueFactory.Create(CounterWrite, i, $"1{U}", op),
+                                                         GlueFactory.Create(CounterWrite, i, U,       op)).Tiles);
+
+                        tiles.AddRange(new CounterWrite0(GlueFactory.Create(CounterWrite, i, $"0{U}", op, msr: true),
+                                                         GlueFactory.Create(CounterWrite, i, U,       op, msr: true)).Tiles);
+
+                        tiles.AddRange(new CounterWrite1(GlueFactory.Create(CounterWrite, i, $"1{U}", op, msr: true),
+                                                         GlueFactory.Create(CounterWrite, i, U,       op, msr: true)).Tiles);
+
+                        tiles.AddRange(new CounterWrite0(GlueFactory.Create(CounterWrite, i, $"0{U}", op, msr: true, msd: true),
+                                                         GlueFactory.Create(CounterWrite, i, U,       op, msr: true, msd: true)).Tiles);
+
+                        tiles.AddRange(new CounterWrite1(GlueFactory.Create(CounterWrite, i, $"1{U}", op, msr: true, msd: true),
+                                                         GlueFactory.Create(CounterWrite, i, U,       op, msr: true, msd: true)).Tiles);
+                    }
+
+                    tiles.AddRange(new CounterWrite0(GlueFactory.Create(CounterWrite, i, "0", op),
+                                                     GlueFactory.Create(DigitTop, i, op)).Tiles);
+
+                    tiles.AddRange(new CounterWrite1(GlueFactory.Create(CounterWrite, i, "1", op),
+                                                     GlueFactory.Create(DigitTop,     i,      op)).Tiles);
+
+                    tiles.AddRange(new CounterWrite0(GlueFactory.Create(CounterWrite, i, "0", op, msr: true),
+                                                     GlueFactory.Create(DigitTop,     i,      op, msr: true)).Tiles);
+
+                    tiles.AddRange(new CounterWrite1(GlueFactory.Create(CounterWrite, i, "1", op, msr: true),
+                                                     GlueFactory.Create(DigitTop,     i,      op, msr: true)).Tiles);
+
+                    tiles.AddRange(new CounterWrite0(GlueFactory.Create(CounterWrite, i, "0", op, msr: true, msd: true),
+                                                     GlueFactory.Create(DigitTop,     i,      op, msr: true, msd: true)).Tiles);
+
+                    tiles.AddRange(new CounterWrite1(GlueFactory.Create(CounterWrite, i, "1", op, msr: true, msd: true),
+                                                     GlueFactory.Create(DigitTop,     i,      op, msr: true, msd: true)).Tiles);
+                }
+            }
+        }
+
+
+        private (Glue out0, Glue out1) ReadMostSignificantBit(string U, int i)
+        {
+
+            var guess0 = CalculateOutput($"0{U}", i);
+            var guess1 = CalculateOutput($"1{U}", i);
+
+            return (guess0, guess1);
+        }
+
+
+        private Glue CalculateOutput(string U, int i)
+        {
+            const int binary = 2;
+
+            var indicatorBits = U.GetLast(2);
+            var valueBits     = U.Substring(0, U.Length - 2);
+
+            int ConvertToDecimal(string guess) => Convert.ToInt32(guess, binary);
+
+            string ConvertToBinary(int value) => Convert.ToString(value, binary).PadLeft(valueBits.Length, '0');
+
+            var zeroes = string.Concat(Enumerable.Repeat("0", valueBits.Length));
+
+            if (ConvertToDecimal(valueBits) + 1 <= M - 1)
+            {
+                return GlueFactory.Create(Names.PreWarp, i, ConvertToBinary(ConvertToDecimal(valueBits) + 1) + indicatorBits, op: false);
+            }
+
+            if (indicatorBits == "11")
+            {
+                return GlueFactory.Create(Names.PreWarp, i, $"{zeroes}11", op: false); // TODO: change op: false to op: "halt"
+            }
+
+            return GlueFactory.Create(Names.PreWarp, i, zeroes + indicatorBits, op: true);
+        }
+
+        private void CreateCounterRead(IReadOnlyCollection<string> digits)
+        {
+            for (var i = 1; i <= Digits; i++)
+            {
+                var digitsBeforeMSB = digits.Where(digit => digit.Length <= L - 2)
+                                            .OrderBy(s => s.Length)
+                                            .ThenBy(s => s)
+                                            .ToList();
+
+                foreach (var op in new[] { true, false })
+                {
+                    foreach (var bits in digitsBeforeMSB)
+                    {
+                        tiles.AddRange(new CounterRead(GlueFactory.Create(CounterRead, i, bits,       op),
+                                                       GlueFactory.Create(CounterRead, i, $"1{bits}", op),
+                                                       GlueFactory.Create(CounterRead, i, $"0{bits}", op)).Tiles);
+                    }
+                }
+
+                var digitsForMSB = digits.Where(digit => digit.Length == L - 1)
+                                         .OrderBy(s => s.Length)
+                                         .ThenBy(s => s)
+                                         .ToList();
+
+                foreach (var bits in digitsForMSB)
+                {
+                    tiles.AddRange(new CounterRead(GlueFactory.Create(CounterRead, i, bits,       op: false),
+                                                   GlueFactory.Create(PreWarp,     i, $"1{bits}", op: false),
+                                                   GlueFactory.Create(PreWarp,     i, $"0{bits}", op: false)).Tiles);
+                }
+
+                foreach (var bits in digitsForMSB)
+                {
+                    var (out0, out1) = ReadMostSignificantBit(bits, i);
+
+                    tiles.AddRange(new CounterRead(GlueFactory.Create(CounterRead, i, bits, op: true),
+                                                   outputOne: out1,
+                                                   outputZero: out0).Tiles);
+                }
+            }
         }
 
         private void CreateCounter()
@@ -125,14 +260,12 @@
 
             List<string> fullSizeDigits = readerFactory.DigitsWithLengthL;
 
-            CreatePreWarp(fullSizeDigits);
 
             Console.WriteLine($"Full Digits: {fullSizeDigits.Count}");
 
             // Foreach digit in {0, 1}^l
             foreach (var lengthLDigit in fullSizeDigits)
             {
-                tiles.AddRange(CreateWarpUnits(lengthLDigit));
                 tiles.AddRange(CreateWriters(lengthLDigit));
             }
         }
@@ -505,23 +638,7 @@
         }
 
 
-        /// <summary>
-        /// Creates 6 total warp units.
-        /// 
-        /// For each digit index (i..3), 
-        ///     create 1 warp unit with an increment signal
-        ///     create 1 warp unit with a copy signal
-        /// 
-        /// </summary>
-        /// <param name="bits">A base 2 encoded digit, with 2 bits padded to the end for indicating MSR/MSD</param>
-        /// <returns></returns>
-        private IEnumerable<Tile> CreateWarpUnits(string bits)
-        {
-            var results = new List<Tile>();
 
-
-            return results;
-        }
 
     }
 }

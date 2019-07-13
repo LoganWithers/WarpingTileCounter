@@ -1,6 +1,7 @@
 ﻿namespace WarpingCounter.Gadgets.Warping.PreWarp
 {
 
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -19,7 +20,7 @@
         public PreWarpDigit1(Glue input, Glue output)
         {
             Tiles = Create();
-            Tiles.PrependNamesWith(nameof(PreWarpDigit1));
+            Tiles.PrependNamesWith($"{nameof(PreWarpDigit1)} {Guid.NewGuid()}");
 
             Input        = Tiles.First();
             Input.South  = input;

@@ -60,9 +60,8 @@
         {
             var encoder = new BinaryToTileEncoder();
 
-            var bits = StringUtils.Reverse(originalBits);
-
-            foreach (var bit in bits)
+            
+            foreach (var bit in originalBits)
             {
                 switch (bit)
                 {
@@ -98,8 +97,7 @@
 
             public void AddOne()
             {
-                builder.North()
-                       .North()
+                builder.North(2)
                        .Up()
                        .East()
                        .North()
@@ -111,8 +109,7 @@
 
             public void AddZero()
             {
-                builder.North()
-                       .North()
+                builder.North(2)
                        .East()
                        .North()
                        .West()

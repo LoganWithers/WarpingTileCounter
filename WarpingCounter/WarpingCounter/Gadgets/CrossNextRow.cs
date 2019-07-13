@@ -12,15 +12,15 @@
     public class CrossNextRow : IHaveInput, IHaveOutput
     {
 
-        private readonly int d;
+        private readonly int digits;
 
         public Tile Input { get; }
 
         public Tile Output { get; }
 
-        public CrossNextRow(int d, Glue input, Glue output)
+        public CrossNextRow(int digits, Glue input, Glue output)
         {
-            this.d = d;
+            this.digits = digits;
             Tiles = Create();
             Tiles.PrependNamesWith(nameof(CrossNextRow));
 
@@ -35,16 +35,17 @@
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
+            var difference = digits % 3 == 0 ? -1 : 0; 
+            var generalRegions = (int) Math.Floor((decimal) digits / 3) + difference;
 
-            var width = (6 * (int) Math.Floor((decimal) d / 3)) - 1;
-
-            builder.East(width)
+            builder.East(generalRegions * 6)
                    .North(3)
                    .Down();
 
-
-            return builder.Tiles().ToList();
+            // Skip one for the extra tile at the start
+            return builder.Tiles().Skip(1).ToList();
         }
+
         public IEnumerable<Tile> Tiles { get;  }
     }
 }
