@@ -35,8 +35,9 @@
         {
             var builder = new GadgetBuilder().Start();
 
-            builder.South(30)
+            builder.South(29)
                    .South(4 * L, "blue")
+                   .South()
                    .Up()
                    .East(3)
                    .Down();

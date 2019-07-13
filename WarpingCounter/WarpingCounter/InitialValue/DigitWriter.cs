@@ -1,4 +1,4 @@
-﻿namespace WarpingCounter.Seed
+﻿namespace WarpingCounter.InitialValue
 {
 
     using System;

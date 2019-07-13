@@ -47,7 +47,7 @@
                     {
                         var (baseM, startingValue) = CalculateCounterInputs(N, k);
 
-                        var generator = new TileGenerator(baseM, startingValue);
+                        var generator = new TileGenerator($"{N}_x_{k}", baseM, startingValue);
 
                         if (generator.IsStartingValueTooSmall())
                         {

@@ -3,10 +3,8 @@
 
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
 
-    using Common;
     using Common.Models;
 
     using Gadgets;
@@ -19,7 +17,7 @@
     using Gadgets.Warping.SecondWarp;
     using Gadgets.Warping.WarpBridge;
 
-    using Seed;
+    using InitialValue;
 
     /// <summary>
     /// Provided the details of a counter, this creates all the gadgets needed to
@@ -47,12 +45,13 @@
 
         private readonly int M;
 
-
-        public TileGenerator(int m, string initialValueB10)
+        private readonly string name; 
+        public TileGenerator(string name, int m, string initialValueB10)
         {
             M            = m;
             construction = new ConstructionValues(initialValueB10, m);
             digitsInMSR  = construction.DigitsInMSR;
+            this.name    = $"thin_rectangle_case_{digitsInMSR}_{name}";
             L            = construction.L;
             logM         = construction.BitsRequiredForBaseM;
             regions      = construction.DigitRegions;
@@ -66,14 +65,8 @@
 
         public (string name, List<Tile> tileset) Generate()
         {
-            const string gadget = PostWarp;
-            const int    i      = 3;
-            const bool   op     = true;
-            const bool   msr    = true;
-            const bool   msd    = true;
-            string       name   = $"{gadget} {i} {op} {msr} {msd}";
-
             tiles.Add(new Tile("seed") {North = new Glue($"{CounterWrite} {1} {Seed} 0 {1} ")});
+            //tiles.Add(new Tile("seed") {North = Bind(RoofUnit, false)});
 
             var digits = new BinaryStringPermutations(L, logM, M).Permutations.ToList();
 
@@ -100,8 +93,9 @@
             CreateNextRead();
             CreateReturnPaths();
             CreateCrossNextRow();
+            CreateRoofUnit();
             var before = tiles.Count;
-
+            
             var after = tiles.DistinctBy(t => t.Name)
                              .ToList();
 
@@ -112,9 +106,15 @@
         }
 
 
+        private void CreateRoofUnit()
+        {
+            tiles.AddRange(new RoofUnit(construction.DigitsInMSR, L, Bind(RoofUnit, false)).Tiles);
+        }
+
+
         private void CreateSeed()
         {
-            tiles.AddRange(new SeedCreator(construction).Tiles);
+            tiles.AddRange(new InitialValueGenerator(construction).Tiles);
         }
 
 
@@ -187,7 +187,7 @@
 
                     tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, "1", op, msr: true, msd: true),
                                                      Bind(CounterWrite, i, "1", op, msr: true, msd: true),
-                                                     Bind(DigitTop,     i,      op,  msr: true, msd: true)).Tiles);
+                                                     Bind(DigitTop,     i,      op, msr: true, msd: true)).Tiles);
                 }
             }
         }
@@ -218,15 +218,15 @@
 
             if (ConvertToDecimal(valueBits) + 1 <= M - 1)
             {
-                return Bind(Names.PreWarp, i, ConvertToBinary(ConvertToDecimal(valueBits) + 1) + indicatorBits, op: false);
+                return Bind(PreWarp, i, ConvertToBinary(ConvertToDecimal(valueBits) + 1) + indicatorBits, op: false);
             }
 
             if (indicatorBits == "11")
             {
-                return Bind(Names.PreWarp, i, $"{zeroes}11", op: false); // TODO: change op: false to op: "halt"
+                return Bind(PreWarp, i, $"{zeroes}11", op: false); // TODO: change op: false to op: "halt"
             }
 
-            return Bind(Names.PreWarp, i, zeroes + indicatorBits, op: true);
+            return Bind(PreWarp, i, zeroes + indicatorBits, op: true);
         }
 
 
@@ -661,7 +661,7 @@
                 tiles.AddRange(new NextReadDigit1Case2(Name(NextRead,    1,               op, msr: true),
                                                        L,                                 
                                                        Bind(NextRead,    1,               op, msr: true),
-                                                       Bind(CounterRead, 2, string.Empty, op, msr: true)).Tiles);
+                                                       Bind(CounterRead, 2, string.Empty, op)).Tiles);
 
                 tiles.AddRange(new NextReadDigit1Case1(Name(NextRead,     1, op, msr: true, msd: true),
                                                        L,
@@ -684,7 +684,6 @@
                                                   Bind(CounterRead, 1, string.Empty, op)).Tiles);
 
                 tiles.AddRange(new NextReadDigit3Case3(Name(NextRead,     3, op, msr: true, msd: true),
-                                                       L,
                                                        Bind(NextRead,     3, op, msr: true, msd: true),
                                                        Bind(CrossNextRow, op)).Tiles);
             }

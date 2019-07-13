@@ -1,4 +1,4 @@
-﻿namespace WarpingCounter.Seed
+﻿namespace WarpingCounter.InitialValue
 {
 
     using System;
@@ -7,21 +7,16 @@
 
     using Common.Models;
 
-    using Gadgets;
-
-    using InitialValue;
-
-
     /// <summary>
-    /// Takes the construction
+    /// Creates an initial value for the assembly given a construction.
     /// </summary>
-    public class SeedCreator
+    public class InitialValueGenerator
     {
 
         private readonly ConstructionValues construction;
 
         
-        public SeedCreator(ConstructionValues construction)
+        public InitialValueGenerator(ConstructionValues construction)
         {
             Tiles        = new List<Tile>();
             this.construction = construction;
@@ -83,10 +78,11 @@
         ///   Creates the MSR when it has only 1 digit encoded in it.
         /// </summary>
         /// <param name="digit1BaseM">The most significant digit in a region (the only one).</param>
+        /// <param name="regionIndex"></param>
         private void CreateMsr(string digit1BaseM, int regionIndex)
         {
             var digit1 = $"{ToBinary(digit1BaseM)}11";
-            Console.WriteLine($"Region 0 (MSR):\n    D1: {digit1}\n\n");
+            Console.WriteLine($"MSR:\n    D1: {digit1}\n\n");
 
             var region = new Case1DigitRegion(digit1, regionIndex, construction.L);
             Tiles.AddRange(region.Tiles);
@@ -95,13 +91,14 @@
 
         /// <param name="digit2BaseM">The most significant digit.</param>
         /// <param name="digit1BaseM">The second-most significant digit.</param>
+        /// <param name="regionIndex"></param>
         private void CreateMsr(string digit2BaseM, string digit1BaseM, int regionIndex)
         {
             var digit2 = $"{ToBinary(digit2BaseM)}11";
             var digit1 = $"{ToBinary(digit1BaseM)}01";
-            Console.WriteLine($"Region 0 (MSR):\n    D2: {digit2}\n    D1: {digit1}\n\n");
+            Console.WriteLine($"MSR:\n    D2: {digit2}\n    D1: {digit1}\n\n");
 
-           var region = new Case2DigitRegion((digit1, digit2), regionIndex, digit1.Length);
+           var region = new Case2DigitRegion((digit1, digit2), regionIndex, construction.L);
            Tiles.AddRange(region.Tiles);
         }
 
@@ -136,7 +133,7 @@
             var digit2 = $"{ToBinary(digit2BaseM)}00";
             var digit1 = $"{ToBinary(digit1BaseM)}00";
             Console.WriteLine($"Region {regionIndex}:\n    D3: {digit3}\n    D2: {digit2}\n    D1: {digit1}\n\n");
-            var region = new GeneralDigitRegion((digit1, digit2, digit3), regionIndex, digit1.Length);
+            var region = new GeneralDigitRegion((digit1, digit2, digit3), regionIndex, construction.L);
 
             Tiles.AddRange(region.Tiles);
         }

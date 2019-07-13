@@ -1,9 +1,7 @@
 ﻿namespace WarpingCounter.InitialValue
 {
 
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using Common.Models;
 
@@ -15,8 +13,6 @@
     using Gadgets.Warping.PostWarp;
     using Gadgets.Warping.SecondWarp;
     using Gadgets.Warping.WarpBridge;
-
-    using Seed;
 
     public class GeneralDigitRegion : AbstractTileNamer
     {
@@ -159,16 +155,16 @@
 
             var returnPath3 = new ReturnPathDigit3(Name(ReturnPath + Seed, 3, region, true),
                                                    L,
-                                                   new Glue($"{Names.ReturnPath} {3} {Names.Seed} {region} {3}"),
-                                                   new Glue($"{Names.NextRead} {3} {Names.Seed} {region} {3}"));
+                                                   new Glue($"{ReturnPath} {3} {Seed} {region} {3}"),
+                                                   new Glue($"{NextRead} {3} {Seed} {region} {3}"));
             Tiles.AddRange(returnPath3.Tiles);
                                             
 
 
 
             var nextRead3 = new NextReadDigit3Seed(Name(NextRead + Seed, 3, region, true),
-                                                   new Glue($"{Names.NextRead} {3} {Names.Seed} {region} {3}"), 
-                                                   new Glue($"{Names.CounterWrite} {1} {Names.Seed} {region + 1} {1}"));
+                                                   new Glue($"{NextRead} {3} {Seed} {region} {3}"), 
+                                                   new Glue($"{CounterWrite} {1} {Seed} {region + 1} {1}"));
 
             Tiles.AddRange(nextRead3.Tiles);
         }

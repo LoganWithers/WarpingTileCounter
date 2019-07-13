@@ -9,8 +9,6 @@
     using Gadgets.NextRead;
     using Gadgets.ReturnPath;
 
-    using Seed;
-
     public class Case1DigitRegion : AbstractTileNamer
     {
 

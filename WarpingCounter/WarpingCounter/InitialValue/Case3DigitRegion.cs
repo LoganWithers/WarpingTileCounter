@@ -1,13 +1,10 @@
 ﻿namespace WarpingCounter.InitialValue
 {
 
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
 
     using Common.Models;
 
-    using Gadgets;
     using Gadgets.DigitTop;
     using Gadgets.NextRead;
     using Gadgets.ReturnPath;
@@ -15,8 +12,6 @@
     using Gadgets.Warping.PostWarp;
     using Gadgets.Warping.SecondWarp;
     using Gadgets.Warping.WarpBridge;
-
-    using Seed;
 
     public class Case3DigitRegion : AbstractTileNamer
     {

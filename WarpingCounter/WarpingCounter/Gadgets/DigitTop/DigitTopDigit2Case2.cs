@@ -59,7 +59,7 @@
 
             builder.North(29)
                    .North(4 * L, "blue")
-                   .North(5)
+                   .North(8)
                    .Up()
                    .North(2)
                    .West()
@@ -67,7 +67,7 @@
                    .North()
                    .Up()
                    .East(3)
-                   .South(7)
+                   .South(10)
                    .South(4 * L, "blue");
 
             return builder.Tiles().ToList();

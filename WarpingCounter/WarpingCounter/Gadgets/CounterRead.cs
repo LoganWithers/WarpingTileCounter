@@ -1,10 +1,11 @@
-﻿namespace WarpingCounter.Common
+﻿namespace WarpingCounter.Gadgets
 {
 
     using System;
     using System.Collections.Generic;
 
-    using Models;
+    using Common;
+    using Common.Models;
 
     public class CounterRead
     {

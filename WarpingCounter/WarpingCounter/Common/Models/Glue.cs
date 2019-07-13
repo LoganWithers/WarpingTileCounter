@@ -1,8 +1,6 @@
 ﻿namespace WarpingCounter.Common.Models
 {
 
-    using System.Text.RegularExpressions;
-
     public class Glue
     {
 

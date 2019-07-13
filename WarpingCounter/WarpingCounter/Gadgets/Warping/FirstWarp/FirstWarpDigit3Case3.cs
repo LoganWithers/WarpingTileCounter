@@ -10,11 +10,15 @@
 
     public class FirstWarpDigit3Case3 : IHaveInput, IHaveOutput
     {
+
         public Tile Input { get; }
 
+
         public Tile Output { get; }
-        
+
+
         public readonly List<Tile> Tiles;
+
 
         public FirstWarpDigit3Case3(string name, Glue input, Glue outputNorth, Glue outputEast)
         {
@@ -29,7 +33,12 @@
             Output.East  = outputEast;
         }
 
-        public List<Tile> Create() => new List<Tile> { new Tile(Guid.NewGuid().ToString()) };
+
+        public List<Tile> Create() => new List<Tile> {
+        new Tile(Guid.NewGuid()
+                     .ToString())
+        };
+
     }
 
 }

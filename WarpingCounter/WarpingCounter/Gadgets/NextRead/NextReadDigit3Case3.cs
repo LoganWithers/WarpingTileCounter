@@ -10,17 +10,14 @@
 
     public class NextReadDigit3Case3 : IHaveInput, IHaveOutput
     {
-
-        private readonly int L;
         public Tile Input { get; }
         public Tile Output { get; }
 
         public IEnumerable<Tile> Tiles { get; }
-        public NextReadDigit3Case3(string name, int L, Glue input, Glue output)
+        public NextReadDigit3Case3(string name, Glue input, Glue output)
         {
-            this.L = L;
-
-            Tiles = Create();            Tiles.RenameWithIndex(name);
+            Tiles = Create();
+            Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
             Input.North = input;

@@ -8,15 +8,17 @@
     using Common;
     using Common.Models;
 
-    using PreWarp;
-
     public class FirstWarpDigit3 : IHaveInput, IHaveOutput
     {
+
         public Tile Input { get; }
 
+
         public Tile Output { get; }
-        
+
+
         public readonly List<Tile> Tiles;
+
 
         public FirstWarpDigit3(string name, Glue input, Glue outputNorth, Glue outputEast)
         {
@@ -31,7 +33,12 @@
             Output.East  = outputEast;
         }
 
-        public List<Tile> Create() => new List<Tile> { new Tile(Guid.NewGuid().ToString()) };
+
+        public List<Tile> Create() => new List<Tile> {
+        new Tile(Guid.NewGuid()
+                     .ToString())
+        };
+
     }
 
 }

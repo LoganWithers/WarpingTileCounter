@@ -20,7 +20,8 @@
         {
             this.L = L;
 
-            Tiles = Create();            Tiles.RenameWithIndex(name);
+            Tiles = Create();
+            Tiles.RenameWithIndex(name);
 
             Input        = Tiles.First();
             Input.North  = input;

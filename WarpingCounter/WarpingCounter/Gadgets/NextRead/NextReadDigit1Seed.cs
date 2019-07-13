@@ -1,4 +1,4 @@
-﻿namespace WarpingCounter.Gadgets.ReturnPath
+﻿namespace WarpingCounter.Gadgets.NextRead
 {
 
     using System.Collections.Generic;

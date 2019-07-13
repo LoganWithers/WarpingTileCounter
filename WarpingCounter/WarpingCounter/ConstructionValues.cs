@@ -1,4 +1,4 @@
-﻿namespace WarpingCounter.Gadgets
+﻿namespace WarpingCounter
 {
 
     using System;
