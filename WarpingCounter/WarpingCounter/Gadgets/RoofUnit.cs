@@ -50,6 +50,7 @@
 
             var tiles = builder.Tiles().Skip(1).ToList();
             tiles.First().AttachWest(Output);
+            SpawnFiller(Output);
             tiles.ForEach(SpawnFiller);
             Tiles.AddRange(tiles);
             Tiles.RenameWithIndex("RoofUnit");
