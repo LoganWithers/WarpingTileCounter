@@ -46,15 +46,10 @@
             var returnPathDigit1Seed = new ReturnPathDigit1Case1(Name(ReturnPath + Seed, 1, Op.Increment, msr: true, msd: true),
                                                                  L,
                                                                  new Glue($"{ReturnPath} {1} {Seed} {region} {1}"),
-                                                                 new Glue($"{NextRead} {1} {Seed} {region} {1}"));
+                                                                 Bind(NextRead, 1, Op.Increment, msr: true, msd: true));
             Tiles.AddRange(returnPathDigit1Seed.Tiles);
 
 
-            var nextReadDigit1Seed = new NextReadDigit1Case1(Name(NextRead + Seed, 1, Op.Increment, msr: true, msd: true),
-                                                             L,
-                                                             new Glue($"{NextRead} {1} {Seed} {region} {1}"),
-                                                             new Glue($"{CrossNextRow} {true}"));
-            Tiles.AddRange(nextReadDigit1Seed.Tiles);
         }
         
     }

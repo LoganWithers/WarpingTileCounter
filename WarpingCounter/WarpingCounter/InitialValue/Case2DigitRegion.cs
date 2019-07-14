@@ -85,19 +85,12 @@
                                                     new Glue($"{ReturnPath} {2} {Seed} {region} {2}"));
             Tiles.AddRange(digitTop2.Tiles);
 
-            var returnPath2 = new ReturnPathDigit2Case2(Name(ReturnPath + Seed, 2, region, Op.Increment, msr: true, msd: true), 
+            var returnPath2 = new ReturnPathDigit2Case2(Name(ReturnPath + Seed, 2, region, Op.Increment, msr: true, msd: true),
                                                         L,
                                                         new Glue($"{ReturnPath} {2} {Seed} {region} {2}"),
-                                                        new Glue($"{NextRead} {2} {Seed} {region} {2}"));
+                                                        Bind(NextRead, 2, Op.Increment, msr: true, msd: true));
             Tiles.AddRange(returnPath2.Tiles);
-
-            var nextRead2 = new NextReadDigit2Case2(Name(NextRead + Seed, 2, region, Op.Increment, msr: true, msd: true), 
-                                                    L,
-                                                    new Glue($"{NextRead} {2} {Seed} {region} {2}"),
-                                                    new Glue($"{CrossNextRow} {true}"));
-            Tiles.AddRange(nextRead2.Tiles);
         }
-
 
     }
 }

@@ -213,9 +213,13 @@
 
             var zeroes = string.Concat(Enumerable.Repeat("0", valueBits.Length));
 
+            var inDecimal      = ConvertToDecimal(valueBits);
+            var inDecimalPlus1 = inDecimal + 1;
+            var mMinus1        = M - 1; 
+            
             if (ConvertToDecimal(valueBits) + 1 <= M - 1)
             {
-                return Bind(PreWarp, i, Op.Increment, msr: false, msd: false, bits: ConvertToBinary(ConvertToDecimal(valueBits) + 1) + indicatorBits);
+                return Bind(PreWarp, i, Op.Copy, msr: false, msd: false, bits: ConvertToBinary(ConvertToDecimal(valueBits) + 1) + indicatorBits);
             }
 
             if (indicatorBits == "11")
@@ -262,6 +266,16 @@
 
                 foreach (var U in digitsForMSB)
                 {
+                    if (U.EndsWith("11") && i != digitsInMSR)
+                    {
+                        continue;
+                    }
+
+                    if (U.EndsWith("01") && i != 1)
+                    {
+                        continue;
+                    }
+
                     var (out0, out1) = ReadMostSignificantBit(U, i);
 
                     tiles.AddRange(new CounterRead(Name(CounterRead, i, Op.Increment, msr: false, msd: false, U),
