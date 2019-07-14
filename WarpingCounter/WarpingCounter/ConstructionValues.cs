@@ -131,7 +131,7 @@
             Console.WriteLine($"    Halt:  {haltingValueBase10}");
             Console.ResetColor();
             var length = initialValueBaseM.Max(s => s.Length);
-            var zeroes = string.Concat(Enumerable.Repeat('0', length));
+
             Console.WriteLine($"B{BaseM}:");
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"    Start: {string.Join(" ", initialValueBaseM.Select(digit => digit.PadLeft(length, '0')))}");

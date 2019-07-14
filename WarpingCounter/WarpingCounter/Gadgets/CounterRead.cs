@@ -9,21 +9,12 @@
 
     public class CounterRead
     {
-        private readonly int index;
-
-        private readonly string inputBits;
-
         public readonly List<Tile> Tiles;
-
-        private readonly GuessOne guessOne;
-
-        private readonly GuessZero guessZero;
-
-
+        
         public CounterRead(string name, Glue input, Glue outputOne, Glue outputZero)
         {
-            guessOne  = new GuessOne(outputOne);
-            guessZero = new GuessZero(outputZero);
+            var guessOne  = new GuessOne(outputOne);
+            var guessZero = new GuessZero(outputZero);
 
             guessOne.Bind(guessZero);
             guessOne.Input.South = input;
@@ -31,7 +22,7 @@
             Tiles = new List<Tile>();
             Tiles.AddRange(guessOne.Tiles);
             Tiles.AddRange(guessZero.Tiles);
-            Tiles.PrependNamesWith(name);
+            Tiles.RenameWithIndex(name);
         }
 
 
