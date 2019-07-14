@@ -29,16 +29,18 @@
 
         private readonly double power;
 
-        public ConstructionValues(string initialValueBase10, int baseM)
+        public ConstructionValues(string initialValueBase10, int baseM, int d)
         {
             this.initialValueBase10 = BigInteger.Parse(initialValueBase10);
             BaseM                   = baseM;
 
-            initialValueBaseM    = this.initialValueBase10.ToBase(BaseM);
+           
+
+         
             power                = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
             haltingValueBase10   = BigInteger.Pow(BaseM, Convert.ToInt32(power));
             BitsRequiredForBaseM = Convert.ToString(BaseM - 1, 2).Length;
-            d               = initialValueBaseM.Count;
+            this.d = d;
 
             var leadingZeroes = BaseM.ToString().Length;
             var digits = (double) d;
@@ -51,10 +53,21 @@
             DigitRegions = IsZero(remainder) ? quotient : quotient + 1;
             DigitsInMSR  = remainderDigits == 0 ? 3 : remainderDigits;
 
-            List<string> ConvertToBaseMWithLeadingZeroes(BigInteger value, int m) => value.ToBase(m)
-                                                                                          .Select(s => s.PadLeft(leadingZeroes, '0'))
-                                                                                          .ToList();
+            List<string> ConvertToBaseMWithLeadingZeroes(BigInteger value, int m)
+            {
+                var converted = value.ToBase(m);
 
+                if (converted.Count < d)
+                {
+                    var missing = d - converted.Count;
+
+                    converted.InsertRange(0, Enumerable.Repeat("0", missing));
+                }
+
+                return converted.Select(s => s.PadLeft(leadingZeroes, '0')).ToList();
+            }
+
+            
             initialValueBaseM = ConvertToBaseMWithLeadingZeroes(this.initialValueBase10, BaseM);
             haltingValueBaseM = ConvertToBaseMWithLeadingZeroes(haltingValueBase10,      BaseM);
 

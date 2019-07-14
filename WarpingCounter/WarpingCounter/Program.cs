@@ -19,35 +19,48 @@
         }
 
 
-        private static (int baseM, string startingValue) CalculateCounterInputs(double N, double k)
+        private static (int baseM, string startingValue, int d) CalculateCounterInputs(double N, double k)
         {
+            // ⌊k/2⌋ 
             var d = Math.Floor(k / 2);
-            var m = Math.Ceiling(Math.Pow(N / 93, 1 / d));
-            var l = Math.Ceiling(Math.Log(m, 2)) + 2;
-            var md = Math.Pow(m, d);
-            var s = md - Math.Floor((N - 3*l - 76) / (3*l + 90));
 
-            return ((int) m, Convert.ToString((int) s, CultureInfo.InvariantCulture));
+
+            // ⌈(N/102)^(1/d)⌉
+            var m = Math.Ceiling(Math.Pow(N / 102, 1 / d));
+
+
+            // ⌈log m⌉ + 2
+            var l = Math.Ceiling(Math.Log(m, 2)) + 2;
+
+
+            // m^d 
+            var md = Math.Pow(m, d);
+
+            // s = m^d - ⌊ (N - 12l - 94) / (12l + 90) ⌋
+            var s = md - Math.Floor((N - 12*l - 94) / (12*l + 90));
+
+
+            return ((int) m, Convert.ToString((int) s, CultureInfo.InvariantCulture), (int) d);
         }
 
         private static void RunCLI()
         {
             while (true)
             {
-                Console.WriteLine("Enter a value for N");
+                Log("Enter a value for N");
                 var input = Console.ReadLine();
                 bool IsExitCommand() => input == "-e" || string.IsNullOrEmpty(input);
 
                 if (int.TryParse(input, out var N))
                 {
-                    Console.WriteLine("Enter a value for k");
+                    Log("Enter a value for k");
                     input = Console.ReadLine();
 
                     if (int.TryParse(input, out var k))
                     {
-                        var (baseM, startingValue) = CalculateCounterInputs(N, k);
+                        var (baseM, startingValue, d) = CalculateCounterInputs(N, k);
 
-                        var generator = new TileGenerator($"{N}_x_{k}", baseM, startingValue);
+                        var generator = new TileGenerator($"{N}_x_{k}", baseM, startingValue, d);
 
                         if (generator.IsStartingValueTooSmall())
                         {
@@ -72,16 +85,33 @@
 
         private static void Write(string name, IReadOnlyCollection<Tile> tiles)
         {
-            List<Tile> uniqueTiles = tiles.DistinctBy(t => t.Name)
-                                          .ToList();
+            var before = tiles.Count;
 
-            Console.WriteLine($"Unique Tiles: {uniqueTiles.Count}");
+            var unique = tiles.DistinctBy(t => t.Name).ToHashSet();
 
-            var writer = new TileWriter(new TdpOptions(name), uniqueTiles);
+            var after = unique.Count;
+
+            if (before != after)
+            {
+                Error($"Found {before - after} duplicate tiles.");
+            }
+
+            Log($"Size of tile set {unique.Count}");
+
+
+            var writer = new TileWriter(new TdpOptions(name), unique);
 
             writer.WriteTileSet();
         }
 
+
+        private static void Log(string message)
+        {
+            var defaultColor = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(message);
+            Console.ForegroundColor = defaultColor;
+        }
 
         private static void Error(string message)
         {

@@ -46,10 +46,10 @@
         private readonly int M;
 
         private readonly string name; 
-        public TileGenerator(string name, int m, string initialValueB10)
+        public TileGenerator(string name, int m, string initialValueB10, int d)
         {
             M            = m;
-            construction = new ConstructionValues(initialValueB10, m);
+            construction = new ConstructionValues(initialValueB10, m, d);
             digitsInMSR  = construction.DigitsInMSR;
             this.name    = $"thin_rectangle_case_{digitsInMSR}_{name}";
             L            = construction.L;
@@ -95,15 +95,9 @@
             CreateReturnPaths();
             CreateCrossNextRow();
             CreateRoofUnit();
-            var before = tiles.Count;
             
-            var after = tiles.DistinctBy(t => t.Name)
-                             .ToList();
 
-            Console.Write($"Found {before - after.Count} duplicate tiles");
-
-            return (name.Replace(" ", "_")
-                        .ToLower(), after);
+            return (name.Replace(" ", "_").ToLower(), tiles);
         }
 
 
