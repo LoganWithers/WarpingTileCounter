@@ -67,7 +67,8 @@
         {
             tiles.Add(new Tile("seed") {North = new Glue($"{CounterWrite} {1} {Seed} 0 {1} ")});
             //tiles.Add(new Tile("seed") {North = Bind(RoofUnit, false)});
-
+            var filler = new Tile("Filler") {North = new Glue("Filler"), South = new Glue("Filler")};
+            tiles.Add(filler);
             var digits = new BinaryStringPermutations(L, logM, M).Permutations.ToList();
 
             CreateSeed();
@@ -108,7 +109,7 @@
 
         private void CreateRoofUnit()
         {
-            tiles.AddRange(new RoofUnit(construction.DigitsInMSR, L, Bind(RoofUnit, false)).Tiles);
+            tiles.AddRange(new RoofUnit(construction.DigitsInMSR, construction.d, L, Bind(RoofUnit, Op.Halt)).Tiles);
         }
 
 
@@ -116,16 +117,6 @@
         {
             tiles.AddRange(new InitialValueGenerator(construction).Tiles);
         }
-
-
-        string Name(string gadget, int i, string U, bool op, bool msr = false, bool msd = false) => $"{gadget} {i} '{U}' {op} {msr} {msd}";
-
-
-        string Name(string gadget, int i, bool op, bool msr = false, bool msd = false) => $"{gadget} {i} {op} {msr} {msd}";
-
-
-        string Name(string gadget, bool op) => $"{gadget} {op}";
-
 
         private void CreateCounterWrite(IReadOnlyCollection<string> digits)
         {
@@ -136,59 +127,71 @@
                                             .ThenBy(s => s)
                                             .ToList();
 
-                foreach (var op in new[] {true, false})
+                foreach (var op in new[] {Op.Increment, Op.Copy, Op.Halt})
                 {
                     foreach (var U in digitsBeforeMSB)
                     {
-                        tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, $"{U}0", op),
-                                                         Bind(CounterWrite, i, $"{U}0", op),
-                                                         Bind(CounterWrite, i, U,       op)).Tiles);
+                        tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, op, msr: false, msd: false, bits: $"{U}0"),
+                                                         Bind(CounterWrite, i, op, msr: false, msd: false, bits: $"{U}0"),
+                                                         Bind(CounterWrite, i, op, msr: false, msd: false, bits: U)).Tiles);
 
-                        tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, $"{U}1", op),
-                                                         Bind(CounterWrite, i, $"{U}1", op),
-                                                         Bind(CounterWrite, i, U,       op)).Tiles);
+                        tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, op, msr: false, msd: false, bits: $"{U}1"),
+                                                         Bind(CounterWrite, i, op, msr: false, msd: false, bits: $"{U}1"),
+                                                         Bind(CounterWrite, i, op, msr: false, msd: false, bits: U)).Tiles);
 
-                        tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, $"{U}0", op, msr: true),
-                                                         Bind(CounterWrite, i, $"{U}0", op, msr: true),
-                                                         Bind(CounterWrite, i, U,       op, msr: true)).Tiles);
+                        tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, op, msr: true, msd: false, bits: $"{U}0"),
+                                                         Bind(CounterWrite, i, op, msr: true, msd: false, bits: $"{U}0"),
+                                                         Bind(CounterWrite, i, op, msr: true, msd: false, bits: U)).Tiles);
 
-                        tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, $"{U}1", op, msr: true),
-                                                         Bind(CounterWrite, i, $"{U}1", op, msr: true),
-                                                         Bind(CounterWrite, i, U,       op, msr: true)).Tiles);
+                        tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, op, msr: true, msd: false, bits: $"{U}1"),
+                                                         Bind(CounterWrite, i, op, msr: true, msd: false, bits: $"{U}1"),
+                                                         Bind(CounterWrite, i, op, msr: true, msd: false, bits: U)).Tiles);
 
-                        tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, $"{U}0", op, msr: true, msd: true),
-                                                         Bind(CounterWrite, i, $"{U}0", op, msr: true, msd: true),
-                                                         Bind(CounterWrite, i, U,       op, msr: true, msd: true)).Tiles);
+                        tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, op, msr: true, msd: true, bits: $"{U}0"),
+                                                         Bind(CounterWrite, i, op, msr: true, msd: true, bits: $"{U}0"),
+                                                         Bind(CounterWrite, i, op, msr: true, msd: true, bits: U)).Tiles);
 
-                        tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, $"{U}1", op, msr: true, msd: true),
-                                                         Bind(CounterWrite, i, $"{U}1", op, msr: true, msd: true),
-                                                         Bind(CounterWrite, i, U,       op, msr: true, msd: true)).Tiles);
+                        tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, op, msr: true, msd: true, bits: $"{U}1"),
+                                                         Bind(CounterWrite, i, op, msr: true, msd: true, bits: $"{U}1"),
+                                                         Bind(CounterWrite, i, op, msr: true, msd: true, bits: U)).Tiles);
                     }
-
-                    tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, "0", op),
-                                                     Bind(CounterWrite, i, "0", op),
-                                                     Bind(DigitTop,     i,      op)).Tiles);
-
-                    tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, "1", op),
-                                                     Bind(CounterWrite, i, "1", op),
-                                                     Bind(DigitTop,     i,      op)).Tiles);
-
-                    tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, "0", op, msr: true),
-                                                     Bind(CounterWrite, i, "0", op, msr: true),
-                                                     Bind(DigitTop,     i,      op, msr: true)).Tiles);
-
-                    tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, "1", op, msr: true),
-                                                     Bind(CounterWrite, i, "1", op, msr: true),
-                                                     Bind(DigitTop,     i,      op, msr: true)).Tiles);
-
-                    tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, "0", op, msr: true, msd: true),
-                                                     Bind(CounterWrite, i, "0", op, msr: true, msd: true),
-                                                     Bind(DigitTop,     i,      op, msr: true, msd: true)).Tiles);
-
-                    tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, "1", op, msr: true, msd: true),
-                                                     Bind(CounterWrite, i, "1", op, msr: true, msd: true),
-                                                     Bind(DigitTop,     i,      op, msr: true, msd: true)).Tiles);
                 }
+
+                foreach (var op in new[] { Op.Increment, Op.Copy})
+                {
+                    tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, op, msr: false, msd: false, bits: "0"),
+                                                     Bind(CounterWrite, i, op, msr: false, msd: false, bits: "0"),
+                                                     Bind(DigitTop,     i, op, msr: false, msd: false)).Tiles);
+
+                    tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, op, msr: false, msd: false, bits: "1"),
+                                                     Bind(CounterWrite, i, op, msr: false, msd: false, bits: "1"),
+                                                     Bind(DigitTop,     i, op, msr: false, msd: false)).Tiles);
+
+                    tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, op, msr: true, msd: false, bits: "0"),
+                                                     Bind(CounterWrite, i, op, msr: true, msd: false, bits: "0"),
+                                                     Bind(DigitTop,     i, op, msr: true, msd: false)).Tiles);
+
+                    tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, op, msr: true, msd: false, bits: "1"),
+                                                     Bind(CounterWrite, i, op, msr: true, msd: false, bits: "1"),
+                                                     Bind(DigitTop,     i, op, msr: true, msd: false)).Tiles);
+
+                    tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, op, msr: true, msd: true, bits: "0"),
+                                                     Bind(CounterWrite, i, op, msr: true, msd: true, bits: "0"),
+                                                     Bind(DigitTop,     i, op, msr: true, msd: true)).Tiles);
+
+                    tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, op, msr: true, msd: true, bits: "1"),
+                                                     Bind(CounterWrite, i, op, msr: true, msd: true, bits: "1"),
+                                                     Bind(DigitTop,     i, op, msr: true, msd: true)).Tiles);
+
+                }
+
+                tiles.AddRange(new CounterWrite0(Name(CounterWrite, i, Op.Halt, msr: true, msd: true, bits: "0"),
+                                                 Bind(CounterWrite, i, Op.Halt, msr: true, msd: true, bits: "0"),
+                                                 Bind(RoofUnit, Op.Halt)).Tiles);
+
+                tiles.AddRange(new CounterWrite1(Name(CounterWrite, i, Op.Halt, msr: true, msd: true, bits: "1"),
+                                                 Bind(CounterWrite, i, Op.Halt, msr: true, msd: true, bits: "1"),
+                                                 Bind(RoofUnit, Op.Halt)).Tiles);
             }
         }
 
@@ -218,15 +221,15 @@
 
             if (ConvertToDecimal(valueBits) + 1 <= M - 1)
             {
-                return Bind(PreWarp, i, ConvertToBinary(ConvertToDecimal(valueBits) + 1) + indicatorBits, op: false);
+                return Bind(PreWarp, i, Op.Increment, msr: false, msd: false, bits: ConvertToBinary(ConvertToDecimal(valueBits) + 1) + indicatorBits);
             }
 
             if (indicatorBits == "11")
             {
-                return Bind(PreWarp, i, $"{zeroes}11", op: false); // TODO: change op: false to op: "halt"
+                return Bind(PreWarp, i, Op.Halt, msr: false, msd: false, $"{zeroes}11"); // TODO: change op: false to op: "halt"
             }
 
-            return Bind(PreWarp, i, zeroes + indicatorBits, op: true);
+            return Bind(PreWarp, i, Op.Increment, msr: false, msd: false, bits: zeroes + indicatorBits);
         }
 
 
@@ -239,14 +242,14 @@
                                             .ThenBy(s => s)
                                             .ToList();
 
-                foreach (var op in new[] {true, false})
+                foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
                 {
                     foreach (var U in digitsBeforeMSB)
                     {
-                        tiles.AddRange(new CounterRead(Name(CounterRead, i, U,       op),
-                                                       Bind(CounterRead, i, U,       op),
-                                                       Bind(CounterRead, i, $"1{U}", op),
-                                                       Bind(CounterRead, i, $"0{U}", op)).Tiles);
+                        tiles.AddRange(new CounterRead(Name(CounterRead, i, op, msr: false, msd: false, bits: U),
+                                                       Bind(CounterRead, i, op, msr: false, msd: false, bits: U),
+                                                       Bind(CounterRead, i, op, msr: false, msd: false, bits: $"1{U}"),
+                                                       Bind(CounterRead, i, op, msr: false, msd: false, bits: $"0{U}")).Tiles);
                     }
                 }
 
@@ -257,18 +260,18 @@
 
                 foreach (var U in digitsForMSB)
                 {
-                    tiles.AddRange(new CounterRead(Name(CounterRead, i, U,       op: false),
-                                                   Bind(CounterRead, i, U,       op: false),
-                                                   Bind(PreWarp,     i, $"1{U}", op: false),
-                                                   Bind(PreWarp,     i, $"0{U}", op: false)).Tiles);
+                    tiles.AddRange(new CounterRead(Name(CounterRead, i, Op.Copy, msr: false, msd: false, bits: U),
+                                                   Bind(CounterRead, i, Op.Copy, msr: false, msd: false, bits: U),
+                                                   Bind(PreWarp,     i, Op.Copy, msr: false, msd: false, bits: $"1{U}"),
+                                                   Bind(PreWarp,     i, Op.Copy, msr: false, msd: false, bits: $"0{U}")).Tiles);
                 }
 
                 foreach (var U in digitsForMSB)
                 {
                     var (out0, out1) = ReadMostSignificantBit(U, i);
 
-                    tiles.AddRange(new CounterRead(Name(CounterRead, i, U, op: true),
-                                                   Bind(CounterRead, i, U, op: true),
+                    tiles.AddRange(new CounterRead(Name(CounterRead, i, Op.Increment, msr: false, msd: false, U),
+                                                   Bind(CounterRead, i, Op.Increment, msr: false, msd: false, U),
                                                    outputOne: out1,
                                                    outputZero: out0).Tiles);
                 }
@@ -280,51 +283,51 @@
         {
             foreach (var U in digits)
             {
-                foreach (var op in new[] {true, false})
+                foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
                 {
                     switch (U.GetLast(2))
                     {
                         case "00":
-                            tiles.AddRange(new PreWarpDigit1(Name(PreWarp,   1, U, op),
-                                                             Bind(PreWarp,   1, U, op),
-                                                             Bind(FirstWarp, 1, U, op)).Tiles);
+                            tiles.AddRange(new PreWarpDigit1(Name(PreWarp,   1, op, msr: false, msd: false, bits: U),
+                                                             Bind(PreWarp,   1, op, msr: false, msd: false, bits: U),
+                                                             Bind(FirstWarp, 1, op, msr: false, msd: false, bits: U)).Tiles);
 
-                            tiles.AddRange(new PreWarpDigit2(Name(PreWarp,   2, U, op),
-                                                             Bind(PreWarp,   2, U, op),
-                                                             Bind(FirstWarp, 2, U, op)).Tiles);
+                            tiles.AddRange(new PreWarpDigit2(Name(PreWarp,   2, op, msr: false, msd: false, bits: U),
+                                                             Bind(PreWarp,   2, op, msr: false, msd: false, bits: U),
+                                                             Bind(FirstWarp, 2, op, msr: false, msd: false, bits: U)).Tiles);
 
-                            tiles.AddRange(new PreWarpDigit3(Name(PreWarp,   3, U, op),
-                                                             Bind(PreWarp,   3, U, op),
-                                                             Bind(FirstWarp, 3, U, op)).Tiles);
+                            tiles.AddRange(new PreWarpDigit3(Name(PreWarp,   3, op, msr: false, msd: false, bits: U),
+                                                             Bind(PreWarp,   3, op, msr: false, msd: false, bits: U),
+                                                             Bind(FirstWarp, 3, op, msr: false, msd: false, bits: U)).Tiles);
 
                             break;
 
                         case "01" when digitsInMSR == 2:
-                            tiles.AddRange(new PreWarpDigit1Case2(Name(PreWarp,   1, U, op, msr: true),
-                                                                  Bind(PreWarp,   1, U, op),
-                                                                  Bind(FirstWarp, 1, U, op, msr: true)).Tiles);
+                            tiles.AddRange(new PreWarpDigit1Case2(Name(PreWarp,   1, op, msr: true,  msd: false, bits: U),
+                                                                  Bind(PreWarp,   1, op, msr: false, msd: false, bits: U),
+                                                                  Bind(FirstWarp, 1, op, msr: true,  msd: false, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 1:
-                            tiles.AddRange(new PreWarpDigit1Case1(Name(PreWarp,   1, U, op, msr: true, msd: true),
-                                                                  Bind(PreWarp,   1, U, op),
-                                                                  Bind(FirstWarp, 1, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new PreWarpDigit1Case1(Name(PreWarp,   1, op, msr: true,  msd: true,  bits: U),
+                                                                  Bind(PreWarp,   1, op, msr: false, msd: false, bits: U),
+                                                                  Bind(FirstWarp, 1, op, msr: true,  msd: true,  bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 2:
-                            tiles.AddRange(new PreWarpDigit2Case2(Name(PreWarp,   2, U, op, msr: true, msd: true),
-                                                                  Bind(PreWarp,   2, U, op),
-                                                                  Bind(FirstWarp, 2, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new PreWarpDigit2Case2(Name(PreWarp,   2, op, msr: true,  msd: true,  bits: U),
+                                                                  Bind(PreWarp,   2, op, msr: false, msd: false, bits: U),
+                                                                  Bind(FirstWarp, 2, op, msr: true,  msd: true,  bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 3:
-                            tiles.AddRange(new PreWarpDigit3Case3(Name(PreWarp,   3, U, op, msr: true, msd: true),
-                                                                  Bind(PreWarp,   3, U, op),
-                                                                  Bind(FirstWarp, 3, U, op, msr: true, msd: true)).Tiles);
-
+                            tiles.AddRange(new PreWarpDigit3Case3(Name(PreWarp,   3, op, msr: true,  msd: true,  bits: U),
+                                                                  Bind(PreWarp,   3, op, msr: false, msd: false, bits: U),
+                                                                  Bind(FirstWarp, 3, op, msr: true,  msd: true,  bits: U)).Tiles);
+                             
                             break;
 
                         default: continue;
@@ -338,57 +341,57 @@
         {
             foreach (var U in digits)
             {
-                foreach (var op in new[] {true, false})
+                foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
                 {
                     switch (U.GetLast(2))
                     {
                         case "00":
-                            tiles.AddRange(new FirstWarpDigit1(Name(FirstWarp,  1, U, op),
-                                                               Bind(FirstWarp,  1, U, op),
-                                                               Bind(FirstWarp,  1, U, op),
-                                                               Bind(WarpBridge, 1, U, op)).Tiles);
+                            tiles.AddRange(new FirstWarpDigit1(Name(FirstWarp,  1, op, msr: false, msd: false, bits: U),
+                                                               Bind(FirstWarp,  1, op, msr: false, msd: false, bits: U),
+                                                               Bind(FirstWarp,  1, op, msr: false, msd: false, bits: U),
+                                                               Bind(WarpBridge, 1, op, msr: false, msd: false, bits: U)).Tiles);
 
-                            tiles.AddRange(new FirstWarpDigit2(Name(FirstWarp,  2, U, op),
-                                                               Bind(FirstWarp,  2, U, op),
-                                                               Bind(FirstWarp,  2, U, op),
-                                                               Bind(WarpBridge, 2, U, op)).Tiles);
+                            tiles.AddRange(new FirstWarpDigit2(Name(FirstWarp,  2, op, msr: false, msd: false, bits: U),
+                                                               Bind(FirstWarp,  2, op, msr: false, msd: false, bits: U),
+                                                               Bind(FirstWarp,  2, op, msr: false, msd: false, bits: U),
+                                                               Bind(WarpBridge, 2, op, msr: false, msd: false, bits: U)).Tiles);
 
-                            tiles.AddRange(new FirstWarpDigit3(Name(FirstWarp,  3, U, op),
-                                                               Bind(FirstWarp,  3, U, op),
-                                                               Bind(FirstWarp,  3, U, op),
-                                                               Bind(WarpBridge, 3, U, op)).Tiles);
+                            tiles.AddRange(new FirstWarpDigit3(Name(FirstWarp,  3, op, msr: false, msd: false, bits: U),
+                                                               Bind(FirstWarp,  3, op, msr: false, msd: false, bits: U),
+                                                               Bind(FirstWarp,  3, op, msr: false, msd: false, bits: U),
+                                                               Bind(WarpBridge, 3, op, msr: false, msd: false, bits: U)).Tiles);
 
                             break;
 
                         case "01" when digitsInMSR == 2:
-                            tiles.AddRange(new FirstWarpDigit1Case2(Name(FirstWarp, 1, U, op, msr: true),
-                                                                    Bind(FirstWarp, 1, U, op, msr: true),
-                                                                    Bind(FirstWarp, 1, U, op, msr: true),
-                                                                    Bind(PostWarp,  1, U, op, msr: true)).Tiles);
+                            tiles.AddRange(new FirstWarpDigit1Case2(Name(FirstWarp, 1, op, msr: true, msd: false, bits: U),
+                                                                    Bind(FirstWarp, 1, op, msr: true, msd: false, bits: U),
+                                                                    Bind(FirstWarp, 1, op, msr: true, msd: false, bits: U),
+                                                                    Bind(PostWarp,  1, op, msr: true, msd: false, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 1:
-                            tiles.AddRange(new FirstWarpDigit1Case1(Name(FirstWarp, 1, U, op, msr: true, msd: true),
-                                                                    Bind(FirstWarp, 1, U, op, msr: true, msd: true),
-                                                                    Bind(FirstWarp, 1, U, op, msr: true, msd: true),
-                                                                    Bind(PostWarp,  1, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new FirstWarpDigit1Case1(Name(FirstWarp, 1, op, msr: true, msd: true, bits: U),
+                                                                    Bind(FirstWarp, 1, op, msr: true, msd: true, bits: U),
+                                                                    Bind(FirstWarp, 1, op, msr: true, msd: true, bits: U),
+                                                                    Bind(PostWarp,  1, op, msr: true, msd: true, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 2:
-                            tiles.AddRange(new FirstWarpDigit2Case2(Name(FirstWarp,  2, U, op, msr: true, msd: true),
-                                                                    Bind(FirstWarp,  2, U, op, msr: true, msd: true),
-                                                                    Bind(FirstWarp,  2, U, op, msr: true, msd: true),
-                                                                    Bind(WarpBridge, 2, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new FirstWarpDigit2Case2(Name(FirstWarp,  2, op, msr: true, msd: true, bits: U),
+                                                                    Bind(FirstWarp,  2, op, msr: true, msd: true, bits: U),
+                                                                    Bind(FirstWarp,  2, op, msr: true, msd: true, bits: U),
+                                                                    Bind(WarpBridge, 2, op, msr: true, msd: true, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 3:
-                            tiles.AddRange(new FirstWarpDigit3Case3(Name(FirstWarp,  3, U, op, msr: true, msd: true),
-                                                                    Bind(FirstWarp,  3, U, op, msr: true, msd: true),
-                                                                    Bind(FirstWarp,  3, U, op, msr: true, msd: true),
-                                                                    Bind(WarpBridge, 3, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new FirstWarpDigit3Case3(Name(FirstWarp,  3, op, msr: true, msd: true, bits: U),
+                                                                    Bind(FirstWarp,  3, op, msr: true, msd: true, bits: U),
+                                                                    Bind(FirstWarp,  3, op, msr: true, msd: true, bits: U),
+                                                                    Bind(WarpBridge, 3, op, msr: true, msd: true, bits: U)).Tiles);
 
                             break;
 
@@ -403,36 +406,36 @@
         {
             foreach (var U in digits)
             {
-                foreach (var op in new[] {true, false})
+                foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
                 {
                     switch (U.GetLast(2))
                     {
                         case "00":
-                            tiles.AddRange(new WarpBridgeDigit1(Name(WarpBridge, 1, U, op),
-                                                                Bind(WarpBridge, 1, U, op),
-                                                                Bind(SecondWarp, 1, U, op)).Tiles);
+                            tiles.AddRange(new WarpBridgeDigit1(Name(WarpBridge, 1, op, msr: false, msd: false, bits: U),
+                                                                Bind(WarpBridge, 1, op, msr: false, msd: false, bits: U),
+                                                                Bind(SecondWarp, 1, op, msr: false, msd: false, bits: U)).Tiles);
 
-                            tiles.AddRange(new WarpBridgeDigit2(Name(WarpBridge, 2, U, op),
-                                                                Bind(WarpBridge, 2, U, op),
-                                                                Bind(SecondWarp, 2, U, op)).Tiles);
+                            tiles.AddRange(new WarpBridgeDigit2(Name(WarpBridge, 2, op, msr: false, msd: false, bits: U),
+                                                                Bind(WarpBridge, 2, op, msr: false, msd: false, bits: U),
+                                                                Bind(SecondWarp, 2, op, msr: false, msd: false, bits: U)).Tiles);
 
-                            tiles.AddRange(new WarpBridgeDigit3(Name(WarpBridge, 3, U, op),
-                                                                Bind(WarpBridge, 3, U, op),
-                                                                Bind(SecondWarp, 3, U, op)).Tiles);
+                            tiles.AddRange(new WarpBridgeDigit3(Name(WarpBridge, 3, op, msr: false, msd: false, bits: U),
+                                                                Bind(WarpBridge, 3, op, msr: false, msd: false, bits: U),
+                                                                Bind(SecondWarp, 3, op, msr: false, msd: false, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 2:
-                            tiles.AddRange(new WarpBridgeDigit2Case2(Name(WarpBridge, 2, U, op, msr: true, msd: true),
-                                                                     Bind(WarpBridge, 2, U, op, msr: true, msd: true),
-                                                                     Bind(SecondWarp, 2, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new WarpBridgeDigit2Case2(Name(WarpBridge, 2, op, msr: true,  msd: true, bits: U),
+                                                                     Bind(WarpBridge, 2, op, msr: true,  msd: true, bits: U),
+                                                                     Bind(SecondWarp, 2, op, msr: true,  msd: true, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 3:
-                            tiles.AddRange(new WarpBridgeDigit3Case3(Name(WarpBridge, 3, U, op, msr: true, msd: true),
-                                                                     Bind(WarpBridge, 3, U, op, msr: true, msd: true),
-                                                                     Bind(SecondWarp, 3, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new WarpBridgeDigit3Case3(Name(WarpBridge, 3, op, msr: true,  msd: true, bits: U),
+                                                                     Bind(WarpBridge, 3, op, msr: true,  msd: true, bits: U),
+                                                                     Bind(SecondWarp, 3, op, msr: true,  msd: true, bits: U)).Tiles);
 
                             break;
 
@@ -447,41 +450,41 @@
         {
             foreach (var U in digits)
             {
-                foreach (var op in new[] {true, false})
+                foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
                 {
                     switch (U.GetLast(2))
                     {
                         case "00":
-                            tiles.AddRange(new SecondWarpDigit1(Name(SecondWarp, 1, U, op),
-                                                                Bind(SecondWarp, 1, U, op),
-                                                                Bind(SecondWarp, 1, U, op),
-                                                                Bind(PostWarp,   1, U, op)).Tiles);
+                            tiles.AddRange(new SecondWarpDigit1(Name(SecondWarp, 1, op, msr: false, msd: false, bits: U),
+                                                                Bind(SecondWarp, 1, op, msr: false, msd: false, bits: U),
+                                                                Bind(SecondWarp, 1, op, msr: false, msd: false, bits: U),
+                                                                Bind(PostWarp,   1, op, msr: false, msd: false, bits: U)).Tiles);
 
-                            tiles.AddRange(new SecondWarpDigit2(Name(SecondWarp, 2, U, op),
-                                                                Bind(SecondWarp, 2, U, op),
-                                                                Bind(SecondWarp, 2, U, op),
-                                                                Bind(PostWarp,   2, U, op)).Tiles);
+                            tiles.AddRange(new SecondWarpDigit2(Name(SecondWarp, 2, op, msr: false, msd: false, bits: U),
+                                                                Bind(SecondWarp, 2, op, msr: false, msd: false, bits: U),
+                                                                Bind(SecondWarp, 2, op, msr: false, msd: false, bits: U),
+                                                                Bind(PostWarp,   2, op, msr: false, msd: false, bits: U)).Tiles);
 
-                            tiles.AddRange(new SecondWarpDigit3(Name(SecondWarp, 3, U, op),
-                                                                Bind(SecondWarp, 3, U, op),
-                                                                Bind(SecondWarp, 3, U, op),
-                                                                Bind(PostWarp,   3, U, op)).Tiles);
+                            tiles.AddRange(new SecondWarpDigit3(Name(SecondWarp, 3, op, msr: false, msd: false, bits: U),
+                                                                Bind(SecondWarp, 3, op, msr: false, msd: false, bits: U),
+                                                                Bind(SecondWarp, 3, op, msr: false, msd: false, bits: U),
+                                                                Bind(PostWarp,   3, op, msr: false, msd: false, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 2:
-                            tiles.AddRange(new SecondWarpDigit2Case2(Name(SecondWarp, 2, U, op, msr: true, msd: true),
-                                                                     Bind(SecondWarp, 2, U, op, msr: true, msd: true),
-                                                                     Bind(SecondWarp, 2, U, op, msr: true, msd: true),
-                                                                     Bind(PostWarp,   2, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new SecondWarpDigit2Case2(Name(SecondWarp, 2, op, msr: true, msd: true, bits: U),
+                                                                     Bind(SecondWarp, 2, op, msr: true, msd: true, bits: U),
+                                                                     Bind(SecondWarp, 2, op, msr: true, msd: true, bits: U),
+                                                                     Bind(PostWarp,   2, op, msr: true, msd: true, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 3:
-                            tiles.AddRange(new SecondWarpDigit3Case3(Name(SecondWarp, 3, U, op, msr: true, msd: true),
-                                                                     Bind(SecondWarp, 3, U, op, msr: true, msd: true),
-                                                                     Bind(SecondWarp, 3, U, op, msr: true, msd: true),
-                                                                     Bind(PostWarp,   3, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new SecondWarpDigit3Case3(Name(SecondWarp, 3, op, msr: true, msd: true, bits: U),
+                                                                     Bind(SecondWarp, 3, op, msr: true, msd: true, bits: U),
+                                                                     Bind(SecondWarp, 3, op, msr: true, msd: true, bits: U),
+                                                                     Bind(PostWarp,   3, op, msr: true, msd: true, bits: U)).Tiles);
 
                             break;
 
@@ -499,50 +502,50 @@
         {
             foreach (var U in digits)
             {
-                foreach (var op in new[] {true, false})
+                foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
                 {
                     switch (U.GetLast(2))
                     {
                         case "00":
-                            tiles.AddRange(new PostWarpDigit1(Name(PostWarp,     1, U, op),
-                                                              Bind(PostWarp,     1, U, op),
-                                                              Bind(CounterWrite, 1, U, op)).Tiles);
+                            tiles.AddRange(new PostWarpDigit1(Name(PostWarp,     1, op, msr: false, msd: false, bits: U),
+                                                              Bind(PostWarp,     1, op, msr: false, msd: false, bits: U),
+                                                              Bind(CounterWrite, 1, op, msr: false, msd: false, bits: U)).Tiles);
 
-                            tiles.AddRange(new PostWarpDigit2(Name(PostWarp,     2, U, op),
-                                                              Bind(PostWarp,     2, U, op),
-                                                              Bind(CounterWrite, 2, U, op)).Tiles);
+                            tiles.AddRange(new PostWarpDigit2(Name(PostWarp,     2, op, msr: false, msd: false, bits: U),
+                                                              Bind(PostWarp,     2, op, msr: false, msd: false, bits: U),
+                                                              Bind(CounterWrite, 2, op, msr: false, msd: false, bits: U)).Tiles);
 
-                            tiles.AddRange(new PostWarpDigit3(Name(PostWarp,     3, U, op),
-                                                              Bind(PostWarp,     3, U, op),
-                                                              Bind(CounterWrite, 3, U, op)).Tiles);
+                            tiles.AddRange(new PostWarpDigit3(Name(PostWarp,     3, op, msr: false, msd: false, bits: U),
+                                                              Bind(PostWarp,     3, op, msr: false, msd: false, bits: U),
+                                                              Bind(CounterWrite, 3, op, msr: false, msd: false, bits: U)).Tiles);
 
                             break;
 
                         case "01" when digitsInMSR == 2:
-                            tiles.AddRange(new PostWarpDigit1Case2(Name(PostWarp,     1, U, op, msr: true),
-                                                                   Bind(PostWarp,     1, U, op, msr: true),
-                                                                   Bind(CounterWrite, 1, U, op, msr: true)).Tiles);
+                            tiles.AddRange(new PostWarpDigit1Case2(Name(PostWarp,     1, op, msr: true, msd: true, bits: U),
+                                                                   Bind(PostWarp,     1, op, msr: true, msd: true, bits: U),
+                                                                   Bind(CounterWrite, 1, op, msr: true, msd: true, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 1:
-                            tiles.AddRange(new PostWarpDigit1Case1(Name(PostWarp,     1, U, op, msr: true, msd: true),
-                                                                   Bind(PostWarp,     1, U, op, msr: true, msd: true),
-                                                                   Bind(CounterWrite, 1, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new PostWarpDigit1Case1(Name(PostWarp,     1, op, msr: true, msd: true, bits: U),
+                                                                   Bind(PostWarp,     1, op, msr: true, msd: true, bits: U),
+                                                                   Bind(CounterWrite, 1, op, msr: true, msd: true, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 2:
-                            tiles.AddRange(new PostWarpDigit2Case2(Name(PostWarp,     2, U, op, msr: true, msd: true),
-                                                                   Bind(PostWarp,     2, U, op, msr: true, msd: true),
-                                                                   Bind(CounterWrite, 2, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new PostWarpDigit2Case2(Name(PostWarp,     2, op, msr: true, msd: true, bits: U),
+                                                                   Bind(PostWarp,     2, op, msr: true, msd: true, bits: U),
+                                                                   Bind(CounterWrite, 2, op, msr: true, msd: true, bits: U)).Tiles);
 
                             break;
 
                         case "11" when digitsInMSR == 3:
-                            tiles.AddRange(new PostWarpDigit3Case3(Name(PostWarp,     3, U, op, msr: true, msd: true),
-                                                                   Bind(PostWarp,     3, U, op, msr: true, msd: true),
-                                                                   Bind(CounterWrite, 3, U, op, msr: true, msd: true)).Tiles);
+                            tiles.AddRange(new PostWarpDigit3Case3(Name(PostWarp,     3, op, msr: true, msd: true, bits: U),
+                                                                   Bind(PostWarp,     3, op, msr: true, msd: true, bits: U),
+                                                                   Bind(CounterWrite, 3, op, msr: true, msd: true, bits: U)).Tiles);
 
                             break;
 
@@ -555,7 +558,7 @@
 
         private void CreateDigitTops()
         {
-            foreach (var op in new[] {true, false})
+            foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
             {
                 tiles.AddRange(new DigitTop(Name(DigitTop,   1, op),
                                             L,
@@ -609,7 +612,7 @@
 
         private void CreateReturnPaths()
         {
-            foreach (var op in new[] {true, false})
+            foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
             {
                 tiles.AddRange(new ReturnPathDigit1(Name(ReturnPath, 1, op),
                                                     L,
@@ -651,53 +654,53 @@
 
         private void CreateNextRead()
         {
-            foreach (var op in new[] {true, false})
+            foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
             {
-                tiles.AddRange(new NextReadDigit1(Name(NextRead,    1,               op),
-                                                  L,                                 
-                                                  Bind(NextRead,    1,               op),
-                                                  Bind(CounterRead, 2, string.Empty, op)).Tiles);
+                tiles.AddRange(new NextReadDigit1(Name(NextRead,    1, op),
+                                                  L,                    
+                                                  Bind(NextRead,    1, op),
+                                                  Bind(CounterRead, 2, op, msr: false, msd: false, string.Empty)).Tiles);
 
-                tiles.AddRange(new NextReadDigit1Case2(Name(NextRead,    1,               op, msr: true),
-                                                       L,                                 
-                                                       Bind(NextRead,    1,               op, msr: true),
-                                                       Bind(CounterRead, 2, string.Empty, op)).Tiles);
+                tiles.AddRange(new NextReadDigit1Case2(Name(NextRead,    1, op, msr: true),
+                                                       L,                   
+                                                       Bind(NextRead,    1, op, msr: true),
+                                                       Bind(CounterRead, 2, op, msr: false, msd: false, string.Empty)).Tiles);
 
                 tiles.AddRange(new NextReadDigit1Case1(Name(NextRead,     1, op, msr: true, msd: true),
                                                        L,
                                                        Bind(NextRead,     1, op, msr: true, msd: true),
                                                        Bind(CrossNextRow,    op)).Tiles);
 
-                tiles.AddRange(new NextReadDigit2(Name(NextRead,    2,               op),
-                                                  L,                                 
-                                                  Bind(NextRead,    2,               op),
-                                                  Bind(CounterRead, 3, string.Empty, op)).Tiles);
+                tiles.AddRange(new NextReadDigit2(Name(NextRead,    2, op),
+                                                  L,                   
+                                                  Bind(NextRead,    2, op),
+                                                  Bind(CounterRead, 3, op, msr: false, msd: false, string.Empty)).Tiles);
 
                 tiles.AddRange(new NextReadDigit2Case2(Name(NextRead,     2, op, msr: true, msd: true),
                                                        L,
                                                        Bind(NextRead,     2, op, msr: true, msd: true),
-                                                       Bind(CrossNextRow, op)).Tiles);
+                                                       Bind(CrossNextRow,    op)).Tiles);
 
-                tiles.AddRange(new NextReadDigit3(Name(NextRead,    3,               op),
-                                                  L,                                 
-                                                  Bind(NextRead,    3,               op),
-                                                  Bind(CounterRead, 1, string.Empty, op)).Tiles);
+                tiles.AddRange(new NextReadDigit3(Name(NextRead,    3, op),
+                                                  L,                   
+                                                  Bind(NextRead,    3, op),
+                                                  Bind(CounterRead, 1, op, msr: false, msd: false, string.Empty)).Tiles);
 
                 tiles.AddRange(new NextReadDigit3Case3(Name(NextRead,     3, op, msr: true, msd: true),
                                                        Bind(NextRead,     3, op, msr: true, msd: true),
-                                                       Bind(CrossNextRow, op)).Tiles);
+                                                       Bind(CrossNextRow,    op)).Tiles);
             }
         }
 
 
         private void CreateCrossNextRow()
         {
-            foreach (var op in new[] {true, false})
+            foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
             {
-                tiles.AddRange(new CrossNextRow(Name(CrossNextRow,                  op),
-                                                construction.d,                     
-                                                Bind(CrossNextRow,                  op),
-                                                Bind(CounterRead,  1, string.Empty, op)).Tiles);
+                tiles.AddRange(new CrossNextRow(Name(CrossNextRow,    op),
+                                                construction.d,       
+                                                Bind(CrossNextRow,    op),
+                                                Bind(CounterRead,  1, op, msr: false, msd: false, string.Empty)).Tiles);
             }
         }
 

@@ -19,15 +19,28 @@
         public const string CrossNextRow = "CrossNextRow";
         public const string RoofUnit     = "RoofUnit";
 
-        public string Name(string gadget, int  i, string U,  bool op,          bool msr = false, bool msd = false) => $"{gadget} {i} '{U}' {op} {msr} {msd}";
-        public string Name(string gadget, int  i, int region, bool   op, bool msr = false, bool msd = false) => $"{gadget} {i} {region} {op} {msr} {msd}";
-        public string Name(string gadget, int  i, bool   op, bool msr = false, bool msd = false) => $"{gadget} {i} {op} {msr} {msd}";
-        public string Name(string gadget, bool op) => $"{gadget} {op}";
+        public string Name(string gadget, int  i, string U,  Op op,  bool msr = false, bool msd = false) => $"{gadget} {i} '{U}' {op.Value} {msr} {msd}";
+        public string Name(string gadget, int  i, int region, Op op, bool msr = false, bool msd = false) => $"{gadget} {i} {region} {op.Value} {msr} {msd}";
+        public string Name(string gadget, int  i, Op op, bool msr = false, bool msd = false) => $"{gadget} {i} {op.Value} {msr} {msd}";
+        public string Name(string gadget, Op op) => $"{gadget} {op.Value}";
+        public string Name(string gadget, int i, Op op, bool msr, bool msd, string bits) => $"{gadget} {i} '{bits}' {op.Value} {msr} {msd}";
 
-        public Glue Bind(string uniqueIdentifier, int i, bool op = false, bool msr = false, bool msd = false) => new Glue($"{uniqueIdentifier} {i} {op} {msr} {msd}");
+        public Glue Bind(string uniqueIdentifier, int i, Op op, bool msr = false, bool msd = false) => new Glue($"{uniqueIdentifier} {i} {op.Value} {msr} {msd}");
 
-        public Glue Bind(string uniqueIdentifier, int i, string bits = "", bool op = false, bool msr = false, bool msd = false) => new Glue($"{uniqueIdentifier} {i} '{bits}' {op} {msr} {msd}");
+        public Glue Bind(string uniqueIdentifier, int i, Op op, bool msr, bool msd, string bits) => new Glue($"{uniqueIdentifier} {i} '{bits}' {op.Value} {msr} {msd}");
 
-        public Glue Bind(string uniqueIdentifier, bool op) => new Glue($"{uniqueIdentifier} {op}");
+        public Glue Bind(string uniqueIdentifier, Op op) => new Glue($"{uniqueIdentifier} {op.Value}");
+    }
+
+    public class Op
+    {
+        private Op(string value) { Value = value; }
+
+        public string Value { get; set; }
+
+        public static Op Increment => new Op("Increment");
+        public static Op Halt => new Op("Halt");
+        public static Op Copy => new Op("Copy");
+
     }
 }

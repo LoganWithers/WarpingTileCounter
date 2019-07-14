@@ -1,6 +1,7 @@
 ﻿namespace WarpingCounter.Gadgets
 {
 
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -24,7 +25,7 @@
         private readonly int L;
 
 
-        public RoofUnit(int digitsInMSR, int L, Glue input)
+        public RoofUnit(int digitsInMSR, int digits, int L, Glue input)
         {
             this.digitsInMSR = digitsInMSR;
             this.L = L;
@@ -36,6 +37,21 @@
             Input = Tiles.First();
             Input.South = input;
 
+            
+
+            var difference     = digits % 3 == 0 ? -1 : 0;
+            var generalRegions = (int)Math.Floor((decimal)digits / 3) + difference;
+
+            var builder = new GadgetBuilder().Start();
+            for (var i = 0; i < generalRegions; i++)
+            {
+                builder.East(6);
+            }
+
+            var tiles = builder.Tiles().Skip(1).ToList();
+            tiles.First().AttachWest(Output);
+            tiles.ForEach(SpawnFiller);
+            Tiles.AddRange(tiles);
             Tiles.RenameWithIndex("RoofUnit");
         }
 
