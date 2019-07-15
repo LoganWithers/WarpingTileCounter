@@ -25,19 +25,17 @@
         private readonly int L;
 
 
-        public RoofUnit(int digitsInMSR, int digits, int L, Glue input)
+        public RoofUnit(int digitsInMSR, int digits, int L, Glue input, bool kIsOdd)
         {
             this.digitsInMSR = digitsInMSR;
             this.L = L;
 
-            Output = new Tile("RoofUnitEast");
+            Output = new Tile("Roof");
             Tiles  = Create();
             Tiles.Add(Output);
 
             Input = Tiles.First();
             Input.South = input;
-
-            
 
             var difference     = digits % 3 == 0 ? -1 : 0;
             var generalRegions = (int)Math.Floor((decimal)digits / 3) + difference;
@@ -48,12 +46,17 @@
                 builder.East(6);
             }
 
+            if (kIsOdd)
+            {
+                builder.East();
+            }
+
             var tiles = builder.Tiles().Skip(1).ToList();
             tiles.First().AttachWest(Output);
             SpawnFiller(Output);
             tiles.ForEach(SpawnFiller);
             Tiles.AddRange(tiles);
-            Tiles.RenameWithIndex("RoofUnit");
+            Tiles.RenameWithIndex("Roof");
         }
 
 

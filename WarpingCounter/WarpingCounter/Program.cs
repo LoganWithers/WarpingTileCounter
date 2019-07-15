@@ -60,7 +60,7 @@
                     {
                         var (baseM, startingValue, d) = CalculateCounterInputs(N, k);
 
-                        var generator = new TileGenerator($"{N}_x_{k}", baseM, startingValue, d);
+                        var generator = new TileGenerator($"{N}_x_{k}", baseM, startingValue, d, k % 2 == 1);
 
                         if (generator.IsStartingValueTooSmall())
                         {

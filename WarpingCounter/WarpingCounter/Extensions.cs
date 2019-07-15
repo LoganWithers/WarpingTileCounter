@@ -121,6 +121,12 @@
             for (var i = 0; i < tiles.Count; i++)
             {
                 var tile = tiles[i];
+
+                if (name == "seed" && i == 0)
+                {
+                    tile.Rename(name);
+                }
+
                 tile.Rename($"{name} {i}");
             }
         }

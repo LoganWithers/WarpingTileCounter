@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Common.Builders;
     using Common.Models;
 
     using Gadgets;
@@ -45,8 +46,12 @@
 
         private readonly int M;
 
-        private readonly string name; 
-        public TileGenerator(string name, int m, string initialValueB10, int d)
+        private readonly string name;
+
+        private readonly bool kIsOdd;
+
+
+        public TileGenerator(string name, int m, string initialValueB10, int d, bool kIsOdd)
         {
             M            = m;
             construction = new ConstructionValues(initialValueB10, m, d);
@@ -55,7 +60,7 @@
             L            = construction.L;
             logM         = construction.BitsRequiredForBaseM;
             regions      = construction.DigitRegions;
-
+            this.kIsOdd = kIsOdd;
             Log($"Base {M}");
             Log($"Bits Per Counter Digit: {logM}");
             Log($"Actual Bits Per Digit:  {L}");
@@ -64,15 +69,31 @@
 
         public bool IsStartingValueTooSmall() => construction.DigitRegions < 2;
 
+
+        private void CreateSeed()
+        {
+            var builder = new GadgetBuilder().Start();
+
+            if (kIsOdd)
+            {
+                builder.West(2).North();
+            } 
+
+            var seed = builder.Tiles().ToList();
+            seed.RenameWithIndex("seed");
+
+            seed.Last().North = new Glue($"{CounterWrite} {1} {Seed} 0 {1} ");
+            tiles.AddRange(seed);
+        }
+
         public (string name, List<Tile> tileset) Generate()
         {
-            tiles.Add(new Tile("seed") {North = new Glue($"{CounterWrite} {1} {Seed} 0 {1} ")});
-            //tiles.Add(new Tile("seed") {North = Bind(RoofUnit, false)});
             var filler = new Tile("Filler") {North = new Glue("Filler"), South = new Glue("Filler")};
             tiles.Add(filler);
             var digits = new BinaryStringPermutations(L, logM, M).Permutations.ToList();
 
             CreateSeed();
+            CreateInitialValue();
             CreateCounterRead(digits);
 
             var fullDigits = new HashSet<string>();
@@ -104,11 +125,11 @@
 
         private void CreateRoofUnit()
         {
-            tiles.AddRange(new RoofUnit(construction.DigitsInMSR, construction.d, L, Bind(RoofUnit, Op.Halt)).Tiles);
+            tiles.AddRange(new RoofUnit(construction.DigitsInMSR, construction.d, L, Bind(RoofUnit, Op.Halt), kIsOdd).Tiles);
         }
 
 
-        private void CreateSeed()
+        private void CreateInitialValue()
         {
             tiles.AddRange(new InitialValueGenerator(construction).Tiles);
         }

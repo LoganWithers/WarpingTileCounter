@@ -13,7 +13,7 @@
             Name = name.Replace("True", "true")
                        .Replace("False", "false");
 
-            if (name == "seed")
+            if (name.Contains("seed"))
             {
                 Color = "red";
                 Up    = new Glue("NULL");
