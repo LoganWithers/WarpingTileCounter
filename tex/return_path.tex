@@ -17,19 +17,19 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 1, \inc \right\rangle,
                       \left\langle {\tt NextRead},   1, \inc \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1_op}.
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1_op}. In this step $42 + 4l$ tiles were created.
 
     \item Create
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 1, \inc, {\tt msr} \right\rangle,
                       \left\langle {\tt NextRead},   1, \inc, {\tt msr} \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1_op_msr}
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1_op_msr}. In this step $30 + 4l$ tiles were created.
 
     \item Create
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 1, \inc, {\tt msr}, {\tt msd} \right\rangle,
                       \left\langle {\tt NextRead},   1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}.
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}. In this step $30 + 4l$ tiles were created.
 
 
     % DIGIT 2
@@ -37,13 +37,13 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 2, \inc \right\rangle,
                       \left\langle {\tt NextRead},   2, \inc \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_2_op-or-seed}.
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_2_op-or-seed}. In this step $32 + 4l$ tiles were created.
 
     \item Create
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle,
                       \left\langle {\tt NextRead},   2, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}.
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}. In this step $30 + 4l$ tiles were created.
 
 
     % DIGIT 3
@@ -51,14 +51,14 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath},  3, \inc \right\rangle,
                       \left\langle {\tt NextRead},    3, \inc \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_3}.
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_3}. In this step $65 + 8l$ tiles were created.
 
 
     \item Create
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 3, \inc, {\tt msr}, {\tt msd} \right\rangle,
                       \left\langle {\tt NextRead},   3, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_3}.
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_3}. In this step $65 + 8l$ tiles were created.
 
 \end{itemize}
 

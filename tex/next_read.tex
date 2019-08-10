@@ -25,19 +25,19 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead},    1,          \inc \right\rangle,
                     \left\langle {\tt CounterRead}, 2, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}. In this step $41 + 4l$ tiles were created.
 
     \item Create
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead},    1,          \inc, {\tt msr} \right\rangle,
                     \left\langle {\tt CounterRead}, 2, \lambda, \inc            \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1_op_msr}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1_op_msr}. In this step $36 + 4l$ tiles were created.
 
     \item Create
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead}, 1,  \inc, {\tt msr}, {\tt msd} \right\rangle,
                     \left\langle {\tt CrossNextRow}, \inc                       \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}. In this step $37 + 4l$ tiles were created.
 
 
     % DIGIT 2
@@ -45,13 +45,13 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead},    2,          \inc \right\rangle,
                     \left\langle {\tt CounterRead}, 3, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}. In this step $41 + 4l$ tiles were created.
 
     \item Create
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead}, 2,  \inc, {\tt msr}, {\tt msd} \right\rangle,
                     \left\langle {\tt CrossNextRow}, \inc                       \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}. In this step $37 + 4l$ tiles were created.
 
 
     % DIGIT 3
@@ -59,13 +59,13 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead},    3,          \inc \right\rangle,
                     \left\langle {\tt CounterRead}, 1, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_3_op}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_3_op}. In this step $94 + 12l$ tiles were created.
 
     \item Create
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead}, 3,  \inc, {\tt msr}, {\tt msd} \right\rangle,
                     \left\langle {\tt CrossNextRow}, \inc \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_3_op-or-seed_msr_msd}.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_3_op-or-seed_msr_msd}. In this step $12$ tiles were created.
 \end{itemize}
 
 \begin{figure}[H]
