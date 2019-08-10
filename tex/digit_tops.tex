@@ -33,7 +33,7 @@ and index of a specific digit, the exact digit top will differ.
 \end{figure}
 
 
-For each $\inc \in \{ {\tt increment, copy } \}$
+    For each $\inc \in \{ {\tt increment, copy } \}$
     \begin{itemize}
 
         \item Digit 1 (general): the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
@@ -56,8 +56,19 @@ For each $\inc \in \{ {\tt increment, copy } \}$
                                                \left\langle \returnpath,     1, \inc \right\rangle \;)
             \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
-        In this step $40 + 4l$ tiles were created.
-        \vspace{1cm}
+        %
+        In this step, $2 \cdot \left( 40 + 4l \right) =$
+        %
+        $80 + 8l =$
+        %
+        $80 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+        %
+        $80 + 8 \cdot \left( {\log m} + 3 \right) =$
+        %
+        $104 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+        %
+        \vspace{0.5cm}
+
 
         \item Digit 1 (MSR): the following statements create the gadget shown in Figure~\ref{fig:digit_top_1_op_msr}.
         \begin{itemize}
@@ -74,8 +85,18 @@ For each $\inc \in \{ {\tt increment, copy } \}$
                                                \left\langle \returnpath,     1, \inc, {\tt msr}\right\rangle \;)
             \end{aligned}$ \\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
-        In this step $43 + 4l$ tiles were created.
-        \vspace{1cm}
+        %
+        In this step, $2 \cdot \left( 43 + 4l \right) =$
+        %
+        $86 + 8l =$
+        %
+        $86 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+        %
+        $86 + 8 \cdot \left( {\log m} + 3 \right) =$
+        %
+        $110 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+        %
+        \vspace{0.5cm}
 
 
         \item Digit 1 (MSD): the following statements create the gadget shown in Figure~\ref{fig:digit_top_1_op_msr_msd}.
@@ -126,8 +147,18 @@ For each $\inc \in \{ {\tt increment, copy } \}$
                                       \left\langle \returnpath,     1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
             \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
-        In this step $100 + 12l$ tiles were created.
-        \vspace{1cm}
+        %
+        In this step, $2 \cdot \left( 100 + 12l \right) =$
+        %
+        $200 + 24l =$
+        %
+        $200 + 24 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+        %
+        $200 + 24 \cdot \left( {\log m} + 3 \right) =$
+        %
+        $272 + 24 \cdot {\log m} = \bigologm$ tiles were created.
+        %
+        \vspace{0.5cm}
 
 
         \item Digit 2 (general): the following statements create the gadget shown in Figure~\ref{fig:digit_top_general}.
@@ -150,8 +181,18 @@ For each $\inc \in \{ {\tt increment, copy } \}$
                                                \left\langle \returnpath,    2, \inc \right\rangle \;)
             \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
-        In this step $40 + 4l$ tiles were created.
-        \vspace{1cm}
+        %
+        In this step $2 \cdot \left( 40 + 4l \right) =$
+        %
+        $80 + 8l =$
+        %
+        $80 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+        %
+        $80 + 8 \cdot \left( {\log m} + 3 \right) =$
+        %
+        $104 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+        %
+        \vspace{0.5cm}
 
 
         \item Digit 2 (MSD): the following statements create the gadget shown in Figure~\ref{fig:digit_top_2_op_msr_msd}.
@@ -180,8 +221,18 @@ For each $\inc \in \{ {\tt increment, copy } \}$
                                       \left\langle \returnpath,     2, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
             \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
-        In this step, $58 + 8l$ tiles are created.
-        \vspace{1cm}
+        %
+        In this step, $2 \cdot \left( 58 + 8l \right) =$
+        %
+        $116 + 16l =$
+        %
+        $116 + 16 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+        %
+        $116 + 16 \cdot \left( {\log m} + 3 \right) =$
+        %
+        $164 + 16 \cdot {\log m} = \bigologm$ tiles were created.
+        %
+        \vspace{0.5cm}
 
 
         \item Digit 3 (general): the following statements create the gadget from Figure~\ref{fig:digit_top_general}.
@@ -204,8 +255,18 @@ For each $\inc \in \{ {\tt increment, copy } \}$
                                                \left\langle \returnpath,     3, \inc \right\rangle \;)
             \end{aligned}$\\from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
-        In this step $40 + 4l$ tiles were created.
-        \vspace{1cm}
+        %
+        In this step, $2 \cdot \left( 40 + 4l \right) =$
+        %
+        $80 + 8l =$
+        %
+        $80 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+        %
+        $80 + 8 \cdot \left( {\log m} + 3 \right) =$
+        %
+        $104 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+        %
+        \vspace{0.5cm}
 
 
         \item Digit 3 (MSD): the following statements create the gadget from Figure~\ref{fig:digit_top_general}.
@@ -229,7 +290,17 @@ For each $\inc \in \{ {\tt increment, copy } \}$
                                                \left\langle \returnpath,     3, \inc, {\tt msr}, {\tt msd}\right\rangle \;)
             \end{aligned}$\\ from the micro-gadget shown in Figure~\ref{fig:south_line}.
         \end{itemize}
-        In this step $40 + 4l$ tiles were created.
+        %
+        In this step, $2 \cdot \left( 40 + 4l \right) =$
+        %
+        $80 + 8l =$
+        %
+        $80 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+        %
+        $80 + 8 \cdot \left( {\log m} + 3 \right) =$
+        %
+        $104 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+        %
     \end{itemize}
 
     \begin{figure}[H]

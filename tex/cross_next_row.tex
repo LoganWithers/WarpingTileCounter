@@ -3,7 +3,6 @@
 
 The idea this gadget is to assemble after reading the MSD, routing the counter back to the start of the
 next row, in position for the counter to begin reading the first digit.
-The number of tiles shaded in darker grey is $6 \cdot \floor*{\frac{d}{3}}$.
 
 \vspace{.5cm}
 For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
@@ -11,11 +10,23 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
 \begin{itemize}
     \item Create
     $\begin{aligned}[t]
-        \crossnextrow(&\left\langle {\tt CrossNextRow},            \inc \right\rangle,
+        \crossnextrow(&\left\langle {\tt CrossNextRow},                   \inc \right\rangle,
                        \left\langle {\tt CounterRead},        1, \lambda, \inc \right\rangle \;)
     \end{aligned}$\\from the gadget shown in Figure~\ref{fig:cross_next_row}.
 \end{itemize}
-
+%
+In this step, $6g + 4 \leq$
+%
+$6 \frac{d}{3} + 4 =$
+%
+$2d + 4 =$
+%
+$O\left( d \right) =$
+%
+$O\left( k \right) =$
+%
+$O\left( {\log N} \right)$ tiles were created.
+%
 
 \begin{figure}[H]
     \centering

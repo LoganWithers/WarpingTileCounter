@@ -17,49 +17,128 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 1, \inc \right\rangle,
                       \left\langle {\tt NextRead},   1, \inc \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1_op}. In this step $42 + 4l$ tiles were created.
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1_op}.
+    %
+    In this step, $2 \cdot \left( 42 + 4l \right) =$
+    %
+    $84 + 8l =$
+    %
+    $84 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $84 + 8 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $108 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     \item Create
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 1, \inc, {\tt msr} \right\rangle,
                       \left\langle {\tt NextRead},   1, \inc, {\tt msr} \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1_op_msr}. In this step $30 + 4l$ tiles were created.
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1_op_msr}.
+    %
+    In this step, $2 \cdot \left( 30 + 4l \right) =$
+    %
+    $60 + 8l =$
+    %
+    $60 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $60 + 8 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $84 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     \item Create
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 1, \inc, {\tt msr}, {\tt msd} \right\rangle,
                       \left\langle {\tt NextRead},   1, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}. In this step $30 + 4l$ tiles were created.
-
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}.
+    %
+    In this step, $2 \cdot \left( 30 + 4l \right) =$
+    %
+    $60 + 8l =$
+    %
+    $60 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $60 + 8 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $84 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     % DIGIT 2
     \item Create
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 2, \inc \right\rangle,
                       \left\langle {\tt NextRead},   2, \inc \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_2_op-or-seed}. In this step $32 + 4l$ tiles were created.
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_2_op-or-seed}.
+    %
+    In this step, $2 \cdot \left( 32 + 4l \right) =$
+    %
+    $64 + 8l =$
+    %
+    $64 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $64 + 8 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $88 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     \item Create
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 2, \inc, {\tt msr}, {\tt msd} \right\rangle,
                       \left\langle {\tt NextRead},   2, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}. In this step $30 + 4l$ tiles were created.
-
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_1-or-2_op_msr_msd}. In this step, $30 + 4l$ tiles were created.
+    %
+    In this step, $2 \cdot \left( 30 + 4l \right) =$
+    %
+    $60 + 8l =$
+    %
+    $60 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $60 + 8 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $84 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     % DIGIT 3
     \item Create
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath},  3, \inc \right\rangle,
                       \left\langle {\tt NextRead},    3, \inc \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_3}. In this step $65 + 8l$ tiles were created.
-
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_3}.
+    %
+    In this step, $2 \cdot \left( 65 + 8l \right) =$
+    %
+    $130 + 16l =$
+    %
+    $130 + 16 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $130 + 16 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $178 + 16 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     \item Create
     $\begin{aligned}[t]
         \returnpath(& \left\langle {\tt ReturnPath}, 3, \inc, {\tt msr}, {\tt msd} \right\rangle,
                       \left\langle {\tt NextRead},   3, \inc, {\tt msr}, {\tt msd} \right\rangle \;)
-    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_3}. In this step $65 + 8l$ tiles were created.
-
+    \end{aligned}$\\from the general gadget shown in Figure~\ref{fig:return_path_3}.
+    %
+    In this step, $2 \cdot \left( 65 + 8l \right) =$
+    %
+    $130 + 16l =$
+    %
+    $130 + 16 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $130 + 16 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $178 + 16 \cdot {\log m} = \bigologm$ tiles were created.
+    %
 \end{itemize}
 
 \begin{figure}[H]

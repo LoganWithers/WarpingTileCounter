@@ -6,6 +6,8 @@ number of digits per row of the counter, $m$ is the base of the counter, $l$ is 
 needed to encode each digit in binary plus 2 for indicating whether a digit is in the MSR and is the
 MSD in that region, and $s$ is the starting value of the counter in decimal.
 %
+If $d$ is a multiple of 3, let $g = \frac{d}{3} - 1$ otherwise let $g = \floor*{\frac{d}{3}}$, where $g$ is the number of general digit regions.
+%
 
 
 Let $h$ be the height of the construction without any additional ``roof'' tiles.

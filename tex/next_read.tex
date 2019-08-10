@@ -25,34 +25,91 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead},    1,          \inc \right\rangle,
                     \left\langle {\tt CounterRead}, 2, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}. In this step $41 + 4l$ tiles were created.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
+    %
+    In this step, $2 \cdot \left( 41 + 4l \right) =$
+    %
+    $82 + 8l =$
+    %
+    $82 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $82 + 8 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $106 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     \item Create
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead},    1,          \inc, {\tt msr} \right\rangle,
                     \left\langle {\tt CounterRead}, 2, \lambda, \inc            \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1_op_msr}. In this step $36 + 4l$ tiles were created.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1_op_msr}.
+    %
+    In this step, $2 \cdot \left( 36 + 4l \right) =$
+    %
+    $72 + 8l =$
+    %
+    $72 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $72 + 8 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $96 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     \item Create
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead}, 1,  \inc, {\tt msr}, {\tt msd} \right\rangle,
                     \left\langle {\tt CrossNextRow}, \inc                       \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}. In this step $37 + 4l$ tiles were created.
-
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}.
+    %
+    In this step, $2 \cdot \left( 37 + 4l \right) =$
+    %
+    $74 + 8l =$
+    %
+    $74 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $74 + 8 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $98 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     % DIGIT 2
     \item Create
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead},    2,          \inc \right\rangle,
                     \left\langle {\tt CounterRead}, 3, \lambda, \inc \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}. In this step $41 + 4l$ tiles were created.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op}.
+    In this step, $2 \cdot \left( 41 + 4l \right) =$
+    %
+    $82 + 8l =$
+    %
+    $82 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $82 + 8 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $106 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     \item Create
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead}, 2,  \inc, {\tt msr}, {\tt msd} \right\rangle,
                     \left\langle {\tt CrossNextRow}, \inc                       \right\rangle \;)
     \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_1-or-2_op_msr_msd}. In this step $37 + 4l$ tiles were created.
-
+    %
+    In this step, $2 \cdot \left( 37 + 4l \right) =$
+    %
+    $74 + 8l =$
+    %
+    $74 + 8 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $74 + 8 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $98 + 8 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     % DIGIT 3
     \item Create
@@ -60,12 +117,27 @@ For each $\inc\in \{ {\tt increment}, {\tt copy} \}$:
         \nextread(& \left\langle {\tt NextRead},    3,          \inc \right\rangle,
                     \left\langle {\tt CounterRead}, 1, \lambda, \inc \right\rangle \;)
     \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_3_op}. In this step $94 + 12l$ tiles were created.
+    %
+    In this step, $2 \cdot \left( 94 + 12l \right) =$
+    %
+    $188 + 24l =$
+    %
+    $188 + 24 \cdot \left( \ceil*{\log m} + 2 \right) \leq$
+    %
+    $188 + 24 \cdot \left( {\log m} + 3 \right) =$
+    %
+    $260 + 24 \cdot {\log m} = \bigologm$ tiles were created.
+    %
+    \vspace{0.5cm}
 
     \item Create
     $\begin{aligned}[t]
         \nextread(& \left\langle {\tt NextRead}, 3,  \inc, {\tt msr}, {\tt msd} \right\rangle,
                     \left\langle {\tt CrossNextRow}, \inc \right\rangle \;)
-    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_3_op-or-seed_msr_msd}. In this step $12$ tiles were created.
+    \end{aligned}$\\from the gadget shown in Figure~\ref{fig:next_read_3_op-or-seed_msr_msd}.
+    %
+    In this step, $12 = O\left( 1 \right)$ tiles were created.
+    %
 \end{itemize}
 
 \begin{figure}[H]
