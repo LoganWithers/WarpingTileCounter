@@ -3,42 +3,34 @@
 \begin{itemize}
     \item For each $i = 1,2,3$,
                    $j = 0,\ldots,l-2$,
-                   $u \in \{0, 1\}^j$, and
+                   $u \in \{0, 1\}^j$, and each
                    $\inc \in \ops$:
     \begin{itemize}
-        \item if $j = 0$:
-        create
+        \item Create
         $\begin{aligned}[t]
             \cread(& \left\langle {\tt CounterRead}, i, \lambda, \inc \right\rangle, \\
                    & \left\langle {\tt CounterRead}, i, 0,       \inc \right\rangle, \\
                    & \left\langle {\tt CounterRead}, i, 1,       \inc \right\rangle \;)
         \end{aligned}$\\ from the general gadget in Figure~\ref{fig:counter_read}.
-
-        \item else:
-        create $\begin{aligned}[t]
-        \cread(& \left\langle {\tt CounterRead}, i, u,  \inc \right\rangle, \\
-               & \left\langle {\tt CounterRead}, i, 0u, \inc \right\rangle, \\
-               & \left\langle {\tt CounterRead}, i, 1u, \inc \right\rangle \;)
-        \end{aligned}$\\ from the general gadget in Figure~\ref{fig:counter_read}.
     \end{itemize}
     %
-    Note that if $j = 0$, 6 tiles are added, otherwise 5 tiles are added.
-    %
-    Therefore, we will use $\frac{11}{2}$ for an average iteration of the above loop.
+    Note that 9 tiles are added for a single {\cread} gadget.
     %
     In this step,
     %
-    $9 \cdot \sum_{j=0}^{l - 2} \frac{11}{2} \cdot 2^j = $
+    $9 \cdot \sum_{j=0}^{l - 2} 9 \cdot 2^j = $
     %
-    $\frac{99}{2} \left( 2^{l - 1} - 1 \right) = $
+    $\frac{81}{2} \left( 2^{l} - 2\right) = $
     %
-    $\frac{99}{2} \left( 2^{\ceil*{\log m} + 1} - 1 \right) = $
+    $\frac{81}{2} \left( 2^{\ceil*{\log m} + 2} - 2 \right) = $
     %
-    $99 \left( 2^{\ceil*{\log m}} - 1 \right) \leq$
+    $\frac{81}{2} \left( 2^{\ceil*{\log m}} \cdot 2^2 - 2 \right) =$
     %
-    $99 \left( 2 \cdot 2^{\log m} \right) \leq$
+    $162 \left( 2^{\ceil*{\log m}} - \frac{1}{2} \right) \leq$
     %
-    $198 \cdot 2^{\log m} = O(m) = O\left( \upperbound \right)$ tiles were created.
+    $162 \left(2 \cdot 2^{\log m} - \frac{1}{2} \right) \leq$
+    %
+    $324 \cdot \left(2^{\log m} \right) = O(m) = O\left( \upperbound \right)$ tiles were created.
     %
 
 \end{itemize}
@@ -120,7 +112,7 @@
                \end{aligned}$\\from the general gadget in Figure~\ref{fig:counter_read}.
     \end{itemize}
     %
-    Note $\{0, 1 \}^l = \{0, 1\}^{\ceil*{\log m} + 1}$, so $\left| {\{0, 1\}^{\ceil*{\log m} + 1}} \right| = 2^{\ceil*{\log m}} + 2^1 \leq 4 \cdot 2^{\log m} = 4m$.
+    Note $\{0, 1 \}^{l-1} = \{0, 1\}^{\ceil*{\log m} + 1}$, so $\left| {\{0, 1\}^{\ceil*{\log m} + 1}} \right| = 2^{\ceil*{\log m}} + 2^1 \leq 4 \cdot 2^{\log m} = 4m$.
     %
     So in this step $O\left(m \right) = O\left( \upperbound \right)$ tiles were created.
     %

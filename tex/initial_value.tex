@@ -17,27 +17,27 @@ Each digit region has three digits, except for the most significant digit region
     with all the possible MSR to the left. Of the three possible MSRs, of course only one would occur in a real assembly.}
 \end{figure}
 
-Note that we use $i$ as the index of a digit in $\counterstart$ and $j$ as the index of a bit
-in a encoded digit.
+Note that we use $bin(s[i])[j]$, where $i$ is the index of a digit in $\counterstart$ and $j$ is the index of a bit within the encoded digit.
 
 \begin{itemize}
     \item Create
     $\begin{aligned}[t]
         {\tt Seed}(&\left\langle {\tt CounterWrite}, 1, {\tt seed}, 0, 0 \right\rangle \; )
-    \end{aligned}$
+    \end{aligned}$ \\ TODO: include special seed that has 4 additional tiles to stop fillers if $k$ is odd?
 \end{itemize}
 
-
-The idea here is to repeat these steps starting from $i = 0$ and repeating until $i$ is the index of the first digit in the MSR. These
-steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_general}.
-
+%
+We repeat these steps starting from $i = 0$ and repeating until $i$ is the index of the first digit in the MSR.
+%
+These steps build general non-MSR digit regions shown in Figure~\ref{fig:initial_general}.
+%
 
 \subsubsection{General}
 For $i = 0,\dots,3g$:
 \begin{itemize}
     \item {\tt Start}.
 
-    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(s[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$, where $b = bin(s[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -139,7 +139,7 @@ For $i = 0,\dots,3g$:
     In this step, $25$ tiles were created.
     %
 
-    \item {\tt Digit}: for each $j=0,\ldots,l-1$, where $b$ is $bin(s[i])[j]$:
+    \item {\tt Digit}: for each $j=0,\ldots,l-1$, where $b$ is  $bin(s[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -259,7 +259,7 @@ For $i = 0,\dots,3g$:
     In this step, $25$ tiles were created.
     %
 
-    \item {\tt Digit}: for each $j=0,\ldots,l-1$ and each $b$ in $bin(s[i])[j]$:
+    \item {\tt Digit}: for each $j=0,\ldots,l-1$, where $b = bin(s[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -352,7 +352,7 @@ In this step, $\sum^{3g}_{i = 0} 311 + 48l = (3g + 1) + (48l + 311) = O\left( dl
 This means that
 \begin{align*}
     dl &= O \left( d \hspace{0.1cm} {\log m} \right) \\
-       &= O \left( d \hspace{0.1cm} {\log \ceil*{\left(\frac{N}{102}\right)^{\frac{1}{d}}}} \right) \\
+       &= O \left( d \hspace{0.1cm} {\log \ceil*{ \left( \frac{N}{102} \right)^{ \frac{1}{d} } } } \right) \\
        &= O \left( d \hspace{0.1cm} {\log \left( 2 \left( \frac{N}{102} \right)^{ \frac{1}{d} } \right) } \right) \\
        &= O \left( d \hspace{0.1cm} {\log \left( \frac{N}{102} \right)^{ \frac{1}{d} } }  + d \hspace{0.1cm} {\log 2} \right) \\
        &= O \left( \hspace{0.1cm} {\log N} + \floor*{\frac{k}{2} } \right) \\
@@ -364,10 +364,10 @@ tiles were created in this step.
 
 \subsubsection{Case 1}
 %
-If $d - i = 1$ create the assembly shown in~\ref{fig:initial_case1_msr}.
+If $d - i = 1$, create the assembly shown in~\ref{fig:initial_case1_msr}.
 %
 \begin{itemize}
-    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(s[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$, where $b = bin(s[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -477,10 +477,15 @@ If $d - i = 1$ create the assembly shown in~\ref{fig:initial_case1_msr}.
     In this step, $37 + 4l$ tiles were created.
     %
 \end{itemize}
+%
 This means that, $8l + (100 + 12l) + (30 + 4l)  + (37 + 4l) =$
+%
 $167 + 28l =$
+%
 $167 + 28 \cdot \left( \ceil*{\log m} + 2 \right) \leq $
-$167 + 28 \left( {\log m} + 3 \right) =$
+%
+$167 + 28 \cdot \left( {\log m} + 3 \right) =$
+%
 $O \left( {\log m} \right) $ tiles were created in this step.
 %
 
@@ -489,7 +494,7 @@ $O \left( {\log m} \right) $ tiles were created in this step.
 If $d - i = 2$, create the assembly shown in~\ref{fig:initial_case2_msr}.
 %
 \begin{itemize}
-    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(s[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$, where $b = bin(s[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -584,7 +589,7 @@ If $d - i = 2$, create the assembly shown in~\ref{fig:initial_case2_msr}.
     In this step, $22$ tiles were created.
     %
 
-    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(s[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$, where $b = bin(s[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -679,7 +684,7 @@ $193 + 36l =$
 %
 $193 + 36 \cdot \left( \ceil*{\log m} + 2 \right) \leq $
 %
-$193 + 36 \left( {\log m} + 3 \right) =$
+$193 + 36 \cdot \left( {\log m} + 3 \right) =$
 %
 $O \left( {\log m} \right) $ tiles were created in this step.
 %
@@ -687,11 +692,11 @@ $O \left( {\log m} \right) $ tiles were created in this step.
 
 \subsubsection{Case 3}
 %
-If $d - i = 3$ create the assembly shown in~\ref{fig:initial_case3_msr}.
+If $d - i = 3$, create the assembly shown in~\ref{fig:initial_case3_msr}.
 %
 \begin{itemize}
 
-    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(s[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$, where $b = bin(s[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -793,7 +798,7 @@ If $d - i = 3$ create the assembly shown in~\ref{fig:initial_case3_msr}.
     In this step, $25$ tiles were created.
     %
 
-    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(s[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$, where $b = bin(s[i])[j]$:
     \begin{itemize}
         \item if $j = 0$\\ create
         $\begin{aligned}[t]
@@ -913,7 +918,7 @@ If $d - i = 3$ create the assembly shown in~\ref{fig:initial_case3_msr}.
     In this step, $25$ tiles were created.
     %
 
-    \item {\tt Digit}, for each $j=0,\ldots,l-1$ and each $b$ in $bin(s[i])[j]$:
+    \item {\tt Digit}, for each $j=0,\ldots,l-1$, where $b = bin(s[i])[j]$:
     \begin{itemize}
         \item if $j = 0$:\\ create
         $\begin{aligned}[t]
@@ -993,7 +998,7 @@ $304 + 48l =$
 %
 $304 + 48 \cdot \left( \ceil*{\log m} + 2 \right) \leq $
 %
-$304 + 48 \left( {\log m} + 3 \right) =$
+$304 + 48 \cdot \left( {\log m} + 3 \right) =$
 %
 $O \left( {\log m} \right) $ tiles were created in this step.
 %
