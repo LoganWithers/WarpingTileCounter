@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1565661179 "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.tex" "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.pdf" "main" 1565661183
-  "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.aux" 1565661182 64033 1705bfc5f0b8b144c7328bc6990630c3 ""
+["pdflatex"] 1565661469 "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.tex" "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.pdf" "main" 1565661472
+  "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.aux" 1565661472 64033 1705bfc5f0b8b144c7328bc6990630c3 ""
   "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.tex" 1565655132 1897 852ea4a5280595f193c3307e9cd373bf ""
   "c:/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1543891946 3332 103109f5612ad95229751940c61aada0 ""
   "c:/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1543890795 1004 54797486969f23fa377b128694d548df ""
@@ -149,8 +149,8 @@
   "initial_value_overview_case1.eps" 1562445551 554962 0a33583112ffa151f289e23ae170dcee ""
   "initial_value_overview_case2.eps" 1562445551 573374 0dbc93255cad457291eb3d039b49ac49 ""
   "initial_value_overview_case3.eps" 1562445551 326529 ac73958a5222fe9e9ae0fa6d0dcd80bc ""
-  "main.aux" 1565661182 64033 1705bfc5f0b8b144c7328bc6990630c3 ""
-  "main.out" 1565661182 1539 0722557d46d416e71e2f62d4672c065a ""
+  "main.aux" 1565661472 64033 1705bfc5f0b8b144c7328bc6990630c3 ""
+  "main.out" 1565661472 1539 0722557d46d416e71e2f62d4672c065a ""
   "main.tex" 1565655132 1897 852ea4a5280595f193c3307e9cd373bf ""
   "next_read.tex" 1565455742 11362 95129a9dd031e89503b4acd1f807cc69 ""
   "next_read_1-or-2_op.eps" 1562445551 22730 d27a75ab240f4b2d2c18470a57d58453 ""
@@ -269,7 +269,7 @@
   "overviews/general/warp_bridge_2_seed_op.eps" 1562445552 343796 5f0f391c65f13df7a36f50266318d8e5 ""
   "overviews/general/warp_bridge_3_op.eps" 1562445552 343796 1bd6f150d2e30b43f2a403d9d0c65556 ""
   "overviews/general/warp_bridge_3_seed_op.eps" 1562445552 343796 3467e99201324166177f58342101cf3f ""
-  "parameters.tex" 1565448774 3279 086d928a0e3cd01a337f5cac16890a77 ""
+  "parameters.tex" 1565661469 3358 78c95142cbdb56dae42bb7a070951021 ""
   "return_path.tex" 1565455388 11193 fa7096c53031a09c95917e5e55f681e3 ""
   "return_path_1-or-2_op_msr_msd.eps" 1562445552 19286 d79deba0fd5d22a9cddeefdeb64d1e23 ""
   "return_path_1_op.eps" 1562445552 22960 43a8c116e4369e598f026930d0f88ba2 ""
@@ -297,8 +297,8 @@
   "warping_warp_bridge_general.eps" 1562445552 8793 fa2b40be4aa31b4c1cddc7367f7676e8 ""
   (generated)
   "main.out"
-  "main.log"
   "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.pdf"
   "main.pdf"
   "c:/Users/kingp/Documents/git/rectangles/WarpingTileCounter/tex/main.log"
   "main.aux"
+  "main.log"
