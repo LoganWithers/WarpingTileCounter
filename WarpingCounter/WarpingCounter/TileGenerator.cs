@@ -25,7 +25,7 @@
     /// assemble a counter with a specific base and starting value. Namely, the
     /// following "gadgets" will be created.
     ///
-    /// 
+    ///
     /// </summary>
     public class TileGenerator : AbstractTileNamer
     {
@@ -77,7 +77,7 @@
             if (kIsOdd)
             {
                 builder.West(2).North();
-            } 
+            }
 
             var seed = builder.Tiles().ToList();
             seed.RenameWithIndex("seed");
@@ -117,7 +117,7 @@
             CreateReturnPaths();
             CreateCrossNextRow();
             CreateRoofUnit();
-            
+
 
             return (name.Replace(" ", "_").ToLower(), tiles);
         }
@@ -210,7 +210,7 @@
                                                  Bind(RoofUnit, Op.Halt)).Tiles);
             }
         }
-        
+
         private void CreateCounterRead(IReadOnlyCollection<string> digits)
         {
             for (var i = 1; i <= Digits; i++)
@@ -220,7 +220,7 @@
                                             .ThenBy(s => s)
                                             .ToList();
 
-                foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
+                foreach (var op in new[] { Op.Increment, Op.Copy })
                 {
                     foreach (var U in digitsBeforeMSB)
                     {
@@ -243,7 +243,7 @@
                                                    Bind(PreWarp,     i, Op.Copy, msr: false, msd: false, bits: $"1{U}"),
                                                    Bind(PreWarp,     i, Op.Copy, msr: false, msd: false, bits: $"0{U}")).Tiles);
                 }
-                
+
                 foreach (var U in digitsForMSB)
                 {
                     if (U.EndsWith("11") && i != digitsInMSR)
@@ -255,7 +255,7 @@
                     {
                         continue;
                     }
-                    
+
                     var (out0, out1) = ReadMostSignificantBit(U, i);
 
                     tiles.AddRange(new CounterRead(Name(CounterRead, i, Op.Increment, msr: false, msd: false, U),
@@ -277,32 +277,29 @@
 
         private Glue CalculateOutput(string U, int i)
         {
-            const int binary = 2;
-
             var indicatorBits = U.GetLast(2);
             var valueBits     = U.Substring(0, U.Length - 2);
-            
 
-            // value could be incremented, 
+
+            // value could be incremented,
             if (ConvertToDecimal(valueBits) + 1 <= M - 1)
             {
                 return Bind(PreWarp, i, Op.Copy, msr: false, msd: false, bits: ConvertToBinary(ConvertToDecimal(valueBits) + 1, valueBits) + indicatorBits);
             }
 
-            var zeroes = string.Concat(Enumerable.Repeat("0", valueBits.Length));
+            var zeroes = "0".Repeat(valueBits.Length);
             // value can't be incremented, and it's the MSB, so we need to halt
             if (indicatorBits == "11")
             {
-                Info($"HALT: {U} --> {zeroes}11");
-                return Bind(PreWarp, i, Op.Halt, msr: false, msd: false, $"{zeroes}11"); // TODO: change op: false to op: "halt"
+                return Bind(PreWarp, i, Op.Halt, msr: false, msd: false, zeroes + indicatorBits);
             }
 
             // value can't be incremented, but it's not the MSB, so continue the increment signal and attempt to increment the next digit.
             return Bind(PreWarp, i, Op.Increment, msr: false, msd: false, bits: zeroes + indicatorBits);
         }
-        
+
         private int ConvertToDecimal(string bits) => Convert.ToInt32(bits, 2);
-        
+
         private string ConvertToBinary(int value, string originalBits) => Convert.ToString(value, 2)
                                                                                  .PadLeft(originalBits.Length, '0');
 
@@ -377,7 +374,7 @@
                             tiles.AddRange(new PreWarpDigit3Case3(Name(PreWarp,   3, op, msr: true,  msd: true,  bits: U),
                                                                   Bind(PreWarp,   3, op, msr: false, msd: false, bits: U),
                                                                   Bind(FirstWarp, 3, op, msr: true,  msd: true,  bits: U)).Tiles);
-                             
+
                             break;
 
                         default: continue;
@@ -707,12 +704,12 @@
             foreach (var op in new[] { Op.Increment, Op.Copy })
             {
                 tiles.AddRange(new NextReadDigit1(Name(NextRead,    1, op),
-                                                  L,                    
+                                                  L,
                                                   Bind(NextRead,    1, op),
                                                   Bind(CounterRead, 2, op, msr: false, msd: false, string.Empty)).Tiles);
 
                 tiles.AddRange(new NextReadDigit1Case2(Name(NextRead,    1, op, msr: true),
-                                                       L,                   
+                                                       L,
                                                        Bind(NextRead,    1, op, msr: true),
                                                        Bind(CounterRead, 2, op, msr: false, msd: false, string.Empty)).Tiles);
 
@@ -722,7 +719,7 @@
                                                        Bind(CrossNextRow,    Op.Increment)).Tiles);
 
                 tiles.AddRange(new NextReadDigit2(Name(NextRead,    2, op),
-                                                  L,                   
+                                                  L,
                                                   Bind(NextRead,    2, op),
                                                   Bind(CounterRead, 3, op, msr: false, msd: false, string.Empty)).Tiles);
 
@@ -732,7 +729,7 @@
                                                        Bind(CrossNextRow,    Op.Increment)).Tiles);
 
                 tiles.AddRange(new NextReadDigit3(Name(NextRead,    3, op),
-                                                  L,                   
+                                                  L,
                                                   Bind(NextRead,    3, op),
                                                   Bind(CounterRead, 1, op, msr: false, msd: false, string.Empty)).Tiles);
 
@@ -748,7 +745,7 @@
             foreach (var op in new[] { Op.Increment, Op.Copy, Op.Halt })
             {
                 tiles.AddRange(new CrossNextRow(Name(CrossNextRow,    op),
-                                                construction.d,       
+                                                construction.d,
                                                 Bind(CrossNextRow,    op),
                                                 Bind(CounterRead,  1, op, msr: false, msd: false, string.Empty)).Tiles);
             }

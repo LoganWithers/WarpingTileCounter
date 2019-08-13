@@ -45,25 +45,20 @@
     \end{itemize}
 
     % 250 because 3 digits * 2 create statements * 3 ops * 7 tiles per statement
-    In this step, for the general case digits 1-3, $18 \sum_{j=1}^{l - 1} 7 \cdot 2^j =$
-    $252 \left(2^{l - 1} - 1 \right) =$
-    $252 \left(2^{\ceil*{\log m} + 1} - 1 \right) =$
-    $252 \left(2^{\ceil*{\log m}} \cdot 2^1 - 1 \right) \leq$
-    $252 \left(4 \cdot 2^{\log m} \right) = \bigom$ tiles were created.
-
-    For digit 1 case 1,
-    $3 \sum_{j=1}^{l - 1} 7 \cdot 2^j =$
-    $42 \left(2^{l - 1} - 1 \right) =$
-    $42 \left(2^{\ceil*{\log m} + 1} - 1 \right) =$
-    $42 \left(2^{\ceil*{\log m}} \cdot 2^1 - 1 \right)\\ \leq$
-    $42 \left(4 \cdot 2^{\log m} \right) = \bigom$ tiles were created.
-
-    For the most significant digit,
-    $3 \sum_{j=1}^{l - 1} 7 \cdot 2^j =$
-    $42 \left(2^{l - 1} - 1 \right) =$
-    $42 \left(2^{\ceil*{\log m} + 1} - 1 \right) =$
-    $42 \left(2^{\ceil*{\log m}} \cdot 2^1 - 1 \right) \\\leq$
-    $42 \left(4 \cdot 2^{\log m} \right) = \bigom$ tiles were created.
+    In this step,
+    \begin{align*}
+        \sum_{j=0}^{l - 1} 3 \cdot 2 \cdot 3 \cdot 7 \cdot 2^j &=    126 \left( 2^{l} - 2                        \right) \\
+                                                               &=    126 \left( 2^{\ceil*{\log m} + 2}     - 2   \right) \\
+                                                               &=    126 \left( 4 \cdot 2^{\ceil*{\log m}} - 2   \right) \\
+                                                               &=    504 \left( 2^{\ceil*{\log m}} - \frac{1}{2} \right) \\
+                                                               &\leq 504 \left( 2 \cdot 2^{\log m} - \frac{1}{2} \right) \\
+                                                               &=    504 \left( 2m - \frac{1}{2}                 \right) \\
+                                                               &=    1008m - 252                                         \\
+                                                               &=    O(m) = O\left( \upperbound \right)                  \\
+    \end{align*}
+    %
+    tiles were created.
+    %
 
     %
     \item For each $i = 1,2,3$ and each $\inc \in \{{\tt increment}, {\tt copy} \}$:
