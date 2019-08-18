@@ -1,18 +1,11 @@
 \subsubsection{\warpunit}
 
 %
-We now explain the {\warpunit}.
-%
 A warp unit generally consists of the following 5 gadgets: \prewarp, \firstwarp, \warpbridge, \secondwarp, and \postwarp.
 %
 The job of these 5 gadgets is to transport the value read by the {\cread} all the way to the digit region in the next row, so that the {\cwrite} gadgets can write the next value in the correct locations.
 %
-The {\firstwarp} and {\secondwarp} gadgets are single tile gadgets that have north and south glues with identical labels.
-%
-This allows the gadgets to continuously assemble until stopped by earlier parts of the assembly.
-%
-These single tile gadgets also have one additional glue that will allow the next piece in the warp unit to assemble, however the assembly will also block this side of the tile all the way until the gadget can no longer continue assembling in the north direction.
-%
+
 
 \begin{itemize}
 
@@ -329,7 +322,6 @@ These single tile gadgets also have one additional glue that will allow the next
         }{\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/general/first_warp_3_seed_op}}}%
         ~
     \end{figure}
-
     \begin{figure}[H]\ContinuedFloat
         \centering
         \subcaptionbox{
@@ -640,7 +632,7 @@ These single tile gadgets also have one additional glue that will allow the next
 
 
     \item {\postwarp}: \\
-    The {\postwarp} gadget is final gadget to assemble in the {\warpunit}.
+    The {\postwarp} gadget is the final gadget to assemble in the {\warpunit}.
     %
     The idea of this gadget is to assemble from wherever the last warping tiles ``wake up'', forming a path that ends where the next digit needs to start being written.
     %
