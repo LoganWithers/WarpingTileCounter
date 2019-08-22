@@ -1,6 +1,6 @@
 \subsubsection{\cread}
 %
-Groups of {\cread} gadgets read over a series of bit-bumps protruding into their row from the preceding row.
+A group of {\cread} gadgets read over a series of bit-bumps protruding into their row from the preceding row.
 %
 After a group of {\cread} gadgets read a bit pattern, a {\cread} gadget with a output length of $l$ produces a new bit pattern which it outputs to the {\prewarp} gadgets to begin the process of writing it in the row above it that encodes a copy or increment of the current digit.
 %
@@ -10,7 +10,7 @@ However, if the input signal for a {\cread} gadget is {\tt increment}, the outpu
 %
 First, if the value of the bits is less than $m - 1$, the digit can be incremented so the output of the {\cread} is the value read + 1, and a {\tt copy} signal is started.
 %
-Otherwise, the value of the bits is $m - 1$ so digit is reset to 0, but the {\cread} gadget needs to check the two least signicant bits that it read to determine whether it should output a {\tt increment} or {\tt halt} signal.
+Otherwise, the value of the bits is $m - 1$ so the digit is reset to 0, but the {\cread} gadget needs to check the two least signicant bits that it read to determine whether it should output a {\tt increment} or {\tt halt} signal.
 %
 There are 3 possible values for these bits, 00, 01, and 11.
 %
@@ -91,9 +91,9 @@ By passing a {\tt halt} signal to the {\prewarp} gadget, this signal continues t
     %
     If the next bit read is a 1, we check if current value + $2^{\log (m) - 1}$ + 1 is less than $m$.
     %
-    For both cases, if the counter can increment the current value, then the {\cread} gadgets output the incremented value to the {\prewarp} gadgets and output a {\tt copy} signal.
+    For both cases, if the counter can increment the current value, then the {\cread} gadgets output the incremented value and a {\tt copy} signal to the {\prewarp} gadgets.
     %
-    Otherwise, if the counter is unable to increment the value, it will output a signal in which the bits of the digit are all zeroes and the {\tt increment} signal is propogated to the next digit.
+    Otherwise, if the counter is unable to increment the value, it will output a signal in which the bits of the digit are all zeroes and the {\tt increment} signal is propagated to the next digit.
     %
     \begin{algorithm}[H]
         \caption{Incrementing and halting\label{asda}}

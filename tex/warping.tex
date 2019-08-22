@@ -11,7 +11,7 @@ The job of these 5 gadgets is to transport the value read by the {\cread} all th
 
     \item {\prewarp}:
     %
-    These gadgets decode the least significant two bits passed in from the read from the {\cread} gadgets, into a special signal that indicates whether a gadget is currently in the MSR and if it is also the MSD.
+    These gadgets decode the least significant two bits passed in from the read {\cread} gadgets into a special signal that indicates whether a gadget is currently in the MSR, and if it is, whether it is also the MSD.
     %
     Here is how the signal is decoded: if the least significant bit is 1, add a marker to indicate the current gadgets are in the MSR; if the second least significant bit is also 1, add a marker on the glues to indicate that the gadget is also part of the MSD.
 
@@ -161,19 +161,19 @@ The job of these 5 gadgets is to transport the value read by the {\cread} all th
         \subcaptionbox{
             Digit 2 - case 2. There are 30 tiles in this gadget.
             \label{fig:pre_warp_2_op_msr_msd}
-        }{\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{warping_pre_warp_case2_digit2_msr}}}%
+        }{\makebox[0.32\textwidth][c]{\includegraphics[width=0.45in]{warping_pre_warp_case2_digit2_msr}}}%
         ~
         \subcaptionbox{
             Digit 2 - case 2 overview.
             The black tiles in this figure correspond to the gadget shown in subfigure~\subref{fig:pre_warp_2_op_msr_msd}.
             \label{fig:pre_warp_2_op_msr_msd_overview}
-        }{\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/pre_warp_2_op_msr_msd}}}%
+        }{\makebox[0.32\textwidth][c]{\includegraphics[width=0.45in]{overviews/case2/pre_warp_2_op_msr_msd}}}%
         ~
         \subcaptionbox{
             Digit 3 - case 3 overview.
             The black tiles in this figure correspond to the gadget shown in subfigure~\subref{fig:pre_warp_general}.
             \label{fig:pre_warp_3_op_msr_msd_overview}
-        }{\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/pre_warp_3_op_msr_msd}}}%
+        }{\makebox[0.32\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/pre_warp_3_op_msr_msd}}}%
         ~
         \caption{\label{fig:pre_warp_gadgets} The {\prewarp} gadgets.}
     \end{figure}
@@ -479,13 +479,13 @@ The job of these 5 gadgets is to transport the value read by the {\cread} all th
             Digit 3 - case 3 overview.
             The black tiles in this figure correspond to the gadget shown in subfigure~\subref{fig:warp_bridge_general}.
             \label{fig:warp_bridge_3_op_msr_msd_overview}
-        }{\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/warp_bridge_3_op_msr_msd}}}%
+        }{\makebox[0.49\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/warp_bridge_3_op_msr_msd}}}%
         ~
         \subcaptionbox{
             Digit 3 - case 3 (seed) overview.
             The black tiles in this figure correspond to the gadget shown in subfigure~\subref{fig:warp_bridge_general}.
             \label{fig:warp_bridge_3_seed_op_msr_msd_overview}
-        }{\makebox[0.24\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/warp_bridge_3_seed_op_msr_msd}}}%
+        }{\makebox[0.49\textwidth][c]{\includegraphics[width=0.45in]{overviews/case3/warp_bridge_3_seed_op_msr_msd}}}%
         ~
         \caption{\label{fig:warp_bridge_gadgets_overviews} The {\warpbridge} gadgets.}
     \end{figure}
