@@ -44,18 +44,16 @@
 
             Tiles.AddRange(digitTop1.Tiles);
 
-            var returnPathDigit1Seed = new Tile(Name(ReturnPath + Seed, 1, region, Op.Increment, msr: true)) {
-                North = new Glue($"{ReturnPath} {1} {Seed} {region} {1}"),
-                East  = new Glue($"{NextRead} {1} {Seed} {region} {1}")
-            };
-            Tiles.Add(returnPathDigit1Seed);
+            var returnPathDigit1Case2Seed = new ReturnPathDigit1Case2Seed(Name(ReturnPath + Seed, 1, region, Op.Increment, msr: true), 
+                                                                          new Glue($"{ReturnPath} {1} {Seed} {region} {1}"),
+                                                                          new Glue($"{NextRead} {1} {Seed} {region} {1}"));
+            Tiles.AddRange(returnPathDigit1Case2Seed.Tiles);
 
 
-            var nextReadDigit1Case2Seed = new Tile(Name(NextRead + Seed, 1, region, Op.Increment, msr: true)) {
-                West = new Glue($"{NextRead} {1} {Seed} {region} {1}"),
-                North = new Glue($"{SecondWarp} {2} {Seed} {region} {2}"),
-            };
-            Tiles.Add(nextReadDigit1Case2Seed);
+            var nextReadDigit1Case2Seed = new NextReadDigit1Case2Seed(Name(NextRead + Seed, 1, region, Op.Increment, msr: true),
+                                                                      new Glue($"{NextRead} {1} {Seed} {region} {1}"),
+                                                                      new Glue($"{SecondWarp} {2} {Seed} {region} {2}"));
+            Tiles.AddRange(nextReadDigit1Case2Seed.Tiles);
         }
 
 

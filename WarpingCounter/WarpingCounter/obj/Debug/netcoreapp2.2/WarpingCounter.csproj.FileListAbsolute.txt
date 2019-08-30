@@ -1,0 +1,11 @@
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Debug\netcoreapp2.2\WarpingCounter.deps.json
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Debug\netcoreapp2.2\WarpingCounter.runtimeconfig.json
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Debug\netcoreapp2.2\WarpingCounter.runtimeconfig.dev.json
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Debug\netcoreapp2.2\WarpingCounter.dll
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Debug\netcoreapp2.2\WarpingCounter.pdb
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Debug\netcoreapp2.2\WarpingCounter.csprojAssemblyReference.cache
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Debug\netcoreapp2.2\WarpingCounter.csproj.CoreCompileInputs.cache
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Debug\netcoreapp2.2\WarpingCounter.AssemblyInfoInputs.cache
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Debug\netcoreapp2.2\WarpingCounter.AssemblyInfo.cs
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Debug\netcoreapp2.2\WarpingCounter.dll
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Debug\netcoreapp2.2\WarpingCounter.pdb

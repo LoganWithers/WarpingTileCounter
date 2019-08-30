@@ -68,15 +68,15 @@
             {
                 case 1:
                     builder.North(29)
-                           .North(4 * L, "purple")
+                           .North(4 * L, "blue")
                            .North(30)
-                           .North(4 * L, "purple")
+                           .North(4 * L, "blue")
                            .North(30);
                     break;
 
                 case 2:
                     builder.North(29)
-                           .North(4 * L, "purple")
+                           .North(4 * L, "blue")
                            .North(30);
                     break;
 

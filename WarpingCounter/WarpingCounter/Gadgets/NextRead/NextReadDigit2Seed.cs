@@ -10,16 +10,14 @@
 
     public class NextReadDigit2Seed : IHaveInput, IHaveOutput
     {
-        private readonly int L;
         public Tile Input { get; }
 
         public Tile Output { get; }
 
         public IEnumerable<Tile> Tiles { get; }
+
         public NextReadDigit2Seed(string name, int L, Glue input, Glue output)
         {
-            this.L = L;
-
             Tiles = Create();
             Tiles.RenameWithIndex(name);
 
@@ -30,7 +28,9 @@
             Output.North = output;
         }
 
-
+        /// <summary>
+        /// 3 tiles
+        /// </summary>
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();

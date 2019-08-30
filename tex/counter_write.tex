@@ -44,17 +44,17 @@
             \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}.
     \end{itemize}
 
-    % 250 because 3 digits * 2 create statements * 3 ops * 7 tiles per statement
+    % 378 because 3 digits * 3 op * 2^j iterations * 6 create statements per iteration * 7 tiles per statement
     In this step,
     \begin{align*}
-        \sum_{j=0}^{l - 1} 3 \cdot 2 \cdot 3 \cdot 7 \cdot 2^j &=    126 \left( 2^{l} - 2                        \right) \\
-                                                               &=    126 \left( 2^{\ceil*{\log m} + 2}     - 2   \right) \\
-                                                               &=    126 \left( 4 \cdot 2^{\ceil*{\log m}} - 2   \right) \\
-                                                               &=    504 \left( 2^{\ceil*{\log m}} - \frac{1}{2} \right) \\
-                                                               &\leq 504 \left( 2 \cdot 2^{\log m} - \frac{1}{2} \right) \\
-                                                               &=    504 \left( 2m - \frac{1}{2}                 \right) \\
-                                                               &=    1008m - 252                                         \\
-                                                               &=    O(m) = O\left( \upperbound \right)                  \\
+        \sum_{j=0}^{l - 1} 3 \cdot 2^j \cdot 3 \cdot 6 \cdot 7 &=    378  \left( 2^{l} - 2                        \right) \\
+                                                               &=    378  \left( 2^{\ceil*{\log m} + 2}     - 2   \right) \\
+                                                               &=    378  \left( 4 \cdot 2^{\ceil*{\log m}} - 2   \right) \\
+                                                               &=    1512 \left( 2^{\ceil*{\log m}} - \frac{1}{2} \right) \\
+                                                               &\leq 1512 \left( 2 \cdot 2^{\log m} - \frac{1}{2} \right) \\
+                                                               &=    1512 \left( 2m - \frac{1}{2}                 \right) \\
+                                                               &=    3024m - 756                                          \\
+                                                               &=    O(m) = O\left( \upperbound \right)                   \\
     \end{align*}
     %
     tiles were created.
@@ -116,7 +116,7 @@
                       \left\langle {\tt RoofScaffolding}, i,                {\tt msr}, {\tt msd} \right\rangle \;)
         \end{aligned}$ \\ from the general gadget in Figure~\ref{fig:counter_write_1}.
     \end{itemize}
-    In this step, $3 \cdot 14 = 42 = O(1)$ tiles were created.
+    In this step, $3 \cdot 2 \cdot 7 = 42 = O(1)$ tiles were created.
 \end{itemize}
 
 \vspace{.5cm}

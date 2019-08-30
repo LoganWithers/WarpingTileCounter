@@ -3,6 +3,7 @@
 
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Numerics;
 
@@ -33,13 +34,9 @@
         {
             this.initialValueBase10 = BigInteger.Parse(initialValueBase10);
             BaseM                   = baseM;
-
-           
-
-         
-            power                = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
-            haltingValueBase10   = BigInteger.Pow(BaseM, Convert.ToInt32(power));
-            BitsRequiredForBaseM = Convert.ToString(BaseM - 1, 2).Length;
+            power                   = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
+            haltingValueBase10      = BigInteger.Pow(BaseM, Convert.ToInt32(power));
+            BitsRequiredForBaseM    = Convert.ToString(BaseM - 1, 2).Length;
             this.d = d;
 
             var leadingZeroes = BaseM.ToString().Length;
@@ -91,7 +88,6 @@
                 AddWithLeadingZeroes($"{value}11");
             }
 
-            Summarize();
         }
 
 

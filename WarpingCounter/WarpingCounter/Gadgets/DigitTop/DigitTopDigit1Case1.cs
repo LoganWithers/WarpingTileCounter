@@ -47,7 +47,9 @@
 
         public Tile Output { get; }
 
-
+        /// <summary>
+        /// 100 + 12L tiles
+        /// </summary>
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();

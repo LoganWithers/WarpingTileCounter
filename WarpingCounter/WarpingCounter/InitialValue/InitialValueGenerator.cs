@@ -82,7 +82,6 @@
         private void CreateMsr(string digit1BaseM, int regionIndex)
         {
             var digit1 = $"{ToBinary(digit1BaseM)}11";
-            Console.WriteLine($"MSR:\n    D1: {digit1}\n\n");
 
             var region = new Case1DigitRegion(digit1, regionIndex, construction.L);
             Tiles.AddRange(region.Tiles);
@@ -96,7 +95,6 @@
         {
             var digit2 = $"{ToBinary(digit2BaseM)}11";
             var digit1 = $"{ToBinary(digit1BaseM)}01";
-            Console.WriteLine($"MSR:\n    D2: {digit2}\n    D1: {digit1}\n\n");
 
            var region = new Case2DigitRegion((digit1, digit2), regionIndex, construction.L);
            Tiles.AddRange(region.Tiles);
@@ -115,7 +113,6 @@
             var digit3 = $"{ToBinary(digit3BaseM)}11";
             var digit2 = $"{ToBinary(digit2BaseM)}00";
             var digit1 = $"{ToBinary(digit1BaseM)}00";
-            Console.WriteLine($"MSR:\n    D3: {digit3}\n    D2: {digit2}\n    D1: {digit1}\n\n");
             var region = new Case3DigitRegion((digit1, digit2, digit3),
                                               regionIndex,
                                               construction.L);
@@ -132,7 +129,6 @@
             var digit3 = $"{ToBinary(digit3BaseM)}00";
             var digit2 = $"{ToBinary(digit2BaseM)}00";
             var digit1 = $"{ToBinary(digit1BaseM)}00";
-            Console.WriteLine($"Region {regionIndex}:\n    D3: {digit3}\n    D2: {digit2}\n    D1: {digit1}\n\n");
             var region = new GeneralDigitRegion((digit1, digit2, digit3), regionIndex, construction.L);
 
             Tiles.AddRange(region.Tiles);

@@ -29,7 +29,9 @@
             Output.North = output;
         }
 
-
+        /// <summary>
+        /// 7 tiles
+        /// </summary>
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();

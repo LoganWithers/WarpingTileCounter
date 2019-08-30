@@ -2,10 +2,10 @@
 %
 The {\roofunit} gadgets consist of two parts, the scaffolding and the shingles.
 %
-The scaffolding is responsible for assembling a path from the top of the final last digit and adding a height of 15 tiles to the current (final) counter row.
+The scaffolding is responsible for assembling a path from the top of the final most significant digit and adding some height last row.
 %
 Since the most significant digit is positioned at a different height within a digit region depending on how many digits
-are in the MSR, the {\roofscaffolding} gadget's height must account for this.
+are in the MSR, the {\roofscaffolding} gadget's height must take this into consideration.
 %
 If the MSR has 3 digits, the height is $30$ tiles.
 %
@@ -87,7 +87,6 @@ Otherwise, if the MSR has 1 digit the height is $90 + 8l$ tiles.
     In this step $1 = O(1)$ tile was created.
 
 \end{itemize}
-
 
 
 \begin{figure}[H]

@@ -4,6 +4,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Text.RegularExpressions;
 
     public class Tile
     {
@@ -24,13 +25,15 @@
 
 
         public Tile() { }
+        
+        private List<Glue> Glues { get; }
 
+        private string name;
 
-        public string Name { get; private set; }
-
-
-        protected List<Glue> Glues { get; }
-
+        public string Name {
+            get => name;
+            private set => name = Regex.Replace(value, @"\s+", "_");
+        }
 
         protected string Label { get; set; } = string.Empty;
 
@@ -82,8 +85,7 @@
         /// </summary>
         public void AttachNorth(Tile that)
         {
-            var label = Guid.NewGuid()
-                            .ToString();
+            var label = Guid.NewGuid().ToString();
 
             that.South.Label = label;
             that.South.Bind  = 1;
@@ -100,8 +102,7 @@
         /// </summary>
         public void AttachWest(Tile that)
         {
-            var label = Guid.NewGuid()
-                            .ToString();
+            var label = Guid.NewGuid().ToString();
 
             that.East.Label = label;
             that.East.Bind  = 1;
@@ -118,8 +119,7 @@
         /// </summary>
         public void AttachEast(Tile that)
         {
-            var label = Guid.NewGuid()
-                            .ToString();
+            var label = Guid.NewGuid().ToString();
 
             that.West.Label = label;
             that.West.Bind  = 1;
@@ -136,8 +136,7 @@
         /// </summary>
         public void AttachSouth(Tile that)
         {
-            var label = Guid.NewGuid()
-                            .ToString();
+            var label = Guid.NewGuid().ToString();
 
             that.North.Label = label;
             that.North.Bind  = 1;

@@ -28,6 +28,7 @@
         private readonly int L;
 
         public readonly List<Tile> Tiles;
+
         public DigitTopDigit1Case2(string name, int L, Glue input,  Glue output)
         {
             this.L = L;
@@ -40,14 +41,14 @@
             Output       = Tiles.Last();
             Output.South = output;
         }
-
-
+        
         public Tile Input { get; }
-
-
+        
         public Tile Output { get; }
 
-
+        /// <summary>
+        /// 43 + 4L tiles 
+        /// </summary>
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();

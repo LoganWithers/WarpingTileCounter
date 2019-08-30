@@ -10,15 +10,11 @@
 
     public class PreWarpDigit2Case2 : IHaveInput, IHaveOutput
     {
-
         public Tile Input { get; }
-
-
+        
         public Tile Output { get; }
-
-
+        
         public readonly List<Tile> Tiles;
-
 
         public PreWarpDigit2Case2(string name, Glue input, Glue output)
         {
@@ -32,15 +28,16 @@
             Output.North = output;
         }
 
-
-        public List<Tile> Create()
+        /// <summary>
+        /// 30 tiles
+        /// </summary>
+        private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
 
             builder.North(29);
 
-            return builder.Tiles()
-                          .ToList();
+            return builder.Tiles().ToList();
         }
 
     }

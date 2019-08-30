@@ -10,15 +10,11 @@
 
     public class WarpBridgeDigit3 : IHaveInput, IHaveOutput
     {
-
         public Tile Input { get; }
-
 
         public Tile Output { get; }
 
-
         public readonly List<Tile> Tiles;
-
 
         public WarpBridgeDigit3(string name, Glue input, Glue output)
         {
@@ -32,20 +28,20 @@
             Output.North = output;
         }
 
-
-        public List<Tile> Create()
+        /// <summary>
+        /// 29 tiles
+        /// </summary>
+        private static List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
 
             builder.North(11)
                    .Up()
-                   .West()
-                   .West()
+                   .West(2)
                    .Down()
                    .North(13);
 
-            return builder.Tiles()
-                          .ToList();
+            return builder.Tiles().ToList();
         }
 
     }

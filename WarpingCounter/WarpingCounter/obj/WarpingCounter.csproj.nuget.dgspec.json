@@ -1,0 +1,92 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\kingp\\Documents\\git\\rectangles\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\kingp\\Documents\\git\\rectangles\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\kingp\\Documents\\git\\rectangles\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj",
+        "projectName": "WarpingCounter",
+        "projectPath": "C:\\Users\\kingp\\Documents\\git\\rectangles\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj",
+        "packagesPath": "C:\\Users\\kingp\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kingp\\Documents\\git\\rectangles\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\kingp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
+              "version": "[3.0.0-preview8.19405.7, 3.0.0-preview8.19405.7]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x86",
+              "version": "[3.0.0-preview8-28405-07, 3.0.0-preview8-28405-07]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x86",
+              "version": "[3.0.0-preview8-28405-07, 3.0.0-preview8-28405-07]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
+              "version": "[3.0.0-preview8-28405-07, 3.0.0-preview8-28405-07]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

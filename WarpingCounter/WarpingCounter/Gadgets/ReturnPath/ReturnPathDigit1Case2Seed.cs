@@ -9,22 +9,14 @@
 
     public class ReturnPathDigit1Case2Seed
     {
-        private readonly int L;
-
-
         public Tile Input { get; }
-
-
+        
         public Tile Output { get; }
-
-
-        public IEnumerable<Tile> Tiles { get; }
-
-
-        public ReturnPathDigit1Case2Seed(string name, int L, Glue input, Glue output)
+        
+        public List<Tile> Tiles { get; }
+        
+        public ReturnPathDigit1Case2Seed(string name, Glue input, Glue output)
         {
-            this.L = L;
-
             Tiles = Create();
             Tiles.RenameWithIndex(name);
 
@@ -35,7 +27,9 @@
             Output.East  = output;
         }
 
-
+        /// <summary>
+        /// 1 tile
+        /// </summary>
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();

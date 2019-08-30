@@ -5,6 +5,7 @@
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
+    using System.Numerics;
 
     using Common.IO;
     using Common.Models;
@@ -24,15 +25,13 @@
             // ⌊k/2⌋ 
             var d = Math.Floor(k / 2);
 
-
             // ⌈(N/102)^(1/d)⌉
             var m = Math.Ceiling(Math.Pow(N / 102, 1 / d));
 
 
             // ⌈log m⌉ + 2
             var l = Math.Ceiling(Math.Log(m, 2)) + 2;
-
-
+            
             // m^d 
             var md = Math.Pow(m, d);
 
@@ -95,10 +94,7 @@
             {
                 Error($"Found {before - after} duplicate tiles.");
             }
-
-            Log($"Size of tile set {unique.Count}");
-
-
+            
             var writer = new TileWriter(new TdpOptions(name), unique);
 
             writer.WriteTileSet();

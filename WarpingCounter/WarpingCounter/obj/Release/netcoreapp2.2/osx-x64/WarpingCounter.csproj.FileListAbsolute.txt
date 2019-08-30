@@ -1,0 +1,13 @@
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Release\netcoreapp2.2\osx-x64\libhostpolicy.dylib
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Release\netcoreapp2.2\osx-x64\libhostfxr.dylib
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Release\netcoreapp2.2\osx-x64\WarpingCounter
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Release\netcoreapp2.2\osx-x64\WarpingCounter.deps.json
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Release\netcoreapp2.2\osx-x64\WarpingCounter.runtimeconfig.json
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Release\netcoreapp2.2\osx-x64\WarpingCounter.runtimeconfig.dev.json
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Release\netcoreapp2.2\osx-x64\WarpingCounter.dll
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\bin\Release\netcoreapp2.2\osx-x64\WarpingCounter.pdb
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Release\netcoreapp2.2\osx-x64\WarpingCounter.csproj.CoreCompileInputs.cache
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Release\netcoreapp2.2\osx-x64\WarpingCounter.AssemblyInfoInputs.cache
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Release\netcoreapp2.2\osx-x64\WarpingCounter.AssemblyInfo.cs
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Release\netcoreapp2.2\osx-x64\WarpingCounter.dll
+C:\Users\kingp\Documents\git\rectangles\WarpingTileCounter\WarpingCounter\WarpingCounter\obj\Release\netcoreapp2.2\osx-x64\WarpingCounter.pdb

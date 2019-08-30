@@ -10,16 +10,12 @@
 
     public class PreWarpDigit1 : IHaveInput, IHaveOutput
     {
-
         public Tile Input { get; }
-
-
+        
         public Tile Output { get; }
-
-
+        
         public readonly List<Tile> Tiles;
-
-
+        
         public PreWarpDigit1(string name, Glue input, Glue output)
         {
             Tiles = Create();
@@ -32,8 +28,10 @@
             Output.North = output;
         }
 
-
-        public List<Tile> Create()
+        /// <summary>
+        /// 34 tiles
+        /// </summary>
+        private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
 
@@ -47,8 +45,7 @@
                    .Down()
                    .North(7);
 
-            return builder.Tiles()
-                          .ToList();
+            return builder.Tiles().ToList();
         }
 
     }

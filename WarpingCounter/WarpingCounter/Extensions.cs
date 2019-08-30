@@ -42,6 +42,7 @@
             return new List<string>(digitList);
         }
 
+        public static string Repeat(this string self, int length) => string.Concat(Enumerable.Repeat(self, length));
 
         public static bool None<T>(this IEnumerable<T> elements) => !elements.Any();
 
@@ -158,9 +159,6 @@
                 if (seenKeys.Add(keySelector(element)))
                 {
                     yield return element;
-                } else
-                {
-                    Console.WriteLine(keySelector(element));
                 }
             }
         }

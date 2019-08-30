@@ -1,6 +1,7 @@
 ﻿namespace WarpingCounter.Gadgets.NextRead
 {
 
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -11,9 +12,11 @@
     public class NextReadDigit3Case3 : IHaveInput, IHaveOutput
     {
         public Tile Input { get; }
+
         public Tile Output { get; }
 
-        public IEnumerable<Tile> Tiles { get; }
+        public List<Tile> Tiles { get; }
+
         public NextReadDigit3Case3(string name, Glue input, Glue output)
         {
             Tiles = Create();
@@ -26,7 +29,9 @@
             Output.East  = output;
         }
 
-
+        /// <summary>
+        /// 12 tiles
+        /// </summary>
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();

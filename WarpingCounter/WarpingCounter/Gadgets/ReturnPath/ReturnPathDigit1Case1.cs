@@ -12,17 +12,13 @@
     {
 
         private readonly int L;
-
-
+        
         public Tile Input { get; }
-
-
+        
         public Tile Output { get; }
-
-
-        public IEnumerable<Tile> Tiles { get; }
-
-
+        
+        public List<Tile> Tiles { get; }
+        
         public ReturnPathDigit1Case1(string name, int L, Glue input, Glue output)
         {
             this.L = L;
@@ -36,8 +32,10 @@
             Output       = Tiles.Last();
             Output.South = output;
         }
-
-
+        
+        /// <summary>
+        /// 30 + 4L tiles
+        /// </summary>
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();

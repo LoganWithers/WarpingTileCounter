@@ -10,16 +10,12 @@
 
     public class ReturnPathDigit1Seed : IHaveInput, IHaveOutput
     {
-        
         public Tile Input { get; }
-
-
+        
         public Tile Output { get; }
-
-
-        public IEnumerable<Tile> Tiles { get; }
-
-
+        
+        public List<Tile> Tiles { get; }
+        
         public ReturnPathDigit1Seed(string name, Glue input, Glue output)
         {
 
@@ -33,7 +29,9 @@
             Output.North = output;
         }
 
-
+        /// <summary>
+        /// 1 tile
+        /// </summary>
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();

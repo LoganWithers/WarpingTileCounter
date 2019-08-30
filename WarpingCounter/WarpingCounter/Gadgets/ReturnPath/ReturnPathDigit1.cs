@@ -10,18 +10,13 @@
 
     public class ReturnPathDigit1 : IHaveInput, IHaveOutput
     {
-
         private readonly int L;
-
 
         public Tile Input { get; }
 
-
         public Tile Output { get; }
-
-
-        public IEnumerable<Tile> Tiles { get; }
-
+        
+        public List<Tile> Tiles { get; }
 
         public ReturnPathDigit1(string name, int L, Glue input, Glue output)
         {
@@ -37,7 +32,9 @@
             Output.South = output;
         }
 
-
+        /// <summary>
+        /// 42 + 4L tiles
+        /// </summary>
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
@@ -60,8 +57,7 @@
                    .South(14)
                    .South(4 * L, "blue");
 
-            return builder.Tiles()
-                          .ToList();
+            return builder.Tiles().ToList();
         }
 
     }

@@ -1,50 +1,27 @@
-# Thin 3D rectangle + a warping counter
+# Warping Counter
 
-## Figures and such
+## [Write up of the construction](tex/main.pdf)
 
-[Most recent figures and equations](tex/main.pdf)
+## [Implementation of the write up](WarpingCounter/WarpingCounter/TileGenerator.cs)
 
-```c#
-(string bits, bool carryOut) CalculateOutputBits(string inputBits, bool carry, int baseM)
-{
-    const int binary = 2;
+## Usage
 
-    if (!carry)
-    {
-        return (inputBits, false);
-    }
+This program generates 3D tile sets designed to be used in either [PyTAS](http://self-assembly.net/wiki/index.php?title=PyTAS) or [ISU TAS](http://self-assembly.net/wiki/index.php?title=ISU_TAS).
 
-    // Right most bits, do not impact the value that used by the counter.
-    var indicatorBits = inputBits.GetLast(2);
+The produced tile sets are programmed to self-assemble into thin rectangles
+at temperature-1 in the aTAM model. The terminal assembly will be a N * K rectangle.
 
-    // The bits relevant to the value of the digit.
-    var bits = inputBits.Substring(0, inputBits.Length - 2);
+Once the program is running, it will prompt the user for a height (N)
+and width (k) for the rectangle.
 
-    // Convert these bits to its integer representation.
-    var value = Convert.ToInt32(bits, binary);
+After the user has specified their desired dimensions, a `.tds` file will be written into this `WarpingTileCounter/WarpingCounter/Output/` directory.
 
-    bool CanAddOne(int n) => n + 1 <= baseM - 1;
+## Run the program
 
-    if (CanAddOne(value))
-    {
-        var incremented = Convert.ToString(value + 1, binary)
-                                 .PadLeft(bits.Length, '0');
+[Windows x64](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\win-x64\publish)
 
-        // take the newly incremented value, and
-        // set the carry signal to false since we incremented in this row.
-        return ($"{incremented}{indicatorBits}", false);
-    }
+[Windows x86](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\win-x66\publish)
 
-    // Set all the bits to 0 since adding a value to the current value will
-    // result in some value that is not less than base M. Propagate the
-    // carry signal.
-    var zeroes = string.Concat(Enumerable.Repeat("0", bits.Length));
+[Mac](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\osx-x64\publish)
 
-    return ($"{zeroes}{indicatorBits}", true);
-}
-```
-
-## Program for generating tile set
-
-
-[Tile generator class](WarpingCounter/WarpingCounter/TileGenerator.cs)
+[Linux](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\linux-x64\publish)

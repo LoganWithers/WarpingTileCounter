@@ -10,16 +10,12 @@
 
     public class PostWarpDigit1 : IHaveInput, IHaveOutput
     {
-
         public Tile Input { get; }
-
-
+        
         public Tile Output { get; }
-
-
+        
         public readonly List<Tile> Tiles;
-
-
+        
         public PostWarpDigit1(string name, Glue input, Glue output)
         {
             Tiles = Create();
@@ -32,8 +28,10 @@
             Output.North = output;
         }
 
-
-        public List<Tile> Create()
+        /// <summary>
+        /// 27 tiles
+        /// </summary>
+        private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
 
@@ -48,8 +46,7 @@
                    .West()
                    .North();
 
-            return builder.Tiles()
-                          .ToList();
+            return builder.Tiles().ToList();
         }
 
     }

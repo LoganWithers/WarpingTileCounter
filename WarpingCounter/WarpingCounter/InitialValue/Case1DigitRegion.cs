@@ -6,7 +6,6 @@
     using Common.Models;
 
     using Gadgets.DigitTop;
-    using Gadgets.NextRead;
     using Gadgets.ReturnPath;
 
     public class Case1DigitRegion : AbstractTileNamer

@@ -15,7 +15,7 @@
         public Tile Input { get; }
         public Tile Output { get; }
 
-        public IEnumerable<Tile> Tiles { get; }
+        public List<Tile> Tiles { get; }
         public NextReadDigit1(string name, int L, Glue input, Glue output)
         {
             this.L = L;
@@ -30,7 +30,9 @@
             Output.North = output;
         }
 
-
+        /// <summary>
+        /// 41 + 4L tiles 
+        /// </summary>
         private List<Tile> Create()
         {
             var builder = new GadgetBuilder().Start();
