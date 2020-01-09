@@ -31,7 +31,7 @@
         {
             var path = $"{GetPath()}{options.SimpleTileSetName}.tdp";
             File.WriteAllText(path, options.ToString());
-            Console.WriteLine($"File can be found at {options.SimpleTileSetName}.tdp");
+            Console.WriteLine($"File can be found at {path}");
         }
 
         private void WriteDefinitions()
@@ -50,10 +50,8 @@
         private string GetPath()
         {
             var currentDirectory = Environment.CurrentDirectory;
-
-            var systemIndependentPathPrefix = currentDirectory.IndexOf(ProjectFolder, StringComparison.OrdinalIgnoreCase);
-
-            return $"{currentDirectory.Substring(0, systemIndependentPathPrefix)}{ProjectFolder}Output\\";
+            
+            return Directory.CreateDirectory($"{currentDirectory}/output/").FullName;
         }
     }
 }
