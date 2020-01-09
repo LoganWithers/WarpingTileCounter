@@ -4,10 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
 
+    using Common;
     using Common.Builders;
     using Common.Models;
 
-    public class NextReadDigit1Case2Seed
+    public class NextReadDigit1Case2Seed : IHaveInput, IHaveOutput
     {
         public Tile Input { get; }
 
@@ -23,8 +24,8 @@
             Input       = Tiles.First();
             Input.West = input;
 
-            Output      = Tiles.Last();
-            Output.East = output;
+            Output       = Tiles.Last();
+            Output.North = output;
         }
 
         /// <summary>

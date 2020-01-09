@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Common.Builders
 {
-
     using System;
     using System.Collections.Generic;
 
@@ -10,19 +9,19 @@
 
     public class FromNorthGadgetBuilder : IFromNorthGadgetBuilder
     {
-
         private readonly GadgetBuilder original;
 
         private readonly LinkedList<Tile> tiles;
 
-
-        public FromNorthGadgetBuilder(LinkedList<Tile> tiles, GadgetBuilder original,string color = "white", string name = null)
+        public FromNorthGadgetBuilder(LinkedList<Tile> tiles, GadgetBuilder original, string color = "white", string name = null)
         {
             this.original = original;
 
             var previous = tiles.Last.Value;
 
-            var next = new Tile(name ?? Guid.NewGuid().ToString()) { Color = color };
+            var next = new Tile(name ??
+                                Guid.NewGuid()
+                                    .ToString()) {Color = color};
 
             previous.AttachNorth(next);
             tiles.AddLast(next);
@@ -30,24 +29,17 @@
             this.tiles = tiles;
         }
 
-
         public IEnumerable<Tile> Tiles => tiles;
-
 
         public IFromUpGadgetBuilder Up(string color = "white", string name = null) => new FromUpGadgetBuilder(tiles, original, color, name);
 
-
         public IFromDownGadgetBuilder Down(string color = "white", string name = null) => new FromDownGadgetBuilder(tiles, original, color, name);
-
 
         public IFromEastGadgetBuilder East(string color = "white", string name = null) => new FromEastGadgetBuilder(tiles, original, color, name);
 
-
         public IFromWestGadgetBuilder West(string color = "white", string name = null) => new FromWestGadgetBuilder(tiles, original, color, name);
 
-
         public IFromNorthGadgetBuilder North(string color = "white", string name = null) => new FromNorthGadgetBuilder(tiles, original, color, name);
-
 
         public IFromEastGadgetBuilder East(int n, string color = "white")
         {
@@ -84,8 +76,7 @@
 
             return lastBuilder;
         }
+
         public IGadgetBuilder End() => original;
-
     }
-
 }

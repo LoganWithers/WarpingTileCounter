@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.Warping.PreWarp
 {
-
     using System.Collections.Generic;
     using System.Linq;
 
@@ -11,9 +10,9 @@
     public class PreWarpDigit1Case1 : IHaveInput, IHaveOutput
     {
         public Tile Input { get; }
-        
+
         public Tile Output { get; }
-        
+
         public readonly List<Tile> Tiles;
 
         public PreWarpDigit1Case1(string name, Glue input, Glue output)
@@ -39,9 +38,8 @@
                    .West()
                    .North(12);
 
-            return builder.Tiles().ToList();
+            return builder.Tiles()
+                          .ToList();
         }
-
     }
-
 }

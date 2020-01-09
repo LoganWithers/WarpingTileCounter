@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.ReturnPath
 {
-
     using System.Collections.Generic;
     using System.Linq;
 
@@ -10,11 +9,11 @@
     public class ReturnPathDigit1Case2Seed
     {
         public Tile Input { get; }
-        
+
         public Tile Output { get; }
-        
+
         public List<Tile> Tiles { get; }
-        
+
         public ReturnPathDigit1Case2Seed(string name, Glue input, Glue output)
         {
             Tiles = Create();
@@ -23,8 +22,8 @@
             Input       = Tiles.First();
             Input.North = input;
 
-            Output       = Tiles.Last();
-            Output.East  = output;
+            Output      = Tiles.Last();
+            Output.East = output;
         }
 
         /// <summary>
@@ -34,8 +33,8 @@
         {
             var builder = new GadgetBuilder().Start();
 
-            return builder.Tiles().ToList();
+            return builder.Tiles()
+                          .ToList();
         }
-
     }
 }

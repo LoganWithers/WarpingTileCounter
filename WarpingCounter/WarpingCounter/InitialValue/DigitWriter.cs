@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.InitialValue
 {
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -20,11 +19,9 @@
     /// </summary>
     public class DigitWriter : IHaveInput, IHaveOutput
     {
-
         private readonly string reversedBits;
-        
-        public readonly List<Tile> Tiles;
 
+        public readonly List<Tile> Tiles;
 
         public DigitWriter(string name, string originalBits, Glue input, Glue output)
         {
@@ -40,12 +37,9 @@
             Output.North = output;
         }
 
-
         public Tile Input { get; }
 
-
         public Tile Output { get; }
-
 
         private List<Tile> CreateTiles()
         {
@@ -81,11 +75,11 @@
                         throw new ArgumentOutOfRangeException(nameof(bit));
                 }
             }
-            
+
             // Skip 1 since the first tile is not apart of the encoded digits. 
-            return builder.Tiles().Skip(1).ToList();
+            return builder.Tiles()
+                          .Skip(1)
+                          .ToList();
         }
-
     }
-
 }

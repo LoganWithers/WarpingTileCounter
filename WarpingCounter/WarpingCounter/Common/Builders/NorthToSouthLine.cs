@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Common.Builders
 {
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -9,9 +8,7 @@
 
     public class NorthToSouthLine : IHaveInput, IHaveOutput
     {
-
         public readonly List<Tile> Tiles;
-
 
         public NorthToSouthLine(int count, bool? op = null)
         {
@@ -32,9 +29,10 @@
 
             Tiles = builder.Tiles()
                            .ToList();
+
             Tiles.PrependNamesWith($"{nameof(NorthToSouthLine)} {op}");
-            Input = Tiles.First();
-            Output  = Tiles.Last();
+            Input  = Tiles.First();
+            Output = Tiles.Last();
 
             foreach (var tile in Tiles)
             {
@@ -42,12 +40,8 @@
             }
         }
 
-
         public Tile Input { get; }
 
-
         public Tile Output { get; }
-
     }
-
 }

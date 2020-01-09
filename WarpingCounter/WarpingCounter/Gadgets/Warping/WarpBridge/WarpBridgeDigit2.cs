@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.Warping.WarpBridge
 {
-
     using System.Collections.Generic;
     using System.Linq;
 
@@ -41,9 +40,8 @@
                    .Down()
                    .North(13);
 
-            return builder.Tiles().ToList();
+            return builder.Tiles()
+                          .ToList();
         }
-
     }
-
 }

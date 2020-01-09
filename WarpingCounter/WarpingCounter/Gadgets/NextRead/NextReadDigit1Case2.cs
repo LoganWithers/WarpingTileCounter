@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.NextRead
 {
-
     using System.Collections.Generic;
     using System.Linq;
 
@@ -45,7 +44,7 @@
                    .Up()
                    .East(3)
                    .Down();
-                   
+
             return builder.Tiles().ToList();
         }
     }

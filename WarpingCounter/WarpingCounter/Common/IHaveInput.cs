@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Common
 {
-
     using Models;
 
     /// <summary>
@@ -9,9 +8,6 @@
     /// </summary>
     public interface IHaveInput
     {
-
         Tile Input { get; }
-
     }
-
 }

@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.Warping.FirstWarp
 {
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -10,15 +9,11 @@
 
     public class FirstWarpDigit2Case2 : IHaveInput, IHaveOutput
     {
-
         public Tile Input { get; }
-
 
         public Tile Output { get; }
 
-
         public readonly List<Tile> Tiles;
-
 
         public FirstWarpDigit2Case2(string name, Glue input, Glue outputNorth, Glue outputWest)
         {
@@ -33,12 +28,9 @@
             Output.West  = outputWest;
         }
 
-
         public List<Tile> Create() => new List<Tile> {
         new Tile(Guid.NewGuid()
                      .ToString())
         };
-
     }
-
 }

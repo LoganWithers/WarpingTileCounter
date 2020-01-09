@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.ReturnPath
 {
-
     using System.Collections.Generic;
     using System.Linq;
 
@@ -15,7 +14,7 @@
         public Tile Input { get; }
 
         public Tile Output { get; }
-        
+
         public List<Tile> Tiles { get; }
 
         public ReturnPathDigit1(string name, int L, Glue input, Glue output)
@@ -57,9 +56,8 @@
                    .South(14)
                    .South(4 * L, "blue");
 
-            return builder.Tiles().ToList();
+            return builder.Tiles()
+                          .ToList();
         }
-
     }
-
 }

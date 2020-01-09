@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.Warping.PostWarp
 {
-
     using System.Collections.Generic;
     using System.Linq;
 
@@ -11,7 +10,7 @@
     public class PostWarpDigit1Case2 : IHaveInput, IHaveOutput
     {
         public Tile Input { get; }
-        
+
         public Tile Output { get; }
 
         public readonly List<Tile> Tiles;
@@ -44,9 +43,8 @@
                    .West()
                    .North(11);
 
-            return builder.Tiles().ToList();
+            return builder.Tiles()
+                          .ToList();
         }
-
     }
-
 }

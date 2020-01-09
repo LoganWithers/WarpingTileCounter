@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Common.Models
 {
-
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -8,7 +7,6 @@
 
     public class Tile
     {
-
         public Tile(string name)
         {
             Name = name.Replace("True", "true")
@@ -23,41 +21,33 @@
             Glues = new List<Glue> {North, South, East, West, Up, Down};
         }
 
-
         public Tile() { }
-        
+
         private List<Glue> Glues { get; }
 
         private string name;
 
-        public string Name {
+        public string Name
+        {
             get => name;
             private set => name = Regex.Replace(value, @"\s+", "_");
         }
 
         protected string Label { get; set; } = string.Empty;
 
-
         public Glue North { get; set; } = new Glue();
-
 
         public Glue South { get; set; } = new Glue();
 
-
         public Glue East { get; set; } = new Glue();
-
 
         public Glue West { get; set; } = new Glue();
 
-
         public Glue Up { get; set; } = new Glue();
-
 
         public Glue Down { get; set; } = new Glue();
 
-
         public string Color { get; set; }
-
 
         public void Prepend(string name)
         {
@@ -67,7 +57,6 @@
                                            .Replace("False", "false");
             }
         }
-
 
         public void Rename(string name)
         {
@@ -85,7 +74,8 @@
         /// </summary>
         public void AttachNorth(Tile that)
         {
-            var label = Guid.NewGuid().ToString();
+            var label = Guid.NewGuid()
+                            .ToString();
 
             that.South.Label = label;
             that.South.Bind  = 1;
@@ -94,7 +84,6 @@
             North.Label = label;
         }
 
-
         /// <summary>
         ///   Attaches a tile west of the tile this is called on.
         ///   <br />
@@ -102,7 +91,8 @@
         /// </summary>
         public void AttachWest(Tile that)
         {
-            var label = Guid.NewGuid().ToString();
+            var label = Guid.NewGuid()
+                            .ToString();
 
             that.East.Label = label;
             that.East.Bind  = 1;
@@ -111,7 +101,6 @@
             West.Label = label;
         }
 
-
         /// <summary>
         ///   Attaches a tile east of the tile this is called on.
         ///   <br />
@@ -119,7 +108,8 @@
         /// </summary>
         public void AttachEast(Tile that)
         {
-            var label = Guid.NewGuid().ToString();
+            var label = Guid.NewGuid()
+                            .ToString();
 
             that.West.Label = label;
             that.West.Bind  = 1;
@@ -128,7 +118,6 @@
             East.Label = label;
         }
 
-
         /// <summary>
         ///   Attaches a tile south of the tile this is called on.
         ///   <br />
@@ -136,7 +125,8 @@
         /// </summary>
         public void AttachSouth(Tile that)
         {
-            var label = Guid.NewGuid().ToString();
+            var label = Guid.NewGuid()
+                            .ToString();
 
             that.North.Label = label;
             that.North.Bind  = 1;
@@ -144,7 +134,6 @@
             South.Bind  = 1;
             South.Label = label;
         }
-
 
         /// <summary>
         ///   Attaches a tile above the tile this is called on.
@@ -163,7 +152,6 @@
             Up.Label = label;
         }
 
-
         /// <summary>
         ///   Attaches a tile below the tile this is called on.
         ///   <br />
@@ -180,7 +168,6 @@
             Down.Bind  = 1;
             Down.Label = label;
         }
-
 
         public override string ToString()
         {
@@ -230,7 +217,5 @@
             return sb.AppendLine("CREATE")
                      .ToString();
         }
-
     }
-
 }

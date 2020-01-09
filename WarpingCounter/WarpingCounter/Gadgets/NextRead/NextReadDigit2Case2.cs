@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.NextRead
 {
-
     using System.Collections.Generic;
     using System.Linq;
 

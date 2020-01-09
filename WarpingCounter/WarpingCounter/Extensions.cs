@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter
 {
-
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
@@ -11,8 +10,7 @@
 
     public static class Extensions
     {
-
-        public static List<string> ToBase(this string source, int radix)
+        private static List<string> ToBase(this string source, int radix)
         {
             Dictionary<BigInteger, string> digits = NumberUtils.Digits.ToDictionary(BigInteger.Parse, d => d);
 
@@ -47,7 +45,7 @@
         public static bool None<T>(this IEnumerable<T> elements) => !elements.Any();
 
         public static bool None<T>(this IEnumerable<T> elements, Func<T, bool> predicate) => !elements.Any(predicate);
-        
+
         /// <summary>
         ///   Retrieves the last n characters from this instance.
         /// </summary>
@@ -55,7 +53,6 @@
         /// <param name="n">The n.</param>
         /// <returns></returns>
         public static string GetLast(this string source, int n) => n >= source.Length ? source : source.Substring(source.Length - n);
-
 
         /// <summary>
         ///   Converts a <see cref="BigInteger" /> value to the specified radix.
@@ -65,7 +62,6 @@
         /// <returns></returns>
         public static List<string> ToBase(this BigInteger decimalValue, int radix) => decimalValue.ToString()
                                                                                                   .ToBase(radix);
-
 
         /// <summary>
         ///   Splits the elements into chunks of size n.
@@ -86,7 +82,6 @@
             return head.Any() ? Cons(head, SplitEvery(tail, chunkSize)) : Enumerable.Empty<IEnumerable<T>>();
         }
 
-
         /// <summary>
         ///   Appends the head in front of the other elements.
         /// </summary>
@@ -103,7 +98,6 @@
                 yield return element;
             }
         }
-
 
         public static void PrependNamesWith(this IEnumerable<Tile> tiles, string name)
         {
@@ -132,7 +126,6 @@
             }
         }
 
-
         public static void AppendRange<T>(this LinkedList<T> source, IEnumerable<T> items)
         {
             foreach (var item in items)
@@ -140,7 +133,6 @@
                 source.AddLast(item);
             }
         }
-
 
         /// <summary>
         ///   Removes all duplicates based on the key each element returns.
@@ -162,7 +154,5 @@
                 }
             }
         }
-
     }
-
 }

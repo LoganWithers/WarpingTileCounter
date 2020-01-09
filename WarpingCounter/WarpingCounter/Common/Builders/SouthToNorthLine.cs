@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Common.Builders
 {
-
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -9,9 +8,7 @@
 
     public class SouthToNorthLine : IHaveInput, IHaveOutput
     {
-
         public readonly List<Tile> Tiles;
-
 
         public SouthToNorthLine(int bitsLong)
         {
@@ -30,7 +27,8 @@
                 }
             }
 
-            Tiles = builder.Tiles().ToList();
+            Tiles = builder.Tiles()
+                           .ToList();
 
             Tiles.PrependNamesWith(nameof(SouthToNorthLine));
             Input  = Tiles.First();
@@ -42,12 +40,8 @@
             }
         }
 
-
         public Tile Input { get; }
 
-
         public Tile Output { get; }
-
     }
-
 }

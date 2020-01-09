@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Common.IO
 {
-
     using System;
     using System.Collections.Generic;
     using System.IO;
@@ -10,13 +9,11 @@
 
     public class TileWriter
     {
-
         private const string ProjectFolder = "\\WarpingCounter\\WarpingCounter\\";
 
         private readonly TdpOptions options;
 
         private readonly IEnumerable<Tile> tiles;
-
 
         public TileWriter(TdpOptions options, IEnumerable<Tile> tiles)
         {
@@ -24,13 +21,11 @@
             this.tiles   = tiles;
         }
 
-
         public void WriteTileSet()
         {
             WriteOptions();
             WriteDefinitions();
         }
-
 
         private void WriteOptions()
         {
@@ -38,7 +33,6 @@
             File.WriteAllText(path, options.ToString());
             Console.WriteLine($"File can be found at {options.SimpleTileSetName}.tdp");
         }
-
 
         private void WriteDefinitions()
         {
@@ -53,7 +47,6 @@
             File.WriteAllText(path, sb.ToString());
         }
 
-
         private string GetPath()
         {
             var currentDirectory = Environment.CurrentDirectory;
@@ -62,7 +55,5 @@
 
             return $"{currentDirectory.Substring(0, systemIndependentPathPrefix)}{ProjectFolder}Output\\";
         }
-
     }
-
 }

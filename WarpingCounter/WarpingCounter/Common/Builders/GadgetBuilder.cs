@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Common.Builders
 {
-
     using System.Collections.Generic;
     using System.Linq;
 
@@ -10,12 +9,9 @@
 
     public class GadgetBuilder : IGadgetBuilder
     {
-
         private readonly LinkedList<Tile> tiles = new LinkedList<Tile>();
 
-
         private Tile Last => tiles.Last.Value;
-
 
         public IGadgetBuilder StartWith(Tile tile)
         {
@@ -24,7 +20,6 @@
             return this;
         }
 
-
         public IGadgetBuilder Start()
         {
             tiles.AddFirst(new Tile());
@@ -32,18 +27,13 @@
             return this;
         }
 
-
         public IFromNorthGadgetBuilder North(string color = "white", string name = null) => new FromNorthGadgetBuilder(tiles, this, color, name);
-
 
         public IFromSouthGadgetBuilder South(string color = "white", string name = null) => new FromSouthGadgetBuilder(tiles, this, color, name);
 
-
         public IFromEastGadgetBuilder East(string color = "white", string name = null) => new FromEastGadgetBuilder(tiles, this, color, name);
 
-
         public IFromWestGadgetBuilder West(string color = "white", string name = null) => new FromWestGadgetBuilder(tiles, this, color, name);
-
 
         public IFromNorthGadgetBuilder North(int n, string color = "white")
         {
@@ -57,7 +47,6 @@
             return lastBuilder;
         }
 
-
         public IFromSouthGadgetBuilder South(int n, string color = "white")
         {
             IFromSouthGadgetBuilder lastBuilder = null;
@@ -69,7 +58,6 @@
 
             return lastBuilder;
         }
-
 
         public IFromEastGadgetBuilder East(int n, string color = "white")
         {
@@ -83,7 +71,6 @@
             return lastBuilder;
         }
 
-
         public IFromWestGadgetBuilder West(int n, string color = "white")
         {
             IFromWestGadgetBuilder lastBuilder = null;
@@ -95,7 +82,6 @@
 
             return lastBuilder;
         }
-
 
         public IGadgetBuilder NorthLine(int numberOfBits)
         {
@@ -111,7 +97,6 @@
             return this;
         }
 
-
         public IGadgetBuilder SouthLine(int numberOfBits)
         {
             var line = new NorthToSouthLine(numberOfBits);
@@ -126,9 +111,6 @@
             return this;
         }
 
-
         public IEnumerable<Tile> Tiles() => tiles;
-
     }
-
 }

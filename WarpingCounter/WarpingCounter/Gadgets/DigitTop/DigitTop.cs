@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.DigitTop
 {
-
     using Common;
     using Common.Builders;
     using Common.Models;
@@ -21,7 +20,7 @@
         public DigitTop(string name, int L, Glue input, Glue output)
         {
             this.L = L;
-            Tiles = Create();
+            Tiles  = Create();
             Tiles.RenameWithIndex(name);
 
             Input       = Tiles.First();
@@ -31,9 +30,7 @@
             Output.South = output;
         }
 
-
         public Tile Input { get; }
-
 
         public Tile Output { get; }
 
@@ -62,10 +59,8 @@
                  .South(7)
                  .South(4 * L, "blue");
 
-            
-            return build.Tiles().ToList();
+            return build.Tiles()
+                        .ToList();
         }
-
     }
-
 }

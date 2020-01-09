@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.Warping.PostWarp
 {
-
     using System.Collections.Generic;
     using System.Linq;
 
@@ -42,9 +41,8 @@
                    .West()
                    .North();
 
-            return builder.Tiles().ToList();
+            return builder.Tiles()
+                          .ToList();
         }
-
     }
-
 }

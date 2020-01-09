@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\kingp\\Documents\\git\\rectangles\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj": {}
+    "C:\\Users\\kingp\\Documents\\git\\research\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\kingp\\Documents\\git\\rectangles\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj": {
+    "C:\\Users\\kingp\\Documents\\git\\research\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\kingp\\Documents\\git\\rectangles\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj",
+        "projectUniqueName": "C:\\Users\\kingp\\Documents\\git\\research\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj",
         "projectName": "WarpingCounter",
-        "projectPath": "C:\\Users\\kingp\\Documents\\git\\rectangles\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj",
+        "projectPath": "C:\\Users\\kingp\\Documents\\git\\research\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\WarpingCounter.csproj",
         "packagesPath": "C:\\Users\\kingp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\kingp\\Documents\\git\\rectangles\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\obj\\",
+        "outputPath": "C:\\Users\\kingp\\Documents\\git\\research\\WarpingTileCounter\\WarpingCounter\\WarpingCounter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -58,20 +58,20 @@
           "warn": true,
           "downloadDependencies": [
             {
-              "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
-              "version": "[3.0.0-preview8.19405.7, 3.0.0-preview8.19405.7]"
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
             },
             {
-              "name": "Microsoft.NETCore.App.Host.win-x86",
-              "version": "[3.0.0-preview8-28405-07, 3.0.0-preview8-28405-07]"
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.0.1, 3.0.1]"
             },
             {
-              "name": "Microsoft.NETCore.App.Runtime.win-x86",
-              "version": "[3.0.0-preview8-28405-07, 3.0.0-preview8-28405-07]"
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
             },
             {
-              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
-              "version": "[3.0.0-preview8-28405-07, 3.0.0-preview8-28405-07]"
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
             }
           ],
           "frameworkReferences": {
@@ -79,12 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100-preview8-013656\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "win-x86": {
-          "#import": []
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

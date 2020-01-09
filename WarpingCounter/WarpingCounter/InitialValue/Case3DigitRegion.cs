@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.InitialValue
 {
-
     using System.Collections.Generic;
 
     using Common.Models;
@@ -24,21 +23,20 @@
         public Case3DigitRegion((string digit1, string digit2, string digit3) digits, int region, int L)
         {
             this.region = region;
-            this.L = L;
+            this.L      = L;
             CreateDigit1(digits.digit1);
             CreateDigit2(digits.digit2);
             CreateDigit3(digits.digit3);
         }
 
-
         private void CreateDigit1(string digit)
         {
-            var digit1 = new DigitWriter(Name(CounterWrite + Seed, 1, region, Op.Increment), 
+            var digit1 = new DigitWriter(Name(CounterWrite + Seed, 1, region, Op.Increment),
                                          digit,
                                          new Glue($"{CounterWrite} {1} {Seed} {region} {1}"),
                                          new Glue($"{DigitTop} {1} {Seed} {region} {1}"));
-            Tiles.AddRange(digit1.Tiles);
 
+            Tiles.AddRange(digit1.Tiles);
 
             var digitTop1 = new DigitTop(Name(DigitTop + Seed, 1, region, Op.Increment),
                                          L,
@@ -52,22 +50,22 @@
                                                                 new Glue($"{ReturnPath} {1} {Seed} {region} {1}"),
                                                                 new Glue($"{NextRead} {1} {Seed} {region} {1}"));
 
-
             Tiles.AddRange(returnPathDigit1Seed.Tiles);
 
             var nextReadDigit1Seed = new NextReadDigit1Seed(Name(NextRead + Seed, 1, region, Op.Increment),
                                                             new Glue($"{NextRead} {1} {Seed} {region} {1}"),
                                                             new Glue($"{SecondWarp} {2} {Seed} {region} {2}"));
+
             Tiles.AddRange(nextReadDigit1Seed.Tiles);
         }
 
-
         private void CreateDigit2(string digit)
         {
-            var secondWarpDigit2 = new SecondWarpDigit2(Name(SecondWarp + Seed, 2, region, Op.Increment), 
+            var secondWarpDigit2 = new SecondWarpDigit2(Name(SecondWarp + Seed, 2, region, Op.Increment),
                                                         new Glue($"{SecondWarp} {2} {Seed} {region} {2}"),
                                                         new Glue($"{SecondWarp} {2} {Seed} {region} {2}"),
                                                         new Glue($"{PostWarp} {2} {Seed} {region} {2}"));
+
             Tiles.AddRange(secondWarpDigit2.Tiles);
 
             var postWarpDigit2 = new PostWarpDigit2(Name(PostWarp + Seed, 2, region, Op.Increment),
@@ -76,32 +74,34 @@
 
             Tiles.AddRange(postWarpDigit2.Tiles);
 
-            var digit2 = new DigitWriter(Name(CounterWrite + Seed, 2, region, Op.Increment), 
+            var digit2 = new DigitWriter(Name(CounterWrite + Seed, 2, region, Op.Increment),
                                          digit,
                                          new Glue($"{CounterWrite} {2} {Seed} {region} {2}"),
                                          new Glue($"{DigitTop} {2} {Seed} {region} {2}"));
-            Tiles.AddRange(digit2.Tiles);
 
+            Tiles.AddRange(digit2.Tiles);
 
             var digitTop2 = new DigitTop(Name(DigitTop + Seed, 2, region, Op.Increment),
                                          L,
                                          new Glue($"{DigitTop} {2} {Seed} {region} {2}"),
                                          new Glue($"{ReturnPath} {2} {Seed} {region} {2}"));
+
             Tiles.AddRange(digitTop2.Tiles);
 
             var returnPath2 = new ReturnPathDigit2(Name(ReturnPath + Seed, 2, region, Op.Increment),
                                                    L,
                                                    new Glue($"{ReturnPath} {2} {Seed} {region} {2}"),
                                                    new Glue($"{NextRead} {2} {Seed} {region} {2}"));
+
             Tiles.AddRange(returnPath2.Tiles);
 
             var nextRead2 = new NextReadDigit2Seed(Name(NextRead + Seed, 2, region, Op.Increment),
                                                    L,
                                                    new Glue($"{NextRead} {2} {Seed} {region} {2}"),
                                                    new Glue($"{FirstWarp} {3} {Seed} {region} {3}"));
+
             Tiles.AddRange(nextRead2.Tiles);
         }
-
 
         private void CreateDigit3(string digit)
         {
@@ -112,22 +112,18 @@
 
             Tiles.AddRange(firstWarp3.Tiles);
 
-
             var warpBridge3 = new WarpBridgeDigit3(Name(WarpBridge + Seed, 3, region, Op.Increment, msr: true, msd: true),
                                                    new Glue($"{WarpBridge} {3} {Seed} {region} {3}"),
                                                    new Glue($"{SecondWarp} {3} {Seed} {region} {3}"));
 
             Tiles.AddRange(warpBridge3.Tiles);
 
-
-
-            var secondWarp3 = new SecondWarpDigit3(Name(SecondWarp + Seed,  3, region, Op.Increment, msr: true, msd: true),
+            var secondWarp3 = new SecondWarpDigit3(Name(SecondWarp + Seed, 3, region, Op.Increment, msr: true, msd: true),
                                                    new Glue($"{SecondWarp} {3} {Seed} {region} {3}"),
                                                    new Glue($"{SecondWarp} {3} {Seed} {region} {3}"),
                                                    new Glue($"{PostWarp} {3} {Seed} {region} {3}"));
 
             Tiles.AddRange(secondWarp3.Tiles);
-
 
             var postWarp3 = new PostWarpDigit3(Name(PostWarp + Seed, 3, region, Op.Increment, msr: true, msd: true),
                                                new Glue($"{PostWarp} {3} {Seed} {region} {3}"),
@@ -135,14 +131,12 @@
 
             Tiles.AddRange(postWarp3.Tiles);
 
-
-            var digit3 = new DigitWriter(Name(CounterWrite + Seed, 3, region, Op.Increment), 
+            var digit3 = new DigitWriter(Name(CounterWrite + Seed, 3, region, Op.Increment),
                                          digit,
                                          new Glue($"{CounterWrite} {3} {Seed} {region} {3}"),
                                          new Glue($"{DigitTop} {3} {Seed} {region} {3}"));
 
             Tiles.AddRange(digit3.Tiles);
-
 
             var digitTop3 = new DigitTop(Name(DigitTop + Seed, 3, region, Op.Increment, msr: true, msd: true),
                                          L,
@@ -151,8 +145,6 @@
 
             Tiles.AddRange(digitTop3.Tiles);
 
-
-
             var returnPath3 = new ReturnPathDigit3(Name(ReturnPath + Seed, 3, region, Op.Increment, msr: true, msd: true),
                                                    L,
                                                    new Glue($"{ReturnPath} {3} {Seed} {region} {3}"),
@@ -160,6 +152,5 @@
 
             Tiles.AddRange(returnPath3.Tiles);
         }
-
     }
 }

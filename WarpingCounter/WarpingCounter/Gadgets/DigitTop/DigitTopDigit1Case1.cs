@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.DigitTop
 {
-
     using System.Collections.Generic;
     using System.Linq;
 

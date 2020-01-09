@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets.ReturnPath
 {
-
     using System.Collections.Generic;
     using System.Linq;
 
@@ -42,9 +41,8 @@
             builder.South(29)
                    .South(4 * L, "blue");
 
-            return builder.Tiles().ToList();
+            return builder.Tiles()
+                          .ToList();
         }
-
     }
-
 }

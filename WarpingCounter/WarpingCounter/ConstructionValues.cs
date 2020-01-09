@@ -1,15 +1,12 @@
 ﻿namespace WarpingCounter
 {
-
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
     using System.Numerics;
 
     public class ConstructionValues
     {
-
         private const double DigitsPerRegion = 3;
 
         private const int BitsUsedAsFlags = 2;
@@ -36,10 +33,15 @@
             BaseM                   = baseM;
             power                   = Math.Ceiling(BigInteger.Log(this.initialValueBase10, BaseM));
             haltingValueBase10      = BigInteger.Pow(BaseM, Convert.ToInt32(power));
-            BitsRequiredForBaseM    = Convert.ToString(BaseM - 1, 2).Length;
+
+            BitsRequiredForBaseM = Convert.ToString(BaseM - 1, 2)
+                                          .Length;
+
             this.d = d;
 
-            var leadingZeroes = BaseM.ToString().Length;
+            var leadingZeroes = BaseM.ToString()
+                                     .Length;
+
             var digits = (double) d;
 
             var remainder = digits % DigitsPerRegion;
@@ -61,10 +63,10 @@
                     converted.InsertRange(0, Enumerable.Repeat("0", missing));
                 }
 
-                return converted.Select(s => s.PadLeft(leadingZeroes, '0')).ToList();
+                return converted.Select(s => s.PadLeft(leadingZeroes, '0'))
+                                .ToList();
             }
 
-            
             initialValueBaseM = ConvertToBaseMWithLeadingZeroes(this.initialValueBase10, BaseM);
             haltingValueBaseM = ConvertToBaseMWithLeadingZeroes(haltingValueBase10,      BaseM);
 
@@ -87,18 +89,13 @@
                 AddWithLeadingZeroes($"{value}00");
                 AddWithLeadingZeroes($"{value}11");
             }
-
         }
-
 
         public int BaseM { get; }
 
-
         public int DigitRegions { get; }
 
-
         public int DigitsInMSR { get; }
-
 
         public int BitsRequiredForBaseM { get; }
 
@@ -106,7 +103,6 @@
         /// The number of bits in a single digit, equal to: Ceil( Log2(M) ) + 2 
         /// </summary>
         public int L => BitsRequiredForBaseM + BitsUsedAsFlags;
-
 
         /// <summary>
         ///   Determines whether the specified floating point value is zero.
@@ -116,7 +112,6 @@
         ///   <c>true</c> if the specified value is zero; otherwise, <c>false</c>.
         /// </returns>
         private static bool IsZero(double value) => value < double.Epsilon;
-
 
         private void Summarize()
         {
@@ -132,13 +127,11 @@
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"    Start: {string.Join(" ", initialValueBaseM.Select(digit => digit.PadLeft(length, '0')))}");
 
-            
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"    Halt:  {string.Join(" ", haltingValueBaseM.Select(digit => digit.PadLeft(length, '0')))}");
             Console.ResetColor();
             Console.WriteLine();
         }
-
 
         public IEnumerable<IEnumerable<string>> SplitIntoDigitRegions()
         {
@@ -188,9 +181,6 @@
             }
         }
 
-
         public override string ToString() => string.Join(" ", initialValueBaseM.Select(d => $"{d}"));
-
     }
-
 }

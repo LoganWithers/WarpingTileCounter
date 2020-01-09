@@ -1,6 +1,5 @@
 ﻿namespace WarpingCounter.Gadgets
 {
-
     using System;
     using System.Collections.Generic;
 
@@ -10,7 +9,7 @@
     public class CounterRead
     {
         public readonly List<Tile> Tiles;
-        
+
         public CounterRead(string name, Glue input, Glue outputOne, Glue outputZero)
         {
             var guessOne  = new GuessOne(outputOne);
@@ -25,10 +24,8 @@
             Tiles.RenameWithIndex(name);
         }
 
-
         private class GuessOne : IHaveInput, IHaveOutput
         {
-
             private readonly Tile first;
 
             private readonly Tile fourth;
@@ -38,7 +35,6 @@
             private readonly Tile third;
 
             public readonly List<Tile> Tiles;
-
 
             public GuessOne(Glue output)
             {
@@ -55,9 +51,7 @@
                 Tiles = new List<Tile> {first, second, third, fourth};
             }
 
-
             public Tile Input { get; }
-
 
             public Tile Output { get; }
 
@@ -66,19 +60,16 @@
                 Input.AttachAbove(zero.Input);
             }
 
-
             private void AttachInternalGlues()
             {
                 first.AttachNorth(second);
                 second.AttachNorth(third);
                 third.AttachNorth(fourth);
             }
-
         }
 
         private class GuessZero : IHaveInput, IHaveOutput
         {
-
             private readonly Tile fifth;
 
             private readonly Tile first;
@@ -90,7 +81,6 @@
             private readonly Tile third;
 
             public readonly List<Tile> Tiles;
-
 
             public GuessZero(Glue output)
             {
@@ -110,9 +100,7 @@
 
             public Tile Input { get; }
 
-
             public Tile Output { get; }
-
 
             private void AttachInternalGlues()
             {
@@ -121,9 +109,6 @@
                 third.AttachNorth(fourth);
                 fourth.AttachBelow(fifth);
             }
-
         }
-
     }
-
 }

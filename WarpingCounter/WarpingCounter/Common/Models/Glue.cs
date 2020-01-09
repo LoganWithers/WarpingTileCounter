@@ -1,11 +1,9 @@
 ﻿namespace WarpingCounter.Common.Models
 {
-
     using System.Text.RegularExpressions;
 
     public class Glue
     {
-
         public Glue(string label)
         {
             Label = label.Replace("True", "true")
@@ -14,9 +12,8 @@
             Bind = 1;
         }
 
-
         public Glue() { }
-        
+
         public int Bind { get; set; }
 
         private string label;
@@ -27,5 +24,4 @@
             set => label = Regex.Replace(value.Trim(), @"\s+", "_");
         }
     }
-
 }
