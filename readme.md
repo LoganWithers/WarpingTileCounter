@@ -18,10 +18,10 @@ After the user has specified their desired dimensions, a `.tds` file will be wri
 
 ## Run the program
 
-[Windows x64](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\win-x64\publish)
+[Windows x64](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\publish\win-x64)
 
-[Windows x86](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\win-x66\publish)
+[Windows x86](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\publish\win-x86)
 
-[Mac](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\osx-x64\publish)
+[Mac](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\publish\mac)
 
-[Linux](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\linux-x64\publish)
+[Linux](WarpingCounter\WarpingCounter\bin\Release\netcoreapp3.0\publish\linux)
