@@ -22,6 +22,6 @@ After the user has specified their desired dimensions, a `.tds` file will be wri
 
 [Windows x86](WarpingCounter/WarpingCounter/bin/Release/netcoreapp3.0/publish/win-x86/WarpingCounter.exe)
 
-[Mac](WarpingCounter/WarpingCounter/bin/Release/netcoreapp3.0/publish/osx-x6/WarpingCounter)
+[Mac](WarpingCounter/WarpingCounter/bin/Release/netcoreapp3.0/publish/osx-x64/WarpingCounter)
 
 [Linux](WarpingCounter/WarpingCounter/bin/Release/netcoreapp3.0/publish/linux-x64/WarpingCounter)
